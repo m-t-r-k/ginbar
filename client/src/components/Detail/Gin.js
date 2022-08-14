@@ -1,5 +1,4 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
   
 class Gin extends React.Component {
 
@@ -8,15 +7,9 @@ class Gin extends React.Component {
         this.state = {name: ""};
     }
 
-    componentDidMount() {
-        const ginId = this.props.match.params.ginId;
-        this.fetchData(ginId);
-    }
-
     fetchData = ginId => {
         fetch("http://localhost:3000/gins")
           .then(res => res.json())
-          .then(data => data.filter(data => data.id == ginId))
           .then(data => this.setState({ name: data.name }));
         console.log(this.state.name);
     };
@@ -30,4 +23,4 @@ class Gin extends React.Component {
     }
 }
 
-export default withRouter(Gin);
+export default Gin;
