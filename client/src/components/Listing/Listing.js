@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
   
 class Listing extends React.Component {
     state = {
@@ -20,8 +21,8 @@ class Listing extends React.Component {
                     return (
                         <div key={gin.id}>
                             <h2>name: {gin.name}</h2>
-                            <h2>country: {gin.type}</h2>
-
+                            <h2>typ: {gin.type}</h2>
+                            <Link to={`/gins/${gin.id}`}>Details</Link>
                             <hr />
                         </div>
                     );

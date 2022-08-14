@@ -1,1 +1,12 @@
-{"name": "Anni"}
+{"gins":[
+    {
+        "name": "The Beauty",
+        "type": "Organic Gin",
+        "id": "beauty"
+    },
+    {
+        "name": "Lakestuff",
+        "type": "Dry Gin",
+        "id": "lakestuff"
+    }
+]}
