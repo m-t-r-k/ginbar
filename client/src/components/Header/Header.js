@@ -6,6 +6,7 @@ function Header() {
     <div>
       <nav>
         <Link to="/">Home</Link> |{" "}
+        <Link to="/how-to-taste/">How to Taste</Link> |{" "}
         <Link to="/gins/">Gins</Link> |{" "}
         <Link to="/cocktails/">Cocktails</Link>
       </nav>

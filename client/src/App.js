@@ -9,6 +9,7 @@ import {
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
+import HowToTaste from "./components/HowToTaste/HowToTaste";
 import Overview from "./components/Listing/Listing";
 import GinDetail from "./components/Detail/Gin";
 import CocktailDetail from "./components/Detail/Cocktail";
@@ -33,6 +34,7 @@ class App extends React.Component {
           <div className="container">
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/how-to-taste/" element={<HowToTaste />} />
               <Route path="/gins/" element={<Overview />} />
               <Route path="/cocktails/" element={<Overview />} />
               <Route path="/gins/:ginID" element={<GinDetail />} />
