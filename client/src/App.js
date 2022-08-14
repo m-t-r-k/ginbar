@@ -35,8 +35,8 @@ class App extends React.Component {
               <Route path="/" element={<Home />} />
               <Route path="/gins/" element={<Overview />} />
               <Route path="/cocktails/" element={<Overview />} />
-              <Route path="/gins/detail/:ginID" element={<GinDetail />} />
-              <Route path="/cocktails/detail/:cocktailID" element={<CocktailDetail />} />
+              <Route path="/gins/:ginID" element={<GinDetail />} />
+              <Route path="/cocktails/:cocktailID" element={<CocktailDetail />} />
             </Routes>
           </div>
           <Footer />
