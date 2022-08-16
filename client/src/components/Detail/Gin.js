@@ -1,26 +1,28 @@
-import React from "react";
-  
-class Gin extends React.Component {
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-    constructor(props) {
-        super(props);
-        this.state = {name: ""};
-    }
+const Gin = () => {
 
-    fetchData = ginId => {
-        fetch("http://localhost:3000/gins")
-          .then(res => res.json())
-          .then(data => this.setState({ name: data.name }));
-        console.log(this.state.name);
-    };
+    const [ Data, setData ] = useState({
+        name:'',
+        type:''
+    }) 
+    
+    const { ginId } = useParams();
 
-    render() {
-        return (
-            <div>
-                <h1>{this.state.name}</h1>
-            </div>
-        );
-    }
+    useEffect(() => {
+        fetch(`http://localhost:3000/gins/${ginId}`)
+            .then(res => res.json())
+            .then(data => setData({ name:data.name, type:data.type }))
+            .catch(err=>{ console.log(err) })
+    }, [ginId]);
+
+    return(
+        <>
+            <h1>{Data.name}</h1>
+            <p>{Data.type}</p>
+        </>
+    )
 }
 
 export default Gin;

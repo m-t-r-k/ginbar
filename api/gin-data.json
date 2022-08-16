@@ -1,4 +1,4 @@
-{"gins":[
+[
     {
         "name": "The Beauty",
         "type": "Organic Gin",
@@ -8,5 +8,10 @@
         "name": "Lakestuff",
         "type": "Dry Gin",
         "id": "lakestuff"
+    },
+    {
+        "name": "Another",
+        "type": "Dry Gin",
+        "id": "another"
     }
-]}
+]

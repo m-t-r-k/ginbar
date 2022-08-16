@@ -26,6 +26,11 @@ app.get("/gins/", function(req, res) {
     res.send(gins)
 })
 
+app.get("/gins/:ginId", function(req, res) {
+    let gin = gins.find(item => item.id === req.params.ginId)
+    res.send(gin)
+})
+
 app.get("/cocktails/", function(req, res) {
     res.send(cocktails)
 })

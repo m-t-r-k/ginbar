@@ -9,7 +9,7 @@ class Listing extends React.Component {
     componentDidMount() {
         fetch("http://localhost:3000/gins")
           .then(res => res.json())
-          .then(data => this.setState({ gins: data.gins }));
+          .then(data => this.setState({ gins: data }));
         console.log(this.state.gins);
     }
 
