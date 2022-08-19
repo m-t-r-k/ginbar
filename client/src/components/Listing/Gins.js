@@ -20,8 +20,12 @@ class Listing extends React.Component {
                 {this.state.gins.map(gin => {
                     return (
                         <div key={gin.id}>
-                            <h2>name: {gin.name}</h2>
-                            <h2>typ: {gin.type}</h2>
+                            <h2>{gin.name}</h2>
+                            <div>
+                                <span>{gin.type}, {gin.alcohol}</span><br></br>
+                                <span>{gin.originCountry}</span><br></br>
+                                <span>{gin.mainNote}</span>
+                            </div>
                             <Link to={`/gins/${gin.id}`}>Details</Link>
                             <hr />
                         </div>

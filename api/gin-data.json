@@ -1,17 +1,18 @@
 [
     {
-        "name": "The Beauty",
-        "type": "Organic Gin",
-        "id": "beauty"
-    },
-    {
-        "name": "Lakestuff",
+        "id": "mesano-dry-gin",
+        "name": "Mesano Dry Gin",
         "type": "Dry Gin",
-        "id": "lakestuff"
-    },
-    {
-        "name": "Another",
-        "type": "Dry Gin",
-        "id": "another"
+        "originCountry": "Deutschland",
+        "originCity": "Stuttgart",
+        "alcohol": "42%",
+        "botanicals": ["Sizilianische Blutorange", "Zitronengras", "Minze", "Nelke"],
+        "mainNote": ["fruchtig"],
+        "nosing": "Zitronengras dominiert",
+        "taste": "Zitronengras mit deutlicher Minznote",
+        "description": "Hieß früher Mosaik Gin, da die Hersteller befreundete Kosmaten („Mosaik-leger“) sind. Zudem steht der Name sinnbildlich für das „stimmige“ Geschmacksbild.",
+        "perfectServe": "Indian Tonic oder orangige Soda, mit Minzblatt &/oder Blutorangenscheibe um die Aromen aus dem Hintergrund zu verstärken.",
+        "imageBottle": "Mesano.png",
+        "imageMoodPic": "Mesano_moodPic.jpg"
     }
 ]
