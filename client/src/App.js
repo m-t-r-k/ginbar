@@ -2,7 +2,7 @@ import './App.css';
 import React from "react"
 import {
   BrowserRouter as Router,
-  Routes,
+  Switch,
   Route,
 } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
@@ -31,14 +31,14 @@ class App extends React.Component {
         <Router>
           <Header></Header>
           <div className="container">
-            <Routes>
+            <Switch>
               <Route path="/" element={<Home />} />
               <Route path="/how-to-taste/" element={<HowToTaste />} />
               <Route path="/gins/" element={<Gins />} />
               <Route path="/cocktails/" element={<Gins />} />
               <Route path="/gins/:ginId" element={<GinDetail />} />
               <Route path="/cocktails/:cocktailId" element={<CocktailDetail />} />
-            </Routes>
+            </Switch>
           </div>
           <Footer />
         </Router>
