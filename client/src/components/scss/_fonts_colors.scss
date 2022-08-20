@@ -1,0 +1,87 @@
+$primary_font: 'Advent Pro', sans-serif;
+$secondary_font: 'Raleway', sans-serif;
+
+@font-face {
+	font-family: 'AdventPro_Light';
+	src: local('AdventPro_Light'), url(../../../public/fonts/AdventPro-Light.ttf) format('truetype');
+}
+
+@font-face {
+	font-family: 'AdventPro_Medium';
+	src: local('AdventPro_Medium'), url(../../../public/fonts/AdventPro-Medium.ttf) format('truetype');
+}
+
+@font-face {
+	font-family: 'AdventPro_Bold';
+	src: local('AdventPro_Bold'), url(../../../public/fonts/AdventPro-Bold.ttf) format('truetype');
+}
+
+@font-face {
+	font-family: 'Raleway_Light';
+	src: local('Raleway_Light'), url(../../../public/fonts/Raleway-Light.ttf) format('truetype');
+}
+
+@font-face {
+	font-family: 'Raleway_MediumItalic';
+	src: local('Raleway_MediumItalic'), url(../../../public/fonts/Raleway-MediumItalic.ttf) format('truetype');
+}
+
+@font-face {
+	font-family: 'Raleway_Bold';
+	src: local('Raleway_Bold'), url(../../../public/fonts/Raleway-Bold.ttf) format('truetype');
+}
+
+$dark-grey: #303030;
+$medium-grey: #BEBEBE;
+$light-grey: #F5F5F5;
+
+$grey-transparent-gradient: linear-gradient(325deg, #FFFFFF 35%, #E5E5E5 100%);
+
+@mixin primary_headline {
+	color: $dark-grey;
+	font-family: 'AdventPro_Light';
+	font-size: 60px;
+	line-height: 80px;
+}
+
+@mixin secondary_headline {
+	color: $dark-grey;
+	font-family: 'AdventPro_Medium';
+	font-size: 32px;
+	line-height: 32px;
+}
+
+@mixin simple_text($color: $dark-grey) {
+	color: $color;
+	font-family: 'Raleway_Light';
+	font-size: 16px;
+	line-height: 26px;
+}
+
+@mixin emphasized_text($color: $light-grey) {
+	color: $color;
+	font-family: 'Raleway_MediumItalic';
+	font-size: 20px;
+	line-height: 40px;
+}
+
+@mixin label_text($color: $dark-grey) {
+	color: $color;
+	font-family: 'Raleway_Bold';
+	font-size: 12px;
+	line-height: 12px;
+	text-transform: uppercase;
+}
+
+@mixin tag_text($color: $light-grey) {
+	@include label_text($color);
+	text-transform: none;
+}
+
+@mixin nav_item_text($color: $medium-grey) {
+	color: $color;
+	font-family: 'AdventPro_Bold';
+	font-size: 20px;
+	line-height: 20px;
+	text-transform: uppercase;
+}

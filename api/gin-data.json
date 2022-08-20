@@ -7,12 +7,28 @@
         "originCity": "Stuttgart",
         "alcohol": "42%",
         "botanicals": ["Sizilianische Blutorange", "Zitronengras", "Minze", "Nelke"],
-        "mainNote": ["fruchtig"],
+        "mainNote": ["fruchtig", "floral"],
         "nosing": "Zitronengras dominiert",
         "taste": "Zitronengras mit deutlicher Minznote",
         "description": "Hieß früher Mosaik Gin, da die Hersteller befreundete Kosmaten („Mosaik-leger“) sind. Zudem steht der Name sinnbildlich für das „stimmige“ Geschmacksbild.",
         "perfectServe": "Indian Tonic oder orangige Soda, mit Minzblatt &/oder Blutorangenscheibe um die Aromen aus dem Hintergrund zu verstärken.",
         "imageBottle": "Mesano.png",
         "imageMoodPic": "Mesano_moodPic.jpg"
+    },
+    {
+        "id": "momotaro-gin",
+        "name": "Momotaro Gin",
+        "type": "Craft Gin",
+        "originCountry": "Deutschland",
+        "originCity": "Rheinland-Pfalz",
+        "alcohol": "42%",
+        "botanicals": ["Momo-Pfirsich", "Yuzu Zitrone", "Sakura-Kirschblüte", "Sencha-Tee"],
+        "mainNote": ["fruchtig", "citrus"],
+        "nosing": "Fruchtig-frisch & floral – Pfirsich, Kirsch-Blüten, evtl. Zitrus & Koriander",
+        "taste": "Fruchtig-frisch & floral – Pfirsich, Kirsch-Blüten, evtl. Zitrus & Koriander",
+        "description": "Der Name entstammt einer japanischen Sage, bei der ein kinderloses Paar einen perfekt geformten Pfirsich in einem Fluss entdeckt, aus dem das lang ersehnte Kind schlüpft, dem sie den Namen „Momotaro“ geben.",
+        "perfectServe": "Gin & Tonic: bitteres Tonic unterstreicht bittere Teenoten, fruchtig-mild und weich mit fever tree mediterranean, Garnish: Zitrone unterstreicht Yuzu. Eigene Idee: Yuzu Tonic & Pfirsich- oder Zitronen-scheibe. Gibt einige Cocktail-Vorschläge, in welchen er besonders glänzen soll, häufig z.B. mit Kirschnektar",
+        "imageBottle": "Momotaro_Gin.png",
+        "imageMoodPic": "Momotaro_moodPic.jpg"
     }
 ]

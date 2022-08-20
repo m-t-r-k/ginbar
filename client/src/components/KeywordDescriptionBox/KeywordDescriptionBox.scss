@@ -1,0 +1,40 @@
+@import "../scss/fonts_colors";
+
+.keyword_description_list {
+	background: $light-grey;
+	padding: 80px 40px;
+
+	div {
+		margin: 50px auto 0;
+		display: grid;
+		grid-template-columns: 100px 100px 1fr;
+		justify-content: center;
+    	align-items: flex-start;
+    	column-gap: 25px;
+    	width: 100%;
+    	max-width: 700px;
+
+		span {
+			@include secondary_headline;
+		}
+
+		div {
+			display: inline-block;
+			content: "";
+			height: 1px;
+			background: $medium-grey;
+			margin-top: 18px;
+		}
+
+		p {
+			@include simple_text;
+			margin-top: 5px;
+			max-width: 450px;
+			flex-grow: 2;
+		}
+	}
+
+	div:first-child {
+		margin-top: 0px;
+	}
+}

@@ -1,8 +1,9 @@
-import './App.css';
+import './App.scss';
+import './components/scss/_globals.scss';
 import React from "react"
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route,
 } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
@@ -31,14 +32,14 @@ class App extends React.Component {
         <Router>
           <Header></Header>
           <div className="container">
-            <Switch>
+            <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/how-to-taste/" element={<HowToTaste />} />
               <Route path="/gins/" element={<Gins />} />
               <Route path="/cocktails/" element={<Gins />} />
               <Route path="/gins/:ginId" element={<GinDetail />} />
               <Route path="/cocktails/:cocktailId" element={<CocktailDetail />} />
-            </Switch>
+            </Routes>
           </div>
           <Footer />
         </Router>

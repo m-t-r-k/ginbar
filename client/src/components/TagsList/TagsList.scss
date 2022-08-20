@@ -1,0 +1,24 @@
+@import "../scss/fonts_colors";
+
+.tags_list {
+	display: flex;
+	row-gap: 10px;
+	flex-wrap:wrap;
+	padding: 0 10px;
+	margin: 0 -20px;
+
+	span {
+		display: inline-block;
+		width: auto;
+		height: 20px;
+		background: #000;
+		opacity: 0.95;
+		@include tag_text(#dbdbdb);
+		line-height: 20px;
+		border-radius: 10px;
+		padding: 0 30px;
+		text-align: center;
+		margin: 0 10px;
+		text-transform: capitalize;
+	}
+}

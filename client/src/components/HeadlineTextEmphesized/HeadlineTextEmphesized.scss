@@ -1,0 +1,36 @@
+@import "../scss/fonts_colors";
+
+.headline_text_emphesized {
+	position: relative;
+	text-align: center;
+	width: auto;
+	max-width: 800px;
+	margin: 0 auto;
+
+	.headline {
+		display: flex;
+		column-gap: 25px;
+		align-items: center;
+
+		h2 {
+			@include primary_headline;
+			display: inline-block;
+			width: auto;
+		}
+
+		span {
+			display: inline-block;
+			width: auto;
+			height: 1px;
+			background: $medium-grey;
+			flex-grow: 1;
+		}
+	}
+
+	p {
+		@include emphasized_text($medium-grey);
+		text-align: left;
+		max-width: 500px;
+		margin: 15px auto 0;
+	}
+}

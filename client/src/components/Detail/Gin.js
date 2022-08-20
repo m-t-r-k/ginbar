@@ -1,6 +1,12 @@
-import './Gin.css';
+import './Gin.scss';
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import GinDetailOverview from "../GinDetailOverview/GinDetailOverview";
+import BgImgTextBanner from "../BgImgTextBanner/BgImgTextBanner";
+import KeywordDescriptionBox from "../KeywordDescriptionBox/KeywordDescriptionBox";
+import HeadlineTextEmphesized from '../HeadlineTextEmphesized/HeadlineTextEmphesized';
+import BackLink from "../BackLink/BackLink";
+
 const Gin = () => {
 
     const [ gin, setData ] = useState({
@@ -44,31 +50,33 @@ const Gin = () => {
             .catch(err=>{ console.log(err) })
     }, [ginId]);
 
+    let tagsList = [gin.originCountry, gin.type];
+    tagsList = [...tagsList, ...gin.mainNote];
+
     return(
-        <>
-            <h1>{gin.name}</h1>
-            
-            <img src={`../images/${gin.imageBottle}`}></img>
-            <br></br>Sorte: {gin.type}, {gin.alcohol}
-            <br></br>Herkunft: {gin.originCountry}, {gin.originCity}
-            <br></br>
-            <br></br>Botanicals: {gin.botanicals}
-            <br></br>Hauptnote: {gin.mainNote}
-            <br></br>
-            <br></br>Nosing: {gin.nosing}
-            <br></br>Geschmack: {gin.taste}
-            <br></br>
-                <section className="full-width banner-section">
-                    <div className="bg-img" style={{backgroundImage: `url(../images/${gin.imageMoodPic})`}}></div>
-                    <div className="banner-text-wrapper">
-                        <p className="banner-text">Hieß früher Mosaik Gin, da die Hersteller befreundete Kosmaten („Mosaikleger“) sind. Zudem steht der Name sinnbildlich für das „stimmige“ Geschmacksbild.</p>
-                    </div>
-                </section>
-            <br></br>
-            <br></br>Perfect Serve: {gin.perfectServe}
-            
-            <br></br>
-            <Link to={`/gins`}>mehr Gins entdecken...</Link>
+        <>  
+            <GinDetailOverview 
+            name={gin.name} 
+            type={gin.type} 
+            originCountry={gin.originCountry} 
+            originCity={gin.originCity} 
+            alcohol={gin.alcohol} 
+            botanicals={gin.botanicals} 
+            imageBottle={gin.imageBottle} 
+            tags={tagsList}></GinDetailOverview>
+
+            <BgImgTextBanner
+            imageMoodPic={gin.imageMoodPic}
+            description={gin.description}></BgImgTextBanner>
+
+            <KeywordDescriptionBox
+            nosing={gin.nosing}
+            taste={gin.taste}></KeywordDescriptionBox>
+
+            <HeadlineTextEmphesized
+            perfectServe={gin.perfectServe}></HeadlineTextEmphesized>
+
+            <BackLink></BackLink>
         </>
     )
 }

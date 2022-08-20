@@ -1,0 +1,73 @@
+* {
+	box-sizing: border-box;
+	font-family: 'Raleway', sans-serif;
+	position: relative;
+	text-align: left;
+}
+
+html, body {
+	min-height: 100%;
+	background: #fff;
+	color: #000;
+}
+	
+body {
+	text-rendering: optimizeLegibility;
+}
+	
+body, ul, ol, dl, p, h1, h2, h3, h4, h5, dl, dt, dd {
+	margin: 0;
+}
+
+img {
+	display: inline-block;
+}
+
+a {
+	text-decoration: none;
+}
+
+.clearfix::before,
+.clearfix::after {
+  content: " ";
+  display: table;
+} 
+
+.clearfix::after {
+  clear: both;
+}
+
+.clearfix {
+  *zoom: 1; /* Für den IE6 und IE7 */
+}
+
+.no_margin_top {
+	margin-top: 0 !important;
+}
+
+$section_spacer: 50px;
+
+body {
+	padding-top: $section_spacer;
+}
+
+.fixed_with {
+	position: relative;
+	width: 100%;
+	max-width: 1280px;
+	padding-left: 40px;
+	padding-right: 40px;
+	margin: $section_spacer auto;
+}
+
+.full_width {
+	width: 100%;
+	margin: 0 auto;
+}
+
+@mixin standard-transition($property) {
+	transition-property: $property;
+  transition-duration: 0.1s;
+  transition-timing-function: linear;
+  transition-delay: 0s;
+}

@@ -1,0 +1,57 @@
+@import "../scss/globals";
+@import "../scss/fonts_colors";
+
+header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: auto;
+	z-index: 1000;
+	background: rgba(#fff, 0.9);
+	padding: 0 !important;
+}
+
+nav {
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+
+	* {
+		@include nav_item_text;
+	}
+
+	a {
+		display: inline-block;
+		float: left;
+		padding: 20px 40px;
+		background: rgba(#fff, 0);
+		@include standard-transition(all);
+		
+		&:before {
+			display: inline-block;
+			content: "";
+			position: absolute;
+			top: 50%;
+			left: 0;
+			width: 1px;
+			height: 20px;
+			background: $medium-grey;
+			transform: translateY(-50%);
+		}
+
+		&:first-child:before {
+			display: none;
+		}
+	}
+
+	a:hover {
+		background: rgba($color: $light-grey, $alpha: 1);
+		color: $dark-grey
+	}
+
+	.active {
+		color: $dark-grey;
+		text-decoration: underline;
+	}
+}
