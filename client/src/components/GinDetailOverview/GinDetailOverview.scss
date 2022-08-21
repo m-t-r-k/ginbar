@@ -1,3 +1,4 @@
+@import "../scss/globals";
 @import "../scss/fonts_colors";
 
 .gin_detail_overview {
@@ -23,6 +24,7 @@
       height: auto;
       display: block;
       margin: 0 auto;
+      @include drop-shadow-light;
     }
   }
   

@@ -4,21 +4,21 @@
 	display: flex;
 	row-gap: 10px;
 	flex-wrap:wrap;
-	padding: 0 10px;
-	margin: 0 -20px;
+	padding: 0 6px;
+	margin: 0 -12px;
 
 	span {
 		display: inline-block;
 		width: auto;
-		height: 20px;
+		height: 22px;
 		background: #000;
 		opacity: 0.95;
 		@include tag_text(#dbdbdb);
 		line-height: 20px;
-		border-radius: 10px;
-		padding: 0 30px;
+		border-radius: calc(22px / 2);
+		padding: 2px 15px 0px;
 		text-align: center;
-		margin: 0 10px;
+		margin: 0 6px;
 		text-transform: capitalize;
 	}
 }

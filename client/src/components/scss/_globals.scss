@@ -65,9 +65,22 @@ body {
 	margin: 0 auto;
 }
 
-@mixin standard-transition($property) {
-	transition-property: $property;
-  transition-duration: 0.1s;
-  transition-timing-function: linear;
-  transition-delay: 0s;
+@mixin standard-transition($property, $duration: 0.1s, $delay: 0s) {
+	-webkit-transition-property: $property;
+    -webkit-transition-duration: $duration;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-property: $property;
+    transition-duration: $duration;
+    transition-timing-function: ease-in-out;
+	transition-delay: $delay;
+}
+
+@mixin drop-shadow-dark {
+	-webkit-filter: drop-shadow(0px 5px 10px rgba(#000, .5));
+    filter: drop-shadow(0px 5px 10px rgba(#000, .5));
+}
+
+@mixin drop-shadow-light {
+	-webkit-filter: drop-shadow(0px 5px 10px rgba($medium-grey, 1.0));
+    filter: drop-shadow(0px 5px 10px rgba($medium-grey, 1.0));
 }

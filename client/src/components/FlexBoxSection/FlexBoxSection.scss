@@ -1,0 +1,15 @@
+@import "../scss/globals";
+@import "../scss/fonts_colors";
+
+$column_count: 3;
+
+.FlexBoxSection {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    row-gap: 40px;
+
+    &>div {
+        width: calc((100%/$column_count) - (40px/$column_count));
+    }
+}
