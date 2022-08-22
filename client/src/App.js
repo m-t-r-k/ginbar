@@ -4,7 +4,7 @@ import React from "react"
 import {
   BrowserRouter as Router,
   Routes,
-  Route,
+  Route
 } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
@@ -24,13 +24,6 @@ class App extends React.Component {
       .then(res => res.json())
       .then(data => this.setState({ name: data.name }));
     console.log(this.state.name);
-
-    // ADDING MASONRY
-    // const masonry = document.createElement("script");
-    // masonry.src = "https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js";
-    // masonry.async = true;
-    // document.body.appendChild(masonry);
-
   }
 
   render() {
@@ -38,7 +31,6 @@ class App extends React.Component {
       <div className="App">
         <Router>
           <Header></Header>
-          <div className="container">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/how-to-taste/" element={<HowToTaste />} />
@@ -47,7 +39,6 @@ class App extends React.Component {
               <Route path="/gins/:ginId" element={<GinDetail />} />
               <Route path="/cocktails/:cocktailId" element={<CocktailDetail />} />
             </Routes>
-          </div>
           <Footer />
         </Router>
       </div>

@@ -1,0 +1,107 @@
+@import "../scss/globals";
+@import "../scss/fonts_colors";
+
+.home {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    column-gap: 1px;
+    background: $dark-grey;
+
+    a {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        background: $dark-grey;
+
+        .homeColumnWrap {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+
+            video {
+                width: auto;
+                height: 100vh;
+                object-fit: cover;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                right: 0;
+                top: 0;
+                bottom: 0;
+                z-index: 100;
+            }
+
+            &>span {
+                display: block;
+                width: 100%;
+                height: 100vh;
+                position: absolute;
+                z-index: 200;
+                top: 0;
+                left: 0;
+                background: rgba(#000, $alpha: 0.85);
+            };
+        }
+
+        .homeColumnContent {
+            position: relative;
+            z-index: 300;;
+            width: 100%;
+            padding: 40px;
+            text-align: center;
+
+            h2 {
+                @include primary_headline;
+                color: $light-grey;
+                text-align: center;
+            }
+
+            &>div {
+                position: relative;
+                margin-top: 40px;;
+            }
+        }
+
+        .buttonHome {
+            position: absolute;
+            top: 0px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: inline-block;
+            @extend .button;
+            overflow: hidden;
+            
+            width: 30px;
+            height: 1px;
+            padding: 0;
+            color: $light-grey;
+            transition: width 0.15s 0s ease-in,
+                        height 0.15s 0.15s ease-out,
+                        padding 0.15s 0.15s ease-out,
+                        color 0.25s 0.25s ease-out;
+        }
+
+        &:hover {
+
+            .buttonHome {
+                width: 100%;
+                max-width: 200px;
+                height: 40px;
+                padding-top: 12px;
+                color: $dark-grey;
+            }
+
+            .homeColumnWrap>span {
+                background: rgba(#000, $alpha: 0.6);
+            }
+        }
+    }
+}

@@ -54,7 +54,7 @@ const Gin = () => {
     tagsList = [...tagsList, ...gin.mainNote];
 
     return(
-        <>  
+        <section className='pageWrapper'>  
             <GinDetailOverview 
             name={gin.name} 
             type={gin.type} 
@@ -77,7 +77,7 @@ const Gin = () => {
             perfectServe={gin.perfectServe}></HeadlineTextEmphesized>
 
             <BackLink></BackLink>
-        </>
+        </section>
     )
 }
 
