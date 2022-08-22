@@ -10,29 +10,37 @@
         display: block;
         position: relative;
         width: 100%;
-        height: 100%;
+        height: auto;
+        overflow: hidden;
 
         &:hover {
 
             img {
-                height: 200px;
-                @include drop-shadow-light;
-                margin-bottom: 20px;
+                transform: scale(1.05);
             }
 
             h2 {
+                
+            }
+
+            .viewMore {
+                height: 40px;
                 color: $dark-grey;
+                padding-top: 12px;
+                opacity: 0.85;
             }
 
+            .moodPicBg {
+                transform: scale(1.05);
+            }
+            
             .moodPicBg:before {
-                background: $grey-transparent-gradient;
+                background: rgba($color: #000, $alpha: .6);
             }
 
-            .tags_list {
-                top: calc(100% + 10px);
-                opacity: 1;
-                @include standard-transition(none);
-                @include standard-transition(none);
+            .tagsList {
+                opacity: 0;
+                transform: translateY(-5px);
             }
         }
     }
@@ -43,45 +51,21 @@
     z-index: 200;
     padding: 40px;
     width: 100%;
-    height: 100%;
     
     img {
         display: block;
         width: auto;
-        height: 250px;
-        margin: 0px auto 40px;
+        height: 200px;
+        margin: 0px auto 30px;
+        transform: scale(1);
         @include drop-shadow-dark;
-        @include standard-transition(height);
+        @include standard-transition(transform, 0.5s, 0s);
     }
     
-    .headlineWrapper {
-        position: relative;
-
-        &>span {
-            display: flex;
-            height: 70px;
-            justify-content: center;
-            align-items: center;
-        }
-
-        h2 {
-            @include secondary_headline;
-            color: $light-grey;
-            text-align: center;
-            font-weight: 300;
-        }
-    
-        .tags_list {
-            position: absolute;
-            top: calc(100% + 50px);
-            opacity: 0;
-            left: 0;
-            width: 100%;
-            justify-content: space-evenly;
-            @include standard-transition(top);
-            @include standard-transition(opacity);
-        }
-    }   
+    h2 {
+        @include tile_headline;
+        margin-bottom: 20px;
+    }
 }
 
 .moodPicBg {
@@ -93,6 +77,8 @@
     height: 100%;
     background-size: cover;
     background-position: center;
+    transform: scale(1.01);
+    @include standard-transition(transform, 0.5s, 0s);
 
     &:before {
         display: block;
@@ -103,6 +89,45 @@
         width: 100%;
         height: 100%;
         @include standard-transition(background, 0.5s, 0s);
-        background: rgba($color: #000, $alpha: .75);
+        background: rgba($color: #000, $alpha: .8);
+    }
+}
+
+.tagsViewMoreWrapper {
+    position: relative;
+
+    hr {
+        opacity: 0.75;
+    }
+
+    .viewMore {
+        position: absolute;
+        top: 0;
+        left: 0;;
+        display: block;
+        width: 100%;   
+        background: $light-grey;
+        opacity: 0;
+        margin: 0;
+        font-size: 16px;
+        line-height: 16px;
+        font-family: 'Raleway_Bold';
+        text-align: center;
+        padding-top: 0px;
+        height: 0px;
+        color: $light-grey;
+        transition: padding .25s, 
+                    opacity .25s,
+                    opacity .25s,
+                    height .25s, 
+                    color .25s 0.25s;
+    }
+
+    .tagsList {
+        position: relative;
+        opacity: 0.85;
+        margin-top: 10px;
+        transform: none;
+        @include standard-transition(all, 0.25s, 0s);
     }
 }

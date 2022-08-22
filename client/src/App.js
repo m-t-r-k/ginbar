@@ -24,6 +24,13 @@ class App extends React.Component {
       .then(res => res.json())
       .then(data => this.setState({ name: data.name }));
     console.log(this.state.name);
+
+    // ADDING MASONRY
+    // const masonry = document.createElement("script");
+    // masonry.src = "https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js";
+    // masonry.async = true;
+    // document.body.appendChild(masonry);
+
   }
 
   render() {

@@ -7,6 +7,8 @@
     min-height: 300px;
     padding-top: 80px;
     padding-bottom: 80px;
+    position: relative;
+    overflow: hidden;
 }
 
 .banner-text-wrapper {
@@ -22,6 +24,10 @@
     height: 100%;
     background-position: center center;
     background-size: cover;
+    animation-duration: 60s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-name: bg_movement;
 }
 
 .bg-img:before {
@@ -37,4 +43,14 @@
 
 .banner-text {
     @include emphasized_text;
+}
+
+@keyframes bg_movement {
+    from {
+        transform: scale(1.01);
+    }
+
+    to {
+        transform: scale(1.5);
+    }
 }

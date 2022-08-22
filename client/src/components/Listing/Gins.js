@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import FlexBoxSection from "../FlexBoxSection/FlexBoxSection";
+import MasonryLayout from "../MasonryLayout/MasonryLayout";
   
 class Listing extends React.Component {
     state = {
@@ -18,7 +19,7 @@ class Listing extends React.Component {
         return (
             <div>
                 <h1>Gins</h1>
-                <FlexBoxSection gins={this.state.gins}></FlexBoxSection>
+                <MasonryLayout gins={this.state.gins}></MasonryLayout>
             </div>
         );
     }

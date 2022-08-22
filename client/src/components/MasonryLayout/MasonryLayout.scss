@@ -1,0 +1,18 @@
+.grid{
+    width: 100%;
+}
+
+$column-count: 3;
+$gutter-size: 20px;
+
+.grid-sizer, .grid-item {
+    width: calc((100% - (($column-count - 1) * $gutter-size)) / $column-count);
+}
+
+.grid-item {
+    margin-bottom: $gutter-size;
+}
+
+.gutter-sizer {
+    width: $gutter-size;
+}

@@ -51,6 +51,14 @@ $grey-transparent-gradient: linear-gradient(325deg, #FFFFFF 35%, #E5E5E5 100%);
 	line-height: 32px;
 }
 
+@mixin tile_headline {
+	color: $light-grey;
+	font-family: 'AdventPro_Light';
+	font-size: 32px;
+	line-height: 40px;
+	text-align: center;
+}
+
 @mixin simple_text($color: $dark-grey) {
 	color: $color;
 	font-family: 'Raleway_Light';
@@ -75,7 +83,7 @@ $grey-transparent-gradient: linear-gradient(325deg, #FFFFFF 35%, #E5E5E5 100%);
 
 @mixin tag_text($color: $light-grey) {
 	@include label_text($color);
-	text-transform: none;
+	text-transform: capitalize;
 }
 
 @mixin nav_item_text($color: $medium-grey) {

@@ -1,5 +1,8 @@
 {
   "dependencies": {
+    "masonry-layout": "^4.2.2",
+    "react-router": "^6.3.0",
+    "react-router-dom": "^6.3.0",
     "sass": "^1.54.5"
   }
 }
