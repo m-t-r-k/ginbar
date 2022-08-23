@@ -17,7 +17,7 @@ header {
 	}
 
 	nav {
-		width: 100%;
+		display: inline-block;
 		position: relative;
 		z-index: 600;
 	
@@ -45,7 +45,7 @@ header {
 			}
 	
 			&:first-child:before {
-				display: none;
+				// display: none;
 			}
 		}
 	
@@ -119,6 +119,17 @@ header {
 			color: $medium-grey;
 		}
 
+		.logo{
+
+			#logo {
+				fill: #fff;
+			}
+
+			&:hover {
+				background: rgba(#fff, .1);
+			}
+		} 
+
 		.mobileNavWrap {
 			span {
 				background: #fff;
@@ -148,6 +159,34 @@ header {
 		nav .active {
 			color: initial;
 		}
+	}
+
+	.logo {
+		width: auto;
+		float: left;
+		height: 100%;
+		z-index: 700;
+
+		a {
+			display: inline-block;
+			width: auto;
+			height: 100%;
+			padding: 10px 20px;
+		}
+
+		svg {
+			width: auto;
+    		height: 100%;
+		}
+
+		#logo {
+			fill: $dark-grey;
+		}
+
+		&:hover {
+			background: rgba($color: $light-grey, $alpha: 1);
+		}
+		
 	}
 }
 
@@ -203,8 +242,14 @@ header {
 				visibility: visible;
     			opacity: 1;
 				display: block;
+				width: 100%;
 			}
-
+			
+			.logo {
+				#logo {
+					fill: $dark-grey;
+				}
+			}
 			
 			.mobileNavWrap {
 				span {
