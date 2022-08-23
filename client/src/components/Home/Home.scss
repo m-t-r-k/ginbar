@@ -27,14 +27,14 @@
             overflow: hidden;
 
             video {
-                width: auto;
+                width: 100vw;
                 height: 100vh;
                 object-fit: cover;
                 position: absolute;
+                top: 50%;
                 left: 50%;
-                transform: translateX(-50%);
+                transform: translate(-50%, -50%);
                 right: 0;
-                top: 0;
                 bottom: 0;
                 z-index: 100;
             }
@@ -47,7 +47,7 @@
                 z-index: 200;
                 top: 0;
                 left: 0;
-                background: rgba(#000, $alpha: 0.85);
+                background: rgba(#000, $alpha: 0.8);
             };
         }
 
@@ -104,4 +104,28 @@
             }
         }
     }
+}
+
+@media screen and (max-width:1000px) {
+    .home {
+        a {
+            .homeColumnContent {
+
+                h2 {
+                    font-size: 40px;
+                    line-height: 50px;
+                }
+
+                &>div {
+                    margin-top: 20px;;
+                }
+            }
+        }
+    } 
+}
+
+@media screen and (max-width:720px) {
+    .home {
+        grid-auto-flow: row;
+    } 
 }

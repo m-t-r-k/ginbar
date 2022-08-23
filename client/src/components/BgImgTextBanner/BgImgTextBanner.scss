@@ -13,7 +13,8 @@
 
 .banner-text-wrapper {
     width: 100%;
-    max-width: 500px;
+    max-width: 580px;
+    padding: 0 40px;
 }
 
 .bg-img {
@@ -52,5 +53,30 @@
 
     to {
         transform: scale(1.5);
+    }
+}
+
+@media screen and (max-width:720px) {
+    .banner_section {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    .banner-text {
+        @include emphasized_text;
+        font-size: 16px;
+        line-height: 32px;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .banner_section {
+        min-height: initial;
+    }
+
+    .banner-text {
+        @include emphasized_text;
+        font-size: 12px;
+        line-height: 24px;
     }
 }

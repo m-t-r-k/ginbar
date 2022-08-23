@@ -2,7 +2,7 @@
     width: 100%;
 }
 
-$column-count: 3;
+$column-count: 4;
 $gutter-size: 20px;
 
 .grid-sizer, .grid-item {
@@ -15,4 +15,25 @@ $gutter-size: 20px;
 
 .gutter-sizer {
     width: $gutter-size;
+}
+
+@media screen and (max-width:1260px) {
+    $column-count: 3;
+    .grid-sizer, .grid-item {
+        width: calc((100% - (($column-count - 1) * $gutter-size)) / $column-count);
+    }
+}
+
+@media screen and (max-width:1000px) {
+    $column-count: 2;
+    .grid-sizer, .grid-item {
+        width: calc((100% - (($column-count - 1) * $gutter-size)) / $column-count);
+    }
+}
+
+@media screen and (max-width:680px) {
+    $column-count: 1;
+    .grid-sizer, .grid-item {
+        width: calc((100% - (($column-count - 1) * $gutter-size)) / $column-count);
+    }
 }
