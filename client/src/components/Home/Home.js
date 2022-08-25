@@ -21,7 +21,7 @@ class Home extends React.Component {
                 <Link to="/how-to-taste/">
                     <div className="homeColumnWrap">
                         <div className="homeColumnContent">
-                            <h2>How To Taset</h2>
+                            <h2>How To Taste</h2>
                             <div>
                                 <span className="buttonHome">mehr erfahren</span>
                             </div>
