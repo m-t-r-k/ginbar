@@ -6,8 +6,8 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 import Home from "./components/Home/Home";
 import HowToTaste from "./components/HowToTaste/HowToTaste";
 import Gins from "./components/Listing/Gins";
@@ -39,7 +39,7 @@ class App extends React.Component {
               <Route path="/gins/:ginId" element={<GinDetail />} />
               <Route path="/cocktails/:cocktailId" element={<CocktailDetail />} />
             </Routes>
-          <Footer />
+            <Footer></Footer>
         </Router>
       </div>
     );

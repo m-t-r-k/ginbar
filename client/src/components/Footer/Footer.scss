@@ -1,0 +1,48 @@
+@import "../scss/globals";
+@import "../scss/fonts_colors";
+
+footer {
+    position: relative;
+
+    section {
+        text-align: center;
+        background: $light-grey;
+        width: auto;
+        height: auto;
+        position: relative;
+
+        &.footer-home {
+            position: absolute;
+            z-index: 1000;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: auto;
+            background: rgba($light-grey, 0);
+
+            a {
+                color: $light-grey;
+                padding: 12px 40px 10px;
+                
+                &:hover {
+                    color: #fff;
+                }
+            }
+
+        
+        }
+
+        a {
+            padding: 16px 40px 14px;
+            display: inline-block;
+            @include label-text;
+            color: $medium-grey;
+            @include standard-transition(all, 0.25s, 0s);
+            
+            &:hover {
+                color: $dark-grey;
+                background: rgba($light-grey, 0.1);
+            }
+        }
+    }
+}
