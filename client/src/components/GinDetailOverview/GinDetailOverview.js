@@ -8,7 +8,7 @@ class GinDetailOverview extends React.Component {
         let botanicalsList = Object.values(this.props.botanicals).join(', ');
         
         return (
-            <section className="fixed_with">
+            <section className="fixed_width">
                 <div className="gin_detail_overview">
                     <div className="bottle">
                         <img src={`../images/${this.props.imageBottle}`}></img>  

@@ -5,7 +5,7 @@ class KeywordDescriptionBox extends React.Component {
   render() {
       
     return (
-      <section className="fixed_with">
+      <section className="fixed_width">
           <div className="keyword_description_list">
             <div>
               <span>Nosing</span>

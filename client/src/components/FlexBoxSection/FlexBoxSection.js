@@ -5,7 +5,7 @@ import GinOverviewTile from "../GinOverviewTile/GinOverviewTile";
 class FlexBoxSection extends React.Component {
   render() {
     return (
-      <section className="fixed_with">
+      <section className="fixed_width">
         <div className="FlexBoxSection">
           {this.props.gins.map(gin => {
               let tagsList = [gin.originCountry, gin.type];

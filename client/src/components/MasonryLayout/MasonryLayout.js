@@ -26,7 +26,7 @@ class MasonryLayout extends React.Component {
     render() {
       this.runMasonry()
       return (
-        <section className="fixed_with">
+        <section className="fixed_width">
           <div class="grid">
             <div class="grid-sizer"></div>
             <div class="gutter-sizer"></div>

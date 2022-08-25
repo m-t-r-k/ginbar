@@ -4,7 +4,7 @@ import './HeadlineTextEmphesized.scss';
 class HeadlineTextEmphesized extends React.Component {
   render() {
     return (
-      <section className="fixed_with no_margin_top">
+      <section className="fixed_width no_margin_top">
         <div className="headline_text_emphesized">
           <div className="headline">
             <span></span>
