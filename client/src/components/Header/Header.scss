@@ -166,6 +166,8 @@ header {
 		float: left;
 		height: 100%;
 		z-index: 700;
+		background: rgba( $light-grey, 0);
+		@include standard-transition(all, 0.25s, 0s);
 
 		a {
 			display: inline-block;

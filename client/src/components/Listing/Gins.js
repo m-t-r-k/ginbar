@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import FlexBoxSection from "../FlexBoxSection/FlexBoxSection";
+import './Gins.scss';
+import HeadlineTextEmphesized from '../HeadlineTextEmphesized/HeadlineTextEmphesized';
 import MasonryLayout from "../MasonryLayout/MasonryLayout";
   
 class Listing extends React.Component {
@@ -17,10 +18,13 @@ class Listing extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>Gins</h1>
+            <section className="pageWrapper">
+                <HeadlineTextEmphesized
+                headline={"Gin Auswahl"}
+                text={""}
+                ></HeadlineTextEmphesized>
                 <MasonryLayout gins={this.state.gins}></MasonryLayout>
-            </div>
+            </section>
         );
     }
 }

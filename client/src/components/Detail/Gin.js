@@ -74,7 +74,8 @@ const Gin = () => {
             taste={gin.taste}></KeywordDescriptionBox>
 
             <HeadlineTextEmphesized
-            perfectServe={gin.perfectServe}></HeadlineTextEmphesized>
+            headline={"Perfect Serve"}
+            text={gin.perfectServe}></HeadlineTextEmphesized>
 
             <BackLink></BackLink>
         </section>
