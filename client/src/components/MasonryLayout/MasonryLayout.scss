@@ -1,3 +1,6 @@
+@import "../scss/globals";
+@import "../scss/fonts_colors";
+
 .grid{
     width: 100%;
 }
@@ -15,6 +18,47 @@ $gutter-size: 20px;
 
 .gutter-sizer {
     width: $gutter-size;
+}
+
+.filters {
+    margin: 0 -10px 40px;
+}
+
+.filter {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+
+    li {
+        @include tag_text;
+        display: inline-block;
+        background: transparent;
+        border: 1px solid $dark-grey;
+        height: 22px;
+        border-radius: 11px;
+        padding: 5px 10px 0px;
+        color: $dark-grey;
+        margin-left: 10px;
+        cursor: pointer;
+        @include standard-transition(all, 0.25s, 0s);
+
+        &:hover {
+            background: rgba($dark-grey, 0.25);
+        }
+
+        &.active {
+            color: $light-grey;
+            background: $dark-grey;
+        }
+
+        &.active:hover {
+            background: rgba($dark-grey, 0.75);
+        }
+    }
+
+    &:first-child {
+        margin-top: 0;
+    }
 }
 
 @media screen and (max-width:1260px) {

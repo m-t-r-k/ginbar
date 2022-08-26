@@ -27,7 +27,7 @@ class Home extends React.Component {
                             </div>
                         </div>
                         <span></span>
-                        <video autoPlay muted loop onmouseover="this.play()" onmouseout="this.pause();this.currentTime=0;">
+                        <video autoPlay muted loop>
                             <source src="../images/how_to_taste_video.mp4" type="video/mp4"></source>
                         </video> 
                     </div>
@@ -41,7 +41,7 @@ class Home extends React.Component {
                             </div>
                         </div>
                         <span></span>
-                        <video autoPlay muted loop onmouseover="this.play()" onmouseout="this.pause();this.currentTime=0;">
+                        <video autoPlay muted loop>
                             <source src="../images/gin_auswahl_video.mp4" type="video/mp4"></source>
                         </video>            
                     </div>
@@ -55,7 +55,7 @@ class Home extends React.Component {
                             </div>
                         </div>
                         <span></span>
-                        <video autoPlay muted loop onmouseover="this.play()" onmouseout="this.pause();this.currentTime=0;">
+                        <video autoPlay muted loop>
                             <source src="../images/gin_cocktail_video.mp4" type="video/mp4"></source>
                         </video>            
                     </div>
