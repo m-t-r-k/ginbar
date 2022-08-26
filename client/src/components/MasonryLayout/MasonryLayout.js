@@ -8,7 +8,9 @@ class MasonryLayout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeFilters: [],
+      countryTags: [],
+      typeTags: [],
+      tasteTags: []
     };
   }
 
@@ -23,58 +25,121 @@ class MasonryLayout extends React.Component {
   }
 
   updateFilterItems() {
-    var allFilterItems = document.getElementsByClassName("filterItem");
-    for (let filterItem of allFilterItems) {
-      if(this.state.activeFilters.includes(filterItem.getAttribute("id"))){
-        if(!filterItem.classList.contains("active")) {
+    console.log("country Filters:", this.state.countryTags);
+    console.log("type Filters:", this.state.typeTags);
+    console.log("taste Filters:", this.state.tasteTags);
+    console.log("===============================================");
+    var allFilterItems = document.querySelectorAll(".filterItem");
+    for (let filterItem of allFilterItems) { 
+      let filterId = filterItem.getAttribute("id");
+      if(this.state.countryTags.includes(filterId) ||
+         this.state.typeTags.includes(filterId) ||
+         this.state.tasteTags.includes(filterId))
+      {         
+        if(!filterItem.classList.contains("active"))
+        {
           filterItem.classList.add("active");
         }
       } else {
         filterItem.classList.remove("active");
       }
     }
+  }
 
+  updateGinItems() {
     const gridItems = document.querySelectorAll('.grid-item');
+    
     for (const item of gridItems) {
-      if(this.state.activeFilters.length > 0) {
-        var showElement = false;
-        var itemTags = item.getAttribute("tags").split(",");
-        for(let tag of itemTags) {
-          if(this.state.activeFilters.includes(tag))
+      var showElement = false;
+      var itemTags = item.getAttribute("tags").split(",");
+      
+      if(!this.state.countryTags.length > 0) {
+        showElement = true;
+      } else {
+        for(let tag of this.state.countryTags) {
+          if(itemTags.includes(tag))
           {
             showElement = true;
+            break;
+          }
+          showElement = false;
+        }
+      }
+      
+      if(showElement) {
+        if(!this.state.typeTags.length > 0) {
+          showElement = true;
+        } else {
+          for(let tag of this.state.typeTags) {
+            if(itemTags.includes(tag))
+            {
+              showElement = true;
+              break;
+            }
+            showElement = false;
           }
         }
-        if(showElement) {
-          item.style.display = "block";
-        } else
-        {
-          item.style.display = "none";
+      }
+    
+      if(showElement) {
+        if(!this.state.tasteTags.length > 0) {
+          showElement = true;
+        } else {
+          for(let tag of this.state.tasteTags) {
+            if(itemTags.includes(tag))
+            {
+              showElement = true;
+              break;
+            }
+            showElement = false;
+          }
         }
-      } 
-      else {
+      }
+      
+      if(showElement) {
         item.style.display = "block";
+      } else {
+        item.style.display = "none";
       }
     }
   }
 
-  updateActiveFilters(value) {
-    this.setState((state) => ({
-      activeFilters: state.activeFilters.includes(value)
-        ? state.activeFilters.filter((fc) => fc !== value)
-        : [...state.activeFilters, value],
-    }))
+  updateActiveFilters(value, tagsList) {
+    switch (tagsList) {
+      case "country":
+        this.setState((state) => ({
+          countryTags: state.countryTags.includes(value)
+            ? state.countryTags.filter((fc) => fc !== value)
+            : [...state.countryTags, value],
+        }));
+        break;
+      case "ginType":
+        this.setState((state) => ({
+          typeTags: state.typeTags.includes(value)
+            ? state.typeTags.filter((fc) => fc !== value)
+            : [...state.typeTags, value],
+        }))
+        break;
+      case "taste":
+        console.log("activate Filter:", value);
+        this.setState((state) => ({
+          tasteTags: state.tasteTags.includes(value)
+            ? state.tasteTags.filter((fc) => fc !== value)
+            : [...state.tasteTags, value],
+        }))
+        break;
+    }
   }
 
   componentDidMount() {
     this.updateFilterItems();
+    this.updateGinItems();
     this.initMasonry();
   }
 
   getCountryFilterOptions() {
     let countryTags = [];
     this.props.gins.map(gin => {
-      // add the country to the country filter list
       countryTags.push(gin.originCountry);
     });
     return [...new Set(countryTags)];
@@ -83,7 +148,6 @@ class MasonryLayout extends React.Component {
   getGinTypeFilterOptions() {
     let ginTypeTags = [];
     this.props.gins.map(gin => {
-      // add the country to the country filter list
       ginTypeTags.push(gin.type);
     });
     return [...new Set(ginTypeTags)];
@@ -92,15 +156,17 @@ class MasonryLayout extends React.Component {
   getTasteFilterOptions() {
     let tasteTags = [];
     this.props.gins.map(gin => {
-      // add the country to the country filter list
       tasteTags = tasteTags.concat(gin.mainNote);
     });
     return [...new Set(tasteTags)];  
   }
 
   componentDidUpdate(_, prevState) {
-    if (prevState.activeFilters !== this.state.activeFilters) {
+    if (prevState.countryTags !== this.state.countryTags ||
+        prevState.typeTags !== this.state.typeTags ||
+        prevState.tasteTags !== this.state.tasteTags) {
       this.updateFilterItems();
+      this.updateGinItems();
     }
     this.initMasonry();
   }
@@ -113,21 +179,30 @@ class MasonryLayout extends React.Component {
     return (
       <section className="fixed_width">
         <div className="filters">
-          <ul className='filter'>
-            {countryTags.map(country => (
-              <li id={country} className="filterItem" onClick={this.updateActiveFilters.bind(this, country)}>{country}</li>
-            ))}
-          </ul>
-          <ul className='filter'>
-            {ginTypeTags.map(ginType => (
-              <li id={ginType} className="filterItem" onClick={this.updateActiveFilters.bind(this, ginType)}>{ginType}</li>
-            ))}
-          </ul>
-          <ul className='filter'>
-            {tasteTags.map(taste => (
-              <li id={taste} className="filterItem" onClick={this.updateActiveFilters.bind(this, taste)}>{taste}</li>
-            ))}
-          </ul>
+          <div>
+            <span>Herkunftsland:</span>
+            <ul className='filter'>
+              {countryTags.map(country => (
+                <li id={country} className="filterItem" onClick={this.updateActiveFilters.bind(this, country, "country")}>{country}</li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <span>Gin Sorte:</span>
+            <ul className='filter'>
+              {ginTypeTags.map(ginType => (
+                <li id={ginType} className="filterItem" onClick={this.updateActiveFilters.bind(this, ginType, "ginType")}>{ginType}</li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <span>Hauptnote:</span>
+            <ul className='filter'>
+              {tasteTags.map(taste => (
+                <li id={taste} className="filterItem" onClick={this.updateActiveFilters.bind(this, taste, "taste")}>{taste}</li>
+              ))}
+            </ul>
+          </div>
         </div>
         <div className="grid">
           <div className="grid-sizer"></div>

@@ -22,12 +22,25 @@ $gutter-size: 20px;
 
 .filters {
     margin: 0 -10px 40px;
+    padding: 0 10px;
+
+    &>div {
+        display: grid;
+        grid-template-columns: 130px 1fr;
+        margin-bottom: 15px;
+
+        span {
+            @include label-text;
+            display: inline-block;
+            padding-top: 5px;
+        }
+    }
 }
 
 .filter {
     display: block;
     width: 100%;
-    margin-top: 10px;
+    margin: 0 -10px;
 
     li {
         @include tag_text;
@@ -39,6 +52,7 @@ $gutter-size: 20px;
         padding: 5px 10px 0px;
         color: $dark-grey;
         margin-left: 10px;
+        margin-bottom: 6px;
         cursor: pointer;
         @include standard-transition(all, 0.25s, 0s);
 
