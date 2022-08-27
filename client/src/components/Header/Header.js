@@ -12,7 +12,7 @@ function Header(darkHeader) {
     setActiveMobileNav(current => !current);
   };
 
-  const locationHome = location.pathname == '/' ? "dark" : ""
+  const locationHome = location.pathname === '/' ? "dark" : ""
   let mobileNavActive = activeMobileNav ? "activeNav" : ""
   let headerClasses = `${locationHome} ${mobileNavActive}`
 
