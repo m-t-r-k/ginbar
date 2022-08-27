@@ -217,7 +217,7 @@ class MasonryLayout extends React.Component {
                     id={gin.id}
                     name={gin.name}
                     imageBottle={gin.imageBottle}
-                    imageMoodPic={gin.imageMoodPic}
+                    imageMoodPicSmall={gin.imageMoodPicSmall}
                     tags={tagsList}></GinOverviewTile>
                   </div>
                 );

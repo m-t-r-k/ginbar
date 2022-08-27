@@ -24,7 +24,8 @@ const Gin = () => {
         description:'',
         perfectServe:'',
         imageBottle: '',
-        imageMoodPic: ''
+        imageMoodPic: '',
+        imageMoodPicSmall: ''
     }) 
     
     const { ginId } = useParams();

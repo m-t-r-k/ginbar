@@ -19,7 +19,7 @@ class GinOverviewTile extends React.Component {
                 </div>
               </div>
             </div>
-            <div className='moodPicBg' style={{backgroundImage: `url(../images/${this.props.imageMoodPic})`}}></div>
+            <div className='moodPicBg' style={{backgroundImage: `url(../images/${this.props.imageMoodPicSmall})`}}></div>
           </Link>
       </div>
     )

@@ -13,7 +13,8 @@
         "description": "Hieß früher Mosaik Gin, da die Hersteller befreundete Kosmaten („Mosaik-leger“) sind. Zudem steht der Name sinnbildlich für das „stimmige“ Geschmacksbild.",
         "perfectServe": "Indian Tonic oder orangige Soda, mit Minzblatt &/oder Blutorangenscheibe um die Aromen aus dem Hintergrund zu verstärken.",
         "imageBottle": "Mesano.png",
-        "imageMoodPic": "Mesano_moodPic.jpg"
+        "imageMoodPic": "Mesano_moodPic.jpg",
+        "imageMoodPicSmall": "Mesano_moodPic_small.jpg"
     },
     {
         "id": "brockmans-premium-gin",
@@ -29,7 +30,8 @@
         "description": "",
         "perfectServe": "",
         "imageBottle": "Brockmans.png",
-        "imageMoodPic": "Brockmans_moodPic.jpg"
+        "imageMoodPic": "Brockmans_moodPic.jpg",
+        "imageMoodPicSmall": "Brockmans_moodPic_small.jpg"
     },
 	{
 		"id": "the-beauty",
@@ -45,7 +47,8 @@
 		"taste": "frisch-fruchtig-floral: für uns stehen fruchtige Zitrus-Aromen im Vordergrund, man schmeckt aber auch die Blüten heraus.",
 		"perfectServe": "im Gin & Tonic mit z.B. einer Scheibe Apfel sollte er gut funktionieren, Zitrone ist sowieso sehr präsent aber kann man auch noch mit einer scheibe Zitrone unterstreichen wenn man Zitrus volle Power will. Ggf. Lavendel oder Zitronenmelisse um dieses Hintergrundaroma zu verstärken.",
 		"imageBottle": "The_Beauty_Organic_Gin.png",
-		"imageMoodPic": "The_Beauty_Organic_Gin_moodPic.jpg"
+		"imageMoodPic": "The_Beauty_Organic_Gin_moodPic.jpg",
+		"imageMoodPicSmall": "The_Beauty_Organic_Gin_moodPic_small.jpg"
 	},
 	{
 		"id": "skin-gin-tea-kiss",
@@ -61,7 +64,8 @@
 		"taste": "wie nosing",
 		"perfectServe": "Gin&Tonic mit Indian Tonic oder süße Version mit Schweppes Premium Mixer Hibiskus. Als Garnish Minze, Apfelscheibe, Orangenschale, Pfirsich oder Zitrone",
 		"imageBottle": "Skin_Gin_Tea_Edition.png",
-		"imageMoodPic": "Skin_Gin_Tea_Edition_moodPic.jpg"
+		"imageMoodPic": "Skin_Gin_Tea_Edition_moodPic.jpg",
+		"imageMoodPicSmall": "Skin_Gin_Tea_Edition_moodPic_small.jpg"
 	},
 	{
 		"id": "crafters-aromatic-flower-gin",
@@ -77,7 +81,8 @@
 		"mainNote": ["floral"],
 		"perfectServe": "Gin&Tonic mit Orangenscheiben | Flower Collins: Limettensaft, Zuckersirup und Soda, dekoriet mit (Erdbeeren) und einer Limettenscheibe | Pink Grapefruit Tonic Water und Grapefruitscheibe (alle Cocktails: siehe 'craftersgin.com')",
 		"imageBottle": "Crafters_Aromatic_Flower_Gin.png",
-		"imageMoodPic": "Crafters_Aromatic_Flower_Gin_moodPic.jpg"
+		"imageMoodPic": "Crafters_Aromatic_Flower_Gin_moodPic.jpg",
+		"imageMoodPicSmall": "Crafters_Aromatic_Flower_Gin_moodPic_small.jpg"
 	},
 	{
 		"id": "hendricks",
@@ -93,7 +98,8 @@
 		"taste": "v.a. florale Noten, im Hintergrund Zitrus und Gurke. Leichte Pfefferschärfe im Abgang",
 		"perfectServe": "Gin&Tonic mit dünnen Gurkenscheiben + ggf. Zitronenscheibe | Gurkenlimonade: mit Zitronensaft, Zuckersirup, Soda + Gurkenscheiben (siehe 'hendricksgin.com/cocktails').",
 		"imageBottle": "Hendriks.png",
-		"imageMoodPic": "Hendriks_moodPic.jpg"
+		"imageMoodPic": "Hendriks_moodPic.jpg",
+		"imageMoodPicSmall": "Hendriks_moodPic_small.jpg"
 	},
 	{
 		"id": "saigon-baigur",
@@ -109,7 +115,8 @@
 		"taste": "",
 		"perfectServe": "Tonic & Thymian Garnish (+ Pho Quoc Pfefferkörner), Summer in Saigon (mit Lychee, Kumquat und Kokos), Baigur Bremble (mit Braunem Zucker, Zitronensaft, Crème de Mure) siehe 'saigonbaigur.com'.",
 		"imageBottle": "Saigon_Baigur_Gin.png",
-		"imageMoodPic": "Saigon_Baigur_Gin_moodPic.jpg"
+		"imageMoodPic": "Saigon_Baigur_Gin_moodPic.jpg",
+		"imageMoodPicSmall": "Saigon_Baigur_Gin_moodPic_small.jpg"
 	},
 	{
 		"id": "amuerte-red-edition",
@@ -125,7 +132,8 @@
 		"taste": "",
 		"perfectServe": "Tonic & Erdbeerscheiben, wer es pikant mag: roter Pfeffer",
 		"imageBottle": "Amuerte_Red_Edition.png",
-		"imageMoodPic": "Amuerte_Red_Edition_moodPic.jpg"
+		"imageMoodPic": "Amuerte_Red_Edition_moodPic.jpg",
+		"imageMoodPicSmall": "Amuerte_Red_Edition_moodPic_small.jpg"
 	},
 	{
 		"id": "momotaro-kizaru",
@@ -141,7 +149,8 @@
 		"taste": "",
 		"perfectServe": "Kizaru Spritz 4CL MOMOTARŌ KIZARU, 2CL Birnensaft, 1cl Zuckersirup und 1cl Zitronensaft mit etwas Prosecco und Schweppes White Peach siehe 'momotaro-spirits.de/produkt/momotaro-gin-kizaru'.",
 		"imageBottle": "Momotaro_Kizaru.png",
-		"imageMoodPic": "Momotaro_Kizaru_moodPic.jpg"
+		"imageMoodPic": "Momotaro_Kizaru_moodPic.jpg",
+		"imageMoodPicSmall": "Momotaro_Kizaru_moodPic_small.jpg"
 	},
 	{
 		"id": "momotaro-gin",
@@ -157,7 +166,8 @@
 		"mainNote": ["pfirsich"],
 		"perfectServe": "",
 		"imageBottle": "Momotaro_Gin.png",
-		"imageMoodPic": "Momotaro_Gin_moodPic.jpg"
+		"imageMoodPic": "Momotaro_Gin_moodPic.jpg",
+		"imageMoodPicSmall": "Momotaro_Gin_moodPic_small.jpg"
 	},
 	{
 		"id": "harahorn-gin",
@@ -173,7 +183,8 @@
 		"mainNote": [],
 		"perfectServe": "Tonic & Blaubeeren & Orangenzeste / Grapefruitscheibe / Granatapfel, viele Cocktail Rezepte auf 'harahorngin.com/drinks'.",
 		"imageBottle": "Harahorn_Gin.png",
-		"imageMoodPic": "Harahorn_moodPic.jpg"
+		"imageMoodPic": "Harahorn_moodPic.jpg",
+		"imageMoodPicSmall": "Harahorn_moodPic_small.jpg"
 	},
 	{
 		"id": "berliner-brandstifter",
@@ -189,7 +200,8 @@
 		"mainNote": ["waldmeister", "minze"],
 		"perfectServe": "Henry Indian Tonic & Zitronenzeste, GOLDBERG Tonic Water & Apfelscheiben,  Fever-Tree Aromatic Tonic Water & Getrocknete Johannisbeeren, Elderflower Tonic &Limettenzeste, Mediterranean Tonic Water & Orangenzeste, Henry Cherry Tonic Water & Himbeeren+Hibiskus, GOLDBERG Japanese Yuzu Tonic & PfefferCocktails: Cloudy Berry mit Wild Berry, Vesper Royal mit Vermut und Veilchensirup, Mummy Rose mit Lillet und Grenadine, Szechuan Fizz mit Aperol und Elderflower Tonic, Gin Basil Smash, Bemble Royal mit Brombeerkonfitüre, Berlin 75 (Tom Collins), Gin Birne mit Tonic und Birnensirup. Viele Rezepte auf siehe 'berlinerbrandstifter.com/rezepte-berlin-dry-gin'.",
 		"imageBottle": "Berliner_Brandstifter.png",
-		"imageMoodPic": "Berliner_Brandstifter_moodPic.jpg"
+		"imageMoodPic": "Berliner_Brandstifter_moodPic.jpg",
+		"imageMoodPicSmall": "Berliner_Brandstifter_moodPic_small.jpg"
 	},
 	{
 		"id": "boeser-kater-two-faced",
@@ -205,7 +217,8 @@
 		"mainNote": ["fruchtig"],
 		"perfectServe": "mit Fevertree Mediteranean Tonic",
 		"imageBottle": "Boeser_Kater_Two_Faced.png",
-		"imageMoodPic": "Boeser_Kater_Two_Faced_moodPic.jpg"
+		"imageMoodPic": "Boeser_Kater_Two_Faced_moodPic.jpg",
+		"imageMoodPicSmall": "Boeser_Kater_Two_Faced_moodPic_small.jpg"
 	},
 	{
 		"id": "cheminee-gin",
@@ -221,6 +234,7 @@
 		"botanicals": ["Zimt", "Orangen", "10 weitere"],
 		"perfectServe": "Tonic & eine Scheibe Orange",
 		"imageBottle": "Cheminee_Gin.png",
-		"imageMoodPic": "Cheminee_Gin_moodPic.jpg"
+		"imageMoodPic": "Cheminee_Gin_moodPic.jpg",
+		"imageMoodPicSmall": "Cheminee_Gin_moodPic_small.jpg"
 	}
 ]
