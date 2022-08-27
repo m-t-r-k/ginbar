@@ -6,6 +6,7 @@ import BgImgTextBanner from "../../BgImgTextBanner/BgImgTextBanner";
 import KeywordDescriptionBox from "../../KeywordDescriptionBox/KeywordDescriptionBox";
 import HeadlineTextEmphesized from '../../HeadlineTextEmphesized/HeadlineTextEmphesized';
 import BackLink from "../../BackLink/BackLink";
+import GinData from '../../../gin-data.json';
 
 const Gin = () => {
 
@@ -29,32 +30,52 @@ const Gin = () => {
     const { ginId } = useParams();
 
     useEffect(() => {
-        fetch(`http://localhost:3000/gins/${ginId}`)
-            .then(res => res.json())
-            .then(data => setData({
-                id:data.id,
-                name:data.name,
-                type:data.type,
-                originCountry:data.originCountry,
-                originCity:data.originCity,
-                alcohol:data.alcohol,
-                botanicals:data.botanicals,
-                mainNote:data.mainNote,
-                nosing:data.nosing,
-                taste:data.taste,
-                description:data.description,
-                perfectServe:data.perfectServe,
-                imageBottle:data.imageBottle,
-                imageMoodPic:data.imageMoodPic
-            }))
-            .catch(err=>{ console.log(err) })
+        // fetch(`http://localhost:3000/gins/${ginId}`)
+        //     .then(res => res.json())
+        //     .then(data => setData({
+        //         id:data.id,
+        //         name:data.name,
+        //         type:data.type,
+        //         originCountry:data.originCountry,
+        //         originCity:data.originCity,
+        //         alcohol:data.alcohol,
+        //         botanicals:data.botanicals,
+        //         mainNote:data.mainNote,
+        //         nosing:data.nosing,
+        //         taste:data.taste,
+        //         description:data.description,
+        //         perfectServe:data.perfectServe,
+        //         imageBottle:data.imageBottle,
+        //         imageMoodPic:data.imageMoodPic
+        //     }))
+        //     .catch(err=>{ console.log(err) })
+
+        let data = GinData.find( gin => gin.id === ginId );
+
+        setData({
+            id:data.id,
+            name:data.name,
+            type:data.type,
+            originCountry:data.originCountry,
+            originCity:data.originCity,
+            alcohol:data.alcohol,
+            botanicals:data.botanicals,
+            mainNote:data.mainNote,
+            nosing:data.nosing,
+            taste:data.taste,
+            description:data.description,
+            perfectServe:data.perfectServe,
+            imageBottle:data.imageBottle,
+            imageMoodPic:data.imageMoodPic
+        })
+
     }, [ginId]);
 
     let tagsList = [gin.originCountry, gin.type];
     tagsList = [...tagsList, ...gin.mainNote];
 
     return(
-        <section className='pageWrapper'>  
+        <section className='pageWrapper'>
             <GinDetailOverview 
             name={gin.name} 
             type={gin.type} 

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import './Gins.scss';
 import HeadlineTextEmphesized from '../../HeadlineTextEmphesized/HeadlineTextEmphesized';
 import MasonryLayout from "../../MasonryLayout/MasonryLayout";
+import GinData from '../../../gin-data.json';
   
 class Listing extends React.Component {
     state = {
@@ -10,10 +11,11 @@ class Listing extends React.Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:3000/gins")
-          .then(res => res.json())
-          .then(data => this.setState({ gins: data }));
-        console.log(this.state.gins);
+        // fetch("http://localhost:3000/gins")
+        //   .then(res => res.json())
+        //   .then(data => this.setState({ gins: data }));
+
+        this.setState({ gins: GinData });
     }
 
     render() {
