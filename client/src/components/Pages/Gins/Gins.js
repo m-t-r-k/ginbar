@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import './Gins.scss';
 import HeadlineTextEmphesized from '../../HeadlineTextEmphesized/HeadlineTextEmphesized';
 import MasonryLayout from "../../MasonryLayout/MasonryLayout";
-import GinData from '../../../gin-data.json';
+import GinData from '../../../data/gin-data.json';
   
 class Listing extends React.Component {
     state = {

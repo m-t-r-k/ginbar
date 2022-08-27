@@ -6,7 +6,7 @@ import BgImgTextBanner from "../../BgImgTextBanner/BgImgTextBanner";
 import KeywordDescriptionBox from "../../KeywordDescriptionBox/KeywordDescriptionBox";
 import HeadlineTextEmphesized from '../../HeadlineTextEmphesized/HeadlineTextEmphesized';
 import BackLink from "../../BackLink/BackLink";
-import GinData from '../../../gin-data.json';
+import GinData from '../../../data/gin-data.json';
 
 const Gin = () => {
 
