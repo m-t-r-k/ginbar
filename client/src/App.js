@@ -8,11 +8,11 @@ import {
 } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import Home from "./components/Home/Home";
-import HowToTaste from "./components/HowToTaste/HowToTaste";
-import Gins from "./components/Listing/Gins";
-import GinDetail from "./components/Detail/Gin";
-import CocktailDetail from "./components/Detail/Cocktail";
+import Home from "./components/Pages/Home/Home";
+import HowToTaste from "./components/Pages/HowToTaste/HowToTaste";
+import Gins from "./components/Pages/Gins/Gins";
+import GinDetail from "./components/Pages/Gin/Gin";
+import Imprint from "./components/Pages/Imprint/Imprint";
 
 class App extends React.Component {
   state = {
@@ -37,7 +37,7 @@ class App extends React.Component {
               <Route path="/gins/" element={<Gins />} />
               <Route path="/cocktails/" element={<Gins />} />
               <Route path="/gins/:ginId" element={<GinDetail />} />
-              <Route path="/cocktails/:cocktailId" element={<CocktailDetail />} />
+              <Route path="/imprint" element={<Imprint />} />
             </Routes>
             <Footer></Footer>
         </Router>

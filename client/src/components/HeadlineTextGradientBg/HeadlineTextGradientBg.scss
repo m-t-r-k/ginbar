@@ -1,0 +1,74 @@
+@import "../scss/globals";
+@import "../scss/fonts_colors";
+
+.HeadlineTextGradientBg {
+    display: grid;
+    grid-template-columns: 40% 1fr;
+    grid-row: 1;
+    padding: 80px 0;
+  
+    background: $grey-transparent-gradient;
+}
+
+.bottle {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding-top: 10px;
+
+    img {
+        width: 200px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        
+        @include drop-shadow-light;
+    }
+}
+
+.description {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    padding-right: 40px;
+}
+
+@media screen and (max-width:1000px) {
+    .HeadlineTextGradientBg {
+        padding: 60px 0;
+    }
+}
+
+.bottle {
+    img {
+        max-height: 90%;
+        max-width: 70%;
+        object-fit: contain;
+    }
+}
+
+@media screen and (max-width:650px) {
+    .HeadlineTextGradientBg {
+        display: block;
+        padding: 40px;
+
+        .bottle {
+        padding: 0;
+        height: 250px;
+
+        img {
+            width: auto;
+            height: 100%;
+            max-width: 100%;
+            max-height: 100%;
+        }
+        }
+
+        .description {
+        padding: 0px;
+        margin-top: 20px;
+        }
+        
+    }
+}

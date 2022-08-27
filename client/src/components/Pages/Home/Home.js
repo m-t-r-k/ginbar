@@ -46,6 +46,7 @@ class Home extends React.Component {
                         </video>            
                     </div>
                 </Link>
+                {/*
                 <Link to="/cocktails/">
                     <div className="homeColumnWrap">
                         <div className="homeColumnContent">
@@ -60,6 +61,7 @@ class Home extends React.Component {
                         </video>            
                     </div>
                 </Link>
+                */}
             </section>
         )
     }

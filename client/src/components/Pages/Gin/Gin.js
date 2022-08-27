@@ -1,11 +1,11 @@
 import './Gin.scss';
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import GinDetailOverview from "../GinDetailOverview/GinDetailOverview";
-import BgImgTextBanner from "../BgImgTextBanner/BgImgTextBanner";
-import KeywordDescriptionBox from "../KeywordDescriptionBox/KeywordDescriptionBox";
-import HeadlineTextEmphesized from '../HeadlineTextEmphesized/HeadlineTextEmphesized';
-import BackLink from "../BackLink/BackLink";
+import GinDetailOverview from "../../GinDetailOverview/GinDetailOverview";
+import BgImgTextBanner from "../../BgImgTextBanner/BgImgTextBanner";
+import KeywordDescriptionBox from "../../KeywordDescriptionBox/KeywordDescriptionBox";
+import HeadlineTextEmphesized from '../../HeadlineTextEmphesized/HeadlineTextEmphesized';
+import BackLink from "../../BackLink/BackLink";
 
 const Gin = () => {
 

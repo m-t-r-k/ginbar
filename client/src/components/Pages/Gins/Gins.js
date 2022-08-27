@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import './Gins.scss';
-import HeadlineTextEmphesized from '../HeadlineTextEmphesized/HeadlineTextEmphesized';
-import MasonryLayout from "../MasonryLayout/MasonryLayout";
+import HeadlineTextEmphesized from '../../HeadlineTextEmphesized/HeadlineTextEmphesized';
+import MasonryLayout from "../../MasonryLayout/MasonryLayout";
   
 class Listing extends React.Component {
     state = {

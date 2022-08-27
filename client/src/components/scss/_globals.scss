@@ -1,5 +1,25 @@
 @import "../scss/fonts_colors";
 
+@mixin standard-transition($property, $duration: 0.1s, $delay: 0s) {
+	-webkit-transition-property: $property;
+    -webkit-transition-duration: $duration;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-property: $property;
+    transition-duration: $duration;
+    transition-timing-function: ease-in-out;
+	transition-delay: $delay;
+}
+
+@mixin drop-shadow-dark {
+	-webkit-filter: drop-shadow(0px 5px 10px rgba(#000, .5));
+    filter: drop-shadow(0px 5px 10px rgba(#000, .5));
+}
+
+@mixin drop-shadow-light {
+	-webkit-filter: drop-shadow(0px 5px 10px rgba($medium-grey, 1.0));
+    filter: drop-shadow(0px 5px 10px rgba($medium-grey, 1.0));
+}
+
 * {
 	box-sizing: border-box;
 	font-family: 'Raleway', sans-serif;
@@ -27,6 +47,13 @@ img {
 
 a {
 	text-decoration: none;
+	color: #000;
+	font-weight: 500;
+	@include standard-transition(color, 0.25s, 0s);
+
+	&:hover {
+		color: $medium-grey;
+	}
 }
 
 ul {
@@ -78,26 +105,6 @@ hr {
 	background: $light-grey;
 	border: none;
 	margin: 0;
-}
-
-@mixin standard-transition($property, $duration: 0.1s, $delay: 0s) {
-	-webkit-transition-property: $property;
-    -webkit-transition-duration: $duration;
-    -webkit-transition-timing-function: ease-in-out;
-    transition-property: $property;
-    transition-duration: $duration;
-    transition-timing-function: ease-in-out;
-	transition-delay: $delay;
-}
-
-@mixin drop-shadow-dark {
-	-webkit-filter: drop-shadow(0px 5px 10px rgba(#000, .5));
-    filter: drop-shadow(0px 5px 10px rgba(#000, .5));
-}
-
-@mixin drop-shadow-light {
-	-webkit-filter: drop-shadow(0px 5px 10px rgba($medium-grey, 1.0));
-    filter: drop-shadow(0px 5px 10px rgba($medium-grey, 1.0));
 }
 
 .button {

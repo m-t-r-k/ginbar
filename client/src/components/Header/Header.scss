@@ -16,6 +16,16 @@ header {
 		background: rgba(#fff, 0.95);
 	}
 
+	.navigation {
+		position: relative;
+		width: 100%;
+		max-width: 1480px;
+		padding-left: 40px;
+		padding-right: 40px;
+		margin: 0 auto;
+		height: 100%;
+	}
+
 	nav {
 		display: inline-block;
 		position: relative;
@@ -173,7 +183,7 @@ header {
 			display: inline-block;
 			width: auto;
 			height: 100%;
-			padding: 10px 20px;
+			padding: 10px 17px;
 		}
 
 		svg {
@@ -197,6 +207,10 @@ header {
 		width: 100%;
 		height: auto;
 		background: transparent;
+
+		.navigation {
+			padding: 0;
+		}
 
 		nav {
 			position: absolute;

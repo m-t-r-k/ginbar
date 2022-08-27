@@ -1,0 +1,7 @@
+@import "../../scss/globals";
+@import "../../scss/fonts_colors";
+
+h1 {
+    @include primary-headline;
+    text-align: center;
+}
