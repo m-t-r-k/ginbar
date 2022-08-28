@@ -3,7 +3,7 @@ import HeadlineTextGradientBg from "../../HeadlineTextGradientBg/HeadlineTextGra
 import './Imprint.scss';
 
 const Imprint = () => (
-  <HeadlineTextGradientBg image={`../images/imprint_image.png`}>
+  <HeadlineTextGradientBg image={`imprint_image.png`}>
     <h1>Impressum</h1>
     <div class='impressum'>
      <p>Angaben gemäß § 5 TMG<br></br>
