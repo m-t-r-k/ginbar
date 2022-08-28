@@ -15,17 +15,6 @@ import GinDetail from "./components/Pages/Gin/Gin";
 import Imprint from "./components/Pages/Imprint/Imprint";
 
 class App extends React.Component {
-  state = {
-    name: ""
-  }
-
-  componentDidMount() {
-    fetch("http://localhost:3000/gins")
-      .then(res => res.json())
-      .then(data => this.setState({ name: data.name }));
-    console.log(this.state.name);
-  }
-
   render() {
     return (
       <div className="App">

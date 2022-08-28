@@ -11,11 +11,8 @@ class Listing extends React.Component {
     }
 
     componentDidMount() {
-        // fetch("http://localhost:3000/gins")
-        //   .then(res => res.json())
-        //   .then(data => this.setState({ gins: data }));
-
         this.setState({ gins: GinData });
+        window.scrollTo(0, 0);
     }
 
     render() {

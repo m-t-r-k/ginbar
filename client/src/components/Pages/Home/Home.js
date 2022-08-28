@@ -9,10 +9,7 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:3000/gins")
-          .then(res => res.json())
-          .then(data => this.setState({ name: data.name }));
-        console.log(this.state.name);
+        window.scrollTo(0, 0);
     }
 
     render() {

@@ -31,25 +31,6 @@ const Gin = () => {
     const { ginId } = useParams();
 
     useEffect(() => {
-        // fetch(`http://localhost:3000/gins/${ginId}`)
-        //     .then(res => res.json())
-        //     .then(data => setData({
-        //         id:data.id,
-        //         name:data.name,
-        //         type:data.type,
-        //         originCountry:data.originCountry,
-        //         originCity:data.originCity,
-        //         alcohol:data.alcohol,
-        //         botanicals:data.botanicals,
-        //         mainNote:data.mainNote,
-        //         nosing:data.nosing,
-        //         taste:data.taste,
-        //         description:data.description,
-        //         perfectServe:data.perfectServe,
-        //         imageBottle:data.imageBottle,
-        //         imageMoodPic:data.imageMoodPic
-        //     }))
-        //     .catch(err=>{ console.log(err) })
 
         let data = GinData.find( gin => gin.id === ginId );
 
@@ -70,6 +51,7 @@ const Gin = () => {
             imageMoodPic:data.imageMoodPic
         })
 
+        window.scrollTo(0, 0)
     }, [ginId]);
 
     let tagsList = [gin.originCountry, gin.type];
