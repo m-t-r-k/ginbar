@@ -124,3 +124,27 @@
         @include standard-transition(all, 0.25s, 0s);
     }
 }
+
+@media screen and (max-width:680px) {
+    .tileContent {
+        padding: 20px;
+
+         h2 {
+            font-size: 21px;
+            line-height: 28px;
+            margin-bottom: 10px;
+        }
+        
+        img {
+            height: auto;
+            max-height: 200px;
+            width: auto;
+            max-width: 35%;
+            margin: 0px auto 10px;
+        }
+
+        .tagsList, .tags_list {
+            margin-top: 10px !important;
+        }
+    }
+}

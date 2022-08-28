@@ -127,3 +127,9 @@ hr {
 		padding-top: 20px;
 	}
 }
+
+@media screen and (max-width:680px) {
+	.fixed_width {
+		padding: 0 20px;
+	}
+}

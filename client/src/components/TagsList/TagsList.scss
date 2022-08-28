@@ -26,3 +26,20 @@
 		background: $light-grey;
 	}
 }
+
+@media screen and (max-width:680px) {
+    .tags_list {
+		row-gap: 4px;
+		padding: 0 4px;
+	
+		span {
+			$tags-size: 16px;
+			display: inline-block;
+			width: auto;
+			height: $tags-size;
+			border-radius: calc($tags-size / 2);
+			padding: calc(($tags-size - 12px) / 2) 10px 0px;
+			margin: 0 4px;
+		}
+	}
+}

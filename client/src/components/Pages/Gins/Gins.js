@@ -22,7 +22,7 @@ class Listing extends React.Component {
         return (
             <section className="pageWrapper">
                 <HeadlineTextEmphesized
-                headline={"Gin Auswahl"}
+                headline={"Unsere Gin Empfehlungen"}
                 text={""}
                 ></HeadlineTextEmphesized>
                 <MasonryLayout gins={this.state.gins}></MasonryLayout>

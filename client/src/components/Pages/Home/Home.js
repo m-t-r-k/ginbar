@@ -35,7 +35,7 @@ class Home extends React.Component {
                 <Link to="/gins/">
                     <div className="homeColumnWrap">
                         <div className="homeColumnContent">
-                            <h2>Gin Auswahl</h2>
+                            <h2>Gin Empfehlungen</h2>
                             <div>
                                 <span className="buttonHome">mehr erfahren</span>
                             </div>
