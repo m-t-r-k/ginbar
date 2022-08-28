@@ -8,7 +8,9 @@
     
     p {
         margin-top: 40px;
-        @include simple_text;
-        max-width: 500px;
+    }
+
+    p:first-child {
+        margin-top: 0px;
     }
 }

@@ -93,3 +93,11 @@ $grey-transparent-gradient: linear-gradient(325deg, #FFFFFF 35%, #E5E5E5 100%);
 	line-height: 20px;
 	text-transform: uppercase;
 }
+
+h1, h2 {
+	@include primary_headline;
+}
+
+h3 {
+	@include secondary_headline;
+}

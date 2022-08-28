@@ -6,7 +6,7 @@ class HeadlineTextGradientBg extends React.Component {
       return (
       <section className="fixed_width">
         <div className="HeadlineTextGradientBg">
-          <div className="bottle">
+          <div className="image">
             <img src={`../images/${this.props.image}`}></img>  
           </div>
           <div className="description">

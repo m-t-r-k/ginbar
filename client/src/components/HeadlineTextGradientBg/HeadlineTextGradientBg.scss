@@ -10,7 +10,7 @@
     background: $grey-transparent-gradient;
 }
 
-.bottle {
+.image {
     grid-column-start: 1;
     grid-column-end: 2;
     width: 100%;
@@ -32,6 +32,19 @@
     grid-column-start: 2;
     grid-column-end: 3;
     padding-right: 40px;
+
+    & * {
+        position: relative;
+    }
+
+    &>*:first-child {
+        margin-bottom: 40px;
+    }
+
+    p {
+        @include simple_text;
+        max-width: 500px;
+    }
 }
 
 @media screen and (max-width:1000px) {
@@ -40,7 +53,7 @@
     }
 }
 
-.bottle {
+.image {
     img {
         max-height: 90%;
         max-width: 70%;
@@ -53,7 +66,7 @@
         display: block;
         padding: 40px;
 
-        .bottle {
+        .image {
         padding: 0;
         height: 250px;
 
