@@ -1,12 +1,14 @@
 @import "../../scss/fonts_colors";
 
-h2 {
-    @include secondary_headline;
-    font-family: 'AdventPro_Light';
-}
-
-p {
-    margin-top: 40px;
-    @include simple_text;
-    max-width: 500px;
+.impressum {
+    h2 {
+        @include secondary_headline;
+        font-family: 'AdventPro_Light';
+    }
+    
+    p {
+        margin-top: 40px;
+        @include simple_text;
+        max-width: 500px;
+    }
 }
