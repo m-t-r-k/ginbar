@@ -52,7 +52,6 @@ class MasonryLayout extends React.Component {
   updateGinItems() {
     const gridItems = document.querySelectorAll('.grid-item');
     let activeItems = 0;
-    console.log(gridItems);
     for (const item of gridItems) {
       var showElement = false;
       var itemTags = item.getAttribute("tags").split(",");
@@ -101,14 +100,12 @@ class MasonryLayout extends React.Component {
       }
       
       if(showElement) {
-        console.log("Show gin...")
         item.style.display = "block";
         activeItems += 1;
       } else {
         item.style.display = "none";
       }
     }
-    console.log("active Gins:", activeItems)
     this.setState({activeItems: activeItems});
   }
 
@@ -129,7 +126,6 @@ class MasonryLayout extends React.Component {
         }))
         break;
       case "taste":
-        console.log("activate Filter:", value);
         this.setState((state) => ({
           tasteTags: state.tasteTags.includes(value)
             ? state.tasteTags.filter((fc) => fc !== value)
