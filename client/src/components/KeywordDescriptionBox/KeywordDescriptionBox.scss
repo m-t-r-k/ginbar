@@ -38,3 +38,23 @@
 		margin-top: 0px;
 	}
 }
+
+@media screen and (max-width:800px) {   
+    .keyword_description_list div {
+		grid-template-columns: 90px 40px 1fr;
+	}
+}
+
+@media screen and (max-width:620px) {   
+    .keyword_description_list {
+		padding: 40px 40px;
+		div {
+			grid-template-columns: none;
+			grid-template-rows: auto auto auto;
+
+			div {
+				margin: 18px 0 10px;
+			}
+		}
+	}
+}

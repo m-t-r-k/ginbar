@@ -10,7 +10,9 @@ class MasonryLayout extends React.Component {
     this.state = {
       countryTags: [],
       typeTags: [],
-      tasteTags: []
+      tasteTags: [],
+      activeItems: 0,
+      activeFiler: false
     };
   }
 
@@ -24,11 +26,12 @@ class MasonryLayout extends React.Component {
     });
   }
 
+  toggleFilter() {
+    const currentState = this.state.activeFiler;
+    this.setState({activeFiler: !currentState})
+  }
+
   updateFilterItems() {
-    console.log("country Filters:", this.state.countryTags);
-    console.log("type Filters:", this.state.typeTags);
-    console.log("taste Filters:", this.state.tasteTags);
-    console.log("===============================================");
     var allFilterItems = document.querySelectorAll(".filterItem");
     for (let filterItem of allFilterItems) { 
       let filterId = filterItem.getAttribute("id");
@@ -48,7 +51,8 @@ class MasonryLayout extends React.Component {
 
   updateGinItems() {
     const gridItems = document.querySelectorAll('.grid-item');
-    
+    let activeItems = 0;
+    console.log(gridItems);
     for (const item of gridItems) {
       var showElement = false;
       var itemTags = item.getAttribute("tags").split(",");
@@ -97,11 +101,15 @@ class MasonryLayout extends React.Component {
       }
       
       if(showElement) {
+        console.log("Show gin...")
         item.style.display = "block";
+        activeItems += 1;
       } else {
         item.style.display = "none";
       }
     }
+    console.log("active Gins:", activeItems)
+    this.setState({activeItems: activeItems});
   }
 
   updateActiveFilters(value, tagsList) {
@@ -170,7 +178,7 @@ class MasonryLayout extends React.Component {
     }
     this.initMasonry();
   }
-
+  
   render() {
     const countryTags = this.getCountryFilterOptions();
     const ginTypeTags = this.getGinTypeFilterOptions();
@@ -178,30 +186,39 @@ class MasonryLayout extends React.Component {
 
     return (
       <section className="fixed_width">
-        <div className="filters">
-          <div>
-            <span>Herkunftsland:</span>
-            <ul className='filter'>
-              {countryTags.map(country => (
-                <li id={country} className="filterItem" onClick={this.updateActiveFilters.bind(this, country, "country")}>{country}</li>
-              ))}
-            </ul>
+        <div className={this.state.activeFiler ? "filter_wrapper active" : "filter_wrapper"}>
+          <div className='filterButton clearfix' onClick={this.toggleFilter.bind(this)}>
+            <span>Filtern:<span>{this.state.activeItems} Gins ausgewählt</span></span>
+            <div className='filterIcon'>
+              <span></span>
+              <span></span>
+            </div>
           </div>
-          <div>
-            <span>Gin Sorte:</span>
-            <ul className='filter'>
-              {ginTypeTags.map(ginType => (
-                <li id={ginType} className="filterItem" onClick={this.updateActiveFilters.bind(this, ginType, "ginType")}>{ginType}</li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <span>Hauptnote:</span>
-            <ul className='filter'>
-              {tasteTags.map(taste => (
-                <li id={taste} className="filterItem" onClick={this.updateActiveFilters.bind(this, taste, "taste")}>{taste}</li>
-              ))}
-            </ul>
+          <div className="filters">
+            <div>
+              <span>Herkunftsland:</span>
+              <ul className='filter'>
+                {countryTags.map(country => (
+                  <li id={country} className="filterItem" onClick={this.updateActiveFilters.bind(this, country, "country")}>{country}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <span>Gin Sorte:</span>
+              <ul className='filter'>
+                {ginTypeTags.map(ginType => (
+                  <li id={ginType} className="filterItem" onClick={this.updateActiveFilters.bind(this, ginType, "ginType")}>{ginType}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <span>Hauptnote:</span>
+              <ul className='filter'>
+                {tasteTags.map(taste => (
+                  <li id={taste} className="filterItem" onClick={this.updateActiveFilters.bind(this, taste, "taste")}>{taste}</li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
         <div className="grid">

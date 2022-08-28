@@ -67,20 +67,31 @@
         padding: 40px;
 
         .image {
-        padding: 0;
-        height: 250px;
+            padding: 0;
+            height: 200px;
 
-        img {
-            width: auto;
-            height: 100%;
-            max-width: 100%;
-            max-height: 100%;
-        }
+            img {
+                width: auto;
+                height: 100%;
+                max-width: 100%;
+                max-height: 100%;
+            }
         }
 
         .description {
-        padding: 0px;
-        margin-top: 20px;
+            padding: 0px;
+            margin-top: 20px;
+
+            h1 {
+                font-size: 36px;
+                line-height: 49px;
+                margin-bottom: 20px;
+                text-align: left;
+            }
+
+            .tags_list {
+                margin-top: 0;
+            }
         }
         
     }
