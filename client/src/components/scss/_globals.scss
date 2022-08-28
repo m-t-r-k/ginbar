@@ -81,7 +81,7 @@ ul {
 $section_spacer: 50px;
 
 .pageWrapper {
-	padding-top: $section_spacer;
+	padding-top: 60px;
 }
 
 .fixed_width {
@@ -123,9 +123,7 @@ hr {
 }
 
 @media screen and (max-width:800px) {
-	.pageWrapper {
-		padding-top: 20px;
-	}
+
 }
 
 @media screen and (max-width:680px) {

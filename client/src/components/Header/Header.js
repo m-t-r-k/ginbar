@@ -37,8 +37,9 @@ function Header(darkHeader) {
             </NavLink>
           </div>
           <nav className="clearfix">
-            <NavLink to="/how-to-taste/">How to Taste</NavLink>
-            <NavLink to="/gins/">Gin Empfehlungen</NavLink>
+            <NavLink to="/how-to-taste/" onClick={toggleNav}>How to Taste</NavLink>
+            <NavLink to="/gins/" onClick={toggleNav}>Gin Empfehlungen</NavLink>
+            <NavLink to="/imprint/" className={"imprint"} onClick={toggleNav}>Impressum</NavLink>
           </nav>
           <div className="mobileNavWrap" onClick={toggleNav}>
             <div className="mobileNav">

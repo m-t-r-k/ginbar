@@ -68,6 +68,12 @@ header {
 			color: $dark-grey;
 			text-decoration: underline;
 		}
+
+		a.imprint {
+			display: none;
+			visibility: hidden;
+			opacity: 0;
+		}
 	}
 
 	.mobileNavWrap {
@@ -218,7 +224,7 @@ header {
 			left: 0;
 			padding-top: 60px;
 			height: 100vh;
-			background: rgba(255, 255, 255, 0.95);
+			background: rgba(255, 255, 255, 1);
 			visibility: hidden;
     		opacity: 0;
 			display: none;
@@ -229,11 +235,12 @@ header {
 				width: 100%;
 				padding: 40px 0;
 				color: $medium-grey;
-				font-size: 30px;
-				border-bottom: 1px solid $medium-grey;
+				font-size: 20px;
+				list-style: 20px;
+				border-bottom: 1px solid rgba($medium-grey, 0.5);
 
 				&:first-child {
-					border-top: 1px solid $medium-grey;
+					border-top: 1px solid rgba($medium-grey, 0.5);
 				}
 
 				&:before {
@@ -250,6 +257,12 @@ header {
 					// background: rgba($color: #fff, $alpha: .75);
 				}
 			}
+
+			a.imprint {
+				display: block;
+				visibility: visible;
+				opacity: 1;
+			}
 		}
 
 		&.activeNav {
@@ -259,6 +272,7 @@ header {
     			opacity: 1;
 				display: block;
 				width: 100%;
+				padding-top: 20vh;
 			}
 			
 			.logo {
