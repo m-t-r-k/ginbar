@@ -179,12 +179,6 @@ class MasonryLayout extends React.Component {
     const countryTags = this.getCountryFilterOptions();
     const ginTypeTags = this.getGinTypeFilterOptions();
     const tasteTags = this.getTasteFilterOptions();
-    
-    setTimeout(() => {
-      this.updateFilterItems();
-      this.updateGinItems();
-      this.initMasonry();
-    }, 250);
 
     return (
       <section className="fixed_width">

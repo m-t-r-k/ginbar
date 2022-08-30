@@ -1,8 +1,19 @@
+@import "../scss/globals";
+
 #splashscreen {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     background: #000;
     width: 100%;
     height: 100vh;
+    @include standard-transition(all, 1s, 0s);
+    z-index: 10000;
+
+    &.fade_out {
+        opacity: 0;
+        visibility: hidden;
+    }
 }
 
 .wrapper {
