@@ -9,6 +9,9 @@ class GinOverviewTile extends React.Component {
       <div key={this.props.id} className="ginOverviewTile">
           <Link to={`/gins/${this.props.id}`}>
             <div className='tileContent'>
+              <div id='recommendation' className={this.props.recommendation ? "show" : ""}>
+                <span>Tipp</span>
+              </div>
               <img src={`../images/${this.props.imageBottle}`}></img>
               <h2>{this.props.name}</h2>
               <div className='tagsViewMoreWrapper'>

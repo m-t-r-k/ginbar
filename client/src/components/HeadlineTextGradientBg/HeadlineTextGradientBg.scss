@@ -33,6 +33,10 @@
     grid-column-end: 3;
     padding-right: 40px;
 
+    h1, h2 {
+        text-align: left;
+    }
+
     & * {
         position: relative;
     }

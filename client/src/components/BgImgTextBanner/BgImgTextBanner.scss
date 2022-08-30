@@ -60,12 +60,12 @@
     .banner_section {
         padding-top: 60px;
         padding-bottom: 60px;
-    }
 
-    .banner-text {
-        @include emphasized_text;
-        font-size: 16px;
-        line-height: 32px;
+        .banner-text {
+            @include emphasized_text;
+            font-size: 16px;
+            line-height: 32px;
+        }
     }
 }
 
