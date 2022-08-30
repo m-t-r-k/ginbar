@@ -1,6 +1,6 @@
 import './App.scss';
 import './components/scss/_globals.scss';
-import React from "react"
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -13,11 +13,22 @@ import HowToTaste from "./components/Pages/HowToTaste/HowToTaste";
 import Gins from "./components/Pages/Gins/Gins";
 import GinDetail from "./components/Pages/Gin/Gin";
 import Imprint from "./components/Pages/Imprint/Imprint";
+import SplashScreen from './components/SplashScreen/SplashScreen';
 
-class App extends React.Component {
-  render() {
+function App()  {
+    const [done, setDone] = useState(false);
+
+    useEffect(() => {
+      setTimeout(() => {
+        setDone(true);
+      }, 4000);
+    }, []);
+  
     return (
       <div className="App">
+        {!done ? (
+        <SplashScreen></SplashScreen>
+      ) : (
         <Router>
           <Header></Header>
             <Routes>
@@ -30,9 +41,9 @@ class App extends React.Component {
             </Routes>
             <Footer></Footer>
         </Router>
+      )}
       </div>
     );
   }
-}
 
 export default App;

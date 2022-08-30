@@ -1,4 +1,4 @@
-import React, { useState, useEffect }from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import './Header.scss';
 import { useLocation } from "react-router-dom";
