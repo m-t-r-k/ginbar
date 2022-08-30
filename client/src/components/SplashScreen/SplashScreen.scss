@@ -29,25 +29,26 @@
 }
 
 .loader_wrapper {
-	width: 800px;
-	height: calc(800px * 0.15943600867679);
+    $splash-width: 500px;
+	width: $splash-width;
+	height: calc($splash-width * 0.15943600867679);
 	position: relative;
-}
 
-.loader_wrapper> div {
-	display: inline-block;
+    &>div {
+        display: inline-block;
+    }
+
+    svg {
+        height: 100%;
+        width: auto;
+        position: absolute;
+        top: 0;
+        z-index: 250;
+    }
 }
 
 .PERIUM {
 	margin-left: 20px;
-}
-
-.loader_wrapper svg {
-	height: 100%;
-	width: auto;
-	position: absolute;
-	top: 0;
-	z-index: 250;
 }
 
 svg#G,
@@ -80,30 +81,30 @@ svg#P {
 }
 
 #G_LETTER { 
-	animation: dash 1s linear forwards,
-				fill_svg_white 2s 0s ease-in forwards;
+	animation: dash 1s 0.5s linear forwards,
+				fill_svg_white 2s 0.5s ease-in forwards;
 }
-svg#G { animation: move_G 1s 2s ease forwards; }
+svg#G { animation: move_G 1s 2.5s ease forwards; }
 
 #IN_LETTERS { 
-	animation: dash 1s linear forwards,
-				fill_svg_white 2s 0s ease-in forwards;
+	animation: dash 1s 0.5s linear forwards,
+				fill_svg_white 2s 0.5s ease-in forwards;
 }
-svg#IN { animation: move_IN 1s 2s ease forwards; }
+svg#IN { animation: move_IN 1s 2.5s ease forwards; }
 
 
 #P_LETTER { 
-	animation: dash 1s linear forwards,
-				fill_svg_grey 1s 0.5s ease-in forwards,
-				fill_svg_grey_to_white 1s 2s ease-in forwards;
+	animation: dash 1s 0.5s linear forwards,
+				fill_svg_grey 1s 1s ease-in forwards,
+				fill_svg_grey_to_white 1s 2.5s ease-in forwards;
 }
-svg#P { animation: move_P 1s 2s ease forwards; }
+svg#P { animation: move_P 1s 2.5s ease forwards; }
 
 #ERIUM_LETTERS {
-	animation: dash 1s linear forwards,
-				fill_svg_grey 1s 0.5s ease-in forwards;
+	animation: dash 1s 0.5s linear forwards,
+				fill_svg_grey 1s 1s ease-in forwards;
 }
-svg#ERIUM { animation: move_ERIUM 1s 2s ease forwards; }
+svg#ERIUM { animation: move_ERIUM 1s 2.5s ease forwards; }
 
 @keyframes dash {
 	0% {
@@ -188,5 +189,45 @@ svg#ERIUM { animation: move_ERIUM 1s 2s ease forwards; }
     100% {
         right: -10%;
         opacity: 0;
+    }
+}
+
+@media screen and (max-width:1200px) {   
+    .loader_wrapper {
+        $splash-width: 600px;
+        width: $splash-width;
+        height: calc($splash-width * 0.15943600867679);
+    }
+}
+
+@media screen and (max-width:1000px) {   
+    .loader_wrapper {
+        $splash-width: 450px;
+        width: $splash-width;
+        height: calc($splash-width * 0.15943600867679);
+    }
+}
+
+@media screen and (max-width:800px) {   
+    .loader_wrapper {
+        $splash-width: 300px;
+        width: $splash-width;
+        height: calc($splash-width * 0.15943600867679);
+    }
+}
+
+@media screen and (max-width:600px) {   
+    .loader_wrapper {
+        $splash-width: 150px;
+        width: $splash-width;
+        height: calc($splash-width * 0.15943600867679);
+    }
+}
+
+@media screen and (max-width:400px) {   
+    .loader_wrapper {
+        $splash-width: 100px;
+        width: $splash-width;
+        height: calc($splash-width * 0.15943600867679);
     }
 }

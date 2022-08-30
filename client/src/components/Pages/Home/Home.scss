@@ -86,14 +86,13 @@
             transition: width 0.15s 0s ease-in,
                         height 0.15s 0.15s ease-out,
                         padding 0.15s 0.15s ease-out,
-                        color 0.25s 0.25s ease-out;
+                        color 0.15s 0s ease-out;
         }
 
         &:hover {
 
             .buttonHome {
-                width: 100%;
-                max-width: 200px;
+                width: 200px;
                 height: 40px;
                 padding-top: 12px;
                 color: $dark-grey;

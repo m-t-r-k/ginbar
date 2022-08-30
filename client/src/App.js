@@ -28,7 +28,7 @@ class App extends React.Component {
     setTimeout(() => {
       this.setState({loaded: true});
       console.log("Loading done");
-    }, 4000)
+    }, 4500)
 
     return (
       <div className={this.state.loaded ? "App" : "App fixed"}>

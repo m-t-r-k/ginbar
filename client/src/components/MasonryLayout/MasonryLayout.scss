@@ -190,13 +190,6 @@ $gutter-size: 20px;
     }
 }
 
-// @media screen and (max-width:680px) {
-//     $column-count: 1;
-//     .grid-sizer, .grid-item {
-//         width: calc((100% - (($column-count - 1) * $gutter-size)) / $column-count);
-//     }
-// }
-
 @media screen and (max-width:680px) {   
     $gutter-size: 4px;
 
