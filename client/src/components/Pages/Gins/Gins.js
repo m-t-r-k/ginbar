@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import MotionWrapper from "../../MotionWrapper";
 import './Gins.scss';
 import HeadlineTextEmphesized from '../../HeadlineTextEmphesized/HeadlineTextEmphesized';
 import MasonryLayout from "../../MasonryLayout/MasonryLayout";
@@ -17,13 +17,15 @@ class Listing extends React.Component {
 
     render() {
         return (
-            <section className="pageWrapper">
-                <HeadlineTextEmphesized
-                headline={"Unsere Gin Empfehlungen"}
-                text={""}
-                ></HeadlineTextEmphesized>
-                <MasonryLayout gins={this.state.gins}></MasonryLayout>
-            </section>
+            <MotionWrapper>
+                <section className="pageWrapper">
+                    <HeadlineTextEmphesized
+                    headline={"Unsere Gin Empfehlungen"}
+                    text={""}
+                    ></HeadlineTextEmphesized>
+                    <MasonryLayout gins={this.state.gins}></MasonryLayout>
+                </section>
+            </MotionWrapper>
         );
     }
 }

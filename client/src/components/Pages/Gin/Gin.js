@@ -1,6 +1,7 @@
 import './Gin.scss';
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import MotionWrapper from "../../MotionWrapper";
 import GinDetailOverview from "../../GinDetailOverview/GinDetailOverview";
 import BgImgTextBanner from "../../BgImgTextBanner/BgImgTextBanner";
 import KeywordDescriptionBox from "../../KeywordDescriptionBox/KeywordDescriptionBox";
@@ -58,31 +59,33 @@ const Gin = () => {
     tagsList = [...tagsList, ...gin.mainNote];
 
     return(
-        <section className='pageWrapper'>
-            <GinDetailOverview 
-            name={gin.name} 
-            type={gin.type} 
-            originCountry={gin.originCountry} 
-            originCity={gin.originCity} 
-            alcohol={gin.alcohol} 
-            botanicals={gin.botanicals} 
-            imageBottle={gin.imageBottle} 
-            tags={tagsList}></GinDetailOverview>
+        <MotionWrapper>
+            <section className='pageWrapper'>
+                <GinDetailOverview 
+                name={gin.name} 
+                type={gin.type} 
+                originCountry={gin.originCountry} 
+                originCity={gin.originCity} 
+                alcohol={gin.alcohol} 
+                botanicals={gin.botanicals} 
+                imageBottle={gin.imageBottle} 
+                tags={tagsList}></GinDetailOverview>
 
-            <BgImgTextBanner
-            imageMoodPic={gin.imageMoodPic}
-            description={gin.description}></BgImgTextBanner>
+                <BgImgTextBanner
+                imageMoodPic={gin.imageMoodPic}
+                description={gin.description}></BgImgTextBanner>
 
-            <KeywordDescriptionBox
-            nosing={gin.nosing}
-            taste={gin.taste}></KeywordDescriptionBox>
+                <KeywordDescriptionBox
+                nosing={gin.nosing}
+                taste={gin.taste}></KeywordDescriptionBox>
 
-            <HeadlineTextEmphesized
-            headline={"Perfect Serve"}
-            text={gin.perfectServe}></HeadlineTextEmphesized>
+                <HeadlineTextEmphesized
+                headline={"Perfect Serve"}
+                text={gin.perfectServe}></HeadlineTextEmphesized>
 
-            <BackLink></BackLink>
-        </section>
+                <BackLink></BackLink>
+            </section>
+        </MotionWrapper>
     )
 }
 

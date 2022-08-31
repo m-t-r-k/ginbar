@@ -8,12 +8,8 @@ import {
 } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import Home from "./components/Pages/Home/Home";
-import HowToTaste from "./components/Pages/HowToTaste/HowToTaste";
-import Gins from "./components/Pages/Gins/Gins";
-import GinDetail from "./components/Pages/Gin/Gin";
-import Imprint from "./components/Pages/Imprint/Imprint";
 import SplashScreen from './components/SplashScreen/SplashScreen';
+import AnimatedRoutes from './components/AnimatedRouts';
 
 class App extends React.Component {
   constructor(props) {
@@ -35,6 +31,7 @@ class App extends React.Component {
         <SplashScreen loaded={this.state.loaded}></SplashScreen>
         <Router>
           <Header></Header>
+          {/*
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/how-to-taste/" element={<HowToTaste />} />
@@ -43,6 +40,8 @@ class App extends React.Component {
             <Route path="/gins/:ginId" element={<GinDetail />} />
             <Route path="/imprint" element={<Imprint />} />
           </Routes>
+          */}
+          <AnimatedRoutes></AnimatedRoutes>
           <Footer></Footer>
         </Router>
       </div>
