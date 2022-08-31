@@ -58,6 +58,15 @@ const Gin = () => {
     let tagsList = [gin.originCountry, gin.type];
     tagsList = [...tagsList, ...gin.mainNote];
 
+    let keywordDescriptionBox
+
+    if(gin.nosing !== undefined && gin.nosing !== null && gin.nosing.trim().length > 0 &&
+        gin.taste !== undefined && gin.taste !== null && gin.taste.trim().length > 0) {
+        keywordDescriptionBox = <KeywordDescriptionBox
+                nosing={gin.nosing}
+                taste={gin.taste}></KeywordDescriptionBox>
+    }
+
     return(
         <MotionWrapper>
             <section className='pageWrapper'>
@@ -75,9 +84,7 @@ const Gin = () => {
                 imageMoodPic={gin.imageMoodPic}
                 description={gin.description}></BgImgTextBanner>
 
-                <KeywordDescriptionBox
-                nosing={gin.nosing}
-                taste={gin.taste}></KeywordDescriptionBox>
+                {keywordDescriptionBox}
 
                 <HeadlineTextEmphesized
                 headline={"Perfect Serve"}
