@@ -8,6 +8,7 @@ import KeywordDescriptionBox from "../../KeywordDescriptionBox/KeywordDescriptio
 import HeadlineTextEmphesized from '../../HeadlineTextEmphesized/HeadlineTextEmphesized';
 import BackLink from "../../BackLink/BackLink";
 import GinData from '../../../data/gin-data.json';
+import Button from '../../Button/Button';
 
 const Gin = () => {
 
@@ -26,7 +27,8 @@ const Gin = () => {
         perfectServe:'',
         imageBottle: '',
         imageMoodPic: '',
-        imageMoodPicSmall: ''
+        imageMoodPicSmall: '',
+        affiliateLink: ''
     }) 
     
     const { ginId } = useParams();
@@ -49,7 +51,8 @@ const Gin = () => {
             description:data.description,
             perfectServe:data.perfectServe,
             imageBottle:data.imageBottle,
-            imageMoodPic:data.imageMoodPic
+            imageMoodPic:data.imageMoodPic,
+            affiliateLink:data.affiliateLink
         })
 
         window.scrollTo(0, 0)
@@ -78,7 +81,8 @@ const Gin = () => {
                 alcohol={gin.alcohol} 
                 botanicals={gin.botanicals} 
                 imageBottle={gin.imageBottle} 
-                tags={tagsList}></GinDetailOverview>
+                tags={tagsList}
+                affiliateLink={gin.affiliateLink} ></GinDetailOverview>
 
                 <BgImgTextBanner
                 imageMoodPic={gin.imageMoodPic}
