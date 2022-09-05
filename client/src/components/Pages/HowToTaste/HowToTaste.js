@@ -23,8 +23,8 @@ class HowToTaste extends React.Component {
                         <p>Natürlich kann jedes Glas für ein Tasting herhalten. Es lohnt sich dennoch ein richtiges Nosing-Glas zu verwenden. Diese speziellen Gläser zur Verkostung von Spirituosen haben typischerweise eine bauchige Form und läuft nach oben hin schmal zu. Durch diese spezielle Form können sich die Aromen der Spirituose besonders gut im Glas sammeln und an der schmalen Öffnung konzentrieren. So können die verschiedenen Nuancen besser über die Nase wahrgenommen werden – daher auch der Name.</p>
                     </BgImgTextBannerAltStyle>
                     <BgImgTextBannerAltStyle dark={true} right={true} bgImage={'vodka-min.jpg'}>
-                        <h2>2. Vodka voraus</h2>
-                        <p>min. 2cl! Notiz: Wachholder ist immer da, lassen wir weg.<br></br>Das Glas etwas schwenken. Dabei beginnt man von einiger Entfernung und riecht sich in Richtung des Glases, dann führt man das Glas hin und her. So können immer weitere Aromen und Gerüche entdeckt werden.<br></br>Nicht die Nase ins Glas halten!</p>
+                        <h2>2. Wodka voraus</h2>
+                        <p>Dieser Schritt ist optional, kann aber in den folgenden Schritten helfen, besser die einzelnen Aromanoten der Spirituose besser wahrzunehmen. Hierzu wird ein kleiner Schluck, einer möglichst neutraler und Spirituose wie etwa Wodka möglichst lange im Mund behalten. Der Alkohol soll gut im Mundraum verteilt werden und erst nach etwa einer Minute geschluckt werden. Dies kann durchaus brennen und unangenehm sein, hat jedoch seinen Zweck: Der Alkohol soll die Mundschleimhäute "betäuben" und dadurch für die alkoholische Schärfe der kommenden Destillate weniger empfindlich machen. So können die verschiedenen Aromen besser auf der Zunge wahrgenommen werden.</p>
                     </BgImgTextBannerAltStyle>
                     <BgImgTextBannerAltStyle dark={false} right={false} bgImage={'gincolor-min.jpg'}>
                         <h2>3. Die Sichtprobe</h2>
