@@ -16,19 +16,32 @@ const Imprint = () => {
 			<HeadlineTextGradientBg image={`imprint_image.png`}>
 				<h1>Impressum</h1>
 					<div class='impressum'>
-					<p>Angaben gemäß § 5 TMG<br></br>
-					<br></br>
-					Maximilian Kaiser<br></br> 
-					Schlüsselwiesen 29<br></br>
-					70186 Stuttgart <br></br>
-					<br></br>
-					<strong>Vertreten durch:</strong><br></br>
-					Maximilian Kaiser<br></br>
-					Annika Strauß<br></br>
-					<br></br>
-					<strong>Kontakt:</strong><br></br>
-					Telefon: +49 176 <span style="display: none;">84</span>3221<span style="display: none;">0</span>&#51;&#52;&#52;<span style="display: none;">1</span>0<br></br>
-					E-Mail: kaiser.<span style="display: none;">RemoveME</span>maxi<span style="display: none;">NOBOTS</span>&#64;live&#46;de<br></br>
+					<p>
+						Angaben gemäß § 5 TMG<br></br>
+						<br></br>
+						Maximilian Kaiser<br></br> 
+						Schlüsselwiesen 29<br></br>
+						70186 Stuttgart <br></br>
+						<br></br>
+						<strong>Vertreten durch:</strong><br></br>
+						Maximilian Kaiser<br></br>
+						Annika Strauß<br></br>
+						<br></br>
+						<strong>Kontakt:</strong><br></br>
+						Telefon: +49 176 
+						<span className="hidden">84</span>
+						3221
+						<span className="hidden">0</span>
+						&#51;&#52;&#52;
+						<span className="hidden">1</span>
+						0
+						<br></br>
+						E-Mail: kaiser.
+						<span className="hidden">RemoveME</span>
+						maxi
+						<span className="hidden">NOBOTS</span>
+						&#64;live&#46;de
+						<br></br>
 					</p>
 					<br></br>
 					<br></br>

@@ -64,6 +64,10 @@ ul {
 	list-style-position: inside; 
 }
 
+.hidden {
+	display: none;
+}
+
 .clearfix::before,
 .clearfix::after {
   content: " ";
