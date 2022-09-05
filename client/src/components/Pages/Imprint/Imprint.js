@@ -9,10 +9,6 @@ const Imprint = () => {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
-  
-  const vorwahl = "+49 176";
-  const email = "&#64;live&#46;de";
-  const lastname = "kaiser.";
 
   return(
     <MotionWrapper>
@@ -31,8 +27,8 @@ const Imprint = () => {
 					Annika Strauß<br></br>
 					<br></br>
 					<strong>Kontakt:</strong><br></br>
-					Telefon: {vorwahl} <span style="display: none;">84</span>3221<span style="display: none;">0</span>&#51;&#52;&#52;<span style="display: none;">1</span>0<br></br>
-					E-Mail: {lastname}<span style="display: none;">RemoveME</span>maxi<span style="display: none;">NOBOTS</span>{email}<br></br>
+					Telefon: +49 176 <span style="display: none;">84</span>3221<span style="display: none;">0</span>&#51;&#52;&#52;<span style="display: none;">1</span>0<br></br>
+					E-Mail: kaiser.<span style="display: none;">RemoveME</span>maxi<span style="display: none;">NOBOTS</span>&#64;live&#46;de<br></br>
 					</p>
 					<br></br>
 					<br></br>
