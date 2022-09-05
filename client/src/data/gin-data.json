@@ -15,7 +15,8 @@
 		"perfectServe": "Pur und auf Eis oder mit einem favorisierten Tonic.<br>Ein Garnish hat dieser Gin zwar nicht nötig, ein Limettenzeste oder -schnitz sorgen dennoch für eine stimmiges Gesamtbild.<br><br>Der Hersteller bietet in seinem <a href='https://niederrheiner-gin.com/shop/' target='_blank'>Webshop</a> zusätzlich eine Auswahl an passenden und ausergewöhnlichen Tonics an, die definitiv einen Blick wert sind.",
 		"imageBottle": "Niederrheiner_Gin-min.png",
 		"imageMoodPic": "Niederrheiner_Gin_moodPic-min.jpg",
-		"imageMoodPicSmall": "Niederrheiner_Gin_moodPic_small-min.jpg"
+		"imageMoodPicSmall": "Niederrheiner_Gin_moodPic_small-min.jpg",
+		"affiliateLink": ""
     },
 	{
 		"id": "mesano-dry-gin",
@@ -33,7 +34,8 @@
 		"perfectServe": "Als Gin&Tonic mit Indian Tonic und Orangenscheibe als Garnish, um die Aromen aus dem Hintergrund zu verstärken. Die Hersteller empfehlen ihn zudem auch als Negroni mit dem MESANO Vermouth",
 		"imageBottle": "Mesano.png",
 		"imageMoodPic": "Mesano_moodPic-min.jpg",
-		"imageMoodPicSmall": "Mesano_moodPic_small-min.jpg"
+		"imageMoodPicSmall": "Mesano_moodPic_small-min.jpg",
+		"affiliateLink": "https://amzn.to/3RCJCnn"
     },
     {
 		"id": "brockmans-premium-gin",
@@ -51,7 +53,8 @@
 		"perfectServe": "Zum „properly improper“ perfect serve wird der Brockman's Premium Gin mit einem (Premium) Tonic Water, einem Grapefruit Twist und ein Paar Blaubeeren serviert",
 		"imageBottle": "Brockmans.png",
 		"imageMoodPic": "Brockmans_moodPic-min.jpg",
-		"imageMoodPicSmall": "Brockmans_moodPic_small-min.jpg"
+		"imageMoodPicSmall": "Brockmans_moodPic_small-min.jpg",
+		"affiliateLink": "https://amzn.to/3CZ5zsM"
     },
 	{
 		"id": "the-beauty",
@@ -69,7 +72,8 @@
 		"perfectServe": "Die Hersteller selbst geben keine Servier-Empfehlung. Im Gin&Tonic empfehlen wir als Garnish beispielsweise Apfelscheiben, einen Lavendelstrauch oder Orangenschale, jenachdem welchen Geschmack man etwas hervorheben möchte",
 		"imageBottle": "The_Beauty_Organic_Gin.png",
 		"imageMoodPic": "The_Beauty_Organic_Gin_moodPic-min.jpg",
-		"imageMoodPicSmall": "The_Beauty_Organic_Gin_moodPic_small-min.jpg"
+		"imageMoodPicSmall": "The_Beauty_Organic_Gin_moodPic_small-min.jpg",
+		"affiliateLink": "https://amzn.to/3CZbvC7"
 	},
 	{
 		"id": "skin-gin-tea-kiss",
@@ -87,7 +91,8 @@
 		"perfectServe": "Die Hersteller empfehlen den Gin & Tonic mit frischen Apfelscheiben und Minzzweig. Die süßere Version mit Hibiskus Tonic Water ist ebenfalls einen Versuch Wert.",
 		"imageBottle": "Skin_Gin_Tea_Edition.png",
 		"imageMoodPic": "Skin_Gin_Tea_Edition_moodPic-min.jpg",
-		"imageMoodPicSmall": "Skin_Gin_Tea_Edition_moodPic_small-min.jpg"
+		"imageMoodPicSmall": "Skin_Gin_Tea_Edition_moodPic_small-min.jpg",
+		"affiliateLink": "https://amzn.to/3KOyWQb"
 	},
 	{
 		"id": "crafters-aromatic-flower-gin",
@@ -105,7 +110,8 @@
 		"perfectServe": "Gin&Tonic mit Orangenscheiben | Flower Collins: Limettensaft, Zuckersirup und Soda, dekoriet mit (Erdbeeren) und einer Limettenscheibe | Pink Grapefruit Tonic Water und Grapefruitscheibe (alle Cocktails: siehe 'craftersgin.com')",
 		"imageBottle": "Crafters_Aromatic_Flower_Gin.png",
 		"imageMoodPic": "Crafters_Aromatic_Flower_Gin_moodPic-min.jpg",
-		"imageMoodPicSmall": "Crafters_Aromatic_Flower_Gin_moodPic_small-min.jpg"
+		"imageMoodPicSmall": "Crafters_Aromatic_Flower_Gin_moodPic_small-min.jpg",
+		"affiliateLink": "https://amzn.to/3ReijzU"
 	},
 	{
 		"id": "hendricks",
@@ -123,7 +129,8 @@
 		"perfectServe": "Der Hersteller empfiehlt das Hendricks Original im Gin&Tonic mit dünnen Gurkenscheiben und ggf. einer Zitronenscheibe. Auf deren Webseite findet man auch ein Rezpt für eine Handrick's-Gurkenlimonade: mit Zitronensaft, Zuckersirup, Soda und Gurkenscheiben.",
 		"imageBottle": "Hendriks.png",
 		"imageMoodPic": "Hendriks_moodPic-min.jpg",
-		"imageMoodPicSmall": "Hendriks_moodPic_small-min.jpg"
+		"imageMoodPicSmall": "Hendriks_moodPic_small-min.jpg",
+		"affiliateLink": "https://amzn.to/3QiHWOH"
 	},
 	{
 		"id": "saigon-baigur",
@@ -141,7 +148,8 @@
 		"perfectServe": "Der Perfect Serve mit Tonic wird ergänzt durch ein Thymian Garnish (+ Pho Quoc Pfefferkörner) die Hersteller stellen auf Ihrer <a href='saigonbaigur.com'>Webseite<a> zudem einige passende Cocktails vor: Summer in Saigon (mit Lychee, Kumquat und Kokos) und Baigur Bremble (mit Braunem Zucker, Zitronensaft und Crème de Mure).",
 		"imageBottle": "Saigon_Baigur_Gin.png",
 		"imageMoodPic": "Saigon_Baigur_Gin_moodPic-min.jpg",
-		"imageMoodPicSmall": "Saigon_Baigur_Gin_moodPic_small-min.jpg"
+		"imageMoodPicSmall": "Saigon_Baigur_Gin_moodPic_small-min.jpg",
+		"affiliateLink": "https://amzn.to/3RAFOmp"
 	},
 	{
 		"id": "amuerte-red-edition",
@@ -159,7 +167,8 @@
 		"perfectServe": "Die Hersteller empfehlen den Gin&Tonic mit (getrockneten) Erdbeerscheiben, wer es pikant mag: roter Pfeffer und/oder sichuan Pfeffer. Dass der Le Tribute empfohlen wird ist offensichtlich reines Marketing, genause funktioniert sicherlich nicht nur Sichuan Pfeffer und getrocknete Erdebeeren, wie man sie auf der <a href='https://www.amuerte.ch/collections/tutti-i-prodotti-amuerte'>schweizer Webseite</a> einzeln oder im Set kaufen kann.",
 		"imageBottle": "Amuerte_Red_Edition.png",
 		"imageMoodPic": "Amuerte_Red_Edition_moodPic-min.jpg",
-		"imageMoodPicSmall": "Amuerte_Red_Edition_moodPic_small-min.jpg"
+		"imageMoodPicSmall": "Amuerte_Red_Edition_moodPic_small-min.jpg",
+		"affiliateLink": "https://amzn.to/3BbGLMO"
 	},
 	{
 		"id": "momotaro-kizaru",
@@ -177,7 +186,8 @@
 		"perfectServe": "Wir empfehlen als Garnish zum Gin&Tonic Birnenscheiben ggf. sogar ein Schuss Birnensaft, um die Nashi Birne aus dem Hintergrund hervorzulocken, die wir im Puren vermissen. Die Momotaro Hersteller geben auf ihrer <a href='momotaro-spirits.de/produkt/momotaro-gin-kizaru'>Webseite</a> ein große Auswahl an passenden Cocktails, beispielsweise den Kizaru Spritz mit Birnensaft, Zuckersirup und Zitronensaft mit etwas Prosecco und Schweppes White Peach.",
 		"imageBottle": "Momotaro_Kizaru.png",
 		"imageMoodPic": "Momotaro_Kizaru_moodPic-min.jpg",
-		"imageMoodPicSmall": "Momotaro_Kizaru_moodPic_small-min.jpg"
+		"imageMoodPicSmall": "Momotaro_Kizaru_moodPic_small-min.jpg",
+		"affiliateLink": "https://amzn.to/3erXG4Z"
 	},
 	{
 		"id": "momotaro-gin",
@@ -195,7 +205,8 @@
 		"perfectServe": "Als Garnish zum Momotarō Gin&Tonic Empfehlen wir ein Scheibe oder Zeste Zitrone. Einige Ideen für passende Cocktails wie Clover Club, Last Sword oder Grüntee Gimlet findet man auf der Instagram Page momotaro.spirits",
 		"imageBottle": "Momotaro_Gin.png",
 		"imageMoodPic": "Momotaro_Gin_moodPic-min.jpg",
-		"imageMoodPicSmall": "Momotaro_Gin_moodPic_small-min.jpg"
+		"imageMoodPicSmall": "Momotaro_Gin_moodPic_small-min.jpg",
+		"affiliateLink": "https://amzn.to/3qcDWER"
 	},
 	{
 		"id": "berliner-brandstifter",
@@ -213,7 +224,8 @@
 		"perfectServe": "Die <a href='berlinerbrandstifter.com/rezepte-berlin-dry-gin'>Webseite</> empfiehlt einige Gin&Tonic&Garnish Kombinationen: Henry Indian Tonic & Zitronenzeste, GOLDBERG Tonic Water & Apfelscheiben, Fever-Tree Aromatic Tonic Water & Getrocknete Johannisbeeren, Elderflower Tonic &Limettenzeste, Mediterranean Tonic Water & Orangenzeste, Henry Cherry Tonic Water & Himbeeren+Hibiskus, GOLDBERG Japanese Yuzu Tonic & Pfeffer. </br> Außerdem einige Cocktails wie zum Beispiel: Cloudy Berry mit Wild Berry, Vesper Royal mit Vermut und Veilchensirup, Szechuan Fizz mit Aperol und Elderflower Tonic, Gin Basil Smash, Bemble Royal mit Brombeerkonfitüre und den Berlin 75 (Tom Collins).",
 		"imageBottle": "Berliner_Brandstifter.png",
 		"imageMoodPic": "Berliner_Brandstifter_moodPic-min.jpg",
-		"imageMoodPicSmall": "Berliner_Brandstifter_moodPic_small-min.jpg"
+		"imageMoodPicSmall": "Berliner_Brandstifter_moodPic_small-min.jpg",
+		"affiliateLink": "https://amzn.to/3TUsNGy"
 	},
 	{
 		"id": "black-big-cost-gin",
@@ -231,7 +243,8 @@
 		"perfectServe": "Serviervorschlag des <a href='https://www.satedonline.com/drink/black-pig-distillery-portfolio-tasting/' target='__blank'>Seated Magazins</a>: Orangenschale, Wacholderbeeren und 50 ml Black Pig Costa Gin hinzugeben. Dann Eiswürfel und frisch gepressten Orangensaft zugeben. Zu letzt mit Fever-Tree Indian Tonic Water oder ein anderes neutrales Tonic Water langsam über einen Barlöffel auffüllen. Ein frischen Rosmarinzweig als Garnish hinzufügen.",
 		"imageBottle": "Black_Pig_Costa_Gin-min.png",
 		"imageMoodPic": "Black_Pig_Costa_Gin_moodPic-min.jpg",
-		"imageMoodPicSmall": "Black_Pig_Costa_Gin_moodPic_small-min.jpg"
+		"imageMoodPicSmall": "Black_Pig_Costa_Gin_moodPic_small-min.jpg",
+		"affiliateLink": ""
     },
 	{
 		"id": "lake-stuff",
@@ -249,7 +262,8 @@
 		"perfectServe": "Laut Hersteller kann dieser Gin sowohl pur als auch in Cocktails genossen werden. Als Garnish können wir Blüten oder Kardamom empfehlen, um die dezent im Hintergrund vorhandenen Kontraste zur Süße und Fruchtigkeit stärker zu betonen.",
 		"imageBottle": "Lake_Stuff_Dry_Gin-min.png",
 		"imageMoodPic": "Lake_Stuff_Dry_Gin_moodPic-min.jpg",
-		"imageMoodPicSmall": "Lake_Stuff_Dry_Gin_moodPic_small-min.jpg"
+		"imageMoodPicSmall": "Lake_Stuff_Dry_Gin_moodPic_small-min.jpg",
+		"affiliateLink": "https://amzn.to/3TLsiyg"
 	},
 	{
 		"id": "bembel-gin",
@@ -267,7 +281,8 @@
 		"perfectServe": "Grapefull Apple, einen Frankfurter Fizz oder den Bembel Wild Lady! Von einfach bis anspruchsvoll, von süß bis bitter, von Frühling bis Winter, viele Rezepte auf <a href='https://bembelgin.de/gin-cocktail-und-longdrink-rezepte-mit-bembel-gin-2-2/' target='_blank'>bembelgin.de</a>.",
 		"imageBottle": "Bembel_Gin-min.png",
 		"imageMoodPic": "Bembel_Gin_moodPic-min.jpg",
-		"imageMoodPicSmall": "Bembel_Gin_moodPic_small-min.jpg"
+		"imageMoodPicSmall": "Bembel_Gin_moodPic_small-min.jpg",
+		"affiliateLink": "https://amzn.to/3QdgIcd"
 	},
 	{
 		"id": "bimber_kumquat_gin",
@@ -285,7 +300,8 @@
 		"perfectServe": "Als klassischer Gin & Tonic oder mit einem Spritzer Sodawasser oder Ginger-Ale auf Eis serviert. Bimber Kumquat Gin macht auch einen hervorragenden Martini – füge einfach deinen Lieblings-Wermut hinzu.",
 		"imageBottle": "Bimber_Kumquat_Gin-min.png",
 		"imageMoodPic": "Bimber_Kumquat_Gin_moodPic-min.jpg",
-		"imageMoodPicSmall": "Bimber_Kumquat_Gin_moodPic_small-min.jpg"
+		"imageMoodPicSmall": "Bimber_Kumquat_Gin_moodPic_small-min.jpg",
+		"affiliateLink": ""
 	},
 	{
 		"id": "bobbys-schiedam-gin",
@@ -303,7 +319,8 @@
 		"perfectServe": "Bobby's empfieht uns den klassischen Gin Tonic in Form des 'B&T':<br><ul><li>50ml Bobby’s Schiedam Dry Gin</li><li>150ml Premium Tonic</li><li>Orangenschnitz</li><li>3 Nelken</li></ul>Weitere passende Rezepte auf <a haref='https://bobbysdrygin.com/drinks/' target='_blank'>bobbysdrygin.com/drinks</a>.",
 		"imageBottle": "Bobbys_Schiedam_Gin-min.png",
 		"imageMoodPic": "Bobbys_Schiedam_Gin_moodPic-min.jpg",
-		"imageMoodPicSmall": "Bobbys_Schiedam_Gin_moodPic_small-min.jpg"
+		"imageMoodPicSmall": "Bobbys_Schiedam_Gin_moodPic_small-min.jpg",
+		"affiliateLink": "https://amzn.to/3q9Vn9d"
 	},
 	{
 		"id": "gin-knopf",
@@ -321,7 +338,8 @@
 		"perfectServe": "Simpel und einfach: eine Scheibe Orange. Wer ein wenige Pepp möchte, kann auch zu Pfefferkörnern greifen.",
 		"imageBottle": "Gin_Knopf-min.png",
 		"imageMoodPic": "Gin_Knopf_moodPic-min.jpg",
-		"imageMoodPicSmall": "Gin_Knopf_moodPic_small-min.jpg"
+		"imageMoodPicSmall": "Gin_Knopf_moodPic_small-min.jpg",
+		"affiliateLink": "https://amzn.to/3QcmUS1"
 	},
 	{
 		"id": "GINSTR",
@@ -339,7 +357,8 @@
 		"perfectServe": "Einen GINSTR TONIC, einen PIÑSTR oder doch lieber GINSTR PEANUT SMASH? Viele klassischen und ausgefallenere Rezepte finden sich auf <a href='https://www.stuttgartdrygin.com/blogs/rezepte' target='_blank'>stuttgartdrygin.com</a>.",
 		"imageBottle": "GINSTR-min.png",
 		"imageMoodPic": "GINSTR_moodPic-min.jpg",
-		"imageMoodPicSmall": "GINSTR_moodPic_small-min.jpg"
+		"imageMoodPicSmall": "GINSTR_moodPic_small-min.jpg",
+		"affiliateLink": "https://amzn.to/3AMPwLT"
 	},
 	{
 		"id": "huckleberry-gin",
@@ -357,7 +376,8 @@
 		"perfectServe": "Durch den intensiven Heidelbeere-Geschmack dieses Gins, werden selbst Klassiker wie ein Gin & Tonic, Gin Fizz oder ein Gimlet zu etwas Besonderem. Wer Alternativen oder Abwechslung sucht, findet auf <a href='https://www.huckleberry-gin.com/rezepte/'>huckleberry-gin.com/rezepte</a> noch weitere interessante Rezepte.",
 		"imageBottle": "Huckleberry_Gin-min.png",
 		"imageMoodPic": "Huckleberry_Gin_moodPic-min.jpg",
-		"imageMoodPicSmall": "Huckleberry_Gin_moodPic_small-min.jpg"
+		"imageMoodPicSmall": "Huckleberry_Gin_moodPic_small-min.jpg",
+		"affiliateLink": "https://amzn.to/3qdA86o"
 	},
 	{
 		"id": "skin-gin",
@@ -375,7 +395,8 @@
 		"perfectServe": "Fevertree Indian Tonic, abgerundet durch ein Garnish aus etwas Minze, Rosmarin oder einer Zitronenschale.",
 		"imageBottle": "Skin_Gin-min.png",
 		"imageMoodPic": "Skin_Gin_moodPic-min.jpg",
-		"imageMoodPicSmall": "Skin_Gin_moodPic_small-min.jpg"
+		"imageMoodPicSmall": "Skin_Gin_moodPic_small-min.jpg",
+		"affiliateLink": "https://amzn.to/3KOyWQb"
 	},
 	{
 		"id": "sturzflug_premium_ry_gin",
@@ -393,6 +414,7 @@
 		"perfectServe": "'Der Feinschmecker' titelt: »Ein weicher, dem Gaumen schmeichelnder Gin, der sich auch ohne Tonic Water bestens genießen lässt.«",
 		"imageBottle": "Sturzflug_Premium_Dry_Gin-min.png",
 		"imageMoodPic": "Sturzflug_Premium_Dry_Gin_moodPic-min.jpg",
-		"imageMoodPicSmall": "Sturzflug_Premium_Dry_Gin_moodPic_small-min.jpg"
+		"imageMoodPicSmall": "Sturzflug_Premium_Dry_Gin_moodPic_small-min.jpg",
+		"affiliateLink": "https://amzn.to/3QgjayU"
 	}	
 ]

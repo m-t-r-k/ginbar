@@ -1,0 +1,33 @@
+@import "../scss/globals";
+@import "../scss/fonts_colors";
+
+.linkButton {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    background:  #303030;
+    opacity: 0.85;
+    @include standard-transition(all, 0.25s, 0s);
+
+    a {
+        display: table;
+        width: auto;
+        margin: 0;
+        font-size: 16px;
+        line-height: 16px;
+        font-family: "Raleway_Bold";
+        text-align: center;
+        height: 40px;
+        color: $light-grey;
+        padding: 13px 40px 11px;
+    }
+
+    &:hover {
+        background: #000;
+        opacity: 1;
+
+        a {
+            color: #fff;
+        }
+    }
+}
