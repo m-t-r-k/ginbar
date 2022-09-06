@@ -32,7 +32,7 @@ class GinDetailOverview extends React.Component {
                         <dd>{botanicalsList}</dd>
                     </dl>
                 </div>
-                {affiliateLink}
+                {/* affiliateLink */}
             </HeadlineTextGradientBg>
         );
     }
