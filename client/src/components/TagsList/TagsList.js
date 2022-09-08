@@ -5,7 +5,7 @@ function TagsList({tags, inverted}) {
   return (
     <div className={inverted ? "tags_list clearfix inverted" : "tags_list clearfix"}>
       {tags.map(tag => (
-          <span key={tag}>{tag}</span>
+        tag ? <span key={tag}>{tag}</span> : ""
       ))}
     </div>
   );
