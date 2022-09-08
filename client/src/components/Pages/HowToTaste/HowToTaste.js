@@ -21,7 +21,7 @@ class HowToTaste extends React.Component {
                         <p>{intro.text}</p>
                     </HeadlineTextGradientBg>
                     {pageContent.map((item,index) => {
-                        let evenIndex = (index + 1) % 2 == 0;
+                        let evenIndex = (index + 1) % 2 === 0;
                         return (
                             <BgImgTextBannerAltStyle dark={evenIndex ? true : false} right={evenIndex ? true : false} bgImage={item.bgImage}>
                                 <h2>{index + 1}. {item.headline}</h2>
