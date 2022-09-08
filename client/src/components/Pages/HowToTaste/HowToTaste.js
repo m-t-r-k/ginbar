@@ -23,10 +23,13 @@ class HowToTaste extends React.Component {
                     {pageContent.map((item,index) => {
                         let evenIndex = (index + 1) % 2 === 0;
                         return (
-                            <BgImgTextBannerAltStyle dark={evenIndex ? true : false} right={evenIndex ? true : false} bgImage={item.bgImage}>
-                                <h2>{index + 1}. {item.headline}</h2>
-                                <p>{item.text}</p>
-                            </BgImgTextBannerAltStyle>
+                        <BgImgTextBannerAltStyle key={item.id} 
+                        dark={evenIndex ? true : false} 
+                        right={evenIndex ? true : false} 
+                        bgImage={item.bgImage}>
+                            <h2>{index + 1}. {item.headline}</h2>
+                            <p>{item.text}</p>
+                        </BgImgTextBannerAltStyle>
                         );
                     })}
                 </section>

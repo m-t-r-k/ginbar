@@ -195,7 +195,7 @@ class MasonryLayout extends React.Component {
               <span>Herkunftsland:</span>
               <ul className='filter'>
                 {countryTags.map(country => (
-                  <li id={country} className="filterItem" onClick={this.updateActiveFilters.bind(this, country, "country")}>{country}</li>
+                  <li key={country} id={country} className="filterItem" onClick={this.updateActiveFilters.bind(this, country, "country")}>{country}</li>
                 ))}
               </ul>
             </div>
@@ -203,7 +203,7 @@ class MasonryLayout extends React.Component {
               <span>Gin Sorte:</span>
               <ul className='filter'>
                 {ginTypeTags.map(ginType => (
-                  <li id={ginType} className="filterItem" onClick={this.updateActiveFilters.bind(this, ginType, "ginType")}>{ginType}</li>
+                  <li key={ginType} id={ginType} className="filterItem" onClick={this.updateActiveFilters.bind(this, ginType, "ginType")}>{ginType}</li>
                 ))}
               </ul>
             </div>
@@ -211,7 +211,7 @@ class MasonryLayout extends React.Component {
               <span>Hauptnote:</span>
               <ul className='filter'>
                 {tasteTags.map(taste => (
-                  <li id={taste} className="filterItem" onClick={this.updateActiveFilters.bind(this, taste, "taste")}>{taste}</li>
+                  <li key={taste} id={taste} className="filterItem" onClick={this.updateActiveFilters.bind(this, taste, "taste")}>{taste}</li>
                 ))}
               </ul>
             </div>
@@ -225,15 +225,15 @@ class MasonryLayout extends React.Component {
                 tagsList = [...tagsList, ...gin.mainNote];
                 return (
                   <div className='grid-item' tags={tagsList}>
-                    <GinOverviewTile
-                    key={gin.id}
-                    id={gin.id}
-                    name={gin.name}
-                    imageBottle={gin.imageBottle}
-                    imageMoodPicSmall={gin.imageMoodPicSmall}
-                    tags={tagsList}
-                    recommendation={gin.recommendation}></GinOverviewTile>
-                  </div>
+                <GinOverviewTile
+                key={gin.id}
+                id={gin.id}
+                name={gin.name}
+                imageBottle={gin.imageBottle}
+                imageMoodPicSmall={gin.imageMoodPicSmall}
+                tags={tagsList}
+                recommendation={gin.recommendation}></GinOverviewTile>
+                </div>
                 );
               })
             }

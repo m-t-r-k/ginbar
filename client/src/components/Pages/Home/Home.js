@@ -16,7 +16,7 @@ class Home extends React.Component {
                 <section className="home">
                     {teasterElements.map(teasterElement => {
                         return(
-                            <Link to={teasterElement.routerToLink}>
+                            <Link to={teasterElement.routerToLink} key={teasterElement.id}>
                                 <div className="homeColumnWrap">
                                     <div className="homeColumnContent">
                                         <h2>{teasterElement.headline}</h2>
