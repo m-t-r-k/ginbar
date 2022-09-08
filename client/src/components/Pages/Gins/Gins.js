@@ -6,16 +6,12 @@ import MasonryLayout from "../../MasonryLayout/MasonryLayout";
 import GinData from '../../../data/gin-data.json';
   
 class Listing extends React.Component {
-    state = {
-      gins: []
-    }
-
     componentDidMount() {
-        this.setState({ gins: GinData });
         window.scrollTo(0, 0);
     }
 
     render() {
+        const gins = GinData;
         return (
             <MotionWrapper>
                 <section className="pageWrapper">
@@ -23,7 +19,7 @@ class Listing extends React.Component {
                     headline={"Unsere Gin Empfehlungen"}
                     text={""}
                     ></HeadlineTextEmphesized>
-                    <MasonryLayout gins={this.state.gins}></MasonryLayout>
+                    <MasonryLayout gins={gins}></MasonryLayout>
                 </section>
             </MotionWrapper>
         );
