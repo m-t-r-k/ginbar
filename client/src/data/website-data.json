@@ -1,7 +1,18 @@
 {
-    "home": {
-
-    },
+    "home": [
+        {
+            "routerToLink": "/how-to-taste/",
+            "headline": "Wie wird Verkostet?",
+            "buttonText": "mehr erfahren",
+            "videoBg": "how_to_taste_video.mp4"
+        },
+        {
+            "routerToLink": "/gins/",
+            "headline": "Gin Empfehlungen",
+            "buttonText": "mehr erfahren",
+            "videoBg": "gin_auswahl_video.mp4"
+        }
+    ],
 
     "howToTaste": {
         "intro": {
