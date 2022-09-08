@@ -1,11 +1,7 @@
 @import "../../scss/fonts_colors";
 
 .impressum {
-    h2 {
-        @include secondary_headline;
-        font-family: 'AdventPro_Light';
-    }
-    
+   
     p {
         margin-top: 40px;
     }
@@ -15,4 +11,8 @@
     }
 }
 
-
+h2 {
+    @include secondary_headline;
+    font-family: 'AdventPro_Light';
+    margin-bottom: 30px;
+}
