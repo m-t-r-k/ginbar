@@ -63,6 +63,7 @@ const App = () => {
         <AnimatedRoutes></AnimatedRoutes>
         <Footer></Footer>
       </Router>
+      <script id="CookieDeclaration" src="https://consent.cookiebot.com/dc9e906e-0fae-47ce-b334-6852f3d86061/cd.js" type="text/javascript" async></script>
     </div>
   );
 }
