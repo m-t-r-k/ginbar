@@ -1,24 +1,4 @@
-@import "../scss/fonts_colors";
-
-@mixin standard-transition($property, $duration: 0.1s, $delay: 0s) {
-	-webkit-transition-property: $property;
-    -webkit-transition-duration: $duration;
-    -webkit-transition-timing-function: ease-in-out;
-    transition-property: $property;
-    transition-duration: $duration;
-    transition-timing-function: ease-in-out;
-	transition-delay: $delay;
-}
-
-@mixin drop-shadow-dark {
-	-webkit-filter: drop-shadow(0px 5px 10px rgba(#000, .5));
-    filter: drop-shadow(0px 5px 10px rgba(#000, .5));
-}
-
-@mixin drop-shadow-light {
-	-webkit-filter: drop-shadow(0px 5px 10px rgba($medium-grey, 1.0));
-    filter: drop-shadow(0px 5px 10px rgba($medium-grey, 1.0));
-}
+@import "../scss/variables";
 
 * {
 	box-sizing: border-box;
@@ -45,6 +25,14 @@ body, ul, ol, dl, p, h1, h2, h3, h4, h5, dl, dt, dd {
 
 img {
 	display: inline-block;
+}
+
+h1, h2 {
+	@include primary_headline;
+}
+
+h3 {
+	@include secondary_headline;
 }
 
 a {
@@ -86,8 +74,6 @@ ul {
 	margin-top: 0 !important;
 }
 
-$section_spacer: 50px;
-
 .pageWrapper {
 	padding-top: 60px;
 }
@@ -113,25 +99,6 @@ hr {
 	background: $light-grey;
 	border: none;
 	margin: 0;
-}
-
-.button {
-    display: block;
-    width: 100%;
-    background: #F5F5F5;
-    margin: 0;
-    font-size: 16px;
-    line-height: 16px;
-    font-family: "Raleway_Bold";
-    text-align: center;
-	height: 40px;
-    color: #303030;
-    padding-top: 12px;
-    opacity: 0.85;
-}
-
-@media screen and (max-width:800px) {
-
 }
 
 @media screen and (max-width:680px) {

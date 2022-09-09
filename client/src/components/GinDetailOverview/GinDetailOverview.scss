@@ -1,6 +1,4 @@
-@import "../scss/globals";
-@import "../scss/fonts_colors";
-
+@import "../scss/variables";
 
 h1 {
   @include primary_headline;

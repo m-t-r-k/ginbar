@@ -1,4 +1,4 @@
-@import "../scss/fonts_colors";
+@import "../scss/variables";
 
 .headline_text_emphesized {
 	position: relative;
@@ -16,6 +16,7 @@
 			@include primary_headline;
 			display: inline-block;
 			width: auto;
+			margin-bottom: 0;
 		}
 
 		span {

@@ -1,11 +1,6 @@
 import './App.scss';
-import './components/scss/_globals.scss';
 import React, { useEffect, useState } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route
-} from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import SplashScreen from './components/SplashScreen/SplashScreen';
