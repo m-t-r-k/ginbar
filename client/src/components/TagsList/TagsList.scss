@@ -8,15 +8,17 @@
 	margin: 0 -12px;
 
 	span {
-		$tags-size: 22px;
+		$tags-size: 16px;
 		display: inline-block;
 		width: auto;
 		height: $tags-size;
 		background: #000;
 		opacity: 0.95;
 		@include tag_text($light-grey);
+		font-size: 10px;
+		line-height: 10px;
 		border-radius: calc($tags-size / 2);
-		padding: calc(($tags-size - 12px) / 2) 15px 0px;
+		padding: calc(($tags-size - 10px) / 2) 12px 0px;
 		text-align: center;
 		margin: 0 6px;
 	}
@@ -30,16 +32,10 @@
 @media screen and (max-width:680px) {
     .tags_list {
 		row-gap: 4px;
-		padding: 0 4px;
+		padding: 0 10px;
 	
 		span {
-			$tags-size: 16px;
-			display: inline-block;
-			width: auto;
-			height: $tags-size;
-			border-radius: calc($tags-size / 2);
-			padding: calc(($tags-size - 12px) / 2) 10px 0px;
-			margin: 0 4px;
+			margin: 0 2px;
 		}
 	}
 }

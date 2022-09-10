@@ -12,7 +12,8 @@ class MasonryLayout extends React.Component {
       typeTags: [],
       tasteTags: [],
       activeItems: 0,
-      activeFiler: false
+      largeFilter: false,
+      activeFilter: false
     };
   }
 
@@ -24,11 +25,6 @@ class MasonryLayout extends React.Component {
       gutter: '.gutter-sizer',
       percentPosition: true
     });
-  }
-
-  toggleFilter() {
-    const currentState = this.state.activeFiler;
-    this.setState({activeFiler: !currentState})
   }
 
   updateFilterItems() {
@@ -135,12 +131,6 @@ class MasonryLayout extends React.Component {
     }
   }
 
-  componentDidMount() {
-    this.updateFilterItems();
-    this.updateGinItems();
-    this.initMasonry();
-  }
-
   getCountryFilterOptions() {
     let countryTags = [];
     this.props.gins.map(gin => {
@@ -165,14 +155,56 @@ class MasonryLayout extends React.Component {
     return [...new Set(tasteTags)];  
   }
 
+  toggleFilter() {
+    const currentState = this.state.activeFilter;
+    this.setState({activeFilter: !currentState});
+  }
+
+  updateFilterVisibility = () => {
+
+    if(window.innerWidth > 1260) {
+      this.setState({largeFilter: true});
+
+      if(this.state.activeFilter || !this.state.activeFilter) {
+        this.setState({activeFilter: true});
+      }
+    } else {
+      this.setState({largeFilter: false});
+
+      if(this.state.activeFilter) {
+        this.setState({activeFilter: true});
+      }
+      if(!this.state.activeFilter) {
+        this.setState({activeFilter: false});
+      }
+    }
+
+    console.log("Large Filter: ", this.state.largeFilter);
+    console.log("Active Filter: ", this.state.activeFilter);
+  }
+
+  componentDidMount() {
+    this.updateFilterItems();
+    this.updateGinItems();
+    window.addEventListener('resize', this.updateFilterVisibility);
+    this.updateFilterVisibility();
+    this.initMasonry();
+  }
+
   componentDidUpdate(_, prevState) {
     if (prevState.countryTags !== this.state.countryTags ||
         prevState.typeTags !== this.state.typeTags ||
-        prevState.tasteTags !== this.state.tasteTags) {
+        prevState.tasteTags !== this.state.tasteTags ||
+        prevState.activeFilter !== this.state.activeFilter) {
       this.updateFilterItems();
       this.updateGinItems();
+      this.updateFilterVisibility();
     }
     this.initMasonry();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateFilterVisibility);
   }
   
   render() {
@@ -181,10 +213,10 @@ class MasonryLayout extends React.Component {
     const tasteTags = this.getTasteFilterOptions();
 
     return (
-      <section className="fixed_width">
-        <div className={this.state.activeFiler ? "filter_wrapper active" : "filter_wrapper"}>
+      <section className="fixed_width masonry_wrap">
+        <div className={this.state.activeFilter ? "filter_wrapper active" : "filter_wrapper"}>
           <div className='filterButton clearfix' onClick={this.toggleFilter.bind(this)}>
-            <span>Filtern:<span>{this.state.activeItems} Gins ausgewählt</span></span>
+            <span>Filtern:  <span>{this.state.activeItems} Gins ausgewählt</span></span>
             <div className='filterIcon'>
               <span></span>
               <span></span>

@@ -51,7 +51,6 @@ $gutter-size: 20px;
 
         span {
             display: inline-block;
-            margin-left: 10px;
         }
     }
 
@@ -145,12 +144,7 @@ $gutter-size: 20px;
 
     .filterButton {
         width: 100%;
-        // background-color: rgba(#101010, 1);
         margin-bottom: 20px;
-
-        &:hover {
-            //background: $dark-grey;
-        }
 
         .filterIcon {
             span {
@@ -175,6 +169,43 @@ $gutter-size: 20px;
     }
 }
 
+@media screen and (min-width:1260px) {
+    .masonry_wrap {
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+        column-gap: $gutter-size;
+    }
+
+    .filterButton {
+        transition: none;
+
+        &:hover {
+            background: #4c4c4c;
+            cursor: default;
+        }
+    }
+
+    .filter_wrapper,
+    .filter_wrapper,
+    .filter {
+        height: fit-content;
+    }
+
+    .filterIcon {
+        display: none;
+    }
+
+    .filters > div {
+        display: block;
+        margin-bottom: 15px;
+
+        span {
+            display: block;
+            margin-bottom: 10px;
+        }
+    }
+}
+
 @media screen and (max-width:1260px) {
     $column-count: 3;
     .grid-sizer, .grid-item {
@@ -182,12 +213,12 @@ $gutter-size: 20px;
     }
 }
 
-@media screen and (max-width:1000px) {
-    $column-count: 2;
-    .grid-sizer, .grid-item {
-        width: calc((100% - (($column-count - 1) * $gutter-size)) / $column-count);
-    }
-}
+// @media screen and (max-width:750px) {
+//     $column-count: 2;
+//     .grid-sizer, .grid-item {
+//         width: calc((100% - (($column-count - 1) * $gutter-size)) / $column-count);
+//     }
+// }
 
 @media screen and (max-width:680px) {   
     $gutter-size: 4px;
@@ -207,6 +238,16 @@ $gutter-size: 20px;
 
     .filterButton {
         width: 100%;
+    }
+
+    .filters > div {
+        display: block;
+        margin-bottom: 15px;
+
+        span {
+            display: block;
+            margin-bottom: 10px;
+        }
     }
 }
 

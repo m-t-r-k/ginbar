@@ -23,9 +23,9 @@
             }
 
             .viewMore {
-                height: 40px;
+                height: 32px;
                 color: $dark-grey;
-                padding-top: 12px;
+                padding-top: 9px;
                 opacity: 0.85;
             }
 
@@ -48,14 +48,14 @@
 .tileContent {
     position: relative;
     z-index: 200;
-    padding: 40px;
+    padding: 20px;
     width: 100%;
     
     img {
         display: block;
         width: auto;
-        height: 200px;
-        margin: 0px auto 30px;
+        height: 150px;
+        margin: 10px auto 20px;
         transform: scale(1);
         @include drop-shadow-dark;
         @include standard-transition(transform, 0.5s, 0s);
@@ -63,7 +63,7 @@
     
     h2 {
         @include tile_headline;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
 }
 
@@ -101,6 +101,8 @@
 
     .viewMore {
         @extend .button;
+        font-size: 14px;
+        line-height: 14px;
         position: absolute;
         top: 0;
         left: 0;
@@ -118,7 +120,7 @@
     .tagsList {
         position: relative;
         opacity: 0.85;
-        margin-top: 20px;
+        margin-top: 10px;
         transform: none;
         @include standard-transition(all, 0.25s, 0s);
 
@@ -162,7 +164,7 @@
         
         img {
             height: auto;
-            max-height: 200px;
+            max-height: 150px;
             width: auto;
             max-width: 35%;
             margin: 0px auto 10px;
@@ -171,5 +173,11 @@
         .tagsList, .tags_list {
             margin-top: 10px !important;
         }
+    }
+}
+
+@media screen and (max-width:450px) {
+    .tileContent {
+        padding: 10px;
     }
 }
