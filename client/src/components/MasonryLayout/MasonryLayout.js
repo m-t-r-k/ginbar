@@ -178,9 +178,6 @@ class MasonryLayout extends React.Component {
         this.setState({activeFilter: false});
       }
     }
-
-    console.log("Large Filter: ", this.state.largeFilter);
-    console.log("Active Filter: ", this.state.activeFilter);
   }
 
   componentDidMount() {
