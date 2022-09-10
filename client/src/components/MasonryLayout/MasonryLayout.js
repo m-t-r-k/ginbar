@@ -2,6 +2,7 @@ import React from 'react';
 import './MasonryLayout.scss';
 import Masonry from 'masonry-layout';
 import GinOverviewTile from '../GinOverviewTile/GinOverviewTile.js'
+import Switch from "react-switch";
 
 class MasonryLayout extends React.Component {
 
@@ -13,7 +14,8 @@ class MasonryLayout extends React.Component {
       tasteTags: [],
       activeItems: 0,
       largeFilter: false,
-      activeFilter: false
+      activeFilter: false,
+      showTips: false
     };
   }
 
@@ -25,6 +27,16 @@ class MasonryLayout extends React.Component {
       gutter: '.gutter-sizer',
       percentPosition: true
     });
+  }
+
+  updateShowTips() {
+    const currentState = this.state.showTips;
+    this.setState({ showTips: !currentState });
+  }
+
+  toggleFilter() {
+    const currentState = this.state.activeFilter;
+    this.setState({ activeFilter: !currentState });
   }
 
   updateFilterItems() {
@@ -94,6 +106,15 @@ class MasonryLayout extends React.Component {
           }
         }
       }
+
+      // Show tips
+      if(showElement) {
+        if(this.state.showTips) {
+          if(item.getAttribute("data-tipp") !== 'true') {
+            showElement = false;
+          }
+        }
+      }
       
       if(showElement) {
         item.style.display = "block";
@@ -155,11 +176,6 @@ class MasonryLayout extends React.Component {
     return [...new Set(tasteTags)];  
   }
 
-  toggleFilter() {
-    const currentState = this.state.activeFilter;
-    this.setState({activeFilter: !currentState});
-  }
-
   updateFilterVisibility = () => {
 
     if(window.innerWidth > 1260) {
@@ -192,7 +208,8 @@ class MasonryLayout extends React.Component {
     if (prevState.countryTags !== this.state.countryTags ||
         prevState.typeTags !== this.state.typeTags ||
         prevState.tasteTags !== this.state.tasteTags ||
-        prevState.activeFilter !== this.state.activeFilter) {
+        prevState.activeFilter !== this.state.activeFilter ||
+        prevState.showTips !== this.state.showTips) {
       this.updateFilterItems();
       this.updateGinItems();
       this.updateFilterVisibility();
@@ -220,6 +237,20 @@ class MasonryLayout extends React.Component {
             </div>
           </div>
           <div className="filters">
+            <div className='toggleSwitch'>
+              <span>Tipps:</span>
+              <Switch onChange={this.updateShowTips.bind(this)} checked={this.state.showTips}
+                width={50}
+                height={22}
+                borderRadius={11}
+                onColor='#f5f5f5'
+                offColor='#313131'
+                onHandleColor='#303030'
+                offHandleColor='#8e8e8e'
+                uncheckedIcon={false}
+                checkedIcon={false} 
+                className="showTipsSwitch" />
+            </div>
             <div>
               <span>Herkunftsland:</span>
               <ul className='filter'>
@@ -253,15 +284,14 @@ class MasonryLayout extends React.Component {
                 let tagsList = [gin.originCountry, gin.type];
                 tagsList = [...tagsList, ...gin.mainNote];
                 return (
-                  <div className='grid-item' tags={tagsList}>
-                <GinOverviewTile
-                key={gin.id}
-                id={gin.id}
-                name={gin.name}
-                imageBottle={gin.imageBottle}
-                imageMoodPicSmall={gin.imageMoodPicSmall}
-                tags={tagsList}
-                recommendation={gin.recommendation}></GinOverviewTile>
+                  <div className='grid-item' tags={tagsList} key={gin.id} data-tipp={gin.recommendation}>
+                    <GinOverviewTile
+                    id={gin.id}
+                    name={gin.name}
+                    imageBottle={gin.imageBottle}
+                    imageMoodPicSmall={gin.imageMoodPicSmall}
+                    tags={tagsList}
+                    recommendation={gin.recommendation}></GinOverviewTile>
                 </div>
                 );
               })

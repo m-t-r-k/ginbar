@@ -98,6 +98,14 @@ $gutter-size: 20px;
             display: inline-block;
             padding-top: 5px;
         }
+
+        &.toggleSwitch {
+            display: flex;
+            column-gap: 10px;
+            span {
+                display: inline-block;
+            }
+        }
     }
 }
 
