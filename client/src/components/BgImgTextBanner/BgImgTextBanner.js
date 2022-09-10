@@ -1,5 +1,6 @@
 import React from 'react';
 import './BgImgTextBanner.scss';
+import parse from 'html-react-parser';
 
 class BgImgTextBanner extends React.Component {
   render() {
@@ -9,7 +10,7 @@ class BgImgTextBanner extends React.Component {
         <div className="banner_section">
           <div className="bg-img" style={{backgroundImage: `url(../images/${this.props.imageMoodPic})`}}></div>
           <div className="banner-text-wrapper">
-              <p className="banner-text">{this.props.description}</p>
+              <p className="banner-text">{parse(this.props.description)}</p>
           </div>
         </div>
       </section>
