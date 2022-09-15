@@ -1,3 +1,8 @@
+// MARGINS, PADDINGS, SISZES
+$section_spacer: 50px;
+$header_height: 60px;
+$footer_height: 40px;
+
 // FONTS
 @font-face {
 	font-family: 'AdventPro_Light';
@@ -60,9 +65,6 @@ $black-transparent-black-gradient: linear-gradient(to right, rgba(0,0,0,0.5), rg
     transition-timing-function: ease-in-out;
 	transition-delay: $delay;
 }
-
-// MARGINS & PADDINGS
-$section_spacer: 50px;
 
 // TEXT PRESETS
 @mixin primary_headline {

@@ -2,12 +2,13 @@
 
 footer {
     position: relative;
+    height: $footer_height;
 
     section {
         text-align: center;
         background: $light-grey;
         width: auto;
-        height: auto;
+        height: 100%;
         position: relative;
 
         &.footer-home {
@@ -21,7 +22,8 @@ footer {
 
             a {
                 color: $light-grey;
-                padding: 12px 40px 10px;
+                height: 100%;
+                padding: auto 40px;
                 
                 &:hover {
                     color: #fff;
@@ -32,7 +34,7 @@ footer {
         }
 
         a {
-            padding: 16px 40px 14px;
+            padding: calc(($footer_height - 12px)/2) 40px calc(($footer_height - 12px)/2);
             display: inline-block;
             @include label-text;
             color: $medium-grey;

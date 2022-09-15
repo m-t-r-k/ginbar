@@ -4,6 +4,7 @@ import BgImgTextBannerAltStyle from "../../BgImgTextBannerAltStyle/BgImgTextBann
 import HeadlineTextGradientBg from "../../HeadlineTextGradientBg/HeadlineTextGradientBg";
 import './HowToTaste.scss'  
 import WebsiteDate from '../../../data/website-data.json';
+import SwiperSlider from "../../SwiperSlider/SwiperSlider";
 
 class HowToTaste extends React.Component {
     componentDidMount() {
@@ -13,6 +14,20 @@ class HowToTaste extends React.Component {
     render() {
         const intro = WebsiteDate.howToTaste.intro;
         const pageContent = WebsiteDate.howToTaste.pageContent;
+
+        const htmlDataArray = pageContent.map((item,index) => {
+            let evenIndex = (index + 1) % 2 === 0;
+            return (
+            <BgImgTextBannerAltStyle key={item.id} 
+            dark={evenIndex ? true : false} 
+            right={evenIndex ? true : false} 
+            bgImage={item.bgImage}>
+                <h2>{index + 1}. {item.headline}</h2>
+                <p>{item.text}</p>
+            </BgImgTextBannerAltStyle>
+            );
+        })
+
         return (
             <MotionWrapper>
                 <section className='howtotaste pageWrapper'>
@@ -20,18 +35,7 @@ class HowToTaste extends React.Component {
                         <h1>{intro.headline}</h1>
                         <p>{intro.text}</p>
                     </HeadlineTextGradientBg>
-                    {pageContent.map((item,index) => {
-                        let evenIndex = (index + 1) % 2 === 0;
-                        return (
-                        <BgImgTextBannerAltStyle key={item.id} 
-                        dark={evenIndex ? true : false} 
-                        right={evenIndex ? true : false} 
-                        bgImage={item.bgImage}>
-                            <h2>{index + 1}. {item.headline}</h2>
-                            <p>{item.text}</p>
-                        </BgImgTextBannerAltStyle>
-                        );
-                    })}
+                    <SwiperSlider data={pageContent}></SwiperSlider>
                 </section>
             </MotionWrapper>
         );
