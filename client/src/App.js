@@ -50,16 +50,6 @@ const App = () => {
       <SplashScreen loaded={loaded}></SplashScreen>
       <Router>
         <Header></Header>
-        {/*
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/how-to-taste/" element={<HowToTaste />} />
-          <Route path="/gins/" element={<Gins />} />
-          <Route path="/cocktails/" element={<Gins />} />
-          <Route path="/gins/:ginId" element={<GinDetail />} />
-          <Route path="/imprint" element={<Imprint />} />
-        </Routes>
-        */}
         <AnimatedRoutes></AnimatedRoutes>
         <Footer></Footer>
       </Router>

@@ -11,7 +11,7 @@ class BgImgTextBannerAltStyle extends React.Component {
     return (
       <section className="full_width">
         <div className={sectionClasses}>
-          <div className="bg-img" style={{backgroundImage: `url(../images/${this.props.bgImage})`}}></div>
+          <div className={this.props.imgOverlay ? "bg-img" : "bg-img noOverlay"} style={{backgroundImage: `url(../images/${this.props.bgImage})`}}></div>
           <div className="banner-content-wrapper">
             <div className="banner-content">
                 {this.props.children}

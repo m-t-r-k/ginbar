@@ -15,6 +15,10 @@ $swiper-pagination-height: 50px;
             height: 100%;
         }
     }
+
+    .banner-content-wrapper {
+        margin-top: -$swiper-pagination-height;
+    }
 }
 
 .swiper-pagination {
@@ -61,15 +65,30 @@ $swiper-pagination-height: 50px;
 
 .swiper-button-next,
 .swiper-button-prev {
-    color: #000 !important;
+    color: $medium-grey !important;
+    width: 44px !important;
+    border: 1px solid $medium-grey;
+    border-radius: 22px;
+    @include standard-transition(all, 0.25s, 0s);
+
+    &::after {
+        transform: scale(0.5) translateX(3px);
+    }
 
     &:hover {
-        color: $medium-grey !important;
+        background: $medium-grey;
+
+        &::after {
+            color: $dark-grey;
+        }
     }
 }
 
-.banner-content-wrapper {
-    margin-top: -$swiper-pagination-height;
+.swiper-button-prev {
+
+    &::after {
+        transform: scale(0.5) translateX(-3px);
+    }
 }
 
 @media screen and (max-width:760px) {
@@ -77,19 +96,27 @@ $swiper-pagination-height: 50px;
     .swiper {
         .swiper-button-next,
         .swiper-button-prev {
-           width: 30px;
+           width: 30px !important;
            height: 30px;
-           background: $light-grey;
-           right: 0;
+           right: 5px;
     
            &::after {
             font-size: 22px;
             line-height: 22px;
+            transform: scale(0.75) translateX(1px);
+           }
+
+           &:hover {
+            background: $light-grey;
            }
         }
     
         .swiper-button-prev {
-            left: 0;
+            left: 5px;
+
+            &::after {
+                transform: scale(0.75) translateX(-1px);
+            }
         }
     }
 }

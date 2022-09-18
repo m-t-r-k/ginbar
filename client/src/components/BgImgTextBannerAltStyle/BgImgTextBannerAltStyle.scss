@@ -29,6 +29,10 @@
         width: 100%;
         max-width: 500px;
 
+        h2 {
+            font-size: 58px;
+        }
+
         p {
             @include simple_text;
             margin-top: 20px;
@@ -57,6 +61,12 @@
     
     .banner-text {
         @include emphasized_text;
+    }
+
+    .bg-img.noOverlay:before {
+        display: none;
+        visibility: collapse;
+        opacity: 0;
     }
 
     &.dark {
@@ -151,8 +161,8 @@
             margin: 0 !important;
 
             h2 {
-                font-size: 39px;
-                line-height: 52px;
+                font-size: 40px;
+                line-height: 50px;
             }
         }
 

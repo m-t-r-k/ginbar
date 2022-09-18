@@ -2,13 +2,20 @@
     "home": [
         {
             "id": 0,
+            "routerToLink": "/gin-types/",
+            "headline": "Gin Sorten",
+            "buttonText": "mehr erfahren",
+            "videoBg": "gin_types_video.mp4"
+        },
+        {
+            "id": 1,
             "routerToLink": "/how-to-taste/",
             "headline": "Wie wird Verkostet?",
             "buttonText": "mehr erfahren",
             "videoBg": "how_to_taste_video.mp4"
         },
         {
-            "id": 1,
+            "id": 2,
             "routerToLink": "/gins/",
             "headline": "Gin Empfehlungen",
             "buttonText": "mehr erfahren",
@@ -66,6 +73,95 @@
                 "bgImage": "garnish-min.jpg"
             }
         ]
+    },
+
+    "ginTypes": {
+        "intro": {
+            "headline": "Was ist Gin?",
+            "text": "Gin ist eine der wohl vielfältigsten Spirituosen überhaupt. Von klassischen wacholderlastigen Gins, fruchtig süßen bis hin zu exotisch ausgefallenen Varianten ist beinahe alles möglich. Doch wie wird Gin definiert? Welche Sorten werden unterschieden, was macht diese aus und wie sind sie erkennbar? Diese Aspekte möchten wir euch im Folgenden näherbringen.",
+            "bgImage": "what-is-gin-min.jpg"
+        },
+        "officialTypes": {
+            "intro": {
+                "headline": "Offizielle Ginsorten",
+                "text": "In der Spirituosenverordnung der EU ist bereits seit 2008 klar definiert, welche Ginsorte in Europa offiziell gibt und was diese ausmacht. Nach dieser Verordnung ist Gin eine „Spirituose mit Wacholdergeschmack, die durch Aromatisieren von Ethylalkohol landwirtschaftlichen Ursprungs gewonnen wird“.<br>Festgelegt ist dabei lediglich Aspekte des Herstellungsprozesses, jedoch keinerlei Kategorisierung des Geschmacks."
+            },
+            "data": [
+                {
+                    "id": "gin",
+                    "headline": "Gin",
+                    "text": "Gin ist eine Spirituose, die durch das Einlegen von Wacholderbeeren und anderen Botanicals in pflanzlichem Alkohol erzeugt wird. Folgende Anforderungen müssen erfüllt werden, um eine Spirituose als Gin zu bezeichnen:",
+                    "facts": [
+                        "in Mindestalkoholgehalt von 37,5% Vol",
+                        "pflanzlicher Alkohol als Basis",
+                        "Bei der Herstellung von Gin dürfen nur Aromastoffe oder Aromaextrakte oder beides verwendet werden, wobei der Geschmack nach Wacholder vorherrschend bleiben muss.",
+                        "darf im Namen den Begriff “dry” ergänzt werden, wenn er nicht mit mehr als 0,1 g Süßungsmittel je Liter versetzt ist"
+                    ],
+                    "image": "Classic_Gin_image-min.png"
+                },
+                {
+                    "id": "destillierter-gin",
+                    "headline": "Destillierter Gin",
+                    "text": "Destillierter Gin wird, wie der Name bereits verrät gebrannt/destiliiert. Dabei dürfen nur natürliche oder naturähnliche Gewürze und Aromastoffe verwendet werden. Außerdem darf das so gewonnenen Destillat mit anderen, gleicher Zusammensetzung und Reinheit, sowie gleichem Alkoholgehalt Kombiniert werden.<br>Somit muss ein Destillierter Gin folgende Anforderungen erfüllen:",
+                    "facts": [
+                        "Destillierter Gin",
+                        "darf den Begriif “dry” im Namen führen wenn er nicht mit mehr als 0,1 g Süßungsmittel versetzt ist",
+                        "in Mindestalkoholgehalt von 37,5% Vol",
+                        "pflanzlicher Alkohol als Basis",
+                        "die verschiedenen Botanicals dürfen zu jedem Zeitpunkt der Herstellung zugegeben werden (also auch nach der Destillation)"
+                    ],
+                    "image": "Distilled_Gin_image-min.png"
+                },
+                {
+                    "id": "london-gin",
+                    "headline": "London Gin",
+                    "text": "London Dry Gin (auch “London Gin” genannt) ist die am stärkesten reklementierte Ginsorte. Um diese Bezeichnung führen zu dürfen, muss der Gin zwar nicht aus London kommen, jedoch folgende Anforderungen erfüllen:",
+                    "facts": [
+                        "Destillierter Gin",
+                        "in Mindestalkoholgehalt von 37,5% Vol",
+                        "er ist nicht gefärbt",
+                        "er darf nicht mit mehr als 0,1 g Süßungsmittel versetzt sein",
+                        "in Mindestalkoholgehalt von 37,5% Vol",
+                        "pflanzlicher Alkohol als Basis",
+                        "Aromatisierung mit natürlichen Zutaten. Dabei werden alle Zutaten gleichzeitig hinzugegeben.",
+                        "zusätzliche Aromen oder Zucker dürfen im Nachgang nicht hinzugefügt werden"
+                    ],
+                    "image": "London_Gin_image-min.png"
+                }
+            ]
+        },
+        "otherTypes": {
+            "intro": {
+                "headline": "Weitere Ginsorten",
+                "text": "Neben den offiziellen Bezeichnungen haben sich weitere Bezeichnungen durchgesetzt. Diese geben im Gegensatz zu den offiziellen Bezeichnungen oft einen klaren Hinweis auf die geschmackliche Orientierung des Destillats."
+            },
+            "data": [
+                {
+                    "id": "new-western-dry-gin",
+                    "headline": "New Western Dry Gin",
+                    "text": "Die Sorte New Western Dry Gin setzt anders als andere Sorten nicht auf einen dominanten Wacholdergeschmack. Gin wird hierdurch selbst für Spirituosenliebhaber zugänglich, die mit dem intensiven Wacholderaroma klassischer Ginsorten nicht warm werden.<br>Die Wacholderbeeren werden bei der Herstellung mit zahlreiche anderen Botanicals kombiniert, die den Geschmack entscheidend prägen und den Wacholdergeschmack in den Hintergrund treten lassen.<br>Als Beispiele sei hier der sehr fruchtig beerige Brockman's Gin oder der sehr zitruslastige Momotaro Kinzaru Gin genannt.",
+                    "bgImage": "new_western_dry_gin-min.jpg"
+                },
+                {
+                    "id": "navy-strength",
+                    "headline": "Navy Strength Gin",
+                    "text": "Bereits im 17. Jahrhundert war Wacholderschnaps bei den Soldaten der Marine beliebt und ein anerkanntes Arzneimittel.<br>Ein Erlass der britischen Regierung legte den Alkoholgehalt auf mindestens 57 % Vol. fest. Dies gewährleistete, dass selbst mit Gin durchnässtes Schießpulver noch zündete. Erfüllte ein Gin diese Anforderung, wurde er als „Gunpowder Proof Gin“ oder eben „Navy Strength Gin“ bezeichnet.<br>Auch heute noch hat der Navy Strength Gin diesen hohen Alkoholgehalt. Ansonsten ist diese Sorte an keine Vorgaben gebunden. Gins dieser Kategorie haben meist ein höchst intensives und kräftiges Aroma durch den hohen Alkoholgehalt. Daher eignen sie sich hervorragend für Cocktails jeglicher Art.",
+                    "bgImage": "navy_strenght_gin-min.jpg"
+                },
+                {
+                    "id": "old-tom-gin",
+                    "headline": "Old Tom Gin",
+                    "text": "Diese Sorte ist ein krasser Kontrast zu London Dry Gin und Dry Gin. Denn hier die Zugabe von Zucker nicht nur erlaubt, sondern auch unbedingt erwünscht. Aus diesem Grund haben Old Tom Gins oft eine deutliche Süße und platzieren sich somit im Bereich zwischen klassischem Gin und Likör.",
+                    "bgImage": "old_tom_gin-min.jpg"
+                },
+                {
+                    "id": "pink-gin",
+                    "headline": "Pink Gin",
+                    "text": "Pink Gin liegt im Trend und hat seinen Ursprung in Spanien. Diese Gins werden im Nachhinein mit Erdbeeren (oder anderen 'pinke' und beerigen Früchten) versetzt. Entsprechend ergibt sich eine deutliche pinke Färbung. Oft ist auch eine starke Süße mit diesem Vorgang einhergehend, weshalb diese Sorte bei Ginliebhabern nur einen mäßig guten Ruf hat.",
+                    "bgImage": "pink_gin-min.jpg"
+                }
+            ]
+        }
     },
 
     "imprint": {

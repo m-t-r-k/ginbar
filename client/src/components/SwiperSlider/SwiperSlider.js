@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
+import parse from 'html-react-parser';
 
 class SwiperSlider extends React.Component {
 
@@ -20,6 +21,7 @@ class SwiperSlider extends React.Component {
         return '<div class="swiper-custom-pagination ' + className + '"><span>' + paginationNames[index] + "</span></div>";
       },
     };
+
     return(
       <Swiper
         direction={"horizontal"}
@@ -36,11 +38,12 @@ class SwiperSlider extends React.Component {
                 <SwiperSlide 
                   key={item.id}>
                     <BgImgTextBannerAltStyle
-                    dark={false}
-                    right={evenIndex ? true : false} 
-                    bgImage={item.bgImage}>
-                        <h2>{index + 1}. {item.headline}</h2>
-                        <p>{item.text}</p>
+                        dark={this.props.alternateStyle ? (evenIndex ? true : false) : this.props.styleDark} 
+                        right={this.props.alternateLayout ? (evenIndex ? true : false): false} 
+                        imgOverlay={this.props.imgOverlay}
+                        bgImage={item.bgImage}>
+                        <h2>{item.headline}</h2>
+                        <p>{parse(item.text)}</p>
                     </BgImgTextBannerAltStyle>
                 </SwiperSlide>
             );

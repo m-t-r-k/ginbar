@@ -8,7 +8,6 @@ import KeywordDescriptionBox from "../../KeywordDescriptionBox/KeywordDescriptio
 import HeadlineTextEmphesized from '../../HeadlineTextEmphesized/HeadlineTextEmphesized';
 import BackLink from "../../BackLink/BackLink";
 import GinData from '../../../data/gin-data.json';
-import Button from '../../Button/Button';
 
 const Gin = () => {
 

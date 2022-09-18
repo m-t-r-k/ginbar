@@ -4,6 +4,7 @@ import Home from "./Pages/Home/Home";
 import HowToTaste from "./Pages/HowToTaste/HowToTaste";
 import Gins from "./Pages/Gins/Gins";
 import GinDetail from "./Pages/Gin/Gin";
+import GinTypes from "./Pages/GinTypes/GinTypes";
 import Imprint from "./Pages/Imprint/Imprint";
 import { AnimatePresence } from "framer-motion";
 
@@ -14,6 +15,7 @@ function AnimatedRoutes() {
     <AnimatePresence mode='wait'>
       <Routes key={location.pathname} location={location}>
         <Route path="/" element={<Home />} />
+        <Route path="/gin-types/" element={<GinTypes />} />
         <Route path="/how-to-taste/" element={<HowToTaste />} />
         <Route path="/gins/" element={<Gins />} />
         <Route path="/cocktails/" element={<Gins />} />

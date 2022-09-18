@@ -9,10 +9,11 @@
     p:first-child {
         margin-top: 0px;
     }
+
+    h2 {
+        @include secondary_headline;
+        font-family: 'AdventPro_Light';
+        margin-bottom: 30px;
+    }
 }
 
-h2 {
-    @include secondary_headline;
-    font-family: 'AdventPro_Light';
-    margin-bottom: 30px;
-}

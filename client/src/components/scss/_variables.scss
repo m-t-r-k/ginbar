@@ -25,6 +25,11 @@ $footer_height: 40px;
 }
 
 @font-face {
+	font-family: 'Raleway_Medium';
+	src: local('Raleway_Medium'), url(../../../public/fonts/Raleway-Medium.ttf) format('truetype');
+}
+
+@font-face {
 	font-family: 'Raleway_MediumItalic';
 	src: local('Raleway_MediumItalic'), url(../../../public/fonts/Raleway-MediumItalic.ttf) format('truetype');
 }
@@ -77,6 +82,7 @@ $black-transparent-black-gradient: linear-gradient(to right, rgba(0,0,0,0.5), rg
 @mixin secondary_headline {
 	color: $dark-grey;
 	font-family: 'AdventPro_Medium';
+	font-weight: 500;
 	font-size: 32px;
 	line-height: 32px;
 }
@@ -84,6 +90,7 @@ $black-transparent-black-gradient: linear-gradient(to right, rgba(0,0,0,0.5), rg
 @mixin tile_headline {
 	color: $light-grey;
 	font-family: 'AdventPro_Light';
+	font-weight: 300;
 	font-size: 27px;
 	line-height: 36px;
 	text-align: center;
@@ -92,6 +99,7 @@ $black-transparent-black-gradient: linear-gradient(to right, rgba(0,0,0,0.5), rg
 @mixin simple_text($color: $dark-grey) {
 	color: $color;
 	font-family: 'Raleway_Light';
+	font-weight: 300;
 	font-size: 16px;
 	line-height: 26px;
 }
@@ -99,13 +107,23 @@ $black-transparent-black-gradient: linear-gradient(to right, rgba(0,0,0,0.5), rg
 @mixin emphasized_text($color: $light-grey) {
 	color: $color;
 	font-family: 'Raleway_MediumItalic';
+	font-weight: 500;
 	font-size: 20px;
 	line-height: 40px;
+}
+
+@mixin larg_ul_text($color: $dark-grey) {
+	color: $color;
+	font-family: 'Raleway_Medium';
+	font-weight: 500;
+	font-size: 20px;
+	line-height: 30px;
 }
 
 @mixin label_text($color: $dark-grey) {
 	color: $color;
 	font-family: 'Raleway_Bold';
+	font-weight: 700;
 	font-size: 12px;
 	line-height: 12px;
 	text-transform: uppercase;
@@ -119,6 +137,7 @@ $black-transparent-black-gradient: linear-gradient(to right, rgba(0,0,0,0.5), rg
 @mixin nav_item_text($color: $medium-grey) {
 	color: $color;
 	font-family: 'AdventPro_Bold';
+	font-weight: 700;
 	font-size: 20px;
 	line-height: 20px;
 	text-transform: uppercase;
