@@ -155,7 +155,7 @@ class MasonryLayout extends React.Component {
   getCountryFilterOptions() {
     let countryTags = [];
     this.props.gins.map(gin => {
-      countryTags.push(gin.originCountry);
+      countryTags.push(gin.originCountry.toLowerCase());
     });
     return [...new Set(countryTags)];
   }
@@ -163,7 +163,7 @@ class MasonryLayout extends React.Component {
   getGinTypeFilterOptions() {
     let ginTypeTags = [];
     this.props.gins.map(gin => {
-      ginTypeTags.push(gin.type);
+      ginTypeTags.push(gin.type.toLowerCase());
     });
     return [...new Set(ginTypeTags)];
   }
@@ -171,7 +171,7 @@ class MasonryLayout extends React.Component {
   getTasteFilterOptions() {
     let tasteTags = [];
     this.props.gins.map(gin => {
-      tasteTags = tasteTags.concat(gin.mainNote);
+      tasteTags = tasteTags.concat(gin.mainNote.map(value => value.toLowerCase()));
     });
     return [...new Set(tasteTags)];  
   }
