@@ -68,8 +68,6 @@ class MasonryLayout extends React.Component {
         showElement = true;
       } else {
         for(let tag of this.state.countryTags) {
-          console.log("Tag: ", tag);
-          console.log("itemTags: ", itemTags);
           if(itemTags.includes(tag))
           {
             showElement = true;
