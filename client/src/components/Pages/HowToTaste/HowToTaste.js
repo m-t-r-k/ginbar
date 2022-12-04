@@ -1,6 +1,5 @@
 import React from "react";
 import MotionWrapper from "../../MotionWrapper";
-import BgImgTextBannerAltStyle from "../../BgImgTextBannerAltStyle/BgImgTextBannerAltStyle";
 import HeadlineTextGradientBg from "../../HeadlineTextGradientBg/HeadlineTextGradientBg";
 import './HowToTaste.scss'  
 import WebsiteDate from '../../../data/website-data.json';

@@ -8,18 +8,22 @@ function Header(darkHeader) {
   const location = useLocation();
 
   const [activeMobileNav, setActiveMobileNav] = useState(false)
+  const [mobileNavActive, setMobileNavActive] = useState("")
+  const [headerClasses, setHeaderClasses] = useState("")
+  
   const toggleNav = event => {
     setActiveMobileNav(current => !current);
   };
 
-  const locationHome = location.pathname === '/' ? "dark" : ""
-  let mobileNavActive = activeMobileNav ? "activeNav" : ""
-  let headerClasses = `${locationHome} ${mobileNavActive}`
+  const locationHome = location.pathname === '/' ? "dark" : "";
 
   useEffect(() => {
-    mobileNavActive = activeMobileNav ? "activeNav" : ""
-    headerClasses = `${locationHome} ${mobileNavActive}`
+    setMobileNavActive(activeMobileNav ? "activeNav" : "")
   }, [activeMobileNav]);
+
+  useEffect(() => {
+    setHeaderClasses(`${locationHome} ${mobileNavActive}`)
+  }, [locationHome, mobileNavActive]);
 
   return (
     <header className={headerClasses}>

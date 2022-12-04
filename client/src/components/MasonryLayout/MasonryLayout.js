@@ -149,6 +149,8 @@ class MasonryLayout extends React.Component {
             : [...state.tasteTags, value],
         }))
         break;
+      default:
+        break;
     }
   }
 

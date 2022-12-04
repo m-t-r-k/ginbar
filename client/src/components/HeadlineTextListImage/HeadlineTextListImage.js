@@ -7,7 +7,7 @@ class HeadlineTextListImage extends React.Component {
       <section className="full_width headlineTextListImage">
         <div className='contentWrap fixed_width'>
           <div className='imgWrap'>
-            <img src={`../images/${this.props.image}`}></img>  
+            <img src={`../images/${this.props.image}`} alt=""></img>  
           </div>
           <div className='textContent'>
             <h2>{this.props.headline}</h2>
