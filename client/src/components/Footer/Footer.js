@@ -9,7 +9,7 @@ function Footer() {
 
     return (
         <footer className="full-width">
-            <section className={location.pathname == '/' ? "footer-home" : ""}>
+            <section className={location.pathname === '/' ? "footer-home" : ""}>
                 <Link to={`/imprint`}>Impressum</Link>
             </section>                
         </footer>

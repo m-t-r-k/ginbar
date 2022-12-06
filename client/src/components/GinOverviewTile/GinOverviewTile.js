@@ -12,7 +12,7 @@ class GinOverviewTile extends React.Component {
               <div id='recommendation' className={this.props.recommendation ? "show" : ""}>
                 <span>Tipp</span>
               </div>
-              <img src={`../images/${this.props.imageBottle}`}></img>
+              <img src={`../images/${this.props.imageBottle}`} alt={this.props.name}></img>
               <h2>{this.props.name}</h2>
               <div className='tagsViewMoreWrapper'>
                 <hr></hr>

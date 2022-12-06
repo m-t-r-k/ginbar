@@ -62,7 +62,7 @@ class MasonryLayout extends React.Component {
     let activeItems = 0;
     for (const item of gridItems) {
       var showElement = false;
-      var itemTags = item.getAttribute("tags").split(",");
+      var itemTags = item.getAttribute("tags").toLowerCase().split(",");
       
       if(!this.state.countryTags.length > 0) {
         showElement = true;
@@ -127,27 +127,30 @@ class MasonryLayout extends React.Component {
   }
 
   updateActiveFilters(value, tagsList) {
+    const val = value.toLowerCase();
     switch (tagsList) {
       case "country":
         this.setState((state) => ({
-          countryTags: state.countryTags.includes(value)
-            ? state.countryTags.filter((fc) => fc !== value)
-            : [...state.countryTags, value],
+          countryTags: state.countryTags.includes(val)
+            ? state.countryTags.filter((fc) => fc !== val)
+            : [...state.countryTags, val],
         }));
         break;
       case "ginType":
         this.setState((state) => ({
-          typeTags: state.typeTags.includes(value)
-            ? state.typeTags.filter((fc) => fc !== value)
-            : [...state.typeTags, value],
+          typeTags: state.typeTags.includes(val)
+            ? state.typeTags.filter((fc) => fc !== val)
+            : [...state.typeTags, val],
         }))
         break;
       case "taste":
         this.setState((state) => ({
-          tasteTags: state.tasteTags.includes(value)
-            ? state.tasteTags.filter((fc) => fc !== value)
-            : [...state.tasteTags, value],
+          tasteTags: state.tasteTags.includes(val)
+            ? state.tasteTags.filter((fc) => fc !== val)
+            : [...state.tasteTags, val],
         }))
+        break;
+      default:
         break;
     }
   }
@@ -156,6 +159,7 @@ class MasonryLayout extends React.Component {
     let countryTags = [];
     this.props.gins.map(gin => {
       countryTags.push(gin.originCountry.toLowerCase());
+      return true;
     });
     return [...new Set(countryTags)];
   }
@@ -164,6 +168,7 @@ class MasonryLayout extends React.Component {
     let ginTypeTags = [];
     this.props.gins.map(gin => {
       ginTypeTags.push(gin.type.toLowerCase());
+      return true;
     });
     return [...new Set(ginTypeTags)];
   }
@@ -172,6 +177,7 @@ class MasonryLayout extends React.Component {
     let tasteTags = [];
     this.props.gins.map(gin => {
       tasteTags = tasteTags.concat(gin.mainNote.map(value => value.toLowerCase()));
+      return true;
     });
     return [...new Set(tasteTags)];  
   }
