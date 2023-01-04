@@ -1,0 +1,308 @@
+@import "../scss/variables";
+
+.grid{
+    width: 100%;
+}
+
+$column-count: 4;
+$gutter-size: 20px;
+
+.grid-sizer, .grid-item {
+    width: calc((100% - (($column-count - 1) * $gutter-size)) / $column-count);
+}
+
+.grid-item {
+    margin-bottom: $gutter-size;
+}
+
+.gutter-sizer {
+    width: $gutter-size;
+}
+
+.filter_wrapper {
+    width: 100%;
+    margin-bottom: 20px;
+    background: transparent;
+    @include standard-transition(all, 0.25s, 0s);
+}
+
+.filterButton {
+    display: inline-block;
+    width: 300px;
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color: #4c4c4c;
+    height: auto;
+    @include standard-transition((width, background-color), 0.25s, 0s);
+    
+    &:hover {
+        background-color: #101010;
+    }
+
+    &>span {
+        float: left;
+        color: $light-grey;
+        font-family: 'Raleway_Bold';
+        font-size: 16px;
+        line-height: 18px;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 2px;
+
+        span {
+            display: inline-block;
+        }
+    }
+
+    .filterIcon {
+        float: right;
+        width: 20px;
+        height: 20px;
+        position: relative;
+
+        span {
+            display: block;
+            position: absolute;
+            left: -2px;
+            top: 50%;
+            width: 14px;
+            height: 1px;
+            background-color: #fff;
+            transform: rotate(45deg) translate(0, 0);
+            @include standard-transition(all, 0.25s, 0.25s);
+        }
+
+        span:first-child {
+            left: 8px;
+            transform: rotate(-45deg);
+        }
+    }
+}
+
+.filters {
+    margin: 0px -10px;
+    padding: 0px 30px;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    @include standard-transition(opacity, 0.25s, 0.15s);
+
+    &>div {
+        display: grid;
+        grid-template-columns: 130px 1fr;
+        margin-bottom: 15px;
+
+        span {
+            @include label-text(#ababab);
+            display: inline-block;
+            padding-top: 5px;
+        }
+
+        &.toggleSwitch {
+            display: flex;
+            column-gap: 10px;
+            span {
+                display: inline-block;
+            }
+        }
+    }
+}
+
+.filter {
+    display: block;
+    width: 100%;
+    margin: 0 -10px;
+
+    li {
+        @include tag_text;
+        display: inline-block;
+        border: 1px solid #4f4f4f;
+        height: 22px;
+        border-radius: 11px;
+        padding: 5px 10px 0px;
+        color: #8e8e8e;
+        background: transparent;
+        margin-left: 10px;
+        margin-bottom: 6px;
+        cursor: pointer;
+        @include standard-transition(all, 0.25s, 0s);
+
+        &:hover {
+            background: rgba(#4f4f4f, 0.5);
+        }
+
+        &.active {
+            background: $light-grey;
+            color: $dark-grey;
+        }
+
+        &.active:hover {
+            background: rgba($light-grey, 0.75);
+        }
+    }
+
+    &:first-child {
+        margin-top: 0;
+    }
+}
+
+.filter_wrapper.active {
+    background: #101010;
+
+    .filterButton {
+        width: 100%;
+        margin-bottom: 20px;
+
+        .filterIcon {
+            span {
+                left: 0px;
+                top: 50%;
+                width: 22px;
+                background-color: #fff;
+                transform: rotate(135deg) translate(0, 0);
+            }
+    
+            span:first-child {
+                left: 0px;
+                transform: rotate(-135deg);
+            }
+        }
+    }
+
+    .filters {
+        height: auto;
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@media screen and (min-width:1260px) {
+    .masonry_wrap {
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+        column-gap: $gutter-size;
+    }
+
+    .filterButton {
+        transition: none;
+
+        &:hover {
+            background: #4c4c4c;
+            cursor: default;
+        }
+    }
+
+    .filter_wrapper,
+    .filter_wrapper,
+    .filter {
+        height: fit-content;
+    }
+
+    .filterIcon {
+        display: none;
+    }
+
+    .filters > div {
+        display: block;
+        margin-bottom: 15px;
+
+        span {
+            display: block;
+            margin-bottom: 10px;
+        }
+    }
+}
+
+@media screen and (max-width:1260px) {
+    $column-count: 3;
+    .grid-sizer, .grid-item {
+        width: calc((100% - (($column-count - 1) * $gutter-size)) / $column-count);
+    }
+}
+
+// @media screen and (max-width:750px) {
+//     $column-count: 2;
+//     .grid-sizer, .grid-item {
+//         width: calc((100% - (($column-count - 1) * $gutter-size)) / $column-count);
+//     }
+// }
+
+@media screen and (max-width:680px) {   
+    $gutter-size: 4px;
+
+    $column-count: 2;
+    .grid-sizer, .grid-item {
+        width: calc((100% - (($column-count - 1) * $gutter-size)) / $column-count);
+    }
+
+    .grid-item {
+        margin-bottom: $gutter-size;
+    }
+
+    .gutter-sizer {
+        width: $gutter-size;
+    }
+
+    .filterButton {
+        width: 100%;
+    }
+
+    .filters > div {
+        display: block;
+        margin-bottom: 15px;
+
+        span {
+            display: block;
+            margin-bottom: 10px;
+        }
+    }
+}
+
+.grid {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    /* flex-basis: 33.333333%; */
+}
+
+.grid-item {
+    margin-bottom: 20px;
+    display: flex;
+    flex-basis: 25%;
+    padding: 0 15px;
+    width: auto;
+}
+
+.ginOverviewTile .tileContent h2 {
+    height: 65px;
+}
+
+.ginOverviewTile .tagsViewMoreWrapper {
+    height: 70px;
+}
+
+@media screen and (max-width: 1260px){
+    .padding_for_filter {
+        padding: 0 15px;
+    }
+    .grid-item {
+        flex-basis: 33.333333%;
+    }
+}
+
+@media screen and (max-width:895px) {
+    .grid-item {
+        flex-basis: 50%;
+    }
+    .ginOverviewTile .tileContent h2 {
+        height: 50px;
+    }
+    .ginOverviewTile .tagsViewMoreWrapper {
+        height: 70px;
+    }
+}
+
+
+
+

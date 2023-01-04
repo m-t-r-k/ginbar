@@ -47,7 +47,6 @@ const App = () => {
 
   return (
     <div className={loaded ? "App" : "App fixed"}>
-      <SplashScreen loaded={loaded}></SplashScreen>
       <Router>
         <Header></Header>
         <AnimatedRoutes></AnimatedRoutes>
