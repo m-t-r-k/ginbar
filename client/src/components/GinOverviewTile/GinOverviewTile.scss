@@ -50,12 +50,18 @@
     z-index: 200;
     padding: 20px;
     width: 100%;
+
+    .imageWrapper {
+        display: block;
+        height: 150px;
+        margin: 10px 0 20px;
+    }
     
     img {
         display: block;
         width: auto;
         height: 150px;
-        margin: 10px auto 20px;
+        margin: 0 auto;
         transform: scale(1);
         @include drop-shadow-dark;
         @include standard-transition(transform, 0.5s, 0s);
