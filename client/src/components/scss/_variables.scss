@@ -7,36 +7,43 @@ $footer_height: 40px;
 @font-face {
 	font-family: 'AdventPro_Light';
 	src: local('AdventPro_Light'), url(../../../public/fonts/AdventPro-Light.ttf) format('truetype');
+	font-display: swap;
 }
 
 @font-face {
 	font-family: 'AdventPro_Medium';
 	src: local('AdventPro_Medium'), url(../../../public/fonts/AdventPro-Medium.ttf) format('truetype');
+	font-display: swap;
 }
 
 @font-face {
 	font-family: 'AdventPro_Bold';
 	src: local('AdventPro_Bold'), url(../../../public/fonts/AdventPro-Bold.ttf) format('truetype');
+	font-display: swap;
 }
 
 @font-face {
 	font-family: 'Raleway_Light';
 	src: local('Raleway_Light'), url(../../../public/fonts/Raleway-Light.ttf) format('truetype');
+	font-display: swap;
 }
 
 @font-face {
 	font-family: 'Raleway_Medium';
 	src: local('Raleway_Medium'), url(../../../public/fonts/Raleway-Medium.ttf) format('truetype');
+	font-display: swap;
 }
 
 @font-face {
 	font-family: 'Raleway_MediumItalic';
 	src: local('Raleway_MediumItalic'), url(../../../public/fonts/Raleway-MediumItalic.ttf) format('truetype');
+	font-display: swap;
 }
 
 @font-face {
 	font-family: 'Raleway_Bold';
 	src: local('Raleway_Bold'), url(../../../public/fonts/Raleway-Bold.ttf) format('truetype');
+	font-display: swap;
 }	
 $primary_font: 'Advent Pro', sans-serif;
 $secondary_font: 'Raleway', sans-serif;
