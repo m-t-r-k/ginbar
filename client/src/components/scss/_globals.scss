@@ -1,8 +1,9 @@
+@import "../scss/fonts";
 @import "../scss/variables";
 
 * {
-	box-sizing: border-box;
 	font-family: 'Raleway', sans-serif;
+	box-sizing: border-box;
 	position: relative;
 	text-align: left;
 }
