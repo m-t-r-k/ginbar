@@ -192,19 +192,6 @@ class NoMasonryLayout extends React.Component {
   }
 
   componentDidMount() {
-    const imagesPreload = [this.props.gins[0].imageBottle, 
-                            this.props.gins[0].imageMoodPicSmall,
-                            this.props.gins[1].imageBottle, 
-                            this.props.gins[1].imageMoodPicSmall,
-                            this.props.gins[2].imageBottle, 
-                            this.props.gins[2].imageMoodPicSmall,                            
-                            this.props.gins[3].imageBottle, 
-                            this.props.gins[3].imageMoodPicSmall ];
-    imagesPreload.forEach((image) => {
-        const newImage = new Image();
-        newImage.src = image;
-        window[image] = newImage;
-    });
     this.updateFilterItems();
     this.updateGinItems();
     window.addEventListener('resize', this.updateFilterVisibility);
