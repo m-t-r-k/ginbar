@@ -106,7 +106,12 @@
     }
 
     .viewMore {
-        @extend .button;
+        display: block;
+        width: 100%;
+        background: #F5F5F5;
+        margin: 0;
+        font-family: "Raleway_Bold";
+        text-align: center;
         font-size: 14px;
         line-height: 14px;
         position: absolute;
