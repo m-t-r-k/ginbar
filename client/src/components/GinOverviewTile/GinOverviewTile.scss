@@ -50,12 +50,18 @@
     z-index: 200;
     padding: 20px;
     width: 100%;
+
+    .imageWrapper {
+        display: block;
+        height: 150px;
+        margin: 10px 0 20px;
+    }
     
     img {
         display: block;
         width: auto;
         height: 150px;
-        margin: 10px auto 20px;
+        margin: 0 auto;
         transform: scale(1);
         @include drop-shadow-dark;
         @include standard-transition(transform, 0.5s, 0s);
@@ -156,18 +162,10 @@
     .tileContent {
         padding: 20px;
 
-         h2 {
+        h2 {
             font-size: 21px;
             line-height: 28px;
             margin-bottom: 10px;
-        }
-        
-        img {
-            height: auto;
-            max-height: 150px;
-            width: auto;
-            max-width: 35%;
-            margin: 0px auto 10px;
         }
 
         .tagsList, .tags_list {

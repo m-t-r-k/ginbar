@@ -119,12 +119,13 @@ $gutter-size: 20px;
         display: inline-block;
         border: 1px solid #4f4f4f;
         height: 22px;
+        overflow: hidden;
         border-radius: 11px;
         padding: 5px 10px 0px;
         color: #8e8e8e;
         background: transparent;
         margin-left: 10px;
-        margin-bottom: 6px;
+        margin-bottom: 2px;
         cursor: pointer;
         @include standard-transition(all, 0.25s, 0s);
 
@@ -302,7 +303,3 @@ $gutter-size: 20px;
         height: 70px;
     }
 }
-
-
-
-
