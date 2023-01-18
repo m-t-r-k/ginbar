@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './GinOverviewTile.scss';
 import { Link } from "react-router-dom";
 import TagsList from "../TagsList/TagsList";
+import ProgressiveImage from "../ProgressiveImage/ProgressiveImage";
 
 function GinOverviewTile (props) {
   const [ isVisible, setIsVisible] = useState(false);
@@ -19,7 +20,6 @@ function GinOverviewTile (props) {
       threshold: 0
     }
     const refCurrent = containerRef.current
-    console.log(refCurrent)
     const observer = new IntersectionObserver(callbackFunction, options)
     if (refCurrent) observer.observe(refCurrent)
 
@@ -35,8 +35,8 @@ function GinOverviewTile (props) {
             <div id='recommendation' className={props.recommendation ? "show" : ""}>
               <span>Tipp</span>
             </div>
-            <span class="imageWrapper">
-            {isVisible ? <img src={`../images/${props.imageBottle}`} alt={props.name} height="150px"></img> : ""}
+            <span className="imageWrapper">
+            {isVisible ? <ProgressiveImage source={props.imageBottle} alt={props.name} height="150px"></ProgressiveImage> : ""}
             </span>
             <h2>{props.name}</h2>
             <div className='tagsViewMoreWrapper'>
@@ -47,7 +47,7 @@ function GinOverviewTile (props) {
               </div>
             </div>
           </div>
-          {isVisible ? <div className='moodPicBg' style={{backgroundImage: `url(../images/${props.imageMoodPicSmall})`}}></div>: ""}
+          {isVisible ? <ProgressiveImage class="moodPicBg" isBG={true} source={props.imageMoodPicSmall} alt={props.name}></ProgressiveImage>: ""}
         </Link>
     </div>
   )
