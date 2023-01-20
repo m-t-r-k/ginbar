@@ -12,12 +12,12 @@
 }
 
 .blurryImage {
-    filter: blur(5px);
+    filter: blur(6px);
 }
 
 .loaded {
     .blurryImage {
-        animation: fadeOut 1s;
+        animation: fadeOut .4s;
         opacity: 0;
     }
 }
