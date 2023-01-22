@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './ProgressiveImage.scss';
 
 function ProgessiveImage (props) {
@@ -7,13 +7,13 @@ function ProgessiveImage (props) {
     let classes = `${baseClass} ${props.class}`;
     classes = props.isBG ? classes : classes + " not-bg-image";
 
-    useEffect(() => {
+    async function loadFinal() {
         if (props.source) {
             const baseElement = document.getElementById(props.source);
-            const url = `../images/${props.source}`
+            const url = `../images/${props.source}`;
             const handleLoad = () => {
-                setIsLoaded(true);
                 baseElement.style.backgroundImage = `url(${url})`;
+                setIsLoaded(true);
             };
             const image = new Image();
             image.addEventListener('load', handleLoad);
@@ -22,12 +22,13 @@ function ProgessiveImage (props) {
                 image.removeEventListener('load', handleLoad);
             };
         }
-    }, [props.source]);
+        return true;
+    }
 
 
     return (
         <div id={props.source} className={isLoaded ? `${classes} loaded` : classes} style={{height: `${props.height}`}}>
-            <img className="blurryImage" src={`../images/blurry/thumb_${props.source}`} alt={props.alt} height="100%"></img>
+            <img className="blurryImage" src={`../images/blurry/thumb_${props.source}`} alt={props.alt} height="100%" onLoad={async() => await loadFinal()}></img>
         </div>
     )
 }
