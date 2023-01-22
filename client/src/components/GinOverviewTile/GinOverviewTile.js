@@ -5,7 +5,7 @@ import TagsList from "../TagsList/TagsList";
 import ProgressiveImage from "../ProgressiveImage/ProgressiveImage";
 
 function GinOverviewTile (props) {
-  const [ isVisible, setIsVisible] = useState(false);
+  const [ isVisible, setIsVisible] = useState(props.lazy);
   const containerRef = useRef(null)
 
   const callbackFunction = (entries) => {
@@ -14,19 +14,21 @@ function GinOverviewTile (props) {
   }
 
   useEffect(() => {
-    const options = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0
-    }
-    const refCurrent = containerRef.current
-    const observer = new IntersectionObserver(callbackFunction, options)
-    if (refCurrent) observer.observe(refCurrent)
+    if(!isVisible) {
+      const options = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0
+      }
+      const refCurrent = containerRef.current
+      const observer = new IntersectionObserver(callbackFunction, options)
+      if (refCurrent) observer.observe(refCurrent)
 
-    return () => {
-      if(refCurrent) observer.observe(refCurrent)
+      return () => {
+        if(refCurrent) observer.unobserve(refCurrent)
+      }
     }
-  }, [containerRef])
+  }, [containerRef, isVisible])
 
   return (
     <div key={props.id} className="ginOverviewTile" ref={containerRef}>

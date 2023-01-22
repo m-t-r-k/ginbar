@@ -273,12 +273,13 @@ class NoMasonryLayout extends React.Component {
           </div>
         </div>
         <div className="grid">
-          {this.props.gins.map(gin => {
+          {this.props.gins.map((gin, index) => {
                 let tagsList = [gin.originCountry, gin.type];
                 tagsList = [...tagsList, ...gin.mainNote];
                 return (
                   <div className='grid-item' tags={tagsList} key={gin.id} data-tipp={gin.recommendation}>
                     <GinOverviewTile
+                    lazy={!(index < 4)}
                     id={gin.id}
                     name={gin.name}
                     imageBottle={gin.imageBottle}
