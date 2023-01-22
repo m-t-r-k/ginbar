@@ -5,7 +5,7 @@ import TagsList from "../TagsList/TagsList";
 import ProgressiveImage from "../ProgressiveImage/ProgressiveImage";
 
 function GinOverviewTile (props) {
-  const [ isVisible, setIsVisible] = useState(false);
+  const [ isVisible, setIsVisible] = useState(!props.lazy);
   const containerRef = useRef(null)
 
   const callbackFunction = (entries) => {
