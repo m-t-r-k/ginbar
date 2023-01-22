@@ -12,9 +12,8 @@ function ProgessiveImage (props) {
             const baseElement = document.getElementById(props.source);
             const url = `../images/${props.source}`
             const handleLoad = () => {
-                console.log(baseElement);
-                baseElement.style.backgroundImage = `url(${url})`;
                 setIsLoaded(true);
+                baseElement.style.backgroundImage = `url(${url})`;
             };
             const image = new Image();
             image.addEventListener('load', handleLoad);
