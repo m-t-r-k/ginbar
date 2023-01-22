@@ -8,9 +8,9 @@ function ProgessiveImage (props) {
     classes = props.isBG ? classes : classes + " not-bg-image";
 
     useEffect(() => {
-        if (props.source) {
+        if (props.source && props.showImage) {
             const baseElement = document.getElementById(props.source);
-            const url = `../images/${props.source}`
+            const url = `../images/${props.source}`;
             const handleLoad = () => {
                 setIsLoaded(true);
                 baseElement.style.backgroundImage = `url(${url})`;
@@ -22,12 +22,12 @@ function ProgessiveImage (props) {
                 image.removeEventListener('load', handleLoad);
             };
         }
-    }, [props.source]);
+    }, [props.source, props.showImage]);
 
 
     return (
         <div id={props.source} className={isLoaded ? `${classes} loaded` : classes} style={{height: `${props.height}`}}>
-            <img className="blurryImage" src={`../images/blurry/thumb_${props.source}`} alt={props.alt} height="100%"></img>
+            <img className="blurryImage" src={`../images/blurry/thumb_${props.source}`} alt={props.alt} height="100%" loading='lazy'></img>
         </div>
     )
 }

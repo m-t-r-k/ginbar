@@ -49,7 +49,7 @@ function GinOverviewTile (props) {
               </div>
             </div>
           </div>
-          {isVisible ? <ProgressiveImage class="moodPicBg" isBG={true} source={props.imageMoodPicSmall} alt={props.name}></ProgressiveImage>: ""}
+          <ProgressiveImage showImage={isVisible} class="moodPicBg" isBG={true} source={props.imageMoodPicSmall} alt={props.name}></ProgressiveImage>
         </Link>
     </div>
   )
