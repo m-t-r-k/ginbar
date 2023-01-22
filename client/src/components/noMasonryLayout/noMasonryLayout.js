@@ -1,7 +1,8 @@
-import React from 'react';
-import GinOverviewTile from '../GinOverviewTile/GinOverviewTile.js';
+import React, { Suspense } from 'react';
 import './noMasonryLayout.scss';
 import Switch from "react-switch";
+
+const GinOverviewTile = React.lazy(() => import('../GinOverviewTile/GinOverviewTile.js')); //Lazy Load Component
 
 class NoMasonryLayout extends React.Component {
 
@@ -278,13 +279,15 @@ class NoMasonryLayout extends React.Component {
                 tagsList = [...tagsList, ...gin.mainNote];
                 return (
                   <div className='grid-item' tags={tagsList} key={gin.id} data-tipp={gin.recommendation}>
-                    <GinOverviewTile
-                    id={gin.id}
-                    name={gin.name}
-                    imageBottle={gin.imageBottle}
-                    imageMoodPicSmall={gin.imageMoodPicSmall}
-                    tags={tagsList}
-                    recommendation={gin.recommendation}></GinOverviewTile>
+                    <Suspense fallback={<div>Loading...</div>}>
+                      <GinOverviewTile
+                      id={gin.id}
+                      name={gin.name}
+                      imageBottle={gin.imageBottle}
+                      imageMoodPicSmall={gin.imageMoodPicSmall}
+                      tags={tagsList}
+                      recommendation={gin.recommendation}></GinOverviewTile>
+                    </Suspense>
                 </div>
                 );
               })
