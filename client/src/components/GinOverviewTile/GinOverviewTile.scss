@@ -50,6 +50,12 @@
     z-index: 200;
     padding: 20px;
     width: 100%;
+
+    .imageWrapper {
+        display: block;
+        height: 150px;
+        margin: 10px 0 20px;
+    }
     
     img {
         display: block;
