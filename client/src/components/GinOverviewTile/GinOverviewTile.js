@@ -38,7 +38,7 @@ function GinOverviewTile (props) {
               <span>Tipp</span>
             </div>
             <span className="imageWrapper">
-              <img src={`../images/${this.props.imageBottle}`} alt={this.props.name} height="150px" loading='lazy'></img>
+              <img src={`../images/${props.imageBottle}`} alt={props.name} height="150px" loading='lazy'></img>
             </span>
             <h2>{props.name}</h2>
             <div className='tagsViewMoreWrapper'>
