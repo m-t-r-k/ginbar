@@ -1,3 +1,4 @@
+@import "../scss/fonts";
 @import "../scss/variables";
 
 * {
@@ -74,21 +75,6 @@ ul {
 
 .no_margin_top {
 	margin-top: 0 !important;
-}
-
-.button {
-    display: block;
-    width: 100%;
-    background: #F5F5F5;
-    margin: 0;
-    font-size: 16px;
-    line-height: 16px;
-    font-family: "Raleway_Bold";
-    text-align: center;
-	height: 40px;
-    color: #303030;
-    padding-top: 12px;
-    opacity: 0.85;
 }
 
 .pageWrapper {
