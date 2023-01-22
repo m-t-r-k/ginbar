@@ -27,7 +27,7 @@ function ProgessiveImage (props) {
 
     return (
         <div id={props.source} className={isLoaded ? `${classes} loaded` : classes} style={{height: `${props.height}`}}>
-            <img className="blurryImage" src={`../images/blurry/thumb_${props.source}`} alt={props.alt} height="100%" loading='lazy'></img>
+            <img className="blurryImage" src={`../images/blurry/thumb_${props.source}`} alt={props.alt} height="100%"  loading={props.lazy ? 'lazy' : 'eager'}></img>
         </div>
     )
 }
