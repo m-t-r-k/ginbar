@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ProgressiveImage.scss';
 
 function ProgessiveImage (props) {
@@ -6,6 +6,12 @@ function ProgessiveImage (props) {
     const baseClass = "progressiveImage";
     let classes = `${baseClass} ${props.class}`;
     classes = props.isBG ? classes : classes + " not-bg-image";
+
+    useEffect(() =>{
+        const url = `../images/blurry/thumb_${props.source}`;
+        const image = new Image();
+        image.src = url;  
+    },[props.source]);
 
     async function loadFinal() {
         if (props.source) {
