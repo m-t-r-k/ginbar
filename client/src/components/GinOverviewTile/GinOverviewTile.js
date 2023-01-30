@@ -3,20 +3,20 @@ import './GinOverviewTile.scss';
 import { Link } from "react-router-dom";
 import TagsList from "../TagsList/TagsList";
 import BGImage from '../BGImage/BGImage';
+import ProgessiveImage from '../ProgressiveImage/ProgressiveImage';
 
 function GinOverviewTile (props) {
   const [ isVisible, setIsVisible] = useState(!props.lazy);
   const containerRef = useRef(null)
 
-  const callbackFunction = (entries) => {
-    const [ entry ] = entries
-    if ( entry.isIntersecting ) {
-      setIsVisible(true);
-      console.log(`${props.imageBottle} is visible`)
-    }
-  }
-
   useEffect(() => {
+    const callbackFunction = (entries) => {
+      const [ entry ] = entries
+      if ( entry.isIntersecting ) {
+        setIsVisible(true);
+      }
+    }
+  
     if(!isVisible) {
       const options = {
         root: null,
@@ -41,7 +41,8 @@ function GinOverviewTile (props) {
               <span>Tipp</span>
             </div>
             <span className="imageWrapper">
-              <img src={`../images/${props.imageBottle}`} alt={props.name} height="150px" loading={props.lazy ? 'lazy' : 'eager'}></img>
+              {!props.lazy ? <ProgessiveImage source={props.imageBottle} alt={props.name} height="150px"></ProgessiveImage> : ""}
+              {props.lazy && isVisible ? <ProgessiveImage source={props.imageBottle} alt={props.name} height="150px"></ProgessiveImage> : ""}
             </span>
             <h2>{props.name}</h2>
             <div className='tagsViewMoreWrapper'>
@@ -52,8 +53,8 @@ function GinOverviewTile (props) {
               </div>
             </div>
           </div>
-          {!props.lazy ? <BGImage imageMoodPicSmall={props.imageMoodPicSmall}></BGImage> : ""}
-          {props.lazy && isVisible ? <BGImage imageMoodPicSmall={props.imageMoodPicSmall}></BGImage> : ""}
+          {!props.lazy ? <BGImage source={props.imageMoodPicSmall}></BGImage> : ""}
+          {props.lazy && isVisible ? <BGImage source={props.imageMoodPicSmall}></BGImage> : ""}
         </Link>
     </div>
   )

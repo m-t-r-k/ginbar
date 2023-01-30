@@ -1,23 +1,11 @@
 
-@keyframes fadeOut {
-    0% { opacity: 1; }
-    100% { opacity: 0; }
+@import "../scss/variables";
+
+.progressive-image {
+    opacity: 0%;
 }
 
-
-.progressiveImage.not-bg-image {
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-}
-
-.blurryImage {
-    filter: blur(6px);
-}
-
-.loaded {
-    .blurryImage {
-        animation: fadeOut .4s;
-        opacity: 0;
-    }
+.progressive-image.loaded {
+    opacity: 100%;
+    @include standard-transition(opacity, 0.5s, 0s);
 }

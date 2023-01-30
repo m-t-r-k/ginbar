@@ -5,7 +5,7 @@ function BGImage (props) {
     const [ loading, setLoading] = useState("");
 
     useEffect(() => {
-        const url = `../images/${props.imageMoodPicSmall}`;
+        const url = `../images/${props.source}`;
         const handleLoad = () => {
             setLoading(" loaded");
         };
@@ -15,10 +15,10 @@ function BGImage (props) {
         return () => {
             image.removeEventListener('load', handleLoad);
         };
-    }, [props.imageMoodPicSmall])
+    }, [props.source])
 
     return (
-        <div className={`moodPicBg${loading}`} style={{backgroundImage: `url(../images/${props.imageMoodPicSmall})`}}></div>
+        <div className={`moodPicBg${loading}`} style={{backgroundImage: `url(../images/${props.source})`}}></div>
     )
 }
 export default BGImage;
