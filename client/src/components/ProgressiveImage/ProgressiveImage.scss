@@ -7,5 +7,5 @@
 
 .progressive-image.loaded {
     opacity: 100%;
-    @include standard-transition(opacity, 0.5s, 0s);
+    @include standard-transition(opacity, 0.3s, 0s);
 }
