@@ -29,14 +29,6 @@
                 opacity: 0.85;
             }
 
-            .moodPicBg {
-                transform: scale(1.05);
-            }
-            
-            .moodPicBg:before {
-                background: rgba($color: #000, $alpha: .45);
-            }
-
             .tagsList {
                 opacity: 0;
                 transform: translateY(-5px);
@@ -64,31 +56,6 @@
     h2 {
         @include tile_headline;
         margin-bottom: 10px;
-    }
-}
-
-.moodPicBg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 100;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    transform: scale(1.01);
-    @include standard-transition(transform, 0.5s, 0s);
-
-    &:before {
-        display: block;
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        @include standard-transition(background, 0.5s, 0s);
-        background: rgba($color: #000, $alpha: 0.6);
     }
 }
 
