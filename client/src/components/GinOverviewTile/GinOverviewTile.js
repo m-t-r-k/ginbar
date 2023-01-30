@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './GinOverviewTile.scss';
 import { Link } from "react-router-dom";
 import TagsList from "../TagsList/TagsList";
+import BGImage from '../BGImage/BGImage';
 
 function GinOverviewTile (props) {
   const [ isVisible, setIsVisible] = useState(!props.lazy);
@@ -48,8 +49,8 @@ function GinOverviewTile (props) {
               </div>
             </div>
           </div>
-          {!props.lazy ? <div className='moodPicBg' style={{backgroundImage: `url(../images/${props.imageMoodPicSmall})`}}></div> : ""}
-          {props.lazy && isVisible ? <div className='moodPicBg' style={{backgroundImage: `url(../images/${props.imageMoodPicSmall})`}}></div> : ""}
+          {!props.lazy ? <BGImage imageMoodPicSmall={props.imageMoodPicSmall}></BGImage> : ""}
+          {props.lazy && isVisible ? <BGImage imageMoodPicSmall={props.imageMoodPicSmall}></BGImage> : ""}
         </Link>
     </div>
   )
