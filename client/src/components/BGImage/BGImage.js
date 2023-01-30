@@ -5,14 +5,17 @@ function BGImage (props) {
     const [ loading, setLoading] = useState("");
 
     useEffect(() => {
-        console.log(loading)
-        const timeout = setTimeout(() => {
+        const url = `../images/${props.imageMoodPicSmall}`;
+        const handleLoad = () => {
             setLoading(" loaded");
-        }, 10)
-      
-        return () => clearTimeout(timeout)
-        
-    }, [])
+        };
+        const image = new Image();
+        image.addEventListener('load', handleLoad);
+        image.src = url;
+        return () => {
+            image.removeEventListener('load', handleLoad);
+        };
+    }, [props.imageMoodPicSmall])
 
     return (
         <div className={`moodPicBg${loading}`} style={{backgroundImage: `url(../images/${props.imageMoodPicSmall})`}}></div>
