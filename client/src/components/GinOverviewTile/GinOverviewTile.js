@@ -49,7 +49,7 @@ function GinOverviewTile (props) {
               </div>
             </div>
           </div>
-          <ProgressiveImage showImage={isVisible} lazy={props.lazy} class="moodPicBg" isBG={true} source={props.imageMoodPicSmall} alt={props.name}></ProgressiveImage>
+          <div className='moodPicBg' style={{backgroundImage: `url(../images/${this.props.imageMoodPicSmall})`}}></div>
         </Link>
     </div>
   )
