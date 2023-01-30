@@ -48,7 +48,7 @@ function GinOverviewTile (props) {
               </div>
             </div>
           </div>
-          {(isVisible || props.lazy) ? <div className='moodPicBg' style={{backgroundImage: `url(../images/${props.imageMoodPicSmall})`}}></div> : ""}
+          {(isVisible) ? <div className='moodPicBg' style={{backgroundImage: `url(../images/${props.imageMoodPicSmall})`}}></div> : ""}
         </Link>
     </div>
   )
