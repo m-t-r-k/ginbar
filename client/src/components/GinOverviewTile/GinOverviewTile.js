@@ -10,14 +10,17 @@ function GinOverviewTile (props) {
 
   const callbackFunction = (entries) => {
     const [ entry ] = entries
-    if ( entry.isIntersecting ) setIsVisible(true)
+    if ( entry.isIntersecting ) {
+      setIsVisible(true);
+      console.log(`${props.imageBottle} is visible`)
+    }
   }
 
   useEffect(() => {
     if(!isVisible) {
       const options = {
         root: null,
-        rootMargin: "100px 0px 0px 0px",
+        rootMargin: "0px 0px 300px 0px",
         threshold: 0
       }
       const refCurrent = containerRef.current
