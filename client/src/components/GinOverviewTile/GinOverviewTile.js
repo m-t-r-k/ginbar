@@ -23,7 +23,7 @@ function GinOverviewTile (props) {
               </div>
             </div>
           </div>
-          <div className='moodPicBg' style={{backgroundImage: `url(../images/${this.props.imageMoodPicSmall})`}}></div>
+          <div className='moodPicBg' style={{backgroundImage: `url(../images/${props.imageMoodPicSmall})`}}></div>
         </Link>
     </div>
   )
