@@ -182,7 +182,7 @@ $gutter-size: 20px;
     .masonry_wrap {
         display: grid;
         grid-template-columns: 1fr 4fr;
-        column-gap: $gutter-size;
+        column-gap: 10px;
     }
 
     .filterButton {
@@ -271,7 +271,7 @@ $gutter-size: 20px;
     margin-bottom: 20px;
     display: flex;
     flex-basis: 25%;
-    padding: 0 15px;
+    padding: 0 10px;
     width: auto;
 }
 
@@ -285,7 +285,7 @@ $gutter-size: 20px;
 
 @media screen and (max-width: 1260px){
     .padding_for_filter {
-        padding: 0 15px;
+        padding: 0 10px;
     }
     .grid-item {
         flex-basis: 33.333333%;

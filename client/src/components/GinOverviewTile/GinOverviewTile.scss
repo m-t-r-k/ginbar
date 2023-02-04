@@ -16,6 +16,7 @@
 
             img {
                 transform: scale(1.05);
+                @include standard-transition(transform, 0.5s, 0s);
             }
 
             h2 {
@@ -58,7 +59,6 @@
         margin: 0 auto;
         transform: scale(1);
         @include drop-shadow-dark;
-        @include standard-transition(transform, 0.5s, 0s);
     }
     
     h2 {
