@@ -40,10 +40,8 @@ function GinOverviewTile (props) {
             <div id='recommendation' className={props.recommendation ? "show" : ""}>
               <span>Tipp</span>
             </div>
-            <span className="imageWrapper">
-              {!props.lazy ? <ProgessiveImage source={props.imageBottle} alt={props.name} height="150px"></ProgessiveImage> : ""}
-              {props.lazy && isVisible ? <ProgessiveImage source={props.imageBottle} alt={props.name} height="150px"></ProgessiveImage> : ""}
-            </span>
+            {!props.lazy ? <ProgessiveImage source={props.imageBottle} alt={props.name} height="150px"></ProgessiveImage> : ""}
+            {props.lazy && isVisible ? <ProgessiveImage source={props.imageBottle} alt={props.name} height="150px"></ProgessiveImage> : ""}
             <h2>{props.name}</h2>
             <div className='tagsViewMoreWrapper'>
               <hr></hr>

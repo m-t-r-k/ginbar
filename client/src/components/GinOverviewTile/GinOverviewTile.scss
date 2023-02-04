@@ -51,6 +51,7 @@
     width: 100%;
     
     img {
+        aspect-ratio: 187/400;
         display: block;
         width: auto;
         height: 150px;
@@ -129,6 +130,14 @@
 @media screen and (max-width:680px) {
     .tileContent {
         padding: 20px;
+
+        img {
+            aspect-ratio: 187/400;
+            height: auto;
+            max-height: 150px;
+            width: 35%;
+            margin: 0px auto 10px;
+        }
 
         h2 {
             font-size: 21px;

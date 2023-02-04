@@ -18,7 +18,7 @@ function ProgressiveImage (props) {
     }, [props.source])
 
     return (
-        <img className={`progressive-image${loading}`} src={`../images/${props.source}`} alt={props.alt} height={props.height}></img>
+        <img className={`progressive-image${loading}`} src={`../images/${props.source}`} alt={props.alt}></img>
     )
 }
 export default ProgressiveImage;
