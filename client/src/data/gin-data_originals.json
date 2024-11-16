@@ -1,5 +1,24 @@
 [
-    {
+	{
+		"id": "birds_rainforest_gin",
+		"name": "Birds Rainforest Gin",
+		"type": "New Western Dry Gin",
+		"originCountry": "Deutschland",
+		"originCity": "Pfalz",
+		"alcohol": "39%",
+		"botanicals": [ "Wacholder", "Basilikum", "Zitrusfrüchte", "Koriander" ],
+		"mainNote": [ "Basilikum", "zitrus" ],
+		"recommendation": true,
+		"nosing": "Frische Aromen von Basilikum und Zitrusfrüchten.",
+		"taste": "Erfrischend mit einer harmonischen Balance zwischen Kräuter- und Zitrusnoten.",
+		"description": "Der Birds Rainforest Gin ist ein klassischer Dry Gin, der mit hochwertigen Botanicals hergestellt wird. Er zeichnet sich durch seine erfrischenden Aromen von Basilikum und Zitrus aus und bietet ein unvergessliches Geschmackserlebnis. Zudem unterstützt jede verkaufte Flasche Umweltschutzprojekte, indem ein Baum gepflanzt oder Plastik aus dem Ozean gesammelt wird.",
+		"perfectServe": "Ideal als Gin & Tonic mit frischen Kräutern oder in Cocktails.",
+		"imageBottle": "",
+		"imageMoodPic": "",
+		"imageMoodPicSmall": "",
+		"affiliateLink": "https://birds-impact.de"
+	},
+	{
 		"id": "tanqueray_no_ten",
 		"name": "Tanqueray Nº ten",
 		"type": "London Dry Gin",
