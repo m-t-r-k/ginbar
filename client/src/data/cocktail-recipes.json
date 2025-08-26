@@ -1,0 +1,41 @@
+[
+    {
+        "id": 0,
+        "title": "Juliet & Romeo",
+        "ingredients": [
+            {"amount": 2, "unit": "oz", "ingredient": "gin"},
+            {"amount": 0.75, "unit": "oz", "ingredient": "simple syrup"},
+            {"amount": 0.75, "unit": "oz", "ingredient": "lime juice"},
+            {"amount": 5, "unit": "drops", "ingredient": "rose water"},
+            {"amount": 3, "unit": "slices", "ingredient": "cucumber"},
+            {"amount": 1, "unit": "sprig", "ingredient": "mint"},
+            {"amount": 1, "unit": "pinch", "ingredient": "salt"}
+        ],
+        "glassware": "Cocktail glass",
+        "instructions": "MUDDLE cucumber and salt, add remaining incrediants. SHAKE and STRAIN in a coupe glass. Float single mint leave and add 1 drop of Rose water on top of it, add 3 drops of Angustora bitters."
+    },
+    {
+        "id": 1,
+        "title": "Martini (Modern)",
+        "ingredients": [
+            {"amount": 2, "unit": "oz", "ingredient": "dry gin"},
+            {"amount": 1, "unit": "oz", "ingredient": "dry vermouth"},
+            {"amount": 1, "unit": "", "ingredient": "olive or lemon twist"}
+        ],
+        "glassware": "Cocktail glass",
+        "instructions": "STIR and STRAIN into a chilled cocktail glass. Add garnish."
+    },
+    {
+        "id": 2,
+        "title": "Espresso Martini",
+        "ingredients": [
+            {"amount": 1, "unit": "oz", "ingredient": "vodka"},
+            {"amount": 1, "unit": "oz", "ingredient": "coffee liqueur"},
+            {"amount": 1, "unit": "oz", "ingredient": "espresso"},
+            {"amount": 0.25, "unit": "oz", "ingredient": "rich demerara syrup"},
+            {"amount": 1, "unit": "", "ingredient": "lemon twist"}
+        ],
+        "glassware": "Cocktail glass",
+        "instructions": "SHAKE and STRAIN into a chilled cocktail glass. Add one coffee bean as garnish."
+    }
+]

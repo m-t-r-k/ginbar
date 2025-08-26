@@ -164,6 +164,11 @@
         }
     },
 
+    "barMenu": {
+        "headline": "Bar Menu",
+        "bgImage": "what-is-gin-min.webp"
+    },
+
     "imprint": {
         "general": {
             "headline": "Impressum",

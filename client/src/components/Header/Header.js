@@ -44,6 +44,7 @@ function Header(darkHeader) {
             <NavLink to="/gin-types/" onClick={toggleNav}>Gin Sorten</NavLink>
             <NavLink to="/how-to-taste/" onClick={toggleNav}>Gin Verkostung</NavLink>
             <NavLink to="/gins/" onClick={toggleNav}>Gin Empfehlungen</NavLink>
+            <NavLink to="/bar-menu/" onClick={toggleNav}>Bar Menu</NavLink>
             <NavLink to="/imprint/" className={"imprint"} onClick={toggleNav}>Impressum</NavLink>
           </nav>
           <div className="mobileNavWrap" onClick={toggleNav}>

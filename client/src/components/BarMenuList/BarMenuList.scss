@@ -1,0 +1,10 @@
+.bar-menu-list {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 20px;
+
+    @media screen and (max-width: 1000px) {
+        grid-template-columns: 1fr;
+    }
+}

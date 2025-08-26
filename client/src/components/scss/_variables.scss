@@ -11,6 +11,7 @@ $light-grey: #F5F5F5;
 // GRADIENTS & SHADOWS
 $grey-transparent-gradient: linear-gradient(325deg, #FFFFFF 35%, #E5E5E5 100%);
 $black-transparent-black-gradient: linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0.90));
+$grey-transparent-gradient-double: linear-gradient(90deg, rgba(229,229,229,0) 0%, $light-grey 50%,rgba(229,229,229,0) 100%);
 
 @mixin drop-shadow-dark {
 	-webkit-filter: drop-shadow(0px 5px 10px rgba(#000, .5));

@@ -1,0 +1,53 @@
+@import "../scss/variables";
+
+.recipe-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    padding: 20px;
+    background: transparent;
+
+   &:hover {
+    background: $grey-transparent-gradient-double;
+   }
+    
+}
+
+.recipe-title
+{
+    @include secondary_headline;
+    margin: 0 auto;
+}
+
+.seperator {
+    display: block;
+    width: 100px;
+    content: "";
+    height: 1px;
+    background: $medium-grey;
+    margin: 10px auto 5px;
+}
+
+.recipe-ingredients
+{
+    @include simple_text($medium-grey);
+    text-align: center;
+
+    span {
+        &::before {
+            content: "-";
+            display: inline-block;
+            width: auto;
+            margin: 0 6px;
+        }
+
+        &:first-child::before {
+            content: "";
+            margin: 0;
+            display: none;
+        }
+    }
+}
+
+
