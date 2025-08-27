@@ -15,7 +15,7 @@ const BarMenu = () => {
 
   return(
     <MotionWrapper>
-		<section className='pageWrapper'>
+		<section id="bar_menu" className='pageWrapper'>
 			<BgImgTextBannerAltStyle
 				dark={true} 
 				right={false}

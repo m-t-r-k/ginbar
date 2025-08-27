@@ -1,1 +1,9 @@
 @import "../../scss/variables";
+
+@media screen and (max-width: 500px) {
+    #bar_menu {
+        .alternating_banner_section { 
+            min-height: inherit;
+        }
+    }
+}

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './BarMenuListItemDetail.scss';
 
 const decimalToFraction = (num) => {
@@ -27,7 +26,7 @@ const highlightKeyWord = (string) => {
 };
 
 const BarMenuListItemDetail = (props) => (
-  <div class="fullscreen_overlay">
+  <div className={`fullscreen_overlay${props.visible ? ' visible' : ''}`}>
     <div class="overlay_wrapper fixed_width">
       <div class="close-btn" onClick={props.handleCloseOverlay}><span></span><span></span></div>
       <div class="overlay_content">
@@ -37,7 +36,7 @@ const BarMenuListItemDetail = (props) => (
             <ul>
               {props.selectedRecipe.ingredients.map((ing, i) => (
                 <li key={i}>
-                  <span>{decimalToFraction(ing.amount)}</span>
+                   {ing.amount !== 0 && <span>{decimalToFraction(ing.amount)}</span>}
                    {ing.unit !== "" && <span>{ing.unit}</span>}
                   {ing.ingredient}
                 </li>

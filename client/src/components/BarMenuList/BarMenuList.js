@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './BarMenuList.scss';
 import BarMenuItem from '../BarMenuItem/BarMenuItem';
 import RecipesData from '../../data/cocktail-recipes.json';
@@ -11,16 +10,35 @@ class BarMenuList extends React.Component {
   };
 
   handleItemClick = (recipe) => {
-    this.setState({ selectedRecipe: recipe });
+    this.setState({ selectedRecipe: recipe }, () => {
+      setTimeout(() => {
+        this.setState({ overlayVisible: true });
+      }, 10); // short delay to trigger CSS transition
+    });
   };
 
   handleCloseOverlay = () => {
-    this.setState({ selectedRecipe: null });
+     this.setState({ overlayVisible: false });
+    setTimeout(() => {
+      this.setState({ selectedRecipe: null });
+    }, 250); // match your CSS transition duration
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.overlayVisible && !prevState.overlayVisible) {
+      document.body.classList.add('no-scroll');
+    } else if (!this.state.overlayVisible && prevState.overlayVisible) {
+      document.body.classList.remove('no-scroll');
+    }
+  }
+
   render() {
-    const data = RecipesData;
-    const { selectedRecipe } = this.state;
+    const data = [...RecipesData].sort((a, b) => {
+      if (a.title < b.title) return -1;
+      if (a.title > b.title) return 1;
+      return 0;
+    });
+    const { selectedRecipe, overlayVisible } = this.state;
 
     return ( 
       <section className="fixed_width">
@@ -38,6 +56,7 @@ class BarMenuList extends React.Component {
 
         {selectedRecipe && (
           <BarMenuListItemDetail 
+            visible={overlayVisible}
             selectedRecipe={this.state.selectedRecipe}
             handleCloseOverlay={this.handleCloseOverlay}
           />

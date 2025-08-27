@@ -21,16 +21,9 @@ footer {
             background: rgba($light-grey, 0);
 
             a {
-                color: $light-grey;
                 height: 100%;
                 padding: auto 40px;
-                
-                &:hover {
-                    color: #fff;
-                }
             }
-
-        
         }
 
         a {

@@ -112,17 +112,28 @@ hr {
 	}
 }
 
+.no-scroll {
+    overflow: hidden !important;
+    height: 100vh !important;
+}
+
 .fullscreen_overlay {
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100vw;
 	height: 100vh;
-	background: rgba($color: $light-grey, $alpha: 0.95);
+	background: rgba($color: $light-grey, $alpha: 1);
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	z-index: 1000;
+	opacity: 0;
+	@include standard-transition(opacity, 0.25s, 0s);
+
+	&.visible {
+        opacity: 1;
+    }
 
 	.close-btn {
 		position: absolute;
@@ -191,7 +202,7 @@ hr {
 
 		> div {
 			display:  grid;
-			grid-template-columns: 1fr 1fr;
+			grid-template-columns: auto auto;
 			gap: 40px;
 
 			> div {

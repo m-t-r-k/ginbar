@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './BarMenuItem.scss';
 
 class BarMenuItem extends React.Component {
