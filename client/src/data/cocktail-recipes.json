@@ -46,7 +46,7 @@
             {"amount": 2, "unit": "oz", "ingredient": "light rum"},
             {"amount": 1, "unit": "oz", "ingredient": "brandy"},
             {"amount": 0.5, "unit": "oz", "ingredient": "gin"},
-            {"amount": 1, "unit": "oz", "ingredient": "orange juice"},
+            {"amount": 1, "unit": "oz", "ingredient": "lime juice"},
             {"amount": 2, "unit": "oz", "ingredient": "orange juice"},
             {"amount": 0.75, "unit": "oz", "ingredient": "orgeat syrup"},
             {"amount": 0.5, "unit": "oz", "ingredient": "sweet sherry"}
@@ -73,7 +73,7 @@
         "ingredients": [
             {"amount": 1.5, "unit": "oz", "ingredient": "white rum"},
             {"amount": 1.5, "unit": "oz", "ingredient": "blanc vermouth"},
-            {"amount": 2, "unit": "teaspoon", "ingredient": "orange curacao"},
+            {"amount": 2, "unit": "teaspoon", "ingredient": "orange curaçao"},
             {"amount": 2, "unit": "teaspoon", "ingredient": "grenadine"},
             {"amount": 1, "unit": "", "ingredient": "orange twist"}
         ],
@@ -103,7 +103,7 @@
         "ingredients": [
             {"amount": 1, "unit": "oz", "ingredient": "lime juice"},
             {"amount": 2, "unit": "oz", "ingredient": "dark rum"},
-            {"amount": 1, "unit": "oz", "ingredient": "orange curacao"},
+            {"amount": 1, "unit": "oz", "ingredient": "orange curaçao"},
             {"amount": 0.75, "unit": "oz", "ingredient": "orgeat syrup"},
             {"amount": 1, "unit": "", "ingredient": "mint sprig"}
         ],
@@ -132,7 +132,7 @@
             {"amount": 1, "unit": "", "ingredient": "orange twist"}
         ],
         "glassware": "Rocks glass",
-        "instructions": "STIR and STRAIN into a ice-filled rocks glass. Add the garnish."
+        "instructions": "STIR and STRAIN into an ice-filled, chilled rocks glass. Add the garnish."
     },
     {
         "id": 10,
@@ -142,18 +142,18 @@
             {"amount": 0.5, "unit": "oz", "ingredient": "dry vermouth"},
             {"amount": 0.5, "unit": "oz", "ingredient": "sweet vermouth"},
             {"amount": 0.5, "unit": "oz", "ingredient": "orange juice"},
-            {"amount": 0.5, "unit": "oz", "ingredient": "orange curacao"},
+            {"amount": 0.5, "unit": "oz", "ingredient": "orange curaçao"},
             {"amount": 2, "unit": "dashes", "ingredient": "angustora bitters"}
         ],
-        "glassware": "Cocktail glass",
-        "instructions": "SHAKE and STRAIN into a chilled cocktail glass."
+        "glassware": "Nick & Nora glass",
+        "instructions": "SHAKE and STRAIN into a chilled Nick & Nora glass."
     },
     {
         "id": 11,
         "title": "Sidecar",
         "ingredients": [
             {"amount": 1.5, "unit": "oz", "ingredient": "cognac"},
-            {"amount": 1, "unit": "oz", "ingredient": "orange curacao"},
+            {"amount": 1, "unit": "oz", "ingredient": "orange curaçao"},
             {"amount": 0.5, "unit": "oz", "ingredient": "lemon juice"},
             {"amount": 1, "unit": "", "ingredient": "lemon twist"}
         ],
@@ -170,8 +170,8 @@
             {"amount": 0.75, "unit": "oz", "ingredient": "simple syrup"},
             {"amount": 1, "unit": "teaspoon", "ingredient": "angustora bitters"}
         ],
-        "glassware": "Cocktail glass",
-        "instructions": "SHAKE and STRAIN into a chilled cocktail glass."
+        "glassware": "Nick & Nora glass",
+        "instructions": "SHAKE and STRAIN into a chilled Nick & Nora glass."
     },
     {
         "id": 13,
@@ -183,7 +183,7 @@
             {"amount": 3, "unit": "dashes", "ingredient": "peychaud's bitters"}
         ],
         "glassware": "Collins glass",
-        "instructions": "BUILD in an ice-filled collins glass."
+        "instructions": "BUILD in an ice-filled, chilled collins glass."
     },
     {
         "id": 14,
@@ -193,9 +193,54 @@
             {"amount": 0.75, "unit": "oz", "ingredient": "lime juice"},
             {"amount": 0.75, "unit": "oz", "ingredient": "orange juice"},
             {"amount": 0.5, "unit": "oz", "ingredient": "vanilla syrup"},
-            {"amount": 0, "unit": "", "ingredient": "eatable flower blossoms"}
+            {"amount": 0, "unit": "", "ingredient": "edible flower blossoms"}
         ],
         "glassware": "Collins glass",
         "instructions": "SHAKE and STRAIN into a chilled cocktail glass. Add the garnish."
+    },
+    {
+        "id": 15,
+        "title": "Mhm, Joah",
+        "ingredients": [
+            {"amount": 1, "unit": "oz", "ingredient": "rosmary geist"},
+            {"amount": 1, "unit": "oz", "ingredient": "raspberry geist"},
+            {"amount": 1, "unit": "oz", "ingredient": "lemon juice"},
+            {"amount": 1, "unit": "oz", "ingredient": "raspberry syrup"},
+            {"amount": 0.5, "unit": "oz", "ingredient": "vanilla syrup"},
+            {"amount": 1, "unit": "", "ingredient": "lemon twist"},
+            {"amount": 1, "unit": "", "ingredient": "rosmary twig"}
+        ],
+        "glassware": "Rocks glass",
+        "instructions": "SHAKE and STRAIN into an ice-filled, chilled rocks glass. Add the garnish."
+    },
+    {
+        "id": 16,
+        "title": "Caricature Cocktail",
+        "ingredients": [
+            {"amount": 1, "unit": "oz", "ingredient": "gin"},
+            {"amount": 0.5, "unit": "oz", "ingredient": "sweet vermouth"},
+            {"amount": 0.75, "unit": "oz", "ingredient": "triple sec"},
+            {"amount": 0.5, "unit": "oz", "ingredient": "Campari"},
+            {"amount": 0.5, "unit": "oz", "ingredient": "orange juice"},
+            {"amount": 0.33, "unit": "oz", "ingredient": "lemon juice"},
+            {"amount": 1, "unit": "", "ingredient": "orange twist"}
+             
+        ],
+        "glassware": "Nick & Nora glass",
+        "instructions": "SHAKE and STRAIN into a chilled Nick & Nora rocks glass. Add the garnish."
+    },
+    {
+        "id": 17,
+        "title": "Clover Club",
+        "ingredients": [
+            {"amount": 2, "unit": "oz", "ingredient": "gin"},
+            {"amount": 1, "unit": "oz", "ingredient": "lemon juice"},
+            {"amount": 0.75, "unit": "oz", "ingredient": "raspberry syrup"},
+            {"amount": 1, "unit": "", "ingredient": "egg white"},
+            {"amount": 0, "unit": "", "ingredient": "edible flower blossoms"}
+             
+        ],
+        "glassware": "Coupe glass",
+        "instructions": "DRA SHAKE all ingredients without ice, then SHAKE and STRAIN into a chilled coupe glass. Add the garnish."
     }
 ]

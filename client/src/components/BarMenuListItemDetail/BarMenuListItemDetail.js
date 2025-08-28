@@ -4,13 +4,19 @@ import './BarMenuListItemDetail.scss';
 const decimalToFraction = (num) => {
   const fractions = {
     0.25: '¼',
+    0.33: '⅓',
     0.5: '½',
+    0.66: '⅔',
     0.75: '¾',
     1.25: '1¼',
+    1.33: '1⅓',
     1.5: '1½',
+    1.66: '1⅔',
     1.75: '1¾',
     2.25: '2¼',
+    1.33: '2⅓',
     2.5: '2½',
+    2.66: '2⅔',
     2.75: '2¾'
   };
   return fractions[num] || num;
