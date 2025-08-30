@@ -37,6 +37,7 @@ const BarMenuListItemDetail = (props) => (
       <div class="close-btn" onClick={props.handleCloseOverlay}><span></span><span></span></div>
       <div class="overlay_content">
         <h2>{props.selectedRecipe.title}</h2>
+        <div class="seperator"></div>
         <div>
           <div>
             <ul>
