@@ -241,6 +241,35 @@
              
         ],
         "glassware": "Coupe glass",
-        "instructions": "DRA SHAKE all ingredients without ice, then SHAKE and STRAIN into a chilled coupe glass. Add the garnish."
+        "instructions": "DRY SHAKE all ingredients without ice, then SHAKE and STRAIN into a chilled coupe glass. Add the garnish."
+    },
+    {
+        "id": 18,
+        "title": "Gin Basil Smash",
+        "ingredients": [
+            {"amount": 2, "unit": "oz", "ingredient": "gin"},
+            {"amount": 0.75, "unit": "oz", "ingredient": "lemon juice"},
+            {"amount": 0.75, "unit": "oz", "ingredient": "simple or basil syrup"},
+            {"amount": 8, "unit": "leaves", "ingredient": "basil"},
+            {"amount": 1, "unit": "sprig", "ingredient": "basil"}
+             
+        ],
+        "glassware": "Rocks glass",
+        "instructions": "MUDDLE the basil leaves with the syrup. Add the gin and lemon juice. SHAKE and STRAIN into a chilled rocks glass. Add the garnish."
+    },
+    {
+        "id": 19,
+        "title": "American Beauty",
+        "ingredients": [
+            {"amount": 2, "unit": "oz", "ingredient": "Brandy"},
+            {"amount": 0.5, "unit": "oz", "ingredient": "dry vermouth"},
+            {"amount": 0.5, "unit": "oz", "ingredient": "crème de menthe"},
+            {"amount": 0.5, "unit": "oz", "ingredient": "orange juice"},
+            {"amount": 0.5, "unit": "oz", "ingredient": "grenadine"},
+            {"amount": 1, "unit": "teaspoon", "ingredient": "red wine"}
+             
+        ],
+        "glassware": "Coupe glass",
+        "instructions": "SHAKE and STRAIN all ingredients except the red wine into a chilled chilled coupe glass. FLOAT the red wine."
     }
 ]
