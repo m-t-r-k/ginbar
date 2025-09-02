@@ -249,7 +249,7 @@
         "ingredients": [
             {"amount": 2, "unit": "oz", "ingredient": "gin"},
             {"amount": 0.75, "unit": "oz", "ingredient": "lemon juice"},
-            {"amount": 0.75, "unit": "oz", "ingredient": "simple or basil syrup"},
+            {"amount": 0.75, "unit": "oz", "ingredient": "simple syrup"},
             {"amount": 8, "unit": "leaves", "ingredient": "basil"},
             {"amount": 1, "unit": "sprig", "ingredient": "basil"}
              
@@ -261,7 +261,7 @@
         "id": 19,
         "title": "American Beauty",
         "ingredients": [
-            {"amount": 2, "unit": "oz", "ingredient": "Brandy"},
+            {"amount": 2, "unit": "oz", "ingredient": "brandy"},
             {"amount": 0.5, "unit": "oz", "ingredient": "dry vermouth"},
             {"amount": 0.5, "unit": "oz", "ingredient": "crème de menthe"},
             {"amount": 0.5, "unit": "oz", "ingredient": "orange juice"},
