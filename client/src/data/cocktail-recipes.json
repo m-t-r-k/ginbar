@@ -703,18 +703,5 @@
     ],
     "glassware": "Coupe glass",
     "instructions": "SHAKE and STRAIN all ingredients except the red wine into a chilled chilled coupe glass. FLOAT the red wine."
-  },
-  {
-    "title": "tt",
-    "ingredients": [
-      {
-        "amount": "t",
-        "unit": "t",
-        "ingredient": "t"
-      }
-    ],
-    "glassware": "t",
-    "instructions": "t",
-    "id": 18
   }
 ]
