@@ -128,7 +128,7 @@
         "ingredient": "lime juice"
       },
       {
-        "amount": 2,
+        "amount": 1,
         "unit": "oz",
         "ingredient": "orange juice"
       },
@@ -140,11 +140,11 @@
       {
         "amount": 0.5,
         "unit": "oz",
-        "ingredient": "sweet vermouth"
+        "ingredient": "red wine"
       }
     ],
     "glassware": "Collins glass",
-    "instructions": "SHAKE and STRAIN everything except the sherri into an ice-filled collins glass. FLOAT the sherry."
+    "instructions": "SHAKE and STRAIN everything except the sherri into an ice-filled collins glass. FLOAT the red wine."
   },
   {
     "id": 4,
@@ -270,14 +270,14 @@
     "title": "Mai Tai",
     "ingredients": [
       {
-        "amount": 1,
-        "unit": "oz",
-        "ingredient": "lime juice"
-      },
-      {
         "amount": 2,
         "unit": "oz",
         "ingredient": "dark rum"
+      },
+      {
+        "amount": 1,
+        "unit": "oz",
+        "ingredient": "lime juice"
       },
       {
         "amount": 1,
@@ -295,7 +295,7 @@
         "ingredient": "mint sprig"
       }
     ],
-    "glassware": "Collins glass",
+    "glassware": "Double old-fashioned glass",
     "instructions": "Squeeze the juice from the lime and reserve the lime shell. Shake all ingrediants with 2 cups crushed ice, and pour, unstrained, into an double old-fashedn glass. Sink the lime shell into the drink, add the garnish."
   },
   {
