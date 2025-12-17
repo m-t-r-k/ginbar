@@ -454,34 +454,6 @@
     "instructions": "SHAKE and STRAIN into a chilled Nick & Nora glass."
   },
   {
-    "id": 13,
-    "title": "Tart Gin Cooler",
-    "ingredients": [
-      {
-        "amount": 2,
-        "unit": "oz",
-        "ingredient": "gin"
-      },
-      {
-        "amount": 2,
-        "unit": "oz",
-        "ingredient": "grapefruit juice"
-      },
-      {
-        "amount": 2,
-        "unit": "oz",
-        "ingredient": "tonic water"
-      },
-      {
-        "amount": 3,
-        "unit": "dashes",
-        "ingredient": "peychaud's bitters"
-      }
-    ],
-    "glassware": "Collins glass",
-    "instructions": "BUILD in an ice-filled, chilled collins glass."
-  },
-  {
     "id": 14,
     "title": "Luau Daiquiri",
     "ingredients": [
@@ -526,7 +498,7 @@
       {
         "amount": 1,
         "unit": "oz",
-        "ingredient": "raspberry geist"
+        "ingredient": "dry gin"
       },
       {
         "amount": 1,
@@ -534,7 +506,7 @@
         "ingredient": "lemon juice"
       },
       {
-        "amount": 1,
+        "amount": 0.66,
         "unit": "oz",
         "ingredient": "raspberry syrup"
       },
@@ -703,5 +675,193 @@
     ],
     "glassware": "Coupe glass",
     "instructions": "SHAKE and STRAIN all ingredients except the red wine into a chilled chilled coupe glass. FLOAT the red wine."
+  },
+  {
+    "id": 20,
+    "title": "Brandy Alexander",
+    "ingredients": [
+      {
+        "amount": 1,
+        "unit": "oz",
+        "ingredient": "brandy"
+      },
+      {
+        "amount": 1,
+        "unit": "oz",
+        "ingredient": "crème de cacao"
+      },
+      {
+        "amount": 1,
+        "unit": "oz",
+        "ingredient": "cream"
+      },
+      {
+        "amount": 0,
+        "unit": "",
+        "ingredient": "nutmeg (garnish)"
+      }
+    ],
+    "glassware": "Coupe glass",
+    "instructions": "SHAKE with ice and STRAIN into a chilled coupe glass. Grate nutmeg on top."
+  },
+  {
+    "id": 21,
+    "title": "Hurricane",
+    "ingredients": [
+      {
+        "amount": 1,
+        "unit": "oz",
+        "ingredient": "light rum"
+      },
+      {
+        "amount": 1,
+        "unit": "oz",
+        "ingredient": "dark rum"
+      },
+      {
+        "amount": 0.66,
+        "unit": "oz",
+        "ingredient": "lemon juice"
+      },
+      {
+        "amount": 2.5,
+        "unit": "oz",
+        "ingredient": "passion fruit juice"
+      },
+      {
+        "amount": 2.5,
+        "unit": "oz",
+        "ingredient": "orange juice"
+      },
+      {
+        "amount": 0.33,
+        "unit": "oz",
+        "ingredient": "grenadine"
+      }
+    ],
+    "glassware": "Hurricane glass",
+    "instructions": "SHAKE and STRAIN into an ice-filled hurricane glass."
+  },
+  {
+    "id": 22,
+    "title": "Boulevardier",
+    "ingredients": [
+      {
+        "amount": 1,
+        "unit": "oz",
+        "ingredient": "bourbon"
+      },
+      {
+        "amount": 1,
+        "unit": "oz",
+        "ingredient": "Campari"
+      },
+      {
+        "amount": 1,
+        "unit": "oz",
+        "ingredient": "sweet vermouth"
+      }
+    ],
+    "glassware": "Rocks glass",
+    "instructions": "STIR with ice and STRAIN into a rocks glass. Garnish with an orange twist."
+  },
+  {
+    "title": "Boulevardier",
+    "glassware": "Rocks glass",
+    "instructions": "STIR and STRAIN into an ice-filled, chilled rocks glass. Add the garnish.",
+    "ingredients": [
+      {
+        "amount": 1.5,
+        "unit": "oz",
+        "ingredient": "bourbon"
+      },
+      {
+        "amount": 1.5,
+        "unit": "oz",
+        "ingredient": "Campari"
+      },
+      {
+        "amount": 1.5,
+        "unit": "oz",
+        "ingredient": "sweet vermouth"
+      },
+      {
+        "amount": 1,
+        "unit": "",
+        "ingredient": "orange twist"
+      }
+    ],
+    "id": 23
+  },
+  {
+    "title": "Bourbon Renewal",
+    "glassware": "Rocks glass",
+    "instructions": "SHAKE and STRAIN into a ice-filled rocks glass. Add the garnish.",
+    "ingredients": [
+      {
+        "amount": 2,
+        "unit": "oz",
+        "ingredient": "bourbon"
+      },
+      {
+        "amount": 0.5,
+        "unit": "oz",
+        "ingredient": "creme de cassis"
+      },
+      {
+        "amount": 1,
+        "unit": "oz",
+        "ingredient": "lemon juice"
+      },
+      {
+        "amount": 0.5,
+        "unit": "oz",
+        "ingredient": "simple syrup"
+      },
+      {
+        "amount": 2,
+        "unit": "dashes",
+        "ingredient": "angustora bitters"
+      },
+      {
+        "amount": 1,
+        "unit": "",
+        "ingredient": "lemon wheel"
+      }
+    ],
+    "id": 24
+  },
+  {
+    "title": "Macallans Whiskey Sour",
+    "glassware": "Rocks glass",
+    "instructions": "SHAKE and STRAIN all ingredients except the port wine into a chilled chilled coupe glass. FLOAT theport wine.",
+    "ingredients": [
+      {
+        "amount": 1.5,
+        "unit": "oz",
+        "ingredient": "rye whiskey"
+      },
+      {
+        "amount": 2.33,
+        "unit": "oz",
+        "ingredient": "lemon juice"
+      },
+      {
+        "amount": 0.5,
+        "unit": "oz",
+        "ingredient": "rich demerara syrup"
+      },
+      {
+        "amount": 0.66,
+        "unit": "oz",
+        "ingredient": "egg white"
+      },
+      {
+        "amount": 0.33,
+        "unit": "oz",
+        "ingredient": "port wine"
+      }
+    ],
+    "id": 25
   }
 ]

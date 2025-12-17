@@ -45,6 +45,10 @@ function Header(darkHeader) {
             <NavLink to="/how-to-taste/" onClick={toggleNav}>Gin Verkostung</NavLink>
             <NavLink to="/gins/" onClick={toggleNav}>Gin Empfehlungen</NavLink>
             <NavLink to="/bar-menu/" onClick={toggleNav}>Bar Menu</NavLink>
+            {/* Show dev edit link only when running on localhost */}
+            {(window.location && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) && (
+              <NavLink to="/dev-edit-recipes/" onClick={toggleNav}>Edit Recipes</NavLink>
+            )}
             <NavLink to="/imprint/" className={"imprint"} onClick={toggleNav}>Impressum</NavLink>
           </nav>
           <div className="mobileNavWrap" onClick={toggleNav}>
