@@ -147,8 +147,9 @@
     "instructions": "SHAKE and STRAIN everything except the sherri into an ice-filled collins glass. FLOAT the red wine."
   },
   {
-    "id": 4,
     "title": "Earl Grey Martini",
+    "glassware": "Coupe glass",
+    "instructions": "DRY SHAKE all ingredients, then SHAKE and STRAIN into a chilled coupe glass. Add the garnish.",
     "ingredients": [
       {
         "amount": 1.75,
@@ -156,14 +157,14 @@
         "ingredient": "Earl Grey-infused gin"
       },
       {
-        "amount": 0.75,
-        "unit": "oz",
-        "ingredient": "lemon juice"
-      },
-      {
         "amount": 1,
         "unit": "oz",
         "ingredient": "simple syrup"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "lemon juice"
       },
       {
         "amount": 1,
@@ -176,8 +177,7 @@
         "ingredient": "lemon twist"
       }
     ],
-    "glassware": "Coupe glass",
-    "instructions": "SHAKE and STRAIN into a chilled, sugar-rimmed coupe glass. Add the garnish."
+    "id": 4
   },
   {
     "id": 5,
@@ -573,8 +573,9 @@
     "instructions": "SHAKE and STRAIN into a chilled Nick & Nora rocks glass. Add the garnish."
   },
   {
-    "id": 17,
     "title": "Clover Club",
+    "glassware": "Coupe glass",
+    "instructions": "DRY SHAKE all ingredients, then SHAKE and STRAIN into a chilled coupe glass. Add the garnish.",
     "ingredients": [
       {
         "amount": 2,
@@ -602,8 +603,7 @@
         "ingredient": "edible flower blossoms"
       }
     ],
-    "glassware": "Coupe glass",
-    "instructions": "DRY SHAKE all ingredients without ice, then SHAKE and STRAIN into a chilled coupe glass. Add the garnish."
+    "id": 17
   },
   {
     "id": 18,
@@ -743,29 +743,6 @@
     "instructions": "SHAKE and STRAIN into an ice-filled hurricane glass."
   },
   {
-    "id": 22,
-    "title": "Boulevardier",
-    "ingredients": [
-      {
-        "amount": 1,
-        "unit": "oz",
-        "ingredient": "bourbon"
-      },
-      {
-        "amount": 1,
-        "unit": "oz",
-        "ingredient": "Campari"
-      },
-      {
-        "amount": 1,
-        "unit": "oz",
-        "ingredient": "sweet vermouth"
-      }
-    ],
-    "glassware": "Rocks glass",
-    "instructions": "STIR with ice and STRAIN into a rocks glass. Garnish with an orange twist."
-  },
-  {
     "title": "Boulevardier",
     "glassware": "Rocks glass",
     "instructions": "STIR and STRAIN into an ice-filled, chilled rocks glass. Add the garnish.",
@@ -863,5 +840,71 @@
       }
     ],
     "id": 25
+  },
+  {
+    "title": "Cucumber Rose Cooler",
+    "glassware": "Highball glass",
+    "instructions": "BUILD in a highball glass. MUDDLE cucumber, simple syrup and salt, add lime juice and roes water. Fill the glass with crushed ice and add soda. STIR well.",
+    "ingredients": [
+      {
+        "amount": 0.5,
+        "unit": "oz",
+        "ingredient": "lime juice"
+      },
+      {
+        "amount": 0.5,
+        "unit": "oz",
+        "ingredient": "simple syrup"
+      },
+      {
+        "amount": 15,
+        "unit": "drops",
+        "ingredient": "rose water"
+      },
+      {
+        "amount": 3,
+        "unit": "slices",
+        "ingredient": "cucumber"
+      },
+      {
+        "amount": 1,
+        "unit": "pinch",
+        "ingredient": "salt"
+      }
+    ],
+    "id": 26
+  },
+  {
+    "title": "Earl Grey Virgin",
+    "glassware": "Coupe glass",
+    "instructions": "DRY SHAKE all ingredients, then SHAKE and STRAIN into a chilled coupe glass. Add the garnish.",
+    "ingredients": [
+      {
+        "amount": 1.75,
+        "unit": "oz",
+        "ingredient": "Earl Grey tea"
+      },
+      {
+        "amount": 1,
+        "unit": "oz",
+        "ingredient": "simple syrup"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "lemon juice"
+      },
+      {
+        "amount": 1,
+        "unit": "",
+        "ingredient": "egg white"
+      },
+      {
+        "amount": 1,
+        "unit": "",
+        "ingredient": "lemon twist"
+      }
+    ],
+    "id": 27
   }
 ]
