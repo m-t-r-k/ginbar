@@ -393,11 +393,12 @@
     "instructions": "SHAKE and STRAIN into a chilled Nick & Nora glass."
   },
   {
-    "id": 11,
     "title": "Sidecar",
+    "glassware": "Cocktail glass",
+    "instructions": "SHAKE and STRAIN into a chilled cocktail glass. Add the garnish.",
     "ingredients": [
       {
-        "amount": 1.5,
+        "amount": 1,
         "unit": "oz",
         "ingredient": "cognac"
       },
@@ -407,7 +408,7 @@
         "ingredient": "orange curaçao"
       },
       {
-        "amount": 0.5,
+        "amount": 1,
         "unit": "oz",
         "ingredient": "lemon juice"
       },
@@ -417,8 +418,7 @@
         "ingredient": "lemon twist"
       }
     ],
-    "glassware": "Cocktail glass",
-    "instructions": "SHAKE and STRAIN into a chilled cocktail glass. Add the garnish."
+    "id": 11
   },
   {
     "id": 12,
@@ -705,44 +705,6 @@
     "instructions": "SHAKE with ice and STRAIN into a chilled coupe glass. Grate nutmeg on top."
   },
   {
-    "id": 21,
-    "title": "Hurricane",
-    "ingredients": [
-      {
-        "amount": 1,
-        "unit": "oz",
-        "ingredient": "light rum"
-      },
-      {
-        "amount": 1,
-        "unit": "oz",
-        "ingredient": "dark rum"
-      },
-      {
-        "amount": 0.66,
-        "unit": "oz",
-        "ingredient": "lemon juice"
-      },
-      {
-        "amount": 2.5,
-        "unit": "oz",
-        "ingredient": "passion fruit juice"
-      },
-      {
-        "amount": 2.5,
-        "unit": "oz",
-        "ingredient": "orange juice"
-      },
-      {
-        "amount": 0.33,
-        "unit": "oz",
-        "ingredient": "grenadine"
-      }
-    ],
-    "glassware": "Hurricane glass",
-    "instructions": "SHAKE and STRAIN into an ice-filled hurricane glass."
-  },
-  {
     "title": "Boulevardier",
     "glassware": "Rocks glass",
     "instructions": "STIR and STRAIN into an ice-filled, chilled rocks glass. Add the garnish.",
@@ -811,7 +773,7 @@
   {
     "title": "Macallans Whiskey Sour",
     "glassware": "Rocks glass",
-    "instructions": "SHAKE and STRAIN all ingredients except the port wine into a chilled chilled coupe glass. FLOAT theport wine.",
+    "instructions": "SHAKE and STRAIN all ingredients except the port wine into a chilled rocks glass. FLOAT the port wine.",
     "ingredients": [
       {
         "amount": 1.5,
@@ -819,12 +781,12 @@
         "ingredient": "rye whiskey"
       },
       {
-        "amount": 2.33,
+        "amount": 0.66,
         "unit": "oz",
         "ingredient": "lemon juice"
       },
       {
-        "amount": 0.5,
+        "amount": 0.33,
         "unit": "oz",
         "ingredient": "rich demerara syrup"
       },
