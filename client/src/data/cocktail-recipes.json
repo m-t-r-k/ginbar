@@ -213,8 +213,9 @@
     "instructions": "SHAKE and STRAIN into a chilled cocktail glass. Add the garnish."
   },
   {
-    "id": 6,
     "title": "Long Island Iced Tea",
+    "glassware": "Collins glass",
+    "instructions": "SHAKE and STRAIN everything except the cola into an ice-filled collins glass. Top with the cola. Add the garnish.",
     "ingredients": [
       {
         "amount": 1,
@@ -259,15 +260,15 @@
       {
         "amount": 1,
         "unit": "",
-        "ingredient": "lemon wedge"
+        "ingredient": "lemon wheele"
       }
     ],
-    "glassware": "Collins glass",
-    "instructions": "SHAKE and STRAIN everything except the cola into an ice-filled collins glass. Top with the cola. Add the garnish."
+    "id": 6
   },
   {
-    "id": 7,
     "title": "Mai Tai",
+    "glassware": "Double old-fashioned glass",
+    "instructions": "Squeeze the juice from the lime and reserve the lime shell. SHAKE all ingrediants with 2 cups crushed ice, and pour, unstrained, into an double old-fashedn glass. Sink the lime shell into the drink.",
     "ingredients": [
       {
         "amount": 2,
@@ -288,19 +289,14 @@
         "amount": 0.75,
         "unit": "oz",
         "ingredient": "orgeat syrup"
-      },
-      {
-        "amount": 1,
-        "unit": "",
-        "ingredient": "mint sprig"
       }
     ],
-    "glassware": "Double old-fashioned glass",
-    "instructions": "Squeeze the juice from the lime and reserve the lime shell. Shake all ingrediants with 2 cups crushed ice, and pour, unstrained, into an double old-fashedn glass. Sink the lime shell into the drink, add the garnish."
+    "id": 7
   },
   {
-    "id": 8,
     "title": "Margarita",
+    "glassware": "Collins glass",
+    "instructions": "SHAKE and STRAIN into a salt-rimmed, chilled cocktail glass.",
     "ingredients": [
       {
         "amount": 1.5,
@@ -316,15 +312,9 @@
         "amount": 0.5,
         "unit": "oz",
         "ingredient": "lime juice"
-      },
-      {
-        "amount": 0,
-        "unit": "",
-        "ingredient": "Salt, for glass"
       }
     ],
-    "glassware": "Collins glass",
-    "instructions": "SHAKE and STRAIN into a salt-rimmed, chilled cocktail glass."
+    "id": 8
   },
   {
     "id": 9,
@@ -487,8 +477,9 @@
     "instructions": "SHAKE and STRAIN into a chilled cocktail glass. Add the garnish."
   },
   {
-    "id": 15,
     "title": "Mhm, Joah",
+    "glassware": "Rocks glass",
+    "instructions": "SHAKE and STRAIN into an ice-filled, chilled rocks glass. Add the garnish.",
     "ingredients": [
       {
         "amount": 1,
@@ -519,15 +510,9 @@
         "amount": 1,
         "unit": "",
         "ingredient": "lemon twist"
-      },
-      {
-        "amount": 1,
-        "unit": "",
-        "ingredient": "rosmary twig"
       }
     ],
-    "glassware": "Rocks glass",
-    "instructions": "SHAKE and STRAIN into an ice-filled, chilled rocks glass. Add the garnish."
+    "id": 15
   },
   {
     "id": 16,
@@ -677,8 +662,9 @@
     "instructions": "SHAKE and STRAIN all ingredients except the red wine into a chilled chilled coupe glass. FLOAT the red wine."
   },
   {
-    "id": 20,
     "title": "Brandy Alexander",
+    "glassware": "Coupe glass",
+    "instructions": "SHAKE with ice and STRAIN into a chilled coupe glass. Grate nutmeg on top.",
     "ingredients": [
       {
         "amount": 1,
@@ -693,16 +679,15 @@
       {
         "amount": 1,
         "unit": "oz",
-        "ingredient": "cream"
+        "ingredient": "half-and-half"
       },
       {
         "amount": 0,
         "unit": "",
-        "ingredient": "nutmeg (garnish)"
+        "ingredient": "nutmeg"
       }
     ],
-    "glassware": "Coupe glass",
-    "instructions": "SHAKE with ice and STRAIN into a chilled coupe glass. Grate nutmeg on top."
+    "id": 20
   },
   {
     "title": "Boulevardier",
