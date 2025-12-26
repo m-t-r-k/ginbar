@@ -388,7 +388,7 @@
     "instructions": "SHAKE and STRAIN into a chilled cocktail glass. Add the garnish.",
     "ingredients": [
       {
-        "amount": 1,
+        "amount": 1.33,
         "unit": "oz",
         "ingredient": "cognac"
       },
@@ -398,7 +398,7 @@
         "ingredient": "orange curaçao"
       },
       {
-        "amount": 1,
+        "amount": 0.66,
         "unit": "oz",
         "ingredient": "lemon juice"
       },
