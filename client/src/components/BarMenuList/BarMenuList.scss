@@ -20,6 +20,9 @@
     font-size: 13px;
     transition: all 0.2s ease;
     white-space: nowrap;
+    color: #333;
+    -webkit-appearance: none;
+    -webkit-text-fill-color: #333;
 
     &:hover {
       border-color: #999;
@@ -29,6 +32,7 @@
     &.active {
       background: #333;
       color: #fff;
+      -webkit-text-fill-color: #fff;
       border-color: #333;
     }
   }
