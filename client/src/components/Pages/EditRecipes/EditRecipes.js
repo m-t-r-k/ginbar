@@ -5,7 +5,20 @@ import './EditRecipes.scss';
 const PASSWORD = '0801';
 const API_BASE = process.env.REACT_APP_DEV_API || 'http://localhost:3001';
 
-const emptyIngredient = () => ({ amount: '', unit: '', ingredient: '' });
+const emptyIngredient = () => ({ amount: '', unit: 'oz', ingredient: '' });
+
+const normalizeAmount = (amountStr) => {
+  if (!amountStr || amountStr === '' || amountStr === null || amountStr === undefined) return '';
+  const str = amountStr.toString().trim();
+  if (str === '') return '';
+  // Replace comma with dot
+  let normalized = str.replace(',', '.');
+  // Handle leading decimal (e.g., ".5" -> "0.5")
+  if (normalized.startsWith('.')) {
+    normalized = '0' + normalized;
+  }
+  return normalized;
+};
 
 const validateRecipe = (recipe) => {
   if (!recipe.title || !recipe.instructions) return false;
@@ -29,6 +42,7 @@ function EditRecipes() {
   // dynamic option lists derived from recipes (unique values)
   const [glassOptions, setGlassOptions] = useState([]);
   const [unitOptions, setUnitOptions] = useState([]);
+  const [ingredientOptions, setIngredientOptions] = useState([]);
 
   const [form, setForm] = useState({
     title: '',
@@ -44,6 +58,11 @@ function EditRecipes() {
   const [showUnitDropdownIndex, setShowUnitDropdownIndex] = useState(null);
   // when true for an index, show the full list; otherwise show filtered list based on input value
   const [unitShowAllIndex, setUnitShowAllIndex] = useState(null);
+  const [showIngredientDropdownIndex, setShowIngredientDropdownIndex] = useState(null);
+  const [ingredientShowAllIndex, setIngredientShowAllIndex] = useState(null);
+  const [glassHighlightIndex, setGlassHighlightIndex] = useState(-1);
+  const [unitHighlightIndex, setUnitHighlightIndex] = useState(-1);
+  const [ingredientHighlightIndex, setIngredientHighlightIndex] = useState(-1);
   const containerRef = useRef(null);
   const closeTimeoutRef = useRef(null);
 
@@ -52,8 +71,13 @@ function EditRecipes() {
     closeTimeoutRef.current = setTimeout(() => {
       setShowGlassDropdown(false);
       setGlassShowAll(false);
+      setGlassHighlightIndex(-1);
       setShowUnitDropdownIndex(null);
       setUnitShowAllIndex(null);
+      setUnitHighlightIndex(-1);
+      setShowIngredientDropdownIndex(null);
+      setIngredientShowAllIndex(null);
+      setIngredientHighlightIndex(-1);
     }, delay);
   };
 
@@ -85,6 +109,7 @@ function EditRecipes() {
     // count occurrences and sort by frequency (desc), then alphabetically
     const glassCount = new Map();
     const unitCount = new Map();
+    const ingredientCount = new Map();
     for (const r of data) {
       const g = r.glassware && r.glassware.toString().trim();
       if (g) glassCount.set(g, (glassCount.get(g) || 0) + 1);
@@ -92,6 +117,8 @@ function EditRecipes() {
         for (const ing of r.ingredients) {
           const u = ing.unit && ing.unit.toString().trim();
           if (u) unitCount.set(u, (unitCount.get(u) || 0) + 1);
+          const i = ing.ingredient && ing.ingredient.toString().trim();
+          if (i) ingredientCount.set(i, (ingredientCount.get(i) || 0) + 1);
         }
       }
     }
@@ -104,8 +131,13 @@ function EditRecipes() {
       .sort((a,b) => (b[1] - a[1]) || a[0].localeCompare(b[0]))
       .map(([val]) => val);
 
+    const ingredientArr = Array.from(ingredientCount.entries())
+      .sort((a,b) => (b[1] - a[1]) || a[0].localeCompare(b[0]))
+      .map(([val]) => val);
+
     setGlassOptions(glassArr);
     setUnitOptions(unitArr);
+    setIngredientOptions(ingredientArr);
   };
 
   const handleAuth = (e) => {
@@ -119,10 +151,12 @@ function EditRecipes() {
     }
   };
 
-  const toggleGlassDropdown = () => { cancelClose(); setShowGlassDropdown(prev => !prev); setGlassShowAll(prev => !prev); setShowUnitDropdownIndex(null); setUnitShowAllIndex(null); };
-  const toggleUnitDropdown = (idx) => { cancelClose(); setShowUnitDropdownIndex(prev => (prev === idx ? null : idx)); setUnitShowAllIndex(prev => (prev === idx ? null : idx)); setShowGlassDropdown(false); setGlassShowAll(false); };
-  const selectGlassOption = (val) => { cancelClose(); setForm(prev => ({ ...prev, glassware: val })); setShowGlassDropdown(false); setGlassShowAll(false); };
-  const selectUnitOption = (idx, val) => { cancelClose(); handleIngredientChange(idx, 'unit', val); setShowUnitDropdownIndex(null); setUnitShowAllIndex(null); };
+  const toggleGlassDropdown = () => { cancelClose(); setShowGlassDropdown(prev => !prev); setGlassShowAll(prev => !prev); setGlassHighlightIndex(-1); setShowUnitDropdownIndex(null); setUnitShowAllIndex(null); setUnitHighlightIndex(-1); setShowIngredientDropdownIndex(null); setIngredientShowAllIndex(null); setIngredientHighlightIndex(-1); };
+  const toggleUnitDropdown = (idx) => { cancelClose(); setShowUnitDropdownIndex(prev => (prev === idx ? null : idx)); setUnitShowAllIndex(prev => (prev === idx ? null : idx)); setUnitHighlightIndex(-1); setShowGlassDropdown(false); setGlassShowAll(false); setGlassHighlightIndex(-1); setShowIngredientDropdownIndex(null); setIngredientShowAllIndex(null); setIngredientHighlightIndex(-1); };
+  const toggleIngredientDropdown = (idx) => { cancelClose(); setShowIngredientDropdownIndex(prev => (prev === idx ? null : idx)); setIngredientShowAllIndex(prev => (prev === idx ? null : idx)); setIngredientHighlightIndex(-1); setShowGlassDropdown(false); setGlassShowAll(false); setGlassHighlightIndex(-1); setShowUnitDropdownIndex(null); setUnitShowAllIndex(null); setUnitHighlightIndex(-1); };
+  const selectGlassOption = (val) => { cancelClose(); setForm(prev => ({ ...prev, glassware: val })); setShowGlassDropdown(false); setGlassShowAll(false); setGlassHighlightIndex(-1); };
+  const selectUnitOption = (idx, val) => { cancelClose(); handleIngredientChange(idx, 'unit', val); setShowUnitDropdownIndex(null); setUnitShowAllIndex(null); setUnitHighlightIndex(-1); };
+  const selectIngredientOption = (idx, val) => { cancelClose(); handleIngredientChange(idx, 'ingredient', val); setShowIngredientDropdownIndex(null); setIngredientShowAllIndex(null); setIngredientHighlightIndex(-1); };
 
   // close dropdowns when clicking outside
   useEffect(() => {
@@ -131,8 +165,13 @@ function EditRecipes() {
         cancelClose();
         setShowGlassDropdown(false);
         setGlassShowAll(false);
+        setGlassHighlightIndex(-1);
         setShowUnitDropdownIndex(null);
         setUnitShowAllIndex(null);
+        setUnitHighlightIndex(-1);
+        setShowIngredientDropdownIndex(null);
+        setIngredientShowAllIndex(null);
+        setIngredientHighlightIndex(-1);
       }
     };
     document.addEventListener('click', onDocClick);
@@ -150,6 +189,75 @@ function EditRecipes() {
       ingredients[idx] = { ...ingredients[idx], [field]: value };
       return { ...prev, ingredients };
     });
+  };
+
+  const handleGlassKeyDown = (e) => {
+    if (!showGlassDropdown) return;
+    const options = glassShowAll ? glassOptions : glassOptions.filter(g => g.toLowerCase().includes((form.glassware || '').toLowerCase()));
+    
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setGlassHighlightIndex(prev => (prev < options.length - 1 ? prev + 1 : 0));
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setGlassHighlightIndex(prev => (prev > 0 ? prev - 1 : options.length - 1));
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      if (glassHighlightIndex >= 0 && glassHighlightIndex < options.length) {
+        selectGlassOption(options[glassHighlightIndex]);
+      }
+    } else if (e.key === 'Escape') {
+      e.preventDefault();
+      setShowGlassDropdown(false);
+      setGlassShowAll(false);
+      setGlassHighlightIndex(-1);
+    }
+  };
+
+  const handleUnitKeyDown = (e, idx) => {
+    if (showUnitDropdownIndex !== idx) return;
+    const options = unitShowAllIndex === idx ? unitOptions : unitOptions.filter(u => u.toLowerCase().includes((form.ingredients[idx].unit || '').toLowerCase()));
+    
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setUnitHighlightIndex(prev => (prev < options.length - 1 ? prev + 1 : 0));
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setUnitHighlightIndex(prev => (prev > 0 ? prev - 1 : options.length - 1));
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      if (unitHighlightIndex >= 0 && unitHighlightIndex < options.length) {
+        selectUnitOption(idx, options[unitHighlightIndex]);
+      }
+    } else if (e.key === 'Escape') {
+      e.preventDefault();
+      setShowUnitDropdownIndex(null);
+      setUnitShowAllIndex(null);
+      setUnitHighlightIndex(-1);
+    }
+  };
+
+  const handleIngredientKeyDown = (e, idx) => {
+    if (showIngredientDropdownIndex !== idx) return;
+    const options = ingredientShowAllIndex === idx ? ingredientOptions : ingredientOptions.filter(ing_opt => ing_opt.toLowerCase().includes((form.ingredients[idx].ingredient || '').toLowerCase()));
+    
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setIngredientHighlightIndex(prev => (prev < options.length - 1 ? prev + 1 : 0));
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setIngredientHighlightIndex(prev => (prev > 0 ? prev - 1 : options.length - 1));
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      if (ingredientHighlightIndex >= 0 && ingredientHighlightIndex < options.length) {
+        selectIngredientOption(idx, options[ingredientHighlightIndex]);
+      }
+    } else if (e.key === 'Escape') {
+      e.preventDefault();
+      setShowIngredientDropdownIndex(null);
+      setIngredientShowAllIndex(null);
+      setIngredientHighlightIndex(-1);
+    }
   };
 
   const addIngredient = () => {
@@ -187,7 +295,7 @@ function EditRecipes() {
 
     // Clean up ingredient rows: trim values and remove empty trailing rows
     const cleanedIngredients = (form.ingredients || []).map(i => ({
-      amount: i.amount === null || i.amount === undefined ? '' : i.amount.toString().trim(),
+      amount: normalizeAmount(i.amount),
       unit: (i.unit || '').toString().trim(),
       ingredient: (i.ingredient || '').toString().trim()
     })).filter(i => i.ingredient !== '' && i.amount !== '');
@@ -260,6 +368,14 @@ function EditRecipes() {
         });
       }
 
+      const formIngredients = Array.from(new Set((payload.ingredients || []).map(i => (i.ingredient && i.ingredient.toString().trim()) || '').filter(Boolean)));
+      if (formIngredients.length) {
+        setIngredientOptions(prev => {
+          const arr = prev.filter(x => !formIngredients.includes(x));
+          return [...formIngredients, ...arr];
+        });
+      }
+
       if (editingId !== null) {
         setSuccess('Recipe updated successfully (id ' + data.id + ')');
         setEditingId(null);
@@ -325,12 +441,12 @@ function EditRecipes() {
               <div className="row select-row">
                 <label>Glass</label>
                 <div className="select-wrapper">
-                  <input name="glassware" autoComplete="off" autoCorrect="off" spellCheck={false} value={form.glassware} onChange={(e) => { handleFormChange(e); setShowGlassDropdown(true); setGlassShowAll(false); }} onFocus={() => { cancelClose(); setShowGlassDropdown(true); setGlassShowAll(false); }} onBlur={() => { scheduleClose(); }} />
+                  <input name="glassware" autoComplete="off" autoCorrect="off" spellCheck={false} value={form.glassware} onChange={(e) => { handleFormChange(e); setShowGlassDropdown(true); setGlassShowAll(false); }} onFocus={() => { cancelClose(); setShowGlassDropdown(true); setGlassShowAll(false); }} onBlur={() => { scheduleClose(); }} onKeyDown={handleGlassKeyDown} />
                   <button type="button" className="small show-options" onClick={toggleGlassDropdown}>▾</button>
                   {showGlassDropdown && (
                     <ul className="options-dropdown">
-                      {(glassShowAll ? glassOptions : glassOptions.filter(g => g.toLowerCase().includes((form.glassware || '').toLowerCase()))).map(g => (
-                        <li key={g}><button type="button" onClick={() => selectGlassOption(g)}>{g}</button></li>
+                      {(glassShowAll ? glassOptions : glassOptions.filter(g => g.toLowerCase().includes((form.glassware || '').toLowerCase()))).map((g, idx) => (
+                        <li key={g} className={glassHighlightIndex === idx ? 'highlighted' : ''}><button type="button" onClick={() => selectGlassOption(g)}>{g}</button></li>
                       ))}
                     </ul>
                   )}
@@ -347,17 +463,27 @@ function EditRecipes() {
                   <div className="ingredient-row" key={i}>
                     <input placeholder="Amount" value={ing.amount} onChange={e => handleIngredientChange(i, 'amount', e.target.value)} />
                     <div className="small-select-wrapper">
-                      <input name={`unit-${i}`} placeholder="Unit" autoComplete="off" autoCorrect="off" spellCheck={false} value={ing.unit} onChange={e => { handleIngredientChange(i, 'unit', e.target.value); setShowUnitDropdownIndex(i); setUnitShowAllIndex(null); }} onFocus={() => { cancelClose(); setShowUnitDropdownIndex(i); setUnitShowAllIndex(null); }} onBlur={() => { scheduleClose(); }} />
+                      <input name={`unit-${i}`} placeholder="Unit" autoComplete="off" autoCorrect="off" spellCheck={false} value={ing.unit} onChange={e => { handleIngredientChange(i, 'unit', e.target.value); setShowUnitDropdownIndex(i); setUnitShowAllIndex(null); }} onFocus={() => { cancelClose(); setShowUnitDropdownIndex(i); setUnitShowAllIndex(null); }} onBlur={() => { scheduleClose(); }} onKeyDown={(e) => handleUnitKeyDown(e, i)} />
                       <button type="button" className="small show-options" onClick={() => toggleUnitDropdown(i)}>▾</button>
                       {showUnitDropdownIndex === i && (
                         <ul className="options-dropdown">
-                          {(unitShowAllIndex === i ? unitOptions : unitOptions.filter(u => u.toLowerCase().includes((ing.unit || '').toLowerCase()))).map(u => (
-                            <li key={u}><button type="button" onClick={() => selectUnitOption(i, u)}>{u}</button></li>
+                          {(unitShowAllIndex === i ? unitOptions : unitOptions.filter(u => u.toLowerCase().includes((ing.unit || '').toLowerCase()))).map((u, idx) => (
+                            <li key={u} className={unitHighlightIndex === idx ? 'highlighted' : ''}><button type="button" onClick={() => selectUnitOption(i, u)}>{u}</button></li>
                           ))}
                         </ul>
                       )}
                     </div>
-                    <input placeholder="Ingredient" value={ing.ingredient} onChange={e => handleIngredientChange(i, 'ingredient', e.target.value)} />
+                    <div className="small-select-wrapper ingredient-name-wrapper">
+                      <input name={`ingredient-${i}`} placeholder="Ingredient" autoComplete="off" autoCorrect="off" spellCheck={false} value={ing.ingredient} onChange={e => { handleIngredientChange(i, 'ingredient', e.target.value); setShowIngredientDropdownIndex(i); setIngredientShowAllIndex(null); }} onFocus={() => { cancelClose(); setShowIngredientDropdownIndex(i); setIngredientShowAllIndex(null); }} onBlur={() => { scheduleClose(); }} onKeyDown={(e) => handleIngredientKeyDown(e, i)} />
+                      <button type="button" className="small show-options" onClick={() => toggleIngredientDropdown(i)}>▾</button>
+                      {showIngredientDropdownIndex === i && (
+                        <ul className="options-dropdown">
+                          {(ingredientShowAllIndex === i ? ingredientOptions : ingredientOptions.filter(ing_opt => ing_opt.toLowerCase().includes((ing.ingredient || '').toLowerCase()))).map((ing_opt, idx) => (
+                            <li key={ing_opt} className={ingredientHighlightIndex === idx ? 'highlighted' : ''}><button type="button" onClick={() => selectIngredientOption(i, ing_opt)}>{ing_opt}</button></li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
                     {form.ingredients.length > 1 && <button type="button" className="small" onClick={() => removeIngredient(i)}>Remove</button>}
                   </div>
                 ))}

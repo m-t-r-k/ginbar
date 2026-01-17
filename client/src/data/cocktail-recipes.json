@@ -1,58 +1,16 @@
 [
   {
-    "id": 0,
-    "title": "Juliet & Romeo",
-    "ingredients": [
-      {
-        "amount": 2,
-        "unit": "oz",
-        "ingredient": "gin"
-      },
-      {
-        "amount": 0.75,
-        "unit": "oz",
-        "ingredient": "simple syrup"
-      },
-      {
-        "amount": 0.75,
-        "unit": "oz",
-        "ingredient": "lime juice"
-      },
-      {
-        "amount": 5,
-        "unit": "drops",
-        "ingredient": "rose water"
-      },
-      {
-        "amount": 3,
-        "unit": "slices",
-        "ingredient": "cucumber"
-      },
-      {
-        "amount": 1,
-        "unit": "sprig",
-        "ingredient": "mint"
-      },
-      {
-        "amount": 1,
-        "unit": "pinch",
-        "ingredient": "salt"
-      }
-    ],
+    "title": "Martini (1930s)",
     "glassware": "Cocktail glass",
-    "instructions": "MUDDLE cucumber and salt, add remaining incrediants. SHAKE and STRAIN in a coupe glass. Float single mint leave and add 1 drop of Rose water on top of it, add 3 drops of Angustora bitters."
-  },
-  {
-    "id": 1,
-    "title": "Martini (Modern)",
+    "instructions": "STIR and STRAIN into a chilled cocktail glass. Add the garnish.",
     "ingredients": [
       {
-        "amount": 2,
+        "amount": 1.5,
         "unit": "oz",
         "ingredient": "dry gin"
       },
       {
-        "amount": 1,
+        "amount": 1.5,
         "unit": "oz",
         "ingredient": "dry vermouth"
       },
@@ -64,11 +22,10 @@
       {
         "amount": 1,
         "unit": "",
-        "ingredient": "olive or lemon twist"
+        "ingredient": "lemon twist"
       }
     ],
-    "glassware": "Cocktail glass",
-    "instructions": "STIR and STRAIN into a chilled cocktail glass. Add the garnish."
+    "id": 1
   },
   {
     "id": 2,
@@ -180,13 +137,14 @@
     "id": 4
   },
   {
-    "id": 5,
     "title": "El Presidente",
+    "glassware": "Cocktail glass",
+    "instructions": "SHAKE and STRAIN into a chilled cocktail glass. Add the garnish.",
     "ingredients": [
       {
         "amount": 1.5,
         "unit": "oz",
-        "ingredient": "white rum"
+        "ingredient": "light rum"
       },
       {
         "amount": 1.5,
@@ -209,8 +167,7 @@
         "ingredient": "orange twist"
       }
     ],
-    "glassware": "Cocktail glass",
-    "instructions": "SHAKE and STRAIN into a chilled cocktail glass. Add the garnish."
+    "id": 5
   },
   {
     "title": "Long Island Iced Tea",
@@ -253,14 +210,9 @@
         "ingredient": "simple syrup"
       },
       {
-        "amount": 0,
-        "unit": "",
-        "ingredient": "Cola"
-      },
-      {
         "amount": 1,
         "unit": "",
-        "ingredient": "lemon wheele"
+        "ingredient": "lemon wheel"
       }
     ],
     "id": 6
@@ -376,7 +328,7 @@
       {
         "amount": 2,
         "unit": "dashes",
-        "ingredient": "angustora bitters"
+        "ingredient": "Angustora bitters"
       }
     ],
     "glassware": "Nick & Nora glass",
@@ -437,7 +389,7 @@
       {
         "amount": 1,
         "unit": "teaspoon",
-        "ingredient": "angustora bitters"
+        "ingredient": "Angustora bitters"
       }
     ],
     "glassware": "Nick & Nora glass",
@@ -674,17 +626,12 @@
       {
         "amount": 1,
         "unit": "oz",
-        "ingredient": "crème de cacao"
+        "ingredient": "dark crème de cacao"
       },
       {
         "amount": 1,
         "unit": "oz",
         "ingredient": "half-and-half"
-      },
-      {
-        "amount": 0,
-        "unit": "",
-        "ingredient": "nutmeg"
       }
     ],
     "id": 20
@@ -730,7 +677,7 @@
       {
         "amount": 0.5,
         "unit": "oz",
-        "ingredient": "creme de cassis"
+        "ingredient": "crème de cassis"
       },
       {
         "amount": 1,
@@ -745,7 +692,7 @@
       {
         "amount": 2,
         "unit": "dashes",
-        "ingredient": "angustora bitters"
+        "ingredient": "Angustora bitters"
       },
       {
         "amount": 1,
@@ -756,34 +703,34 @@
     "id": 24
   },
   {
-    "title": "Macallans Whiskey Sour",
+    "title": "New York Sour",
     "glassware": "Rocks glass",
-    "instructions": "SHAKE and STRAIN all ingredients except the port wine into a chilled rocks glass. FLOAT the port wine.",
+    "instructions": "SHAKE and STRAIN all ingredients except the red wine into a chilled rocks glass. FLOAT the port wine.",
     "ingredients": [
       {
-        "amount": 1.5,
+        "amount": 2,
         "unit": "oz",
         "ingredient": "rye whiskey"
       },
       {
-        "amount": 0.66,
+        "amount": 1,
         "unit": "oz",
         "ingredient": "lemon juice"
       },
       {
-        "amount": 0.33,
+        "amount": 0.5,
         "unit": "oz",
-        "ingredient": "rich demerara syrup"
+        "ingredient": "simple syrup"
       },
       {
-        "amount": 0.66,
-        "unit": "oz",
+        "amount": 1,
+        "unit": "",
         "ingredient": "egg white"
       },
       {
-        "amount": 0.33,
+        "amount": 0.5,
         "unit": "oz",
-        "ingredient": "port wine"
+        "ingredient": "red wine"
       }
     ],
     "id": 25
@@ -814,9 +761,9 @@
         "ingredient": "cucumber"
       },
       {
-        "amount": 1,
-        "unit": "pinch",
-        "ingredient": "salt"
+        "amount": 3,
+        "unit": "drops",
+        "ingredient": "saline"
       }
     ],
     "id": 26
@@ -853,5 +800,310 @@
       }
     ],
     "id": 27
+  },
+  {
+    "title": "Betsy Ross",
+    "glassware": "Cocktail glass",
+    "instructions": "STIR and STRAIN into a chilled cocktail glass.",
+    "ingredients": [
+      {
+        "amount": 1.5,
+        "unit": "oz",
+        "ingredient": "brandy"
+      },
+      {
+        "amount": 1.5,
+        "unit": "oz",
+        "ingredient": "ruby port"
+      },
+      {
+        "amount": 0.5,
+        "unit": "oz",
+        "ingredient": "orange curaçao"
+      },
+      {
+        "amount": 3,
+        "unit": "dashes",
+        "ingredient": "Angustora bitters"
+      }
+    ],
+    "id": 28
+  },
+  {
+    "title": "Corpse Reviver No. 2",
+    "glassware": "Cocktail glass",
+    "instructions": "SHAKE and STRAIN into a chilled cocktail glass.",
+    "ingredients": [
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "gin"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "triple sec"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "blanc vermouth"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "lemon juice"
+      },
+      {
+        "amount": 1,
+        "unit": "dashes",
+        "ingredient": "absinthe"
+      }
+    ],
+    "id": 29
+  },
+  {
+    "title": "Martini (Modern)",
+    "glassware": "Cocktail glass",
+    "instructions": "STIR and STRAIN into a chilled cocktail glass. Add the garnish.",
+    "ingredients": [
+      {
+        "amount": 2,
+        "unit": "oz",
+        "ingredient": "dry gin"
+      },
+      {
+        "amount": 1,
+        "unit": "oz",
+        "ingredient": "dry vermouth"
+      },
+      {
+        "amount": 2,
+        "unit": "dashes",
+        "ingredient": "orange bitters"
+      },
+      {
+        "amount": 1,
+        "unit": "oz",
+        "ingredient": "olive or lemon twist"
+      }
+    ],
+    "id": 30
+  },
+  {
+    "title": "Old Fashioned",
+    "glassware": "Rocks glass",
+    "instructions": "BUILD in an unchilled rocks glass. Add ice and STIR briefly. Add the garnish.",
+    "ingredients": [
+      {
+        "amount": 2,
+        "unit": "oz",
+        "ingredient": "bourbon or rye whiskey"
+      },
+      {
+        "amount": 0.5,
+        "unit": "oz",
+        "ingredient": "simple syrup"
+      },
+      {
+        "amount": 3,
+        "unit": "dashes",
+        "ingredient": "Angustora bitters"
+      },
+      {
+        "amount": 1,
+        "unit": "",
+        "ingredient": "orange twist"
+      }
+    ],
+    "id": 31
+  },
+  {
+    "title": "Oriental Cocktail",
+    "glassware": "Cocktail glass",
+    "instructions": "SHAKE and STRAIN into a chilled cocktail glass.",
+    "ingredients": [
+      {
+        "amount": 1.5,
+        "unit": "oz",
+        "ingredient": "rye whiskey"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "sweet vermouth"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "triple sec"
+      },
+      {
+        "amount": 0.5,
+        "unit": "oz",
+        "ingredient": "lime juice"
+      }
+    ],
+    "id": 32
+  },
+  {
+    "title": "Scorpion",
+    "glassware": "Double old-fashioned glass",
+    "instructions": "SHAKE and STRAIN into an ice-filed double old-fashioned glass.",
+    "ingredients": [
+      {
+        "amount": 1,
+        "unit": "oz",
+        "ingredient": "light rum"
+      },
+      {
+        "amount": 0.5,
+        "unit": "oz",
+        "ingredient": "brandy"
+      },
+      {
+        "amount": 1,
+        "unit": "oz",
+        "ingredient": "orange juice"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "lemon juice"
+      },
+      {
+        "amount": 0.5,
+        "unit": "oz",
+        "ingredient": "orgeat syrup"
+      }
+    ],
+    "id": 33
+  },
+  {
+    "title": "Tom Collins",
+    "glassware": "Collins glass",
+    "instructions": "SHAKE and STRAIN all ingredients except the soda into an ice-filled Collins glass. Top with soda and add the garnish.",
+    "ingredients": [
+      {
+        "amount": 2.5,
+        "unit": "oz",
+        "ingredient": "gin"
+      },
+      {
+        "amount": 1,
+        "unit": "oz",
+        "ingredient": "lemon juice"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "simple syrup"
+      },
+      {
+        "amount": 1,
+        "unit": "",
+        "ingredient": "maraschino cherry"
+      },
+      {
+        "amount": 0.5,
+        "unit": "",
+        "ingredient": "orange wheel"
+      }
+    ],
+    "id": 34
+  },
+  {
+    "title": "Trinidad Sour",
+    "glassware": "Nick & Nora glass",
+    "instructions": "SHAKE and STRAIN into a chilled nick & nora glass.",
+    "ingredients": [
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "Angustora bitters"
+      },
+      {
+        "amount": 0.25,
+        "unit": "oz",
+        "ingredient": "rye whiskey"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "orgeat syrup"
+      },
+      {
+        "amount": 0.5,
+        "unit": "oz",
+        "ingredient": "lemon juice"
+      }
+    ],
+    "id": 35
+  },
+  {
+    "title": "Twentieth-Century Cocktail",
+    "glassware": "Cocktail glass",
+    "instructions": "SHAKE and STRAIN into a chilled cocktail glass.",
+    "ingredients": [
+      {
+        "amount": 1.5,
+        "unit": "oz",
+        "ingredient": "gin"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "blanc vermouth"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "white crème de cacao"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "lemon juice"
+      }
+    ],
+    "id": 36
+  },
+  {
+    "title": "Vieux Carré",
+    "glassware": "Rocks glass",
+    "instructions": "STIR and STRAIN into in an ice-filled rocks glass.",
+    "ingredients": [
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "rye whiskey"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "brandy"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "sweet vermouth"
+      },
+      {
+        "amount": 0.5,
+        "unit": "oz",
+        "ingredient": "Bénédictine"
+      },
+      {
+        "amount": 2,
+        "unit": "dashes",
+        "ingredient": "Peychaud's bitters"
+      },
+      {
+        "amount": 2,
+        "unit": "dashes",
+        "ingredient": "Angustora bitters"
+      }
+    ],
+    "id": 37
   }
 ]

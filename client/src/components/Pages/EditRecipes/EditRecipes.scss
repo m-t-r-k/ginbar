@@ -29,12 +29,15 @@
     padding: 6px 0;
   }
   .options-dropdown li { list-style: none; }
+  .options-dropdown li.highlighted button { background: #e8e8e8; }
   .options-dropdown button { width: 100%; text-align: left; padding: 6px 10px; border: none; background: transparent; }
   .options-dropdown button:hover { background: #f6f6f6; }
 
   .ingredient-row { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
   .small-select-wrapper { position: relative; display: flex; gap: 4px; align-items: center; }
   .small-select-wrapper input { width: 84px; }
+  .small-select-wrapper.ingredient-name-wrapper { flex: 1; }
+  .small-select-wrapper.ingredient-name-wrapper input { width: 100%; }
   .small-select-wrapper .options-dropdown { width: 160px; top: 34px; left: 0; }
 
   .recipe-form {
