@@ -192,7 +192,7 @@
       {
         "amount": 1,
         "unit": "oz",
-        "ingredient": "white tequila"
+        "ingredient": "tequila"
       },
       {
         "amount": 1,
@@ -342,7 +342,7 @@
       {
         "amount": 1.33,
         "unit": "oz",
-        "ingredient": "cognac"
+        "ingredient": "brandy"
       },
       {
         "amount": 1,
@@ -369,7 +369,7 @@
       {
         "amount": 1.5,
         "unit": "oz",
-        "ingredient": "cognac"
+        "ingredient": "brandy"
       },
       {
         "amount": 0.5,
@@ -393,6 +393,8 @@
       }
     ],
     "glassware": "Nick & Nora glass",
+    
+    
     "instructions": "SHAKE and STRAIN into a chilled Nick & Nora glass."
   },
   {
