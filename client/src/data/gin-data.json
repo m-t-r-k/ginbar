@@ -682,5 +682,24 @@
 		"imageMoodPic": "LA_SU_Gin_moodPic.webp",
 		"imageMoodPicSmall": "LA_SU_Gin_moodPic_small.webp",
 		"affiliateLink": "https://www.amazon.de/LA-SU-Premium-Mango-Gin/dp/B08KJ88847?keywords=la+su+gin&qid=1670318631&sprefix=LA+SU+%2Caps%2C87&sr=8-2-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1&smid=A2AYU1CJQ1ZRGG&linkCode=ll1&tag=ginperium-21&linkId=9a6caf4dde5607e4eff744bafc1f7880&language=de_DE&ref_=as_li_ss_tl"
+	},
+	{
+		"id": "test_gin",
+		"name": "Test Gin",
+		"type": "Test Style",
+		"originCountry": "Testland",
+		"originCity": "Testville",
+		"alcohol": "0%",
+		"botanicals": [ "Test" ],
+		"mainNote": [ "Test" ],
+		"recommendation": false,
+		"nosing": "Test aroma",
+		"taste": "Test taste",
+		"description": "Ein Testeintrag für Gin-Daten.",
+		"perfectServe": "Pur zum Testen.",
+		"imageBottle": "test_gin.webp",
+		"imageMoodPic": "test_gin_moodPic.webp",
+		"imageMoodPicSmall": "test_gin_moodPic_small.webp",
+		"affiliateLink": ""
 	}
 ]
