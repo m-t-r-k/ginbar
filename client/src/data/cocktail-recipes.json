@@ -297,44 +297,6 @@
     "instructions": "STIR and STRAIN into an ice-filled, chilled rocks glass. Add the garnish."
   },
   {
-    "id": 10,
-    "title": "Satan's Whiskers",
-    "ingredients": [
-      {
-        "amount": 0.5,
-        "unit": "oz",
-        "ingredient": "dry gin"
-      },
-      {
-        "amount": 0.5,
-        "unit": "oz",
-        "ingredient": "dry vermouth"
-      },
-      {
-        "amount": 0.5,
-        "unit": "oz",
-        "ingredient": "sweet vermouth"
-      },
-      {
-        "amount": 0.5,
-        "unit": "oz",
-        "ingredient": "orange juice"
-      },
-      {
-        "amount": 0.5,
-        "unit": "oz",
-        "ingredient": "orange curaçao"
-      },
-      {
-        "amount": 2,
-        "unit": "dashes",
-        "ingredient": "Angustora bitters"
-      }
-    ],
-    "glassware": "Nick & Nora glass",
-    "instructions": "SHAKE and STRAIN into a chilled Nick & Nora glass."
-  },
-  {
     "title": "Sidecar",
     "glassware": "Cocktail glass",
     "instructions": "SHAKE and STRAIN into a chilled cocktail glass. Add the garnish.",
@@ -393,42 +355,7 @@
       }
     ],
     "glassware": "Nick & Nora glass",
-    
-    
     "instructions": "SHAKE and STRAIN into a chilled Nick & Nora glass."
-  },
-  {
-    "id": 14,
-    "title": "Luau Daiquiri",
-    "ingredients": [
-      {
-        "amount": 2,
-        "unit": "oz",
-        "ingredient": "light rum"
-      },
-      {
-        "amount": 0.75,
-        "unit": "oz",
-        "ingredient": "lime juice"
-      },
-      {
-        "amount": 0.75,
-        "unit": "oz",
-        "ingredient": "orange juice"
-      },
-      {
-        "amount": 0.5,
-        "unit": "oz",
-        "ingredient": "vanilla syrup"
-      },
-      {
-        "amount": 0,
-        "unit": "",
-        "ingredient": "edible flower blossoms"
-      }
-    ],
-    "glassware": "Collins glass",
-    "instructions": "SHAKE and STRAIN into a chilled cocktail glass. Add the garnish."
   },
   {
     "title": "Mhm, Joah",
@@ -469,49 +396,6 @@
     "id": 15
   },
   {
-    "id": 16,
-    "title": "Caricature Cocktail",
-    "ingredients": [
-      {
-        "amount": 1,
-        "unit": "oz",
-        "ingredient": "gin"
-      },
-      {
-        "amount": 0.5,
-        "unit": "oz",
-        "ingredient": "sweet vermouth"
-      },
-      {
-        "amount": 0.75,
-        "unit": "oz",
-        "ingredient": "triple sec"
-      },
-      {
-        "amount": 0.5,
-        "unit": "oz",
-        "ingredient": "Campari"
-      },
-      {
-        "amount": 0.5,
-        "unit": "oz",
-        "ingredient": "orange juice"
-      },
-      {
-        "amount": 0.33,
-        "unit": "oz",
-        "ingredient": "lemon juice"
-      },
-      {
-        "amount": 1,
-        "unit": "",
-        "ingredient": "orange twist"
-      }
-    ],
-    "glassware": "Nick & Nora glass",
-    "instructions": "SHAKE and STRAIN into a chilled Nick & Nora rocks glass. Add the garnish."
-  },
-  {
     "title": "Clover Club",
     "glassware": "Coupe glass",
     "instructions": "DRY SHAKE all ingredients, then SHAKE and STRAIN into a chilled coupe glass. Add the garnish.",
@@ -543,39 +427,6 @@
       }
     ],
     "id": 17
-  },
-  {
-    "id": 18,
-    "title": "Gin Basil Smash",
-    "ingredients": [
-      {
-        "amount": 2,
-        "unit": "oz",
-        "ingredient": "gin"
-      },
-      {
-        "amount": 0.75,
-        "unit": "oz",
-        "ingredient": "lemon juice"
-      },
-      {
-        "amount": 0.75,
-        "unit": "oz",
-        "ingredient": "simple syrup"
-      },
-      {
-        "amount": 8,
-        "unit": "leaves",
-        "ingredient": "basil"
-      },
-      {
-        "amount": 1,
-        "unit": "sprig",
-        "ingredient": "basil"
-      }
-    ],
-    "glassware": "Rocks glass",
-    "instructions": "MUDDLE the basil leaves with the syrup. Add the gin and lemon juice. SHAKE and STRAIN into a chilled rocks glass. Add the garnish."
   },
   {
     "id": 19,
@@ -637,34 +488,6 @@
       }
     ],
     "id": 20
-  },
-  {
-    "title": "Boulevardier",
-    "glassware": "Rocks glass",
-    "instructions": "STIR and STRAIN into an ice-filled, chilled rocks glass. Add the garnish.",
-    "ingredients": [
-      {
-        "amount": 1.5,
-        "unit": "oz",
-        "ingredient": "bourbon"
-      },
-      {
-        "amount": 1.5,
-        "unit": "oz",
-        "ingredient": "Campari"
-      },
-      {
-        "amount": 1.5,
-        "unit": "oz",
-        "ingredient": "sweet vermouth"
-      },
-      {
-        "amount": 1,
-        "unit": "",
-        "ingredient": "orange twist"
-      }
-    ],
-    "id": 23
   },
   {
     "title": "Bourbon Renewal",
@@ -769,39 +592,6 @@
       }
     ],
     "id": 26
-  },
-  {
-    "title": "Earl Grey Virgin",
-    "glassware": "Coupe glass",
-    "instructions": "DRY SHAKE all ingredients, then SHAKE and STRAIN into a chilled coupe glass. Add the garnish.",
-    "ingredients": [
-      {
-        "amount": 1.75,
-        "unit": "oz",
-        "ingredient": "Earl Grey tea"
-      },
-      {
-        "amount": 1,
-        "unit": "oz",
-        "ingredient": "simple syrup"
-      },
-      {
-        "amount": 0.75,
-        "unit": "oz",
-        "ingredient": "lemon juice"
-      },
-      {
-        "amount": 1,
-        "unit": "",
-        "ingredient": "egg white"
-      },
-      {
-        "amount": 1,
-        "unit": "",
-        "ingredient": "lemon twist"
-      }
-    ],
-    "id": 27
   },
   {
     "title": "Betsy Ross",
@@ -1107,5 +897,71 @@
       }
     ],
     "id": 37
+  },
+  {
+    "title": "Boston Cocktail",
+    "glassware": "Cocktail glass",
+    "instructions": "SHAKE and STRAIN into a chilled cocktail glass.",
+    "ingredients": [
+      {
+        "amount": 1.5,
+        "unit": "oz",
+        "ingredient": "dry gin"
+      },
+      {
+        "amount": 1.5,
+        "unit": "oz",
+        "ingredient": "apricot brandy"
+      },
+      {
+        "amount": 0.5,
+        "unit": "oz",
+        "ingredient": "lemon juice"
+      },
+      {
+        "amount": 0.25,
+        "unit": "oz",
+        "ingredient": "grenadine"
+      }
+    ],
+    "id": 38
+  },
+  {
+    "title": "Aztec's Mark",
+    "glassware": "Cocktail glass",
+    "instructions": "SHAKE and STRAIN into a chilled cocktail glass. Add the garnish.",
+    "ingredients": [
+      {
+        "amount": 1.25,
+        "unit": "oz",
+        "ingredient": "bourbon"
+      },
+      {
+        "amount": 0.25,
+        "unit": "oz",
+        "ingredient": "Bénédictine"
+      },
+      {
+        "amount": 0.5,
+        "unit": "oz",
+        "ingredient": "dark crème de cacao"
+      },
+      {
+        "amount": 0.5,
+        "unit": "oz",
+        "ingredient": "lemon juice"
+      },
+      {
+        "amount": 2,
+        "unit": "drops",
+        "ingredient": "tabasco"
+      },
+      {
+        "amount": 1,
+        "unit": "",
+        "ingredient": "orange twist"
+      }
+    ],
+    "id": 39
   }
 ]
