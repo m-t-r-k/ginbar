@@ -963,5 +963,28 @@
       }
     ],
     "id": 39
+  },
+  {
+    "title": "Charlie Chaplin",
+    "glassware": "Cocktail glass",
+    "instructions": "SHAKE and STRAIN into a chilled cocktail glass.",
+    "ingredients": [
+      {
+        "amount": 1,
+        "unit": "oz",
+        "ingredient": "sloe gin"
+      },
+      {
+        "amount": 1,
+        "unit": "oz",
+        "ingredient": "apricot brandy"
+      },
+      {
+        "amount": 1,
+        "unit": "oz",
+        "ingredient": "lime juice"
+      }
+    ],
+    "id": 40
   }
 ]
