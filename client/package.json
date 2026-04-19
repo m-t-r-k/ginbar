@@ -15,7 +15,7 @@
     "react-scripts": "^5.0.1",
     "react-switch": "^7.0.0",
     "sass": "^1.54.5",
-    "swiper": "^8.4.0",
+    "swiper": "^12.1.2",
     "web-vitals": "^2.1.4",
     "node-forge": ">=1.4.0"
   },
