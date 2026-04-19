@@ -206,5 +206,122 @@
       }
     ],
     "id": 27
+  },
+  {
+    "title": "Sidecar",
+    "glassware": "Cocktail glass",
+    "instructions": "SHAKE and STRAIN into a chilled cocktail glass. Add the garnish.",
+    "ingredients": [
+      {
+        "amount": 1.33,
+        "unit": "oz",
+        "ingredient": "brandy"
+      },
+      {
+        "amount": 1,
+        "unit": "oz",
+        "ingredient": "orange curaçao"
+      },
+      {
+        "amount": 0.66,
+        "unit": "oz",
+        "ingredient": "lemon juice"
+      },
+      {
+        "amount": 1,
+        "unit": "",
+        "ingredient": "lemon twist"
+      }
+    ],
+    "id": 11
+  },
+  {
+    "title": "Oriental Cocktail",
+    "glassware": "Cocktail glass",
+    "instructions": "SHAKE and STRAIN into a chilled cocktail glass.",
+    "ingredients": [
+      {
+        "amount": 1.5,
+        "unit": "oz",
+        "ingredient": "rye whiskey"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "sweet vermouth"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "triple sec"
+      },
+      {
+        "amount": 0.5,
+        "unit": "oz",
+        "ingredient": "lime juice"
+      }
+    ],
+    "id": 32
+  },
+  {
+    "title": "Scorpion",
+    "glassware": "Double old-fashioned glass",
+    "instructions": "SHAKE and STRAIN into an ice-filed double old-fashioned glass.",
+    "ingredients": [
+      {
+        "amount": 1,
+        "unit": "oz",
+        "ingredient": "light rum"
+      },
+      {
+        "amount": 0.5,
+        "unit": "oz",
+        "ingredient": "brandy"
+      },
+      {
+        "amount": 1,
+        "unit": "oz",
+        "ingredient": "orange juice"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "lemon juice"
+      },
+      {
+        "amount": 0.5,
+        "unit": "oz",
+        "ingredient": "orgeat syrup"
+      }
+    ],
+    "id": 33
+  },
+  {
+    "title": "Trinidad Sour",
+    "glassware": "Nick & Nora glass",
+    "instructions": "SHAKE and STRAIN into a chilled nick & nora glass.",
+    "ingredients": [
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "Angustora bitters"
+      },
+      {
+        "amount": 0.25,
+        "unit": "oz",
+        "ingredient": "rye whiskey"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "orgeat syrup"
+      },
+      {
+        "amount": 0.5,
+        "unit": "oz",
+        "ingredient": "lemon juice"
+      }
+    ],
+    "id": 35
   }
 ]

@@ -297,34 +297,6 @@
     "instructions": "STIR and STRAIN into an ice-filled, chilled rocks glass. Add the garnish."
   },
   {
-    "title": "Sidecar",
-    "glassware": "Cocktail glass",
-    "instructions": "SHAKE and STRAIN into a chilled cocktail glass. Add the garnish.",
-    "ingredients": [
-      {
-        "amount": 1.33,
-        "unit": "oz",
-        "ingredient": "brandy"
-      },
-      {
-        "amount": 1,
-        "unit": "oz",
-        "ingredient": "orange curaçao"
-      },
-      {
-        "amount": 0.66,
-        "unit": "oz",
-        "ingredient": "lemon juice"
-      },
-      {
-        "amount": 1,
-        "unit": "",
-        "ingredient": "lemon twist"
-      }
-    ],
-    "id": 11
-  },
-  {
     "id": 12,
     "title": "Alabazam",
     "ingredients": [
@@ -429,8 +401,9 @@
     "id": 17
   },
   {
-    "id": 19,
     "title": "American Beauty",
+    "glassware": "Coupe glass",
+    "instructions": "SHAKE and STRAIN all ingredients except the red wine into a chilled chilled coupe glass. FLOAT the red wine.",
     "ingredients": [
       {
         "amount": 2,
@@ -443,7 +416,7 @@
         "ingredient": "dry vermouth"
       },
       {
-        "amount": 0.5,
+        "amount": 0.25,
         "unit": "oz",
         "ingredient": "crème de menthe"
       },
@@ -463,8 +436,7 @@
         "ingredient": "red wine"
       }
     ],
-    "glassware": "Coupe glass",
-    "instructions": "SHAKE and STRAIN all ingredients except the red wine into a chilled chilled coupe glass. FLOAT the red wine."
+    "id": 19
   },
   {
     "title": "Brandy Alexander",
@@ -564,6 +536,7 @@
     "title": "Cucumber Rose Cooler",
     "glassware": "Highball glass",
     "instructions": "BUILD in a highball glass. MUDDLE cucumber, simple syrup and salt, add lime juice and roes water. Fill the glass with crushed ice and add soda. STIR well.",
+    "nonAlcoholic": true,
     "ingredients": [
       {
         "amount": 0.5,
@@ -711,67 +684,6 @@
     "id": 31
   },
   {
-    "title": "Oriental Cocktail",
-    "glassware": "Cocktail glass",
-    "instructions": "SHAKE and STRAIN into a chilled cocktail glass.",
-    "ingredients": [
-      {
-        "amount": 1.5,
-        "unit": "oz",
-        "ingredient": "rye whiskey"
-      },
-      {
-        "amount": 0.75,
-        "unit": "oz",
-        "ingredient": "sweet vermouth"
-      },
-      {
-        "amount": 0.75,
-        "unit": "oz",
-        "ingredient": "triple sec"
-      },
-      {
-        "amount": 0.5,
-        "unit": "oz",
-        "ingredient": "lime juice"
-      }
-    ],
-    "id": 32
-  },
-  {
-    "title": "Scorpion",
-    "glassware": "Double old-fashioned glass",
-    "instructions": "SHAKE and STRAIN into an ice-filed double old-fashioned glass.",
-    "ingredients": [
-      {
-        "amount": 1,
-        "unit": "oz",
-        "ingredient": "light rum"
-      },
-      {
-        "amount": 0.5,
-        "unit": "oz",
-        "ingredient": "brandy"
-      },
-      {
-        "amount": 1,
-        "unit": "oz",
-        "ingredient": "orange juice"
-      },
-      {
-        "amount": 0.75,
-        "unit": "oz",
-        "ingredient": "lemon juice"
-      },
-      {
-        "amount": 0.5,
-        "unit": "oz",
-        "ingredient": "orgeat syrup"
-      }
-    ],
-    "id": 33
-  },
-  {
     "title": "Tom Collins",
     "glassware": "Collins glass",
     "instructions": "SHAKE and STRAIN all ingredients except the soda into an ice-filled Collins glass. Top with soda and add the garnish.",
@@ -803,34 +715,6 @@
       }
     ],
     "id": 34
-  },
-  {
-    "title": "Trinidad Sour",
-    "glassware": "Nick & Nora glass",
-    "instructions": "SHAKE and STRAIN into a chilled nick & nora glass.",
-    "ingredients": [
-      {
-        "amount": 0.75,
-        "unit": "oz",
-        "ingredient": "Angustora bitters"
-      },
-      {
-        "amount": 0.25,
-        "unit": "oz",
-        "ingredient": "rye whiskey"
-      },
-      {
-        "amount": 0.75,
-        "unit": "oz",
-        "ingredient": "orgeat syrup"
-      },
-      {
-        "amount": 0.5,
-        "unit": "oz",
-        "ingredient": "lemon juice"
-      }
-    ],
-    "id": 35
   },
   {
     "title": "Twentieth-Century Cocktail",
@@ -986,5 +870,57 @@
       }
     ],
     "id": 40
+  },
+  {
+    "title": "Flor de Jerez",
+    "glassware": "Cocktail glass",
+    "instructions": "SHAKE and STRAIN into a chilled cocktail glass.",
+    "ingredients": [
+      {
+        "amount": 1.5,
+        "unit": "oz",
+        "ingredient": "sherry"
+      },
+      {
+        "amount": 0.5,
+        "unit": "oz",
+        "ingredient": "dark rum"
+      },
+      {
+        "amount": 0.25,
+        "unit": "oz",
+        "ingredient": "apricot brandy"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "lemon juice"
+      },
+      {
+        "amount": 0.5,
+        "unit": "oz",
+        "ingredient": "simple syrup"
+      }
+    ],
+    "id": 41
+  },
+  {
+    "title": "Espresso Tonic",
+    "glassware": "Rocks glass",
+    "instructions": "BUILD in a chilled rocks glass. Add a large ice cube and the tonic water. FLOAT the espresso.",
+    "nonAlcoholic": true,
+    "ingredients": [
+      {
+        "amount": 2,
+        "unit": "oz",
+        "ingredient": "espresso"
+      },
+      {
+        "amount": 6,
+        "unit": "oz",
+        "ingredient": "tonic water"
+      }
+    ],
+    "id": 42
   }
 ]

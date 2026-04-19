@@ -40,10 +40,15 @@
   .small-select-wrapper.ingredient-name-wrapper input { width: 100%; }
   .small-select-wrapper .options-dropdown { width: 160px; top: 34px; left: 0; }
 
-  .recipe-form {
+  .left-column {
+    display: flex;
+    flex-direction: column;
     flex: 1;
     max-width: 640px;
+    min-height: 0;
+  }
 
+  .recipe-form {
     .row { margin-bottom: 12px; display: flex; flex-direction: column; }
     input, textarea { padding: 8px; border: 1px solid $medium-grey; border-radius: 4px; background: $light-grey; box-sizing: border-box; }
     textarea { min-height: 120px; width: 100%; max-width: 640px; resize: vertical; }
@@ -61,6 +66,92 @@
 
     .error { color: #c0392b; }
     .success { color: #27ae60; }
+  }
+
+  .keywords-editor {
+    flex: 1;
+    margin-top: 50px;
+    min-height: 0;
+
+    .row { margin-bottom: 12px; display: flex; flex-direction: column; height: 100%; }
+
+    .keyword-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+      align-items: flex-start;
+      overflow: hidden;
+    }
+
+    .keyword-chip {
+      float: left;
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border: 1px solid $medium-grey;
+      border-radius: 999px;
+      background: $light-grey;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, padding-right 0.2s ease;
+      white-space: nowrap;
+      position: relative;
+      line-height: 1;
+    }
+
+    .keyword-chip:hover {
+      background: #ffe5e5;
+      border-color: #f2b0b0;
+      color: #8a1f1f;
+      padding-right: 28px;
+    }
+
+    .keyword-chip::after {
+      content: '';
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+      color: #8a1f1f;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .keyword-chip:hover::after {
+      content: '✕';
+      opacity: 0.9;
+    }
+
+    .keyword-add {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+      align-items: center;
+    }
+
+    .keyword-add input {
+      flex: 1;
+      min-width: 180px;
+      padding: 8px;
+      border: 1px solid $medium-grey;
+      border-radius: 4px;
+      background: $light-grey;
+      box-sizing: border-box;
+    }
+
+    .keyword-add button {
+      padding: 8px 12px;
+      border: 1px solid $medium-grey;
+      border-radius: 4px;
+      background: $light-grey;
+      cursor: pointer;
+    }
+
+    .keyword-add button:hover {
+      background: #eee;
+    }
   }
 
   .recipe-list { width: 320px; }

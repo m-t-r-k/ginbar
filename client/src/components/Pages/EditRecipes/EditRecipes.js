@@ -32,6 +32,21 @@ const validateRecipe = (recipe) => {
 };
 
 function EditRecipes() {
+  const [alcoholicKeywords, setAlcoholicKeywords] = useState([
+    'gin', 'vodka', 'rum', 'whiskey', 'bourbon', 'scotch', 'tequila', 'brandy', 'cognac',
+    'wine', 'beer', 'vermouth', 'liqueur', 'absinthe', 'schnapps', 'champagne', 'prosecco',
+    'sherry', 'port', 'marsala', 'madeira', 'aperol', 'campari', 'amaro', 'bitters'
+  ]);
+
+  // Function to check if a recipe is alcoholic based on ingredients
+  const isAlcoholic = (ingredients) => {
+    if (!ingredients || !Array.isArray(ingredients)) return false;
+    return ingredients.some(ing => {
+      const ingredientName = (ing.ingredient || '').toLowerCase();
+      return alcoholicKeywords.some(keyword => ingredientName.includes(keyword.toLowerCase()));
+    });
+  };
+
   const [authenticated, setAuthenticated] = useState(() => sessionStorage.getItem('editRecipesAuth') === 'true');
   const [code, setCode] = useState('');
   const [error, setError] = useState('');
@@ -48,9 +63,15 @@ function EditRecipes() {
     title: '',
     glassware: '',
     instructions: '',
+    nonAlcoholic: false,
     ingredients: [emptyIngredient()]
   });
   const [editingId, setEditingId] = useState(null);
+  const [newKeyword, setNewKeyword] = useState('');
+
+  useEffect(() => {
+    setAlcoholicKeywords(prev => [...prev].sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' })));
+  }, []);
 
   // dropdown visibility state for showing full option lists on demand
   const [showGlassDropdown, setShowGlassDropdown] = useState(false);
@@ -183,6 +204,24 @@ function EditRecipes() {
     setForm(prev => ({ ...prev, [name]: value }));
   };
 
+  const handleAddKeyword = () => {
+    const keyword = (newKeyword || '').trim();
+    if (!keyword) return;
+    setAlcoholicKeywords(prev => [...prev, keyword]);
+    setNewKeyword('');
+  };
+
+  const handleKeywordKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleAddKeyword();
+    }
+  };
+
+  const removeKeyword = (index) => {
+    setAlcoholicKeywords(prev => prev.filter((_, idx) => idx !== index));
+  };
+
   const handleIngredientChange = (idx, field, value) => {
     setForm(prev => {
       const ingredients = [...prev.ingredients];
@@ -269,11 +308,13 @@ function EditRecipes() {
   };
 
   const handleEdit = (recipe) => {
+    const ingredients = recipe.ingredients && recipe.ingredients.length ? recipe.ingredients : [emptyIngredient()];
     setForm({
       title: recipe.title || '',
       glassware: recipe.glassware || '',
       instructions: recipe.instructions || '',
-      ingredients: recipe.ingredients && recipe.ingredients.length ? recipe.ingredients : [emptyIngredient()]
+      nonAlcoholic: !isAlcoholic(ingredients),
+      ingredients: ingredients
     });
     setEditingId(recipe.id);
     setError('');
@@ -283,7 +324,7 @@ function EditRecipes() {
 
   const handleCancelEdit = () => {
     setEditingId(null);
-    setForm({ title: '', glassware: '', instructions: '', ingredients: [emptyIngredient()] });
+    setForm({ title: '', glassware: '', instructions: '', nonAlcoholic: false, ingredients: [emptyIngredient()] });
     setError('');
     setSuccess('');
   };
@@ -304,8 +345,12 @@ function EditRecipes() {
       title: (form.title || '').toString().trim(),
       glassware: (form.glassware || '').toString().trim(),
       instructions: (form.instructions || '').toString().trim(),
+      nonAlcoholic: form.nonAlcoholic || false,
       ingredients: cleanedIngredients
     };
+
+    // Auto-detect non-alcoholic based on ingredients
+    cleanedForm.nonAlcoholic = !isAlcoholic(cleanedIngredients);
 
     if (!validateRecipe(cleanedForm)) {
       setError('Please fill out all required fields and complete all ingredients.');
@@ -433,11 +478,12 @@ function EditRecipes() {
         <div className="edit-recipes" ref={containerRef}>
           <h2>Developer: Edit Recipes (local)</h2>
           <div className="container">
-            <form className="recipe-form" onSubmit={handleSubmit} autoComplete="off">
-              <div className="row">
-                <label>Name</label>
-                <input name="title" value={form.title} onChange={handleFormChange} />
-              </div>
+            <div className="left-column">
+              <form className="recipe-form" onSubmit={handleSubmit} autoComplete="off">
+                <div className="row">
+                  <label>Name</label>
+                  <input name="title" value={form.title} onChange={handleFormChange} />
+                </div>
               <div className="row select-row">
                 <label>Glass</label>
                 <div className="select-wrapper">
@@ -502,6 +548,36 @@ function EditRecipes() {
               {error && <p className="error">{error}</p>}
               {success && <p className="success">{success}</p>}
             </form>
+
+            <div className="keywords-editor">
+              <div className="row keywords-row">
+                <label>Alcoholic Keywords</label>
+                <div className="keyword-list">
+                  {alcoholicKeywords.map((keyword, index) => (
+                    <button
+                      key={`${keyword}-${index}`}
+                      type="button"
+                      className="keyword-chip"
+                      onClick={() => removeKeyword(index)}
+                      title="Click to remove"
+                    >
+                      {keyword}
+                    </button>
+                  ))}
+                </div>
+                <div className="keyword-add">
+                  <input
+                    type="text"
+                    value={newKeyword}
+                    onChange={(e) => setNewKeyword(e.target.value)}
+                    onKeyDown={handleKeywordKeyDown}
+                    placeholder="Add new keyword..."
+                  />
+                  <button type="button" onClick={handleAddKeyword}>Add</button>
+                </div>
+              </div>
+            </div>
+            </div>
 
             <div className="recipe-list">
               <h3>Existing Recipes</h3>
