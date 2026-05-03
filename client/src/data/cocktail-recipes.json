@@ -595,39 +595,6 @@
     "id": 28
   },
   {
-    "title": "Corpse Reviver No. 2",
-    "glassware": "Cocktail glass",
-    "instructions": "SHAKE and STRAIN into a chilled cocktail glass.",
-    "ingredients": [
-      {
-        "amount": 0.75,
-        "unit": "oz",
-        "ingredient": "gin"
-      },
-      {
-        "amount": 0.75,
-        "unit": "oz",
-        "ingredient": "triple sec"
-      },
-      {
-        "amount": 0.75,
-        "unit": "oz",
-        "ingredient": "blanc vermouth"
-      },
-      {
-        "amount": 0.75,
-        "unit": "oz",
-        "ingredient": "lemon juice"
-      },
-      {
-        "amount": 1,
-        "unit": "dashes",
-        "ingredient": "absinthe"
-      }
-    ],
-    "id": 29
-  },
-  {
     "title": "Martini (Modern)",
     "glassware": "Cocktail glass",
     "instructions": "STIR and STRAIN into a chilled cocktail glass. Add the garnish.",
@@ -922,5 +889,38 @@
       }
     ],
     "id": 42
+  },
+  {
+    "title": "Lavada Kedavra",
+    "glassware": "Coupe glass",
+    "instructions": "DRY SHAKE all ingredients, then SHAKE and STRAIN into a chilled coupe glass. Add the garnish.",
+    "ingredients": [
+      {
+        "amount": 2,
+        "unit": "oz",
+        "ingredient": "adamus dry gin"
+      },
+      {
+        "amount": 1,
+        "unit": "oz",
+        "ingredient": "lemon juice"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "lavender syrup"
+      },
+      {
+        "amount": 1,
+        "unit": "",
+        "ingredient": "egg white"
+      },
+      {
+        "amount": 0,
+        "unit": "",
+        "ingredient": "edible flower blossoms"
+      }
+    ],
+    "id": 43
   }
 ]

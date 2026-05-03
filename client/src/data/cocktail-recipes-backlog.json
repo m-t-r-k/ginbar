@@ -323,5 +323,38 @@
       }
     ],
     "id": 35
+  },
+  {
+    "title": "Corpse Reviver No. 2",
+    "glassware": "Cocktail glass",
+    "instructions": "SHAKE and STRAIN into a chilled cocktail glass.",
+    "ingredients": [
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "gin"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "triple sec"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "blanc vermouth"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "lemon juice"
+      },
+      {
+        "amount": 1,
+        "unit": "dashes",
+        "ingredient": "absinthe"
+      }
+    ],
+    "id": 29
   }
 ]
