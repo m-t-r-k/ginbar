@@ -623,6 +623,39 @@
     "id": 30
   },
   {
+    "id": 18,
+    "title": "Gin Basil Smash",
+    "ingredients": [
+      {
+        "amount": 2,
+        "unit": "oz",
+        "ingredient": "gin"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "lemon juice"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "simple syrup"
+      },
+      {
+        "amount": 8,
+        "unit": "leaves",
+        "ingredient": "basil"
+      },
+      {
+        "amount": 1,
+        "unit": "sprig",
+        "ingredient": "basil"
+      }
+    ],
+    "glassware": "Rocks glass",
+    "instructions": "MUDDLE the basil leaves with the syrup. Add the gin and lemon juice. SHAKE and STRAIN into a chilled rocks glass. Add the garnish."
+  },
+  {
     "title": "Old Fashioned",
     "glassware": "Rocks glass",
     "instructions": "BUILD in an unchilled rocks glass. Add ice and STIR briefly. Add the garnish.",
