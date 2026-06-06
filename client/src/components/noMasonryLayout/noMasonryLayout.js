@@ -11,6 +11,7 @@ class NoMasonryLayout extends React.Component {
       countryTags: [],
       typeTags: [],
       tasteTags: [],
+      chassisTags: [],
       activeItems: 0,
       largeFilter: false,
       activeFilter: false,
@@ -34,7 +35,8 @@ class NoMasonryLayout extends React.Component {
       let filterId = filterItem.getAttribute("id");
       if(this.state.countryTags.includes(filterId) ||
          this.state.typeTags.includes(filterId) ||
-         this.state.tasteTags.includes(filterId))
+         this.state.tasteTags.includes(filterId) ||
+         this.state.chassisTags.includes(filterId))
       {         
         if(!filterItem.classList.contains("active"))
         {
@@ -96,6 +98,21 @@ class NoMasonryLayout extends React.Component {
         }
       }
 
+      if(showElement) {
+        if(!this.state.chassisTags.length > 0) {
+          showElement = true;
+        } else {
+          for(let tag of this.state.chassisTags) {
+            if(itemTags.includes(tag))
+            {
+              showElement = true;
+              break;
+            }
+            showElement = false;
+          }
+        }
+      }
+
       // Show tips
       if(showElement) {
         if(this.state.showTips) {
@@ -139,9 +156,21 @@ class NoMasonryLayout extends React.Component {
             : [...state.tasteTags, val],
         }))
         break;
+      case "chassis":
+        this.setState((state) => ({
+          chassisTags: state.chassisTags.includes(val)
+            ? state.chassisTags.filter((fc) => fc !== val)
+            : [...state.chassisTags, val],
+        }))
+        break;
       default:
         break;
     }
+  }
+
+  handleChassisFilterChange(event) {
+    const selected = Array.from(event.target.selectedOptions).map(option => option.value.toLowerCase());
+    this.setState({ chassisTags: selected });
   }
 
   getCountryFilterOptions() {
@@ -169,6 +198,19 @@ class NoMasonryLayout extends React.Component {
       return true;
     });
     return [...new Set(tasteTags)];  
+  }
+
+  getChassisFilterOptions() {
+    let chassisTags = [];
+    this.props.gins.forEach(gin => {
+      const chassis = gin.chassis;
+      if (Array.isArray(chassis)) {
+        chassisTags = chassisTags.concat(chassis.map(value => String(value).toLowerCase()));
+      } else if (chassis) {
+        chassisTags.push(String(chassis).toLowerCase());
+      }
+    });
+    return [...new Set(chassisTags)];
   }
 
   updateFilterVisibility = () => {
@@ -202,6 +244,7 @@ class NoMasonryLayout extends React.Component {
     if (prevState.countryTags !== this.state.countryTags ||
         prevState.typeTags !== this.state.typeTags ||
         prevState.tasteTags !== this.state.tasteTags ||
+        prevState.chassisTags !== this.state.chassisTags ||
         prevState.activeFilter !== this.state.activeFilter ||
         prevState.showTips !== this.state.showTips) {
       this.updateFilterItems();
@@ -218,6 +261,7 @@ class NoMasonryLayout extends React.Component {
     const countryTags = this.getCountryFilterOptions();
     const ginTypeTags = this.getGinTypeFilterOptions();
     const tasteTags = this.getTasteFilterOptions();
+    const chassisTags = this.getChassisFilterOptions();
 
     return (
       <section className="fixed_width masonry_wrap">
@@ -262,6 +306,20 @@ class NoMasonryLayout extends React.Component {
                 </ul>
               </div>
               <div>
+                <span>Chassis:</span>
+                <select
+                  multiple
+                  size={Math.min(chassisTags.length || 4, 8)}
+                  className="filterDropdown"
+                  value={this.state.chassisTags}
+                  onChange={this.handleChassisFilterChange.bind(this)}
+                >
+                  {chassisTags.map(chassis => (
+                    <option key={chassis} value={chassis}>{chassis}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
                 <span>Hauptnote:</span>
                 <ul className='filter'>
                   {tasteTags.map(taste => (
@@ -275,6 +333,12 @@ class NoMasonryLayout extends React.Component {
         <div className="grid">
           {this.props.gins.map((gin, index) => {
                 let tagsList = [gin.originCountry, gin.type];
+                const chassis = gin.chassis;
+                if (Array.isArray(chassis)) {
+                  tagsList = [...tagsList, ...chassis];
+                } else if (chassis) {
+                  tagsList.push(chassis);
+                }
                 tagsList = [...tagsList, ...gin.mainNote];
                 return (
                   <div className='grid-item' tags={tagsList} key={gin.id} data-tipp={gin.recommendation}>

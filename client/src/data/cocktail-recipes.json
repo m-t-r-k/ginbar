@@ -955,5 +955,29 @@
       }
     ],
     "id": 43
+  },
+  {
+    "title": "It's about Thyme",
+    "glassware": "Rocks glass",
+    "instructions": "SHAKE and STRAIN into a ice-filled rocks glass.",
+    "nonAlcoholic": false,
+    "ingredients": [
+      {
+        "amount": 2,
+        "unit": "oz",
+        "ingredient": "thyme-infused gin"
+      },
+      {
+        "amount": 1,
+        "unit": "oz",
+        "ingredient": "lemon juice"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "thyme syrup"
+      }
+    ],
+    "id": 44
   }
 ]
