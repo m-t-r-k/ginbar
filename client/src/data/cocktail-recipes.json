@@ -979,5 +979,34 @@
       }
     ],
     "id": 44
+  },
+  {
+    "title": "Dark & Stormy",
+    "glassware": "Highball glass",
+    "instructions": "BUILD in a chilled, ice-filled Highball glass. Add lime juice and ginger beer. FLOAT the rum. Garnish with a lime wedge.",
+    "nonAlcoholic": false,
+    "ingredients": [
+      {
+        "amount": 2,
+        "unit": "oz",
+        "ingredient": "dark rum"
+      },
+      {
+        "amount": 3,
+        "unit": "oz",
+        "ingredient": "ginger beer"
+      },
+      {
+        "amount": 0.66,
+        "unit": "oz",
+        "ingredient": "lime juice"
+      },
+      {
+        "amount": 1,
+        "unit": "",
+        "ingredient": "lime wedge"
+      }
+    ],
+    "id": 45
   }
 ]
