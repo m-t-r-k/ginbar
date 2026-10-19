@@ -2,7 +2,7 @@ import React from 'react';
 import './SwiperSlider.scss';
 import BgImgTextBannerAltStyle from '../BgImgTextBannerAltStyle/BgImgTextBannerAltStyle';
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, EffectFade } from "swiper";
+import { Navigation, Pagination, EffectFade } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";

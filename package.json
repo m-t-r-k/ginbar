@@ -8,6 +8,6 @@
     "start:client": "npm run start --prefix client"
   },
   "devDependencies": {
-    "concurrently": "^9.2.1"
+    "concurrently": "^10.0.6"
   }
 }

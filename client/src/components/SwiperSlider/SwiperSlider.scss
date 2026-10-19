@@ -71,24 +71,22 @@ $swiper-pagination-height: 50px;
     border-radius: 22px;
     @include standard-transition(all, 0.25s, 0s);
 
-    &::after {
-        transform: scale(0.5) translateX(3px);
+    // Swiper 12: Pfeil ist ein SVG (fill: currentColor) statt ::after-Font-Icon
+    svg {
+        height: 22px;
+        margin-left: 3px;
     }
 
     &:hover {
         background: $medium-grey;
-
-        &::after {
-            color: $dark-grey;
-        }
+        color: $dark-grey !important;
     }
 }
 
-.swiper-button-prev {
-
-    &::after {
-        transform: scale(0.5) translateX(-3px);
-    }
+.swiper-button-prev svg {
+    // Icon ist um 180° gedreht, daher wirkt margin-left hier nach rechts
+    margin-left: 0;
+    margin-right: 3px;
 }
 
 @media screen and (max-width:760px) {
@@ -100,10 +98,9 @@ $swiper-pagination-height: 50px;
            height: 30px;
            right: 5px;
     
-           &::after {
-            font-size: 22px;
-            line-height: 22px;
-            transform: scale(0.75) translateX(1px);
+           svg {
+            height: 16px;
+            margin-left: 1px;
            }
 
            &:hover {
@@ -114,8 +111,9 @@ $swiper-pagination-height: 50px;
         .swiper-button-prev {
             left: 5px;
 
-            &::after {
-                transform: scale(0.75) translateX(-1px);
+            svg {
+                margin-left: 0;
+                margin-right: 1px;
             }
         }
     }
