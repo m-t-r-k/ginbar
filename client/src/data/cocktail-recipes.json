@@ -7,7 +7,7 @@
       {
         "amount": 1.5,
         "unit": "oz",
-        "ingredient": "dry gin"
+        "ingredient": "gin"
       },
       {
         "amount": 1.5,
@@ -97,11 +97,11 @@
       {
         "amount": 0.5,
         "unit": "oz",
-        "ingredient": "red wine"
+        "ingredient": "sherry"
       }
     ],
     "glassware": "Collins glass",
-    "instructions": "SHAKE and STRAIN everything except the sherri into an ice-filled collins glass. FLOAT the red wine."
+    "instructions": "SHAKE and STRAIN everything except the sherry into an ice-filled collins glass. FLOAT the sherry."
   },
   {
     "title": "Earl Grey Martini",
@@ -220,7 +220,7 @@
   {
     "title": "Mai Tai",
     "glassware": "Double old-fashioned glass",
-    "instructions": "Squeeze the juice from the lime and reserve the lime shell. SHAKE all ingrediants with 2 cups crushed ice, and pour, unstrained, into an double old-fashedn glass. Sink the lime shell into the drink.",
+    "instructions": "Squeeze the juice from the lime and reserve the lime shell. SHAKE all ingredients with 2 cups crushed ice, and pour, unstrained, into a double old-fashioned glass. Sink the lime shell into the drink.",
     "ingredients": [
       {
         "amount": 2,
@@ -247,8 +247,9 @@
   },
   {
     "title": "Margarita",
-    "glassware": "Collins glass",
-    "instructions": "SHAKE and STRAIN into a salt-rimmed, chilled cocktail glass.",
+    "glassware": "Coupe glass",
+    "instructions": "SHAKE and STRAIN into a salt-rimmed, chilled coupe glass.",
+    "nonAlcoholic": false,
     "ingredients": [
       {
         "amount": 1.5,
@@ -343,7 +344,7 @@
       {
         "amount": 1,
         "unit": "oz",
-        "ingredient": "dry gin"
+        "ingredient": "gin"
       },
       {
         "amount": 1,
@@ -404,7 +405,7 @@
   {
     "title": "American Beauty",
     "glassware": "Coupe glass",
-    "instructions": "SHAKE and STRAIN all ingredients except the red wine into a chilled chilled coupe glass. FLOAT the red wine.",
+    "instructions": "SHAKE and STRAIN all ingredients except the red wine into a chilled coupe glass. FLOAT the red wine.",
     "ingredients": [
       {
         "amount": 2,
@@ -503,7 +504,7 @@
   {
     "title": "New York Sour",
     "glassware": "Rocks glass",
-    "instructions": "SHAKE and STRAIN all ingredients except the red wine into a chilled rocks glass. FLOAT the port wine.",
+    "instructions": "SHAKE and STRAIN all ingredients except the red wine into a chilled rocks glass. FLOAT the red wine.",
     "ingredients": [
       {
         "amount": 2,
@@ -603,7 +604,7 @@
       {
         "amount": 2,
         "unit": "oz",
-        "ingredient": "dry gin"
+        "ingredient": "gin"
       },
       {
         "amount": 1,
@@ -791,7 +792,7 @@
       {
         "amount": 1.5,
         "unit": "oz",
-        "ingredient": "dry gin"
+        "ingredient": "gin"
       },
       {
         "amount": 1.5,
@@ -1009,5 +1010,92 @@
       }
     ],
     "id": 45
+  },
+  {
+    "title": "Last Word",
+    "glassware": "Coupe glass",
+    "instructions": "SHAKE and STRAIN into a chilled coupe glass.",
+    "nonAlcoholic": false,
+    "ingredients": [
+      {
+        "amount": 0.66,
+        "unit": "oz",
+        "ingredient": "gin"
+      },
+      {
+        "amount": 0.66,
+        "unit": "oz",
+        "ingredient": "Green Chartreuse"
+      },
+      {
+        "amount": 0.66,
+        "unit": "oz",
+        "ingredient": "Maraschino"
+      },
+      {
+        "amount": 0.66,
+        "unit": "oz",
+        "ingredient": "lime juice"
+      }
+    ],
+    "id": 46
+  },
+  {
+    "title": "Cable Car",
+    "glassware": "Coupe glass",
+    "instructions": "SHAKE and STRAIN into a cinnamon-sugar-rimmed, chilled coupe glass.",
+    "nonAlcoholic": true,
+    "ingredients": [
+      {
+        "amount": 1.5,
+        "unit": "oz",
+        "ingredient": "spiced rum"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "triple sec"
+      },
+      {
+        "amount": 0.5,
+        "unit": "oz",
+        "ingredient": "simple syrup"
+      },
+      {
+        "amount": 1,
+        "unit": "oz",
+        "ingredient": "lemon juice"
+      }
+    ],
+    "id": 47
+  },
+  {
+    "title": "Monte Cassino",
+    "glassware": "Coupe glass",
+    "instructions": "SHAKE and STRAIN into a chilled coupe glass.",
+    "nonAlcoholic": false,
+    "ingredients": [
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "rye whiskey"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "Bénédictine"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "Yellow Chartreuse"
+      },
+      {
+        "amount": 0.75,
+        "unit": "oz",
+        "ingredient": "lemon juice"
+      }
+    ],
+    "id": 48
   }
 ]
