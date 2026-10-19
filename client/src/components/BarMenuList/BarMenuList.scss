@@ -1,43 +1,3 @@
-.ingredient-filter {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 30px;
-
-  .filter-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: center;
-    max-width: 100%;
-  }
-
-  .filter-btn {
-    padding: 8px 16px;
-    border: 1px solid #ccc;
-    background: #f9f9f9;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 13px;
-    transition: all 0.2s ease;
-    white-space: nowrap;
-    color: #333;
-    -webkit-appearance: none;
-    -webkit-text-fill-color: #333;
-
-    &:hover {
-      border-color: #999;
-      background: #f0f0f0;
-    }
-
-    &.active {
-      background: #333;
-      color: #fff;
-      -webkit-text-fill-color: #fff;
-      border-color: #333;
-    }
-  }
-}
-
 .bar-menu-list {
     position: relative;
     display: grid;
@@ -46,5 +6,34 @@
 
     @media screen and (max-width: 1000px) {
         grid-template-columns: 1fr;
+    }
+}
+// Zutaten exakt wie in den Rezepten schreiben (tag_text kapitalisiert sonst)
+.bar_menu_filter .filter li {
+    text-transform: none;
+}
+
+.guide-trigger {
+    display: block;
+    width: 100%;
+    min-height: 44px;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    border: 1px solid #4c4c4c;
+    background: transparent;
+    color: #4c4c4c;
+    font-family: 'Raleway_Bold';
+    font-size: 14px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.25s;
+
+    span {
+        text-decoration: underline;
+    }
+
+    &:hover {
+        background: #4c4c4c;
+        color: #F5F5F5;
     }
 }
