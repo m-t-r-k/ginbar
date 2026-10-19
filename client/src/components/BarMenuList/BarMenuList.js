@@ -6,7 +6,7 @@ import BarMenuListItemDetail from '../BarMenuListItemDetail/BarMenuListItemDetai
 import '../noMasonryLayout/noMasonryLayout.scss';
 import Switch from "react-switch";
 import CocktailGuide from '../CocktailGuide/CocktailGuide';
-import { INGREDIENT_GROUPS, OTHER_GROUP, getIngredientGroup, getFilterLabel, isNonAlcoholic } from './cocktailLogic';
+import { OTHER_GROUP, getIngredientGroup, getFilterLabel, isNonAlcoholic } from './cocktailLogic';
 
 class BarMenuList extends React.Component {
   state = {
@@ -18,7 +18,8 @@ class BarMenuList extends React.Component {
   };
 
   groupIngredients = (ingredients) => {
-    const groups = [...INGREDIENT_GROUPS.map(([name]) => name), OTHER_GROUP]
+    // Anzeigereihenfolge weicht von der Match-Reihenfolge ab (dort Liqueurs vor Spirits wegen "sloe gin")
+    const groups = ['Spirits', 'Liqueurs & Wine', 'Syrups & Juices', OTHER_GROUP]
       .map(name => ({ name, ingredients: [] }));
     ingredients.forEach(ingredient => {
       groups.find(group => group.name === getIngredientGroup(ingredient)).ingredients.push(ingredient);
