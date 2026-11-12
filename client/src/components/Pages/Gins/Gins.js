@@ -2,7 +2,7 @@ import React from "react";
 import MotionWrapper from "../../MotionWrapper";
 import './Gins.scss';
 import HeadlineTextEmphesized from '../../HeadlineTextEmphesized/HeadlineTextEmphesized';
-import NoMasonryLayout from "../../noMasonryLayout/noMasonryLayout";
+import GinList from "../../GinList/GinList";
 import GinData from '../../../data/gin-data.json';
   
 class Listing extends React.Component {
@@ -19,7 +19,7 @@ class Listing extends React.Component {
                     headline={"Unsere Gin Empfehlungen"}
                     text={""}
                     ></HeadlineTextEmphesized>
-                    <NoMasonryLayout gins={gins}></NoMasonryLayout>
+                    <GinList gins={gins} />
                 </section>
             </MotionWrapper>
         );

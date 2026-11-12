@@ -249,7 +249,6 @@
     "title": "Margarita",
     "glassware": "Coupe glass",
     "instructions": "SHAKE and STRAIN into a salt-rimmed, chilled coupe glass.",
-    "nonAlcoholic": false,
     "ingredients": [
       {
         "amount": 1.5,
@@ -334,7 +333,6 @@
     "title": "Emperor's Garden",
     "glassware": "Rocks glass",
     "instructions": "SHAKE and STRAIN into an ice-filled, chilled rocks glass. Add the garnish.",
-    "nonAlcoholic": false,
     "ingredients": [
       {
         "amount": 1,
@@ -538,7 +536,6 @@
     "title": "Cucumber Rose Cooler",
     "glassware": "Highball glass",
     "instructions": "BUILD in a highball glass. MUDDLE cucumber, simple syrup and salt, add lime juice and roes water. Fill the glass with crushed ice and add soda. STIR well.",
-    "nonAlcoholic": true,
     "ingredients": [
       {
         "amount": 0.5,
@@ -910,7 +907,6 @@
     "title": "Espresso Tonic",
     "glassware": "Rocks glass",
     "instructions": "BUILD in a chilled rocks glass. Add a large ice cube and the tonic water. FLOAT the espresso.",
-    "nonAlcoholic": true,
     "ingredients": [
       {
         "amount": 2,
@@ -962,7 +958,6 @@
     "title": "It's about Thyme",
     "glassware": "Rocks glass",
     "instructions": "SHAKE and STRAIN into a ice-filled rocks glass.",
-    "nonAlcoholic": false,
     "ingredients": [
       {
         "amount": 2,
@@ -986,7 +981,6 @@
     "title": "Dark & Stormy",
     "glassware": "Highball glass",
     "instructions": "BUILD in a chilled, ice-filled Highball glass. Add lime juice and ginger beer. FLOAT the rum. Garnish with a lime wedge.",
-    "nonAlcoholic": false,
     "ingredients": [
       {
         "amount": 2,
@@ -1015,7 +1009,6 @@
     "title": "Last Word",
     "glassware": "Coupe glass",
     "instructions": "SHAKE and STRAIN into a chilled coupe glass.",
-    "nonAlcoholic": false,
     "ingredients": [
       {
         "amount": 0.66,
@@ -1044,7 +1037,6 @@
     "title": "Cable Car",
     "glassware": "Coupe glass",
     "instructions": "SHAKE and STRAIN into a cinnamon-sugar-rimmed, chilled coupe glass.",
-    "nonAlcoholic": true,
     "ingredients": [
       {
         "amount": 1.5,
@@ -1073,7 +1065,6 @@
     "title": "Monte Cassino",
     "glassware": "Coupe glass",
     "instructions": "SHAKE and STRAIN into a chilled coupe glass.",
-    "nonAlcoholic": false,
     "ingredients": [
       {
         "amount": 0.75,

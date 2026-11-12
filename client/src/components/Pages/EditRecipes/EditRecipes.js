@@ -1,225 +1,106 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './EditRecipes.scss';
-// Uses existing layout classes: .pageWrapper and .fixed_width (page-level layout is applied)
+// Nur lokal (Route existiert in Production nicht). Validierung macht server/dev-server.js.
 
-const PASSWORD = '0801';
 const API_BASE = process.env.REACT_APP_DEV_API || 'http://localhost:3001';
 
 const emptyIngredient = () => ({ amount: '', unit: 'oz', ingredient: '' });
+const emptyForm = () => ({ title: '', glassware: '', instructions: '', ingredients: [emptyIngredient()] });
 
-const normalizeAmount = (amountStr) => {
-  if (!amountStr || amountStr === '' || amountStr === null || amountStr === undefined) return '';
-  const str = amountStr.toString().trim();
+// "1,5" -> 1.5, ".5" -> 0.5; Nicht-Zahlen ("top up") bleiben Text
+const normalizeAmount = (amount) => {
+  const str = (amount ?? '').toString().trim().replace(',', '.');
   if (str === '') return '';
-  // Replace comma with dot
-  let normalized = str.replace(',', '.');
-  // Handle leading decimal (e.g., ".5" -> "0.5")
-  if (normalized.startsWith('.')) {
-    normalized = '0' + normalized;
-  }
-  return normalized;
+  const num = Number(str.startsWith('.') ? '0' + str : str);
+  return Number.isNaN(num) ? str : num;
 };
 
-const validateRecipe = (recipe) => {
-  if (!recipe.title || !recipe.instructions) return false;
-  if (!Array.isArray(recipe.ingredients) || recipe.ingredients.length === 0) return false;
-  // each ingredient must have ingredient name and amount (unit may be empty)
-  for (const ing of recipe.ingredients) {
-    if (!ing.ingredient || ing.ingredient.trim() === '') return false;
-    if (ing.amount === '' || ing.amount === null) return false;
-  }
-  return true;
+// Eindeutige Werte, häufigste zuerst, dann alphabetisch
+const byFrequency = (values) => {
+  const counts = new Map();
+  values.map(v => (v || '').toString().trim()).filter(Boolean)
+    .forEach(v => counts.set(v, (counts.get(v) || 0) + 1));
+  return [...counts.entries()].sort((a, b) => (b[1] - a[1]) || a[0].localeCompare(b[0])).map(([v]) => v);
 };
+
+// Eingabefeld mit Vorschlagsliste: Tippen filtert, ▾ zeigt alle, Pfeiltasten/Enter/Esc
+function Combobox({ value, onChange, options, className, ...inputProps }) {
+  const [open, setOpen] = useState(false);
+  const [showAll, setShowAll] = useState(false);
+  const [highlight, setHighlight] = useState(-1);
+
+  const visible = showAll ? options : options.filter(o => o.toLowerCase().includes((value || '').toLowerCase()));
+
+  const openList = (all) => { setOpen(true); setShowAll(all); setHighlight(-1); };
+  const close = () => { setOpen(false); setHighlight(-1); };
+  const select = (option) => { onChange(option); close(); };
+
+  const handleKeyDown = (e) => {
+    if (!open) return;
+    if (e.key === 'ArrowDown') setHighlight(h => (h < visible.length - 1 ? h + 1 : 0));
+    else if (e.key === 'ArrowUp') setHighlight(h => (h > 0 ? h - 1 : visible.length - 1));
+    else if (e.key === 'Enter' && visible[highlight]) select(visible[highlight]);
+    else if (e.key === 'Escape') close();
+    else return;
+    e.preventDefault();
+  };
+
+  return (
+    <div className={className}>
+      <input {...inputProps} autoComplete="off" autoCorrect="off" spellCheck={false} value={value}
+        onChange={e => { onChange(e.target.value); openList(false); }}
+        onFocus={() => openList(false)}
+        onBlur={close}
+        onKeyDown={handleKeyDown} />
+      {/* onMouseDown + preventDefault: Fokus bleibt im Input, onBlur schließt nicht vor dem Klick */}
+      <button type="button" className="small show-options" tabIndex={-1}
+        onMouseDown={e => { e.preventDefault(); open && showAll ? close() : openList(true); }}>▾</button>
+      {open && visible.length > 0 && (
+        <ul className="options-dropdown">
+          {visible.map((option, idx) => (
+            <li key={option} className={highlight === idx ? 'highlighted' : ''}>
+              <button type="button" tabIndex={-1} onMouseDown={e => { e.preventDefault(); select(option); }}>{option}</button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
 
 function EditRecipes() {
-  const [alcoholicKeywords, setAlcoholicKeywords] = useState([
-    'gin', 'vodka', 'rum', 'whiskey', 'bourbon', 'scotch', 'tequila', 'brandy', 'cognac',
-    'wine', 'beer', 'vermouth', 'liqueur', 'absinthe', 'schnapps', 'champagne', 'prosecco',
-    'sherry', 'port', 'marsala', 'madeira', 'aperol', 'campari', 'amaro', 'bitters'
-  ]);
-
-  // Function to check if a recipe is alcoholic based on ingredients
-  const isAlcoholic = (ingredients) => {
-    if (!ingredients || !Array.isArray(ingredients)) return false;
-    return ingredients.some(ing => {
-      const ingredientName = (ing.ingredient || '').toLowerCase();
-      return alcoholicKeywords.some(keyword => ingredientName.includes(keyword.toLowerCase()));
-    });
-  };
-
-  const [authenticated, setAuthenticated] = useState(() => sessionStorage.getItem('editRecipesAuth') === 'true');
-  const [code, setCode] = useState('');
+  const [recipes, setRecipes] = useState([]);
+  const [form, setForm] = useState(emptyForm);
+  const [editingId, setEditingId] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  const [recipes, setRecipes] = useState([]);
-  const [loading, setLoading] = useState(false);
 
-  // dynamic option lists derived from recipes (unique values)
-  const [glassOptions, setGlassOptions] = useState([]);
-  const [unitOptions, setUnitOptions] = useState([]);
-  const [ingredientOptions, setIngredientOptions] = useState([]);
-
-  const [form, setForm] = useState({
-    title: '',
-    glassware: '',
-    instructions: '',
-    nonAlcoholic: false,
-    ingredients: [emptyIngredient()]
-  });
-  const [editingId, setEditingId] = useState(null);
-  const [newKeyword, setNewKeyword] = useState('');
-
-  useEffect(() => {
-    setAlcoholicKeywords(prev => [...prev].sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' })));
-  }, []);
-
-  // dropdown visibility state for showing full option lists on demand
-  const [showGlassDropdown, setShowGlassDropdown] = useState(false);
-  const [glassShowAll, setGlassShowAll] = useState(false);
-  const [showUnitDropdownIndex, setShowUnitDropdownIndex] = useState(null);
-  // when true for an index, show the full list; otherwise show filtered list based on input value
-  const [unitShowAllIndex, setUnitShowAllIndex] = useState(null);
-  const [showIngredientDropdownIndex, setShowIngredientDropdownIndex] = useState(null);
-  const [ingredientShowAllIndex, setIngredientShowAllIndex] = useState(null);
-  const [glassHighlightIndex, setGlassHighlightIndex] = useState(-1);
-  const [unitHighlightIndex, setUnitHighlightIndex] = useState(-1);
-  const [ingredientHighlightIndex, setIngredientHighlightIndex] = useState(-1);
-  const containerRef = useRef(null);
-  const closeTimeoutRef = useRef(null);
-
-  const scheduleClose = (delay = 150) => {
-    clearTimeout(closeTimeoutRef.current);
-    closeTimeoutRef.current = setTimeout(() => {
-      setShowGlassDropdown(false);
-      setGlassShowAll(false);
-      setGlassHighlightIndex(-1);
-      setShowUnitDropdownIndex(null);
-      setUnitShowAllIndex(null);
-      setUnitHighlightIndex(-1);
-      setShowIngredientDropdownIndex(null);
-      setIngredientShowAllIndex(null);
-      setIngredientHighlightIndex(-1);
-    }, delay);
-  };
-
-  const cancelClose = () => { clearTimeout(closeTimeoutRef.current); };
-
-  useEffect(() => {
-    if (authenticated) fetchRecipes();
-  }, [authenticated]);
-
-  const fetchRecipes = async () => {
+  const fetchRecipes = useCallback(async () => {
     try {
       setLoading(true);
       const res = await fetch(`${API_BASE}/api/dev/recipes`);
-      if (!res.ok) throw new Error('Failed to load recipes');
+      if (!res.ok) throw new Error();
       const data = await res.json();
-      // sort alphabetically by title (case-insensitive)
       data.sort((a, b) => a.title.localeCompare(b.title, undefined, { sensitivity: 'base' }));
       setRecipes(data);
-      // derive unique glass and unit options from the dataset
-      computeOptionsFromData(data);
-    } catch (err) {
+    } catch {
       setError('Failed to load recipes. Is the dev server running?');
     } finally {
       setLoading(false);
     }
-  };
-
-  const computeOptionsFromData = (data) => {
-    // count occurrences and sort by frequency (desc), then alphabetically
-    const glassCount = new Map();
-    const unitCount = new Map();
-    const ingredientCount = new Map();
-    for (const r of data) {
-      const g = r.glassware && r.glassware.toString().trim();
-      if (g) glassCount.set(g, (glassCount.get(g) || 0) + 1);
-      if (Array.isArray(r.ingredients)) {
-        for (const ing of r.ingredients) {
-          const u = ing.unit && ing.unit.toString().trim();
-          if (u) unitCount.set(u, (unitCount.get(u) || 0) + 1);
-          const i = ing.ingredient && ing.ingredient.toString().trim();
-          if (i) ingredientCount.set(i, (ingredientCount.get(i) || 0) + 1);
-        }
-      }
-    }
-
-    const glassArr = Array.from(glassCount.entries())
-      .sort((a,b) => (b[1] - a[1]) || a[0].localeCompare(b[0]))
-      .map(([val]) => val);
-
-    const unitArr = Array.from(unitCount.entries())
-      .sort((a,b) => (b[1] - a[1]) || a[0].localeCompare(b[0]))
-      .map(([val]) => val);
-
-    const ingredientArr = Array.from(ingredientCount.entries())
-      .sort((a,b) => (b[1] - a[1]) || a[0].localeCompare(b[0]))
-      .map(([val]) => val);
-
-    setGlassOptions(glassArr);
-    setUnitOptions(unitArr);
-    setIngredientOptions(ingredientArr);
-  };
-
-  const handleAuth = (e) => {
-    e.preventDefault();
-    if (code === PASSWORD) {
-      sessionStorage.setItem('editRecipesAuth', 'true');
-      setAuthenticated(true);
-      setError('');
-    } else {
-      setError('Wrong code');
-    }
-  };
-
-  const toggleGlassDropdown = () => { cancelClose(); setShowGlassDropdown(prev => !prev); setGlassShowAll(prev => !prev); setGlassHighlightIndex(-1); setShowUnitDropdownIndex(null); setUnitShowAllIndex(null); setUnitHighlightIndex(-1); setShowIngredientDropdownIndex(null); setIngredientShowAllIndex(null); setIngredientHighlightIndex(-1); };
-  const toggleUnitDropdown = (idx) => { cancelClose(); setShowUnitDropdownIndex(prev => (prev === idx ? null : idx)); setUnitShowAllIndex(prev => (prev === idx ? null : idx)); setUnitHighlightIndex(-1); setShowGlassDropdown(false); setGlassShowAll(false); setGlassHighlightIndex(-1); setShowIngredientDropdownIndex(null); setIngredientShowAllIndex(null); setIngredientHighlightIndex(-1); };
-  const toggleIngredientDropdown = (idx) => { cancelClose(); setShowIngredientDropdownIndex(prev => (prev === idx ? null : idx)); setIngredientShowAllIndex(prev => (prev === idx ? null : idx)); setIngredientHighlightIndex(-1); setShowGlassDropdown(false); setGlassShowAll(false); setGlassHighlightIndex(-1); setShowUnitDropdownIndex(null); setUnitShowAllIndex(null); setUnitHighlightIndex(-1); };
-  const selectGlassOption = (val) => { cancelClose(); setForm(prev => ({ ...prev, glassware: val })); setShowGlassDropdown(false); setGlassShowAll(false); setGlassHighlightIndex(-1); };
-  const selectUnitOption = (idx, val) => { cancelClose(); handleIngredientChange(idx, 'unit', val); setShowUnitDropdownIndex(null); setUnitShowAllIndex(null); setUnitHighlightIndex(-1); };
-  const selectIngredientOption = (idx, val) => { cancelClose(); handleIngredientChange(idx, 'ingredient', val); setShowIngredientDropdownIndex(null); setIngredientShowAllIndex(null); setIngredientHighlightIndex(-1); };
-
-  // close dropdowns when clicking outside
-  useEffect(() => {
-    const onDocClick = (e) => {
-      if (containerRef.current && !containerRef.current.contains(e.target)) {
-        cancelClose();
-        setShowGlassDropdown(false);
-        setGlassShowAll(false);
-        setGlassHighlightIndex(-1);
-        setShowUnitDropdownIndex(null);
-        setUnitShowAllIndex(null);
-        setUnitHighlightIndex(-1);
-        setShowIngredientDropdownIndex(null);
-        setIngredientShowAllIndex(null);
-        setIngredientHighlightIndex(-1);
-      }
-    };
-    document.addEventListener('click', onDocClick);
-    return () => document.removeEventListener('click', onDocClick);
   }, []);
+
+  useEffect(() => { fetchRecipes(); }, [fetchRecipes]);
+
+  const allIngredients = recipes.flatMap(r => r.ingredients || []);
+  const glassOptions = byFrequency(recipes.map(r => r.glassware));
+  const unitOptions = byFrequency(allIngredients.map(i => i.unit));
+  const ingredientOptions = byFrequency(allIngredients.map(i => i.ingredient));
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
     setForm(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleAddKeyword = () => {
-    const keyword = (newKeyword || '').trim();
-    if (!keyword) return;
-    setAlcoholicKeywords(prev => [...prev, keyword]);
-    setNewKeyword('');
-  };
-
-  const handleKeywordKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      handleAddKeyword();
-    }
-  };
-
-  const removeKeyword = (index) => {
-    setAlcoholicKeywords(prev => prev.filter((_, idx) => idx !== index));
   };
 
   const handleIngredientChange = (idx, field, value) => {
@@ -230,205 +111,63 @@ function EditRecipes() {
     });
   };
 
-  const handleGlassKeyDown = (e) => {
-    if (!showGlassDropdown) return;
-    const options = glassShowAll ? glassOptions : glassOptions.filter(g => g.toLowerCase().includes((form.glassware || '').toLowerCase()));
-    
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      setGlassHighlightIndex(prev => (prev < options.length - 1 ? prev + 1 : 0));
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      setGlassHighlightIndex(prev => (prev > 0 ? prev - 1 : options.length - 1));
-    } else if (e.key === 'Enter') {
-      e.preventDefault();
-      if (glassHighlightIndex >= 0 && glassHighlightIndex < options.length) {
-        selectGlassOption(options[glassHighlightIndex]);
-      }
-    } else if (e.key === 'Escape') {
-      e.preventDefault();
-      setShowGlassDropdown(false);
-      setGlassShowAll(false);
-      setGlassHighlightIndex(-1);
-    }
-  };
+  const addIngredient = () => setForm(prev => ({ ...prev, ingredients: [...prev.ingredients, emptyIngredient()] }));
+  const removeIngredient = (idx) => setForm(prev => ({ ...prev, ingredients: prev.ingredients.filter((_, i) => i !== idx) }));
 
-  const handleUnitKeyDown = (e, idx) => {
-    if (showUnitDropdownIndex !== idx) return;
-    const options = unitShowAllIndex === idx ? unitOptions : unitOptions.filter(u => u.toLowerCase().includes((form.ingredients[idx].unit || '').toLowerCase()));
-    
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      setUnitHighlightIndex(prev => (prev < options.length - 1 ? prev + 1 : 0));
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      setUnitHighlightIndex(prev => (prev > 0 ? prev - 1 : options.length - 1));
-    } else if (e.key === 'Enter') {
-      e.preventDefault();
-      if (unitHighlightIndex >= 0 && unitHighlightIndex < options.length) {
-        selectUnitOption(idx, options[unitHighlightIndex]);
-      }
-    } else if (e.key === 'Escape') {
-      e.preventDefault();
-      setShowUnitDropdownIndex(null);
-      setUnitShowAllIndex(null);
-      setUnitHighlightIndex(-1);
-    }
-  };
-
-  const handleIngredientKeyDown = (e, idx) => {
-    if (showIngredientDropdownIndex !== idx) return;
-    const options = ingredientShowAllIndex === idx ? ingredientOptions : ingredientOptions.filter(ing_opt => ing_opt.toLowerCase().includes((form.ingredients[idx].ingredient || '').toLowerCase()));
-    
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      setIngredientHighlightIndex(prev => (prev < options.length - 1 ? prev + 1 : 0));
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      setIngredientHighlightIndex(prev => (prev > 0 ? prev - 1 : options.length - 1));
-    } else if (e.key === 'Enter') {
-      e.preventDefault();
-      if (ingredientHighlightIndex >= 0 && ingredientHighlightIndex < options.length) {
-        selectIngredientOption(idx, options[ingredientHighlightIndex]);
-      }
-    } else if (e.key === 'Escape') {
-      e.preventDefault();
-      setShowIngredientDropdownIndex(null);
-      setIngredientShowAllIndex(null);
-      setIngredientHighlightIndex(-1);
-    }
-  };
-
-  const addIngredient = () => {
-    setForm(prev => ({ ...prev, ingredients: [...prev.ingredients, emptyIngredient()] }));
-  };
-
-  const removeIngredient = (idx) => {
-    setForm(prev => ({ ...prev, ingredients: prev.ingredients.filter((_, i) => i !== idx) }));
-  };
+  const resetMessages = () => { setError(''); setSuccess(''); };
 
   const handleEdit = (recipe) => {
-    const ingredients = recipe.ingredients && recipe.ingredients.length ? recipe.ingredients : [emptyIngredient()];
     setForm({
       title: recipe.title || '',
       glassware: recipe.glassware || '',
       instructions: recipe.instructions || '',
-      nonAlcoholic: !isAlcoholic(ingredients),
-      ingredients: ingredients
+      ingredients: recipe.ingredients && recipe.ingredients.length ? recipe.ingredients : [emptyIngredient()],
     });
     setEditingId(recipe.id);
-    setError('');
-    setSuccess('');
+    resetMessages();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleCancelEdit = () => {
     setEditingId(null);
-    setForm({ title: '', glassware: '', instructions: '', nonAlcoholic: false, ingredients: [emptyIngredient()] });
-    setError('');
-    setSuccess('');
+    setForm(emptyForm());
+    resetMessages();
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-    setSuccess('');
+    resetMessages();
 
-    // Clean up ingredient rows: trim values and remove empty trailing rows
-    const cleanedIngredients = (form.ingredients || []).map(i => ({
+    // Leere Zutatenzeilen fallen weg
+    const ingredients = form.ingredients.map(i => ({
       amount: normalizeAmount(i.amount),
       unit: (i.unit || '').toString().trim(),
-      ingredient: (i.ingredient || '').toString().trim()
+      ingredient: (i.ingredient || '').toString().trim(),
     })).filter(i => i.ingredient !== '' && i.amount !== '');
 
-    const cleanedForm = {
-      title: (form.title || '').toString().trim(),
-      glassware: (form.glassware || '').toString().trim(),
-      instructions: (form.instructions || '').toString().trim(),
-      nonAlcoholic: form.nonAlcoholic || false,
-      ingredients: cleanedIngredients
+    const payload = {
+      title: form.title.trim(),
+      glassware: form.glassware.trim(),
+      instructions: form.instructions.trim(),
+      ingredients,
     };
 
-    // Auto-detect non-alcoholic based on ingredients
-    cleanedForm.nonAlcoholic = !isAlcoholic(cleanedIngredients);
-
-    if (!validateRecipe(cleanedForm)) {
-      setError('Please fill out all required fields and complete all ingredients.');
-      return;
-    }
-
-    // Normalize numeric amounts where possible
-    const normalizedIngredients = cleanedForm.ingredients.map(i => {
-      const num = Number(i.amount);
-      return { ...i, amount: (i.amount !== '' && !Number.isNaN(num)) ? num : i.amount };
-    });
-
-    const payload = { ...cleanedForm, ingredients: normalizedIngredients };
-
+    const isUpdate = editingId !== null;
     try {
-      // debug: show the payload being submitted to the dev server
-      console.debug('Submitting recipe payload', { id: editingId, payload });
       setLoading(true);
-      let res;
-      if (editingId !== null) {
-        // Update existing recipe
-        res = await fetch(`${API_BASE}/api/dev/recipes/${editingId}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-      } else {
-        // Create new
-        res = await fetch(`${API_BASE}/api/dev/recipes`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-      }
-
+      const res = await fetch(`${API_BASE}/api/dev/recipes${isUpdate ? `/${editingId}` : ''}`, {
+        method: isUpdate ? 'PUT' : 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json().catch(() => ({}));
       if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        const status = res.status;
-        const statusText = res.statusText || '';
-        const detail = err.error || err.details || JSON.stringify(err) || 'Unknown error';
-        const msg = `${editingId !== null ? 'Update' : 'Save'} failed: ${detail} (status ${status} ${statusText})`;
-        setError(msg);
+        setError(`${isUpdate ? 'Update' : 'Save'} failed: ${data.error || res.statusText} (status ${res.status})`);
         return;
       }
-
-      const data = await res.json();
-      // add any new glass/unit values into the local option lists immediately (place at front)
-      const newGlass = payload.glassware && payload.glassware.toString().trim();
-      if (newGlass) {
-        setGlassOptions(prev => {
-          const arr = prev.filter(x => x !== newGlass);
-          return [newGlass, ...arr];
-        });
-      }
-      const formUnits = Array.from(new Set((payload.ingredients || []).map(i => (i.unit && i.unit.toString().trim()) || '').filter(Boolean)));
-      if (formUnits.length) {
-        setUnitOptions(prev => {
-          const arr = prev.filter(x => !formUnits.includes(x));
-          return [...formUnits, ...arr];
-        });
-      }
-
-      const formIngredients = Array.from(new Set((payload.ingredients || []).map(i => (i.ingredient && i.ingredient.toString().trim()) || '').filter(Boolean)));
-      if (formIngredients.length) {
-        setIngredientOptions(prev => {
-          const arr = prev.filter(x => !formIngredients.includes(x));
-          return [...formIngredients, ...arr];
-        });
-      }
-
-      if (editingId !== null) {
-        setSuccess('Recipe updated successfully (id ' + data.id + ')');
-        setEditingId(null);
-      } else {
-        setSuccess('Recipe saved successfully (id ' + data.id + ')');
-      }
-
-      setForm({ title: '', glassware: '', instructions: '', ingredients: [emptyIngredient()] });
+      setSuccess(`Recipe ${isUpdate ? 'updated' : 'saved'} successfully (id ${data.id})`);
+      setEditingId(null);
+      setForm(emptyForm());
       fetchRecipes();
     } catch (err) {
       setError(err.message || 'Error saving');
@@ -438,8 +177,7 @@ function EditRecipes() {
   };
 
   const handleDelete = async (id) => {
-    const ok = window.confirm('Delete recipe?');
-    if (!ok) return;
+    if (!window.confirm('Delete recipe?')) return;
     try {
       setLoading(true);
       const res = await fetch(`${API_BASE}/api/dev/recipes/${id}`, { method: 'DELETE' });
@@ -453,29 +191,10 @@ function EditRecipes() {
     }
   };
 
-  if (!authenticated) {
-    return (
-      <section className="pageWrapper">
-        <div className="fixed_width">
-          <div className="edit-recipes auth">
-            <h2>Developer: Edit Recipes (local)</h2>
-            <form onSubmit={handleAuth} className="auth-form" autoComplete="off">
-              <label>4-digit code</label>
-              <input type="password" maxLength={4} value={code} onChange={e => setCode(e.target.value)} />
-              <button type="submit">Log in</button>
-              {error && <p className="error">{error}</p>}
-              <p className="note">This page is for local development only. The code is hard-coded.</p>
-            </form>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section className="pageWrapper">
       <div className="fixed_width">
-        <div className="edit-recipes" ref={containerRef}>
+        <div className="edit-recipes">
           <h2>Developer: Edit Recipes (local)</h2>
           <div className="container">
             <div className="left-column">
@@ -484,99 +203,39 @@ function EditRecipes() {
                   <label>Name</label>
                   <input name="title" value={form.title} onChange={handleFormChange} />
                 </div>
-              <div className="row select-row">
-                <label>Glass</label>
-                <div className="select-wrapper">
-                  <input name="glassware" autoComplete="off" autoCorrect="off" spellCheck={false} value={form.glassware} onChange={(e) => { handleFormChange(e); setShowGlassDropdown(true); setGlassShowAll(false); }} onFocus={() => { cancelClose(); setShowGlassDropdown(true); setGlassShowAll(false); }} onBlur={() => { scheduleClose(); }} onKeyDown={handleGlassKeyDown} />
-                  <button type="button" className="small show-options" onClick={toggleGlassDropdown}>▾</button>
-                  {showGlassDropdown && (
-                    <ul className="options-dropdown">
-                      {(glassShowAll ? glassOptions : glassOptions.filter(g => g.toLowerCase().includes((form.glassware || '').toLowerCase()))).map((g, idx) => (
-                        <li key={g} className={glassHighlightIndex === idx ? 'highlighted' : ''}><button type="button" onClick={() => selectGlassOption(g)}>{g}</button></li>
-                      ))}
-                    </ul>
-                  )}
+                <div className="row select-row">
+                  <label>Glass</label>
+                  <Combobox className="select-wrapper" name="glassware" value={form.glassware} options={glassOptions}
+                    onChange={value => setForm(prev => ({ ...prev, glassware: value }))} />
                 </div>
-              </div>
-              <div className="row">
-                <label>Instructions</label>
-                <textarea name="instructions" value={form.instructions} onChange={handleFormChange} />
-              </div>
+                <div className="row">
+                  <label>Instructions</label>
+                  <textarea name="instructions" value={form.instructions} onChange={handleFormChange} />
+                </div>
 
-              <div className="ingredients">
-                <label>Ingredients</label>
-                {form.ingredients.map((ing, i) => (
-                  <div className="ingredient-row" key={i}>
-                    <input placeholder="Amount" value={ing.amount} onChange={e => handleIngredientChange(i, 'amount', e.target.value)} />
-                    <div className="small-select-wrapper">
-                      <input name={`unit-${i}`} placeholder="Unit" autoComplete="off" autoCorrect="off" spellCheck={false} value={ing.unit} onChange={e => { handleIngredientChange(i, 'unit', e.target.value); setShowUnitDropdownIndex(i); setUnitShowAllIndex(null); }} onFocus={() => { cancelClose(); setShowUnitDropdownIndex(i); setUnitShowAllIndex(null); }} onBlur={() => { scheduleClose(); }} onKeyDown={(e) => handleUnitKeyDown(e, i)} />
-                      <button type="button" className="small show-options" onClick={() => toggleUnitDropdown(i)}>▾</button>
-                      {showUnitDropdownIndex === i && (
-                        <ul className="options-dropdown">
-                          {(unitShowAllIndex === i ? unitOptions : unitOptions.filter(u => u.toLowerCase().includes((ing.unit || '').toLowerCase()))).map((u, idx) => (
-                            <li key={u} className={unitHighlightIndex === idx ? 'highlighted' : ''}><button type="button" onClick={() => selectUnitOption(i, u)}>{u}</button></li>
-                          ))}
-                        </ul>
-                      )}
+                <div className="ingredients">
+                  <label>Ingredients</label>
+                  {form.ingredients.map((ing, i) => (
+                    <div className="ingredient-row" key={i}>
+                      <input placeholder="Amount" value={ing.amount} onChange={e => handleIngredientChange(i, 'amount', e.target.value)} />
+                      <Combobox className="small-select-wrapper" placeholder="Unit" value={ing.unit} options={unitOptions}
+                        onChange={value => handleIngredientChange(i, 'unit', value)} />
+                      <Combobox className="small-select-wrapper ingredient-name-wrapper" placeholder="Ingredient" value={ing.ingredient} options={ingredientOptions}
+                        onChange={value => handleIngredientChange(i, 'ingredient', value)} />
+                      {form.ingredients.length > 1 && <button type="button" className="small" onClick={() => removeIngredient(i)}>Remove</button>}
                     </div>
-                    <div className="small-select-wrapper ingredient-name-wrapper">
-                      <input name={`ingredient-${i}`} placeholder="Ingredient" autoComplete="off" autoCorrect="off" spellCheck={false} value={ing.ingredient} onChange={e => { handleIngredientChange(i, 'ingredient', e.target.value); setShowIngredientDropdownIndex(i); setIngredientShowAllIndex(null); }} onFocus={() => { cancelClose(); setShowIngredientDropdownIndex(i); setIngredientShowAllIndex(null); }} onBlur={() => { scheduleClose(); }} onKeyDown={(e) => handleIngredientKeyDown(e, i)} />
-                      <button type="button" className="small show-options" onClick={() => toggleIngredientDropdown(i)}>▾</button>
-                      {showIngredientDropdownIndex === i && (
-                        <ul className="options-dropdown">
-                          {(ingredientShowAllIndex === i ? ingredientOptions : ingredientOptions.filter(ing_opt => ing_opt.toLowerCase().includes((ing.ingredient || '').toLowerCase()))).map((ing_opt, idx) => (
-                            <li key={ing_opt} className={ingredientHighlightIndex === idx ? 'highlighted' : ''}><button type="button" onClick={() => selectIngredientOption(i, ing_opt)}>{ing_opt}</button></li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                    {form.ingredients.length > 1 && <button type="button" className="small" onClick={() => removeIngredient(i)}>Remove</button>}
-                  </div>
-                ))}
-                <button type="button" onClick={addIngredient}>Add Ingredient</button>
-                <datalist id="unit-options">
-                  {unitOptions.map(u => (<option key={u} value={u} />))}
-                </datalist>
-              </div>
-
-              <div className="actions">
-            <button type="submit" disabled={loading}>{loading ? (editingId ? 'Saving...' : 'Saving...') : (editingId ? 'Update Recipe' : 'Save Recipe')}</button>
-            {editingId && <button type="button" onClick={handleCancelEdit}>Cancel</button>}
-            <button type="button" className="danger" onClick={() => { sessionStorage.removeItem('editRecipesAuth'); setAuthenticated(false); }}>Logout</button>
-              </div>
-
-              {error && <p className="error">{error}</p>}
-              {success && <p className="success">{success}</p>}
-            </form>
-
-            <div className="keywords-editor">
-              <div className="row keywords-row">
-                <label>Alcoholic Keywords</label>
-                <div className="keyword-list">
-                  {alcoholicKeywords.map((keyword, index) => (
-                    <button
-                      key={`${keyword}-${index}`}
-                      type="button"
-                      className="keyword-chip"
-                      onClick={() => removeKeyword(index)}
-                      title="Click to remove"
-                    >
-                      {keyword}
-                    </button>
                   ))}
+                  <button type="button" onClick={addIngredient}>Add Ingredient</button>
                 </div>
-                <div className="keyword-add">
-                  <input
-                    type="text"
-                    value={newKeyword}
-                    onChange={(e) => setNewKeyword(e.target.value)}
-                    onKeyDown={handleKeywordKeyDown}
-                    placeholder="Add new keyword..."
-                  />
-                  <button type="button" onClick={handleAddKeyword}>Add</button>
+
+                <div className="actions">
+                  <button type="submit" disabled={loading}>{loading ? 'Saving...' : (editingId !== null ? 'Update Recipe' : 'Save Recipe')}</button>
+                  {editingId !== null && <button type="button" onClick={handleCancelEdit}>Cancel</button>}
                 </div>
-              </div>
-            </div>
+
+                {error && <p className="error">{error}</p>}
+                {success && <p className="success">{success}</p>}
+              </form>
             </div>
 
             <div className="recipe-list">

@@ -3,7 +3,7 @@ import './BarMenuList.scss';
 import BarMenuItem from '../BarMenuItem/BarMenuItem';
 import RecipesData from '../../data/cocktail-recipes.json';
 import BarMenuListItemDetail from '../BarMenuListItemDetail/BarMenuListItemDetail';
-import '../noMasonryLayout/noMasonryLayout.scss';
+import '../GinList/GinList.scss';
 import Switch from "react-switch";
 import CocktailGuide from '../CocktailGuide/CocktailGuide';
 import { OTHER_GROUP, getIngredientGroup, getFilterLabel, isNonAlcoholic } from './cocktailLogic';
