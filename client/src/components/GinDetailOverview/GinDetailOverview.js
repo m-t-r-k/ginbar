@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "../Button/Button";
 import HeadlineTextGradientBg from "../HeadlineTextGradientBg/HeadlineTextGradientBg";
 import TagsList from "../TagsList/TagsList";
 import './GinDetailOverview.scss';
@@ -8,16 +7,7 @@ class GinDetailOverview extends React.Component {
     render() {
 
         let botanicalsList = Object.values(this.props.botanicals).join(', ');
-        
-        let affiliateLink
-        if(this.props.affiliateLink !== undefined && this.props.affiliateLink !== null && this.props.affiliateLink.trim().length > 0) {
-            affiliateLink = <Button
-                    link={this.props.affiliateLink}
-                    targetBlank={true}
-                    affiliateLink={true}
-                    text="Hier bestellen"></Button>
-        }
-
+        
         return (
             <HeadlineTextGradientBg image={this.props.imageBottle}>
                 <h1>{this.props.name}</h1>
@@ -31,8 +21,7 @@ class GinDetailOverview extends React.Component {
                         <dt>Botanicals</dt>
                         <dd>{botanicalsList}</dd>
                     </dl>
-                </div>
-                {affiliateLink}
+                </div>
             </HeadlineTextGradientBg>
         );
     }

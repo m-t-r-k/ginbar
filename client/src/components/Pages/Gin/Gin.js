@@ -26,8 +26,7 @@ const Gin = () => {
         perfectServe:'',
         imageBottle: '',
         imageMoodPic: '',
-        imageMoodPicSmall: '',
-        affiliateLink: ''
+        imageMoodPicSmall: ''
     }) 
     
     const { ginId } = useParams();
@@ -50,8 +49,7 @@ const Gin = () => {
             description:data.description,
             perfectServe:data.perfectServe,
             imageBottle:data.imageBottle,
-            imageMoodPic:data.imageMoodPic,
-            affiliateLink:data.affiliateLink
+            imageMoodPic:data.imageMoodPic
         })
 
         window.scrollTo(0, 0)
@@ -80,8 +78,7 @@ const Gin = () => {
                 alcohol={gin.alcohol} 
                 botanicals={gin.botanicals} 
                 imageBottle={gin.imageBottle} 
-                tags={tagsList}
-                affiliateLink={gin.affiliateLink} ></GinDetailOverview>
+                tags={tagsList}></GinDetailOverview>
 
                 <BgImgTextBanner
                 imageMoodPic={gin.imageMoodPic}
