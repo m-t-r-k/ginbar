@@ -1,6 +1,6 @@
 import React from 'react';
 import './GinOverviewTile.scss';
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import TagsList from "../TagsList/TagsList";
 import BGImage from '../BGImage/BGImage';
 import ProgessiveImage from '../ProgressiveImage/ProgressiveImage';

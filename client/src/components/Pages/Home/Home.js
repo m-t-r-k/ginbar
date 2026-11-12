@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import './Home.scss';
 import MotionWrapper from "../../MotionWrapper";
 import WebsiteDate from '../../../data/website-data.json';

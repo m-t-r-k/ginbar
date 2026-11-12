@@ -1,6 +1,6 @@
 import React from "react";
 import './BackLink.scss';
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
   
 class BackLink extends React.Component {
     render() {

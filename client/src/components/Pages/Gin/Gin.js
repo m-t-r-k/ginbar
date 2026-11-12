@@ -1,6 +1,6 @@
 import './Gin.scss';
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 import MotionWrapper from "../../MotionWrapper";
 import GinDetailOverview from "../../GinDetailOverview/GinDetailOverview";
 import BgImgTextBanner from "../../BgImgTextBanner/BgImgTextBanner";
