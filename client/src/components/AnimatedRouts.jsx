@@ -22,7 +22,7 @@ function AnimatedRoutes() {
         <Route path="/gins/" element={<Gins />} />
         <Route path="/gins/:ginId" element={<GinDetail />} />
         <Route path="/bar-menu/" element={<BarMenu />} />
-        {process.env.NODE_ENV !== 'production' && (
+        {import.meta.env.DEV && (
           <Route path="/dev-edit-recipes/" element={<EditRecipes />} />
         )}
         <Route path="/imprint/" element={<Imprint />} />

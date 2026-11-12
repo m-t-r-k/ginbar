@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import GinOverviewTile from '../GinOverviewTile/GinOverviewTile.js';
+import GinOverviewTile from '../GinOverviewTile/GinOverviewTile';
 import './GinList.scss';
 import Switch from "react-switch";
 import { getFilterOptions, filterGins } from './ginFilterLogic';

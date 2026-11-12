@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import './EditRecipes.scss';
 // Nur lokal (Route existiert in Production nicht). Validierung macht server/dev-server.js.
 
-const API_BASE = process.env.REACT_APP_DEV_API || 'http://localhost:3001';
+const API_BASE = import.meta.env.VITE_DEV_API || 'http://localhost:3001';
 
 const emptyIngredient = () => ({ amount: '', unit: 'oz', ingredient: '' });
 const emptyForm = () => ({ title: '', glassware: '', instructions: '', ingredients: [emptyIngredient()] });
