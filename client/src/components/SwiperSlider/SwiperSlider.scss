@@ -71,19 +71,22 @@ $swiper-pagination-height: 50px;
     border-radius: 22px;
     @include standard-transition(all, 0.25s, 0s);
 
-    // Swiper 12: Pfeil ist ein SVG (fill: currentColor) statt ::after-Font-Icon
-    svg {
-        height: 22px;
-        margin-left: 3px;
-    }
-
     &:hover {
         background: $medium-grey;
         color: $dark-grey !important;
     }
 }
 
-.swiper-button-prev svg {
+// Swiper 12: Pfeil ist ein SVG (width/height 100%) statt ::after-Font-Icon.
+// Swipers CSS wird nach diesem SCSS geladen, daher .swiper davor für höhere Spezifität.
+.swiper .swiper-button-next svg,
+.swiper .swiper-button-prev svg {
+    width: auto;
+    height: 22px;
+    margin-left: 3px;
+}
+
+.swiper .swiper-button-prev svg {
     // Icon ist um 180° gedreht, daher wirkt margin-left hier nach rechts
     margin-left: 0;
     margin-right: 3px;
