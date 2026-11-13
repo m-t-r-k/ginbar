@@ -1,20 +1,22 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import './CocktailGuide.scss';
 import {
-  STRENGTH_OPTIONS, FLAVOR_PROFILES, AVOID_OPTIONS, LENGTH_OPTIONS,
-  getCandidates, recommend
+  STRENGTH_OPTIONS, FLAVOR_PROFILES, SPIRIT_OPTIONS, EXCLUDE_OPTIONS, LENGTH_OPTIONS,
+  getCandidates, recommend, getNearMisses
 } from '../BarMenuList/cocktailLogic';
 
 // Radio-Schritte springen beim Antippen weiter, Mehrfachauswahl braucht "Next"
 const STEPS = [
   { key: 'strength', type: 'radio', question: 'How strong would you like it?', options: STRENGTH_OPTIONS },
   { key: 'flavors', type: 'multi', question: 'What are you in the mood for?', hint: 'Pick as many as you like – or none to be surprised.',
-    options: FLAVOR_PROFILES.map(({ id, label }) => ({ id, label })) },
-  { key: 'avoid', type: 'multi', question: 'Anything you would rather avoid?', hint: 'Skip if you like everything.', options: AVOID_OPTIONS },
+    options: FLAVOR_PROFILES },
+  // Ausschlüsse als Zusatz-Chips im selben Schritt, damit der Guide nicht länger wird
+  { key: 'spirits', type: 'multi', question: 'Which spirits do you like?', hint: 'Pick none if you like them all.',
+    options: SPIRIT_OPTIONS, extra: { key: 'exclude', options: EXCLUDE_OPTIONS } },
   { key: 'length', type: 'radio', question: 'Short & intense or long & refreshing?', options: LENGTH_OPTIONS },
 ];
 
-const EMPTY_ANSWERS = { flavors: [], avoid: [] };
+const EMPTY_ANSWERS = { flavors: [], spirits: [], exclude: [] };
 const MAX_RESULTS = 3;
 
 const shuffle = (list) => {
@@ -53,8 +55,7 @@ const CocktailGuide = ({ recipes, onSelect, onClose }) => {
     setAnswers(nextAnswers);
     let next = stepIndex + 1;
     while (next < STEPS.length && !canNarrow(STEPS[next], nextAnswers)) next++;
-    const done = nextAnswers.strength === 'nonalc'
-      || getCandidates(pool, nextAnswers).length <= MAX_RESULTS
+    const done = getCandidates(pool, nextAnswers).length <= MAX_RESULTS
       || next >= STEPS.length;
     if (done) setShowResults(true);
     else setStepIndex(next);
@@ -62,11 +63,11 @@ const CocktailGuide = ({ recipes, onSelect, onClose }) => {
 
   const pickRadio = (id) => advance({ ...answers, [step.key]: id });
 
-  const toggleMulti = (id) => {
-    const current = answers[step.key];
+  const toggleMulti = (key, id) => {
+    const current = answers[key];
     setAnswers({
       ...answers,
-      [step.key]: current.includes(id) ? current.filter(x => x !== id) : [...current, id]
+      [key]: current.includes(id) ? current.filter(x => x !== id) : [...current, id]
     });
   };
 
@@ -81,9 +82,37 @@ const CocktailGuide = ({ recipes, onSelect, onClose }) => {
     setShowResults(false);
   };
 
-  const isSelected = (id) => step.type === 'radio'
-    ? answers[step.key] === id
-    : answers[step.key].includes(id);
+  const isSelected = (key, id) => Array.isArray(answers[key]) ? answers[key].includes(id) : answers[key] === id;
+
+  const renderOptions = (key, options, type) => (
+    <div className={type === 'radio' ? 'guide_options cards' : 'guide_options chips'}>
+      {options.map(option => (
+        <button
+          key={option.id}
+          className={isSelected(key, option.id) ? 'selected' : ''}
+          aria-pressed={isSelected(key, option.id)}
+          onClick={() => type === 'radio' ? pickRadio(option.id) : toggleMulti(key, option.id)}
+        >
+          <strong>{option.label}</strong>
+          {option.hint && <span>{option.hint}</span>}
+        </button>
+      ))}
+    </div>
+  );
+
+  const renderCard = (recipe, reason) => (
+    <button key={recipe.id} className="result_card" onClick={() => onSelect(recipe)}>
+      <strong>{recipe.title}</strong>
+      {reason && <span className="result_reason">{reason}</span>}
+      <span className="result_ingredients">
+        {(recipe.ingredients || []).map(i => i.ingredient).filter(Boolean).join(' · ')}
+      </span>
+      <span className="result_link">View recipe →</span>
+    </button>
+  );
+
+  const picks = showResults ? recommend(pool, answers, MAX_RESULTS) : [];
+  const nearMisses = showResults ? getNearMisses(pool, answers, MAX_RESULTS) : [];
 
   return (
     <div className="cocktail_guide" role="dialog" aria-modal="true" aria-label="Cocktail guide" onClick={onClose}>
@@ -105,32 +134,27 @@ const CocktailGuide = ({ recipes, onSelect, onClose }) => {
             <fieldset>
               <legend>{step.question}</legend>
               {step.hint && <p className="guide_hint">{step.hint}</p>}
-              <div className={step.type === 'radio' ? 'guide_options cards' : 'guide_options chips'}>
-                {step.options.map(option => (
-                  <button
-                    key={option.id}
-                    className={isSelected(option.id) ? 'selected' : ''}
-                    aria-pressed={isSelected(option.id)}
-                    onClick={() => step.type === 'radio' ? pickRadio(option.id) : toggleMulti(option.id)}
-                  >
-                    <strong>{option.label}</strong>
-                    {option.hint && <span>{option.hint}</span>}
-                  </button>
-                ))}
-              </div>
+              {renderOptions(step.key, step.options, step.type)}
+              {step.extra && renderOptions(step.extra.key, step.extra.options, 'multi')}
             </fieldset>
           ) : (
             <div className="guide_results">
-              <h3>Our picks for you</h3>
-              {recommend(pool, answers, MAX_RESULTS).map(recipe => (
-                <button key={recipe.id} className="result_card" onClick={() => onSelect(recipe)}>
-                  <strong>{recipe.title}</strong>
-                  <span className="result_ingredients">
-                    {(recipe.ingredients || []).map(i => i.ingredient).filter(Boolean).join(' · ')}
-                  </span>
-                  <span className="result_link">View recipe →</span>
-                </button>
-              ))}
+              {picks.length > 0 ? (
+                <>
+                  <h3>Our picks for you</h3>
+                  {picks.map(recipe => renderCard(recipe))}
+                </>
+              ) : nearMisses.length > 0 ? (
+                <h3>No perfect match – but you might like these</h3>
+              ) : (
+                <p className="guide_hint">Nothing fits all your answers – try fewer restrictions.</p>
+              )}
+              {nearMisses.length > 0 && (
+                <div className="guide_also">
+                  {picks.length > 0 && <h4>Also interesting</h4>}
+                  {nearMisses.map(({ recipe, reason }) => renderCard(recipe, reason))}
+                </div>
+              )}
             </div>
           )}
         </div>

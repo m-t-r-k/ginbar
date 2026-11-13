@@ -198,10 +198,35 @@
             color: #8e8e8e;
         }
 
+        .result_reason {
+            display: block;
+            margin-top: 4px;
+            font-size: 13px;
+            font-style: italic;
+            color: $medium-grey;
+        }
+
         .result_link {
             @include label_text($medium-grey);
         }
     }
+
+    // Fast-Treffer: gleiche Karten, mit Abstand und gedämpfter Überschrift abgesetzt
+    .guide_also {
+        display: grid;
+        gap: 12px;
+        margin-top: 16px;
+
+        h4 {
+            @include label_text(#ababab);
+            margin: 0;
+        }
+    }
+}
+
+// Ausschluss-Chips unter den Spirituosen
+.guide_options + .guide_options {
+    margin-top: 24px;
 }
 
 .guide_footer {
