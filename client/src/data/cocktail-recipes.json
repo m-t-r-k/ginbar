@@ -210,6 +210,11 @@
         "ingredient": "simple syrup"
       },
       {
+        "amount": 1.5,
+        "unit": "oz",
+        "ingredient": "cola"
+      },
+      {
         "amount": 1,
         "unit": "",
         "ingredient": "lemon wheel"
@@ -563,7 +568,8 @@
         "ingredient": "saline"
       }
     ],
-    "id": 26
+    "id": 26,
+    "archived": true
   },
   {
     "title": "Betsy Ross",
@@ -701,6 +707,11 @@
         "amount": 0.75,
         "unit": "oz",
         "ingredient": "simple syrup"
+      },
+      {
+        "amount": 3,
+        "unit": "oz",
+        "ingredient": "soda water"
       },
       {
         "amount": 1,
@@ -919,7 +930,8 @@
         "ingredient": "tonic water"
       }
     ],
-    "id": 42
+    "id": 42,
+    "archived": true
   },
   {
     "title": "Lavada Kedavra",

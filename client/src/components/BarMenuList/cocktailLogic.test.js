@@ -1,7 +1,9 @@
 import recipes from '../../data/cocktail-recipes.json';
+import ingredients from '../../data/ingredients.json';
 import {
   STRENGTH_OPTIONS, FLAVOR_PROFILES, AVOID_OPTIONS, LENGTH_OPTIONS,
-  getCandidates, getStrengthLevel, getFilterLabel, recommend
+  getCandidates, getStrengthLevel, getFilterLabel, recommend,
+  getAbv, getIngredient, findIngredient, getActiveRecipes, isFiller
 } from './cocktailLogic';
 
 const byTitle = (title) => recipes.find(r => r.title === title);
@@ -41,4 +43,37 @@ test('every answer combination yields 1-3 picks', () => {
       }
     }
   }
+});
+
+test('ABV comes from the ingredient list', () => {
+  expect(getIngredient('Green Chartreuse').abv).toBe(55);
+  expect(getIngredient('  green chartreuse ').abv).toBe(55);
+  expect(findIngredient('GIN', ingredients)).toBe(ingredients.gin);
+  expect(['soda water', 'cola', 'ginger beer', 'tonic water'].every(isFiller)).toBe(true);
+  expect(isFiller('lemon juice')).toBe(false);
+});
+
+test('unknown ingredients fall back to an estimate', () => {
+  expect(findIngredient('mystery whisky', ingredients)).toBeUndefined();
+  expect(getIngredient('mystery whisky')).toMatchObject({ abv: 40, spirit: 'whiskey' });
+  expect(getIngredient('passion fruit juice')).toMatchObject({ abv: 0 });
+});
+
+test('recipe ABV is volume-weighted and never NaN', () => {
+  expect(getAbv({ ingredients: [{ amount: 1, unit: 'oz', ingredient: 'gin' }, { amount: 1, unit: 'oz', ingredient: 'lemon juice' }] })).toBe(20);
+  expect(getAbv({ ingredients: [{ amount: 1, unit: '', ingredient: 'lemon twist' }] })).toBe(0);
+  expect(getAbv(byTitle('Tom Collins'))).toBeLessThan(getAbv(byTitle('Clover Club')));
+});
+
+test('every ingredient of an active recipe has an entry', () => {
+  const missing = getActiveRecipes(recipes).flatMap(r => r.ingredients.map(i => i.ingredient))
+    .filter(name => !findIngredient(name, ingredients));
+  expect(missing).toEqual([]);
+});
+
+test('archived recipes are filtered out', () => {
+  const titles = getActiveRecipes(recipes).map(r => r.title);
+  expect(titles).not.toContain('Cucumber Rose Cooler');
+  expect(titles).not.toContain('Espresso Tonic');
+  expect(titles).toHaveLength(33);
 });
