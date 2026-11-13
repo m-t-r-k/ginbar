@@ -6,7 +6,7 @@ import {
 } from '../BarMenuList/cocktailLogic';
 
 // Radio-Schritte springen beim Antippen weiter, Mehrfachauswahl braucht "Next"
-const STEPS = [
+export const STEPS = [
   { key: 'strength', type: 'radio', question: 'How strong would you like it?', options: STRENGTH_OPTIONS },
   { key: 'flavors', type: 'multi', question: 'What are you in the mood for?', hint: 'Pick as many as you like – or none to be surprised.',
     options: FLAVOR_PROFILES },
@@ -17,6 +17,13 @@ const STEPS = [
 ];
 
 const EMPTY_ANSWERS = { flavors: [], spirits: [], exclude: [] };
+
+// Beim Zurückgehen die Antworten des verlassenen Schritts löschen, sonst filtern sie unsichtbar weiter
+export const clearStep = (answers, step) => ({
+  ...answers,
+  [step.key]: EMPTY_ANSWERS[step.key],
+  ...(step.extra && { [step.extra.key]: EMPTY_ANSWERS[step.extra.key] }),
+});
 const MAX_RESULTS = 3;
 
 const shuffle = (list) => {
@@ -73,7 +80,10 @@ const CocktailGuide = ({ recipes, onSelect, onClose }) => {
 
   const back = () => {
     if (showResults) setShowResults(false);
-    else if (stepIndex > 0) setStepIndex(stepIndex - 1);
+    else if (stepIndex > 0) {
+      setAnswers(clearStep(answers, step));
+      setStepIndex(stepIndex - 1);
+    }
   };
 
   const restart = () => {
