@@ -431,3 +431,9 @@ Mit den Zutaten-Tags hatten Drinks im Schnitt 2,2 Geschmäcker, „Fresh & Sour"
 - `getFlavorMatches` und `FLAVOR_MIN_SHARE` (Sour-Schwelle) entfallen.
 - Server und Editor verlangen 1–2 gültige Geschmäcker für aktive Rezepte.
 - Erstbelegung durch den Builder: sour 15, fruity 11, herbal 10, bitter 9, sweet 4 (im Schnitt 1,5 pro Drink). Der Betreiber prüft.
+
+### Nachtrag 2 (2026-11-14): Priorität Stärke vor Geschmack
+
+Entscheidung des Betreibers: das wichtigste Kriterium ist der ABV, danach kommt der Geschmack.
+- **Sortierung** in beiden Listen nach dem Abstand zum Ziel-ABV (`STRENGTH_TARGET`: light 0, balanced 22, strong 100). Light zeigt also den leichtesten Drink zuerst, Spirit-forward den stärksten. Danach zählen die Geschmackstreffer.
+- **„Also interesting"** lockert in der Reihenfolge Länge, Spirituose, Geschmack und zuletzt Stärke (eine Stufe). Neu ist ein Fast-Treffer mit richtiger Stärke, aber anderem Geschmack. Der Grund lautet dann `different flavor: <Labels>`. Ausschlüsse werden nie gelockert.

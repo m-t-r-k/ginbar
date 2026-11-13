@@ -149,11 +149,15 @@ export const evaluate = (recipe, answers) => {
   };
 };
 
-// Score = Anzahl getroffener Primärgeschmäcker; stabil sortiert, Gleichstand behält Eingabereihenfolge
-const score = (recipe, flavors = []) => flavors.filter(f => (recipe.flavors || []).includes(f)).length;
-const rank = (recipes, answers) => recipes
-  .map(recipe => ({ recipe, score: score(recipe, answers.flavors) }))
-  .sort((a, b) => b.score - a.score)
+// Ranking nach Priorität des Betreibers: erst Stärke, dann Geschmack.
+// Stärke = Abstand zum Ziel-ABV der gewählten Stufe: Light leichtester zuerst, Spirit-forward stärkster zuerst.
+export const STRENGTH_TARGET = { light: 0, balanced: 22, strong: 100 };
+const abvDistance = (recipe, strength) => (strength ? Math.abs(getAbv(recipe) - STRENGTH_TARGET[strength]) : 0);
+const flavorScore = (recipe, flavors = []) => flavors.filter(f => (recipe.flavors || []).includes(f)).length;
+// Stabil sortiert: Gleichstand behält die Eingabereihenfolge (der Guide mischt vorher)
+const rank = (recipes, answers, firstKey = () => 0) => recipes
+  .map(recipe => ({ recipe, keys: [firstKey(recipe), abvDistance(recipe, answers.strength), -flavorScore(recipe, answers.flavors)] }))
+  .sort((a, b) => a.keys.reduce((diff, key, i) => diff || key - b.keys[i], 0))
   .map(({ recipe }) => recipe);
 
 // Harte Filter: alle Kriterien müssen passen, kein Fallback mehr
@@ -163,17 +167,28 @@ export const getCandidates = (recipes, answers) =>
 export const recommend = (recipes, answers, count = 3) =>
   rank(getCandidates(recipes, answers), answers).slice(0, count);
 
-const nearMissReason = (e) => {
-  if (!e.strength.ok) return e.strength.diff > 0 ? 'a bit stronger than you asked' : 'a bit lighter';
-  if (!e.spirits.ok) return `made with ${e.spirits.disliked.join(' & ')}`;
-  return `served ${e.length.actual}`;
+const flavorLabel = (id) => (FLAVOR_PROFILES.find(p => p.id === id) || { label: id }).label;
+const NEAR_MISS_REASON = {
+  length: (e) => `served ${e.length.actual}`,
+  spirits: (e) => `made with ${e.spirits.disliked.join(' & ')}`,
+  flavor: (e, recipe) => `different flavor: ${(recipe.flavors || []).map(flavorLabel).join(', ')}`,
+  strength: (e) => (e.strength.diff > 0 ? 'a bit stronger than you asked' : 'a bit lighter'),
+};
+// Lockerungs-Reihenfolge = umgekehrte Priorität: zuerst Länge/Spirituose, dann Geschmack, zuletzt Stärke (max. 1 Stufe)
+const RELAX_ORDER = ['length', 'spirits', 'flavor', 'strength'];
+const failedCriterion = (e) => {
+  const failed = RELAX_ORDER.filter(key => !e[key].ok);
+  return e.excluded.ok && failed.length === 1 && Math.abs(e.strength.diff) <= 1 ? failed[0] : null;
 };
 
-// Fast-Treffer: Ausschlüsse und Geschmack passen, genau eins von Stärke (max. 1 Stufe) / Spirituose / Länge nicht
-const isNearMiss = (e) => e.excluded.ok && e.flavor.ok && Math.abs(e.strength.diff) <= 1
-  && [e.strength, e.spirits, e.length].filter(c => !c.ok).length === 1;
-
-export const getNearMisses = (recipes, answers, count = 3) =>
-  rank(getActiveRecipes(recipes).filter(r => isNearMiss(evaluate(r, answers))), answers)
+// Fast-Treffer: Ausschlüsse passen immer, genau ein anderes Kriterium nicht
+export const getNearMisses = (recipes, answers, count = 3) => {
+  const misses = getActiveRecipes(recipes).filter(r => failedCriterion(evaluate(r, answers)));
+  const relaxIndex = (r) => RELAX_ORDER.indexOf(failedCriterion(evaluate(r, answers)));
+  return rank(misses, answers, relaxIndex)
     .slice(0, count)
-    .map(recipe => ({ recipe, reason: nearMissReason(evaluate(recipe, answers)) }));
+    .map(recipe => {
+      const e = evaluate(recipe, answers);
+      return { recipe, reason: NEAR_MISS_REASON[failedCriterion(e)](e, recipe) };
+    });
+};

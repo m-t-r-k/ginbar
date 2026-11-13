@@ -93,7 +93,7 @@ test('near misses miss exactly one criterion and carry a reason', () => {
     const e = evaluate(recipe, answers);
     expect(Object.values(e).filter(c => !c.ok)).toHaveLength(1);
     expect(Math.abs(e.strength.diff)).toBeLessThanOrEqual(1);
-    expect(reason).toMatch(/^(a bit stronger than you asked|a bit lighter|made with .+|served (long|short))$/);
+    expect(reason).toMatch(/^(a bit stronger than you asked|a bit lighter|made with .+|served (long|short)|different flavor: .+)$/);
   });
 });
 
@@ -125,4 +125,34 @@ test.runIf(process.env.ABV_REPORT)('abv report', () => {
   console.table(getActiveRecipes(recipes).map(r => ({ title: r.title, abv: getAbv(r).toFixed(1), level: getStrengthLevel(r),
     flavors: (r.flavors || []).join(' '), suggested: suggestFlavors(r).join(' '), spirits: getSpirits(r).join(' ') }))
     .sort((a, b) => a.abv - b.abv));
+});
+
+test('picks are ordered by strength first', () => {
+  const abvs = (answers) => recommend(recipes, { flavors: [], spirits: [], exclude: [], ...answers }).map(r => getAbv(r));
+  const light = abvs({ strength: 'light' });
+  expect(light).toEqual([...light].sort((a, b) => a - b));           // leichtester zuerst
+  expect(recommend(recipes, { strength: 'light' })[0].title).toBe('Tom Collins');
+  expect(recommend(recipes, { strength: 'strong' })[0].title).toBe('Vieux Carré');   // stärkster zuerst
+  expect(recommend(recipes, { strength: 'balanced' })[0].title).toBe('Fog Cutter');  // 22,0 % = Mitte
+});
+
+test('flavor ranks second, after strength', () => {
+  const drink = (id, gin, flavors) => ({ id, title: String(id), glassware: 'Coupe glass', flavors,
+    ingredients: [{ amount: gin, unit: 'oz', ingredient: 'gin' }, { amount: 1, unit: 'oz', ingredient: 'lemon juice' }] });
+  const answers = { strength: 'strong', flavors: ['sour', 'fruity'] };
+  // gleiche Stärke (26,7 %): mehr Geschmackstreffer gewinnt
+  expect(recommend([drink(1, 2, ['sour']), drink(2, 2, ['sour', 'fruity'])], answers).map(r => r.id)).toEqual([2, 1]);
+  // stärker (30 %) schlägt mehr Geschmackstreffer, weil die Stärke zuerst zählt
+  expect(recommend([drink(1, 2, ['sour', 'fruity']), drink(2, 3, ['sour'])], answers).map(r => r.id)).toEqual([2, 1]);
+});
+
+test('near misses relax flavor before strength', () => {
+  // Kein Balanced-Drink ist bitter: erst Balanced-Drinks mit anderem Geschmack, dann eine Stufe stärkere bittere
+  const answers = { strength: 'balanced', flavors: ['bitter'], spirits: [], exclude: [] };
+  expect(recommend(recipes, answers)).toEqual([]);
+  const near = getNearMisses(recipes, answers, 50);
+  const firstStrengthMiss = near.findIndex(n => !evaluate(n.recipe, answers).strength.ok);
+  expect(firstStrengthMiss).toBeGreaterThan(0);
+  near.slice(0, firstStrengthMiss).forEach(n => expect(n.reason).toMatch(/^different flavor: /));
+  near.slice(firstStrengthMiss).forEach(n => expect(n.reason).toBe('a bit stronger than you asked'));
 });
