@@ -118,33 +118,25 @@ export const SPIRIT_OPTIONS = SPIRITS.map(id => ({ id, label: id }));
 export const getSpirits = (recipe) =>
   [...new Set((recipe.ingredients || []).map(i => getIngredient(i.ingredient).spirit).filter(Boolean))];
 
-export const EXCLUDE_OPTIONS = [
-  { id: 'egg', label: 'No egg white', matches: (name) => /egg white/i.test(name) },
-  { id: 'coffee', label: 'No coffee', matches: (name) => /coffee|espresso/i.test(name) },
-];
-
 export const LENGTH_OPTIONS = [
   { id: 'short', label: 'Short & intense', hint: 'Served up or on the rocks' },
   { id: 'long', label: 'Long & refreshing', hint: 'Tall glass, lots of ice' },
 ];
 const isLong = (recipe) => /collins|highball/i.test(recipe.glassware || '');
 
-// answers: { strength, flavors: [], spirits: [], exclude: [], length }
+// answers: { strength, flavors: [], spirits: [], length }
 // Nicht beantwortete Kriterien sind immer ok. Drinks ohne Basisspirituose passen zu jeder Spirituosen-Auswahl.
 export const evaluate = (recipe, answers) => {
-  const { strength, flavors = [], spirits = [], exclude = [], length } = answers;
+  const { strength, flavors = [], spirits = [], length } = answers;
   const actualStrength = getStrengthLevel(recipe);
   const diff = strength ? LEVEL_ORDER.indexOf(actualStrength) - LEVEL_ORDER.indexOf(strength) : 0;
   const disliked = spirits.length ? getSpirits(recipe).filter(s => !spirits.includes(s)) : [];
   const matches = flavors.filter(f => (recipe.flavors || []).includes(f));
-  const names = (recipe.ingredients || []).map(i => i.ingredient || '');
-  const hits = EXCLUDE_OPTIONS.filter(o => exclude.includes(o.id) && names.some(n => o.matches(n))).map(o => o.id);
   const actualLength = isLong(recipe) ? 'long' : 'short';
   return {
     strength: { ok: diff === 0, actual: actualStrength, diff },
     spirits: { ok: disliked.length === 0, disliked },
     flavor: { ok: !flavors.length || matches.length > 0, matches },
-    excluded: { ok: hits.length === 0, hits },
     length: { ok: !length || actualLength === length, actual: actualLength },
   };
 };
@@ -178,10 +170,10 @@ const NEAR_MISS_REASON = {
 const RELAX_ORDER = ['length', 'spirits', 'flavor', 'strength'];
 const failedCriterion = (e) => {
   const failed = RELAX_ORDER.filter(key => !e[key].ok);
-  return e.excluded.ok && failed.length === 1 && Math.abs(e.strength.diff) <= 1 ? failed[0] : null;
+  return failed.length === 1 && Math.abs(e.strength.diff) <= 1 ? failed[0] : null;
 };
 
-// Fast-Treffer: Ausschlüsse passen immer, genau ein anderes Kriterium nicht
+// Fast-Treffer: genau ein Kriterium passt nicht
 export const getNearMisses = (recipes, answers, count = 3) => {
   const misses = getActiveRecipes(recipes).filter(r => failedCriterion(evaluate(r, answers)));
   const relaxIndex = (r) => RELAX_ORDER.indexOf(failedCriterion(evaluate(r, answers)));

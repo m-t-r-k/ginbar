@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import './CocktailGuide.scss';
 import {
-  STRENGTH_OPTIONS, FLAVOR_PROFILES, SPIRIT_OPTIONS, EXCLUDE_OPTIONS, LENGTH_OPTIONS,
+  STRENGTH_OPTIONS, FLAVOR_PROFILES, SPIRIT_OPTIONS, LENGTH_OPTIONS,
   getCandidates, recommend, getNearMisses
 } from '../BarMenuList/cocktailLogic';
 
@@ -10,20 +10,15 @@ export const STEPS = [
   { key: 'strength', type: 'radio', question: 'How strong would you like it?', options: STRENGTH_OPTIONS },
   { key: 'flavors', type: 'multi', question: 'What are you in the mood for?', hint: 'Pick as many as you like – or none to be surprised.',
     options: FLAVOR_PROFILES },
-  // Ausschlüsse als Zusatz-Chips im selben Schritt, damit der Guide nicht länger wird
   { key: 'spirits', type: 'multi', question: 'Which spirits do you like?', hint: 'Pick none if you like them all.',
-    options: SPIRIT_OPTIONS, extra: { key: 'exclude', options: EXCLUDE_OPTIONS } },
+    options: SPIRIT_OPTIONS },
   { key: 'length', type: 'radio', question: 'Short & intense or long & refreshing?', options: LENGTH_OPTIONS },
 ];
 
-const EMPTY_ANSWERS = { flavors: [], spirits: [], exclude: [] };
+const EMPTY_ANSWERS = { flavors: [], spirits: [] };
 
 // Beim Zurückgehen die Antworten des verlassenen Schritts löschen, sonst filtern sie unsichtbar weiter
-export const clearStep = (answers, step) => ({
-  ...answers,
-  [step.key]: EMPTY_ANSWERS[step.key],
-  ...(step.extra && { [step.extra.key]: EMPTY_ANSWERS[step.extra.key] }),
-});
+export const clearStep = (answers, step) => ({ ...answers, [step.key]: EMPTY_ANSWERS[step.key] });
 const MAX_RESULTS = 3;
 
 const shuffle = (list) => {
@@ -145,7 +140,6 @@ const CocktailGuide = ({ recipes, onSelect, onClose }) => {
               <legend>{step.question}</legend>
               {step.hint && <p className="guide_hint">{step.hint}</p>}
               {renderOptions(step.key, step.options, step.type)}
-              {step.extra && renderOptions(step.extra.key, step.extra.options, 'multi')}
             </fieldset>
           ) : (
             <div className="guide_results">

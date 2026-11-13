@@ -594,44 +594,6 @@
     ]
   },
   {
-    "title": "Cucumber Rose Cooler",
-    "glassware": "Highball glass",
-    "instructions": "BUILD in a highball glass. MUDDLE cucumber, simple syrup and salt, add lime juice and roes water. Fill the glass with crushed ice and add soda. STIR well.",
-    "ingredients": [
-      {
-        "amount": 0.5,
-        "unit": "oz",
-        "ingredient": "lime juice"
-      },
-      {
-        "amount": 0.5,
-        "unit": "oz",
-        "ingredient": "simple syrup"
-      },
-      {
-        "amount": 15,
-        "unit": "drops",
-        "ingredient": "rose water"
-      },
-      {
-        "amount": 3,
-        "unit": "slices",
-        "ingredient": "cucumber"
-      },
-      {
-        "amount": 3,
-        "unit": "drops",
-        "ingredient": "saline"
-      }
-    ],
-    "id": 26,
-    "archived": true,
-    "flavors": [
-      "herbal",
-      "sour"
-    ]
-  },
-  {
     "title": "Betsy Ross",
     "glassware": "Cocktail glass",
     "instructions": "STIR and STRAIN into a chilled cocktail glass.",
@@ -695,8 +657,9 @@
     ]
   },
   {
-    "id": 18,
     "title": "Gin Basil Smash",
+    "glassware": "Rocks glass",
+    "instructions": "MUDDLE the basil leaves with the syrup. Add the gin and lemon juice. SHAKE and STRAIN into a chilled rocks glass. Add the garnish.",
     "ingredients": [
       {
         "amount": 2,
@@ -724,12 +687,12 @@
         "ingredient": "basil"
       }
     ],
-    "glassware": "Rocks glass",
-    "instructions": "MUDDLE the basil leaves with the syrup. Add the gin and lemon juice. SHAKE and STRAIN into a chilled rocks glass. Add the garnish.",
     "flavors": [
       "herbal",
       "sour"
-    ]
+    ],
+    "archived": true,
+    "id": 18
   },
   {
     "title": "Old Fashioned",
@@ -798,10 +761,10 @@
         "ingredient": "orange wheel"
       }
     ],
-    "id": 34,
     "flavors": [
       "sour"
-    ]
+    ],
+    "id": 34
   },
   {
     "title": "Twentieth-Century Cocktail",
@@ -1014,28 +977,6 @@
       "sweet"
     ],
     "id": 41
-  },
-  {
-    "title": "Espresso Tonic",
-    "glassware": "Rocks glass",
-    "instructions": "BUILD in a chilled rocks glass. Add a large ice cube and the tonic water. FLOAT the espresso.",
-    "ingredients": [
-      {
-        "amount": 2,
-        "unit": "oz",
-        "ingredient": "espresso"
-      },
-      {
-        "amount": 6,
-        "unit": "oz",
-        "ingredient": "tonic water"
-      }
-    ],
-    "id": 42,
-    "archived": true,
-    "flavors": [
-      "bitter"
-    ]
   },
   {
     "title": "Lavada Kedavra",

@@ -437,3 +437,9 @@ Mit den Zutaten-Tags hatten Drinks im Schnitt 2,2 Geschmäcker, „Fresh & Sour"
 Entscheidung des Betreibers: das wichtigste Kriterium ist der ABV, danach kommt der Geschmack.
 - **Sortierung** in beiden Listen nach dem Abstand zum Ziel-ABV (`STRENGTH_TARGET`: light 0, balanced 22, strong 100). Light zeigt also den leichtesten Drink zuerst, Spirit-forward den stärksten. Danach zählen die Geschmackstreffer.
 - **„Also interesting"** lockert in der Reihenfolge Länge, Spirituose, Geschmack und zuletzt Stärke (eine Stufe). Neu ist ein Fast-Treffer mit richtiger Stärke, aber anderem Geschmack. Der Grund lautet dann `different flavor: <Labels>`. Ausschlüsse werden nie gelockert.
+
+### Nachtrag 3 (2026-11-14): Ausschlüsse und Alkoholfreies entfernt
+
+- Die Optionen „No egg white" und „No coffee" (`EXCLUDE_OPTIONS`, `evaluate().excluded`) sind komplett entfallen.
+- Die alkoholfreien Rezepte (Cucumber Rose Cooler, Espresso Tonic) sind gelöscht statt archiviert. Ihre nur dort verwendeten Zutaten (cucumber, rose water, saline, tonic water) stehen nicht mehr in `ingredients.json`.
+- Der Editor hat ein „Active"-Häkchen im Formular. Inaktive Rezepte (`archived: true`) erscheinen in der Liste ausgegraut.

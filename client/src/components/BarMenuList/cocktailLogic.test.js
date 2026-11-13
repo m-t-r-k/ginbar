@@ -1,7 +1,7 @@
 import recipes from '../../data/cocktail-recipes.json';
 import ingredients from '../../data/ingredients.json';
 import {
-  STRENGTH_OPTIONS, FLAVOR_PROFILES, SPIRIT_OPTIONS, EXCLUDE_OPTIONS, LENGTH_OPTIONS,
+  STRENGTH_OPTIONS, FLAVOR_PROFILES, SPIRIT_OPTIONS, LENGTH_OPTIONS,
   getCandidates, getStrengthLevel, suggestFlavors, getSpirits, FLAVOR_TAGS, evaluate, recommend, getNearMisses,
   getAbv, getIngredient, findIngredient, getActiveRecipes, isFiller
 } from './cocktailLogic';
@@ -11,7 +11,7 @@ test('ABV comes from the ingredient list', () => {
   expect(getIngredient('Green Chartreuse').abv).toBe(55);
   expect(getIngredient('  green chartreuse ').abv).toBe(55);
   expect(findIngredient('GIN', ingredients)).toBe(ingredients.gin);
-  expect(['soda water', 'cola', 'ginger beer', 'tonic water'].every(isFiller)).toBe(true);
+  expect(['soda water', 'cola', 'ginger beer'].every(isFiller)).toBe(true);
   expect(isFiller('lemon juice')).toBe(false);
 });
 
@@ -49,7 +49,7 @@ test('fixed strength bands', () => {
 });
 
 test('flavors come from the recipe, not the ingredients', () => {
-  const answers = { flavors: ['sour'], spirits: [], exclude: [] };
+  const answers = { flavors: ['sour'], spirits: [] };
   expect(evaluate({ ...byTitle('Clover Club'), flavors: ['fruity'] }, answers).flavor.ok).toBe(false);
   expect(evaluate({ ...byTitle('Clover Club'), flavors: ['fruity', 'sour'] }, answers).flavor).toEqual({ ok: true, matches: ['sour'] });
 });
@@ -76,15 +76,12 @@ test('liked spirits are a hard filter, sloe gin is no gin', () => {
   expect(titles(result)).not.toContain('Long Island Iced Tea');
 });
 
-test('excluded ingredients never show up, not even as near miss', () => {
-  const answers = { flavors: [], spirits: [], exclude: ['egg'], strength: 'balanced' };
-  const all = [...recommend(recipes, answers), ...getNearMisses(recipes, answers).map(n => n.recipe)];
-  all.forEach(r => r.ingredients.forEach(i => expect(i.ingredient).not.toMatch(/egg white/i)));
-  expect(titles(getCandidates(recipes, { exclude: ['egg'] }))).not.toContain('Clover Club');
+test('there are no exclusion options any more', () => {
+  expect(Object.keys(evaluate(byTitle('Clover Club'), {}))).toEqual(['strength', 'spirits', 'flavor', 'length']);
 });
 
 test('near misses miss exactly one criterion and carry a reason', () => {
-  const answers = { strength: 'light', flavors: [], spirits: ['gin'], exclude: [], length: 'long' };
+  const answers = { strength: 'light', flavors: [], spirits: ['gin'], length: 'long' };
   const near = getNearMisses(recipes, answers);
   expect(near.length).toBeGreaterThan(0);
   near.forEach(({ recipe, reason }) => {
@@ -98,7 +95,7 @@ test('near misses miss exactly one criterion and carry a reason', () => {
 test('archived recipes never appear in guide results', () => {
   // Tom Collins ist der leichteste Drink und stünde sonst ganz oben
   const list = recipes.map(r => (r.title === 'Tom Collins' ? { ...r, archived: true } : r));
-  const answers = { strength: 'light', flavors: [], spirits: [], exclude: [] };
+  const answers = { strength: 'light', flavors: [], spirits: [] };
   expect(titles(recommend(recipes, answers))).toContain('Tom Collins');
   expect(titles(getCandidates(list, answers))).not.toContain('Tom Collins');
   expect(titles(getNearMisses(list, { ...answers, strength: 'balanced' }, 50).map(n => n.recipe))).not.toContain('Tom Collins');
@@ -109,15 +106,14 @@ test('every answer combination is consistent', () => {
   for (const strength of [undefined, ...STRENGTH_OPTIONS.map(o => o.id)])
     for (const flavors of subsets(FLAVOR_PROFILES.map(p => p.id)))
       for (const spirits of subsets(SPIRIT_OPTIONS.map(o => o.id)))
-        for (const exclude of subsets(EXCLUDE_OPTIONS.map(o => o.id)))
-          for (const length of [undefined, ...LENGTH_OPTIONS.map(o => o.id)]) {
-            const answers = { strength, flavors, spirits, exclude, length };
+        for (const length of [undefined, ...LENGTH_OPTIONS.map(o => o.id)]) {
+            const answers = { strength, flavors, spirits, length };
             const picks = recommend(recipes, answers);
             const near = getNearMisses(recipes, answers);
             expect(picks.length).toBeLessThanOrEqual(3);
             expect(near.length).toBeLessThanOrEqual(3);
             picks.forEach(r => expect(Object.values(evaluate(r, answers)).every(c => c.ok)).toBe(true));
-            near.forEach(({ recipe }) => expect(evaluate(recipe, answers).excluded.ok).toBe(true));
+            near.forEach(({ recipe }) => expect(Object.values(evaluate(recipe, answers)).filter(c => !c.ok)).toHaveLength(1));
           }
 });
 
@@ -129,7 +125,7 @@ test.runIf(process.env.ABV_REPORT)('abv report', () => {
 });
 
 test('picks are ordered by strength first', () => {
-  const abvs = (answers) => recommend(recipes, { flavors: [], spirits: [], exclude: [], ...answers }).map(r => getAbv(r));
+  const abvs = (answers) => recommend(recipes, { flavors: [], spirits: [], ...answers }).map(r => getAbv(r));
   const light = abvs({ strength: 'light' });
   expect(light).toEqual([...light].sort((a, b) => a - b));           // leichtester zuerst
   expect(recommend(recipes, { strength: 'light' })[0].title).toBe('Tom Collins');
@@ -149,7 +145,7 @@ test('flavor ranks second, after strength', () => {
 
 test('near misses relax flavor before strength', () => {
   // Kein Balanced-Drink ist bitter: erst Balanced-Drinks mit anderem Geschmack, dann eine Stufe stärkere bittere
-  const answers = { strength: 'balanced', flavors: ['bitter'], spirits: [], exclude: [] };
+  const answers = { strength: 'balanced', flavors: ['bitter'], spirits: [] };
   expect(recommend(recipes, answers)).toEqual([]);
   const near = getNearMisses(recipes, answers, 50);
   const firstStrengthMiss = near.findIndex(n => !evaluate(n.recipe, answers).strength.ok);
