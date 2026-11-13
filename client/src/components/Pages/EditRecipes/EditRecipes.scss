@@ -65,6 +65,28 @@
     .success { color: #27ae60; }
   }
 
+  // Zutaten-Hinweis bzw. Felder für neue Zutaten in eigener Zeile unter Menge/Einheit/Name
+  .recipe-form .ingredient-row { flex-wrap: wrap; }
+  .ingredient-hint { flex-basis: 100%; font-size: 12px; color: $medium-grey; }
+  .new-ingredient { flex-basis: 100%; padding: 8px; border: 1px dashed $medium-grey; border-radius: 4px; font-size: 12px; }
+  .ingredient-fields { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+  .ingredient-fields input[type="number"] { width: 64px; padding: 4px; }
+  .ingredient-fields .tag.active { background: $dark-grey; color: $light-grey; }
+  .archived-toggle { display: block; margin-top: 12px; }
+
+  .tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+  .tabs button { padding: 6px 12px; border: 1px solid $medium-grey; border-radius: 4px; background: $light-grey; }
+  .tabs button.active { background: $dark-grey; color: $light-grey; }
+
+  .ingredient-table table { border-collapse: collapse; width: 100%; }
+  .ingredient-table td, .ingredient-table th { padding: 6px; border-bottom: 1px solid $light-grey; text-align: left; vertical-align: middle; }
+  .ingredient-table .small { padding: 4px 8px; font-size: 12px; border: 1px solid $medium-grey; border-radius: 4px; background: $light-grey; }
+  .ingredient-table .danger { background: #ffdddd; }
+  .ingredient-table .actions { margin-top: 12px; display: flex; gap: 8px; }
+  .ingredient-table .error { color: #c0392b; }
+  .ingredient-table .success { color: #27ae60; }
+
+  .recipe-list li.archived { opacity: 0.5; }
   .recipe-list { width: 320px; }
   .recipe-list ul { list-style: none; padding: 0; margin: 0; }
   .recipe-list li { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid $light-grey; }
