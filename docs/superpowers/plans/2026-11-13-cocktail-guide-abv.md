@@ -24,7 +24,19 @@
 - Ein Gast mit „No egg white"/„No coffee" sieht nie einen solchen Drink, auch nicht unter „Also interesting".
 - Testbefehl: `npm test` in `client/`.
 
-**Abweichung von der Spec (zur Freigabe):** Die Sour-Schwelle ist **13 %** statt 15 %. Mit 3 oz Soda hat Tom Collins nur 13,8 % Zitrusanteil, und die Spec verlangt im Test „Tom Collins ist `sour`". Bei 13 % zählen zusätzlich Fog Cutter (14,8 %) und Boston Cocktail (13,3 %) als sauer, Long Island (12,1 %) und Dark & Stormy (11,7 %) nicht.
+**Ergänzung zur Spec (mit Betreiber besprochen 2026-11-13): Auffüller-Flag.** Zutaten, mit denen aufgefüllt wird, bekommen in `ingredients.json` den Eintrag `"filler": true`. Das betrifft `soda water`, `cola`, `ginger beer` und `tonic water`.
+- **ABV:** Auffüller zählen voll mit.
+- **Geschmacksanteil (`sour`):** Das Volumen der Auffüller zählt nicht mit. Gemessen wird der Drink vor dem Auffüllen.
+- **Filterleiste:** Auffüller erscheinen dort nicht als Chips, die Filterleiste bleibt also unverändert.
+- **Rezeptkarten und Detailansicht:** Auffüller stehen dort mit Menge.
+
+Damit bleibt die Sour-Schwelle bei **15 %**:
+- Tom Collins (23,5 %) und Dark & Stormy (24,8 %) zählen als sour.
+- Long Island (14,8 %), Fog Cutter (14,8 %) und Boston Cocktail (13,3 %) zählen nicht als sour.
+
+Die Auffüller-Mengen sind Schätzwerte und wirken nur noch auf den ABV:
+- Tom Collins bleibt mit 2 bis 4 oz Soda Light.
+- Long Island bleibt mit 1 bis 2 oz Cola Balanced.
 
 ## Review Focus
 
@@ -53,7 +65,8 @@
   - `getIngredient(name: string) => entry` (= `findIngredient(name, INGREDIENTS) ?? estimateIngredient(name)`)
   - `toOz(ing) => number`, `getAbv(recipe) => number` (Prozent, 0–100)
   - `getActiveRecipes(recipes) => recipes` (ohne `archived`)
-  - Eintragsform: `{ "abv": number, "spirit"?: SpiritId, "flavors": FlavorTag[] }`
+  - Eintragsform: `{ "abv": number, "spirit"?: SpiritId, "flavors": FlavorTag[], "filler"?: true }`
+  - `isFiller(name: string) => boolean` (`getIngredient(name).filler === true`)
 
 - [ ] **Step 0: Branch anlegen**
 
@@ -69,6 +82,8 @@ test('ABV comes from the ingredient list', () => {
   expect(getIngredient('Green Chartreuse').abv).toBe(55);
   expect(getIngredient('  green chartreuse ').abv).toBe(55);   // Review Focus 1
   expect(findIngredient('GIN', ingredients)).toBe(ingredients.gin);
+  expect(['soda water', 'cola', 'ginger beer', 'tonic water'].every(isFiller)).toBe(true);
+  expect(isFiller('lemon juice')).toBe(false);
 });
 
 test('unknown ingredients fall back to an estimate', () => {
@@ -111,7 +126,7 @@ Expected: FAIL (Import von `ingredients.json` bzw. `getAbv` fehlt)
 
 - [ ] **Step 4: `ingredients.json` anlegen**
 
-67 Einträge: die 65 heutigen Zutaten plus `soda water` und `cola`. Schlüssel genau wie im Rezept geschrieben. Feste Werte aus der Spec: `gin` 40/gin, `adamus dry gin` 44/gin, `sloe gin` 26 ohne spirit `["fruity"]`, `Green Chartreuse` 55 `["herbal"]`, `Yellow Chartreuse` 40, `dry vermouth` 18 `["bitter"]`, `lemon juice`/`lime juice` 0 `["sour"]`, `raspberry syrup` 0 `["fruity"]`, `soda water` 0 `[]`. `spirit` bekommen nur Basisspirituosen: die vier Gins, `light/dark/spiced rum`, `bourbon`/`rye whiskey` → `whiskey`, `brandy`, `tequila`, `vodka`. `apricot brandy`, `sloe gin` und `rosmary geist` bekommen **kein** `spirit`. Simple Syrup, Garnituren und Basisspirituosen bekommen `flavors: []`. Die übrigen Tags folgen der Tabelle in Spec-Abschnitt 4.
+67 Einträge: die 65 heutigen Zutaten plus `soda water` und `cola`. Schlüssel genau wie im Rezept geschrieben. Feste Werte aus der Spec: `gin` 40/gin, `adamus dry gin` 44/gin, `sloe gin` 26 ohne spirit `["fruity"]`, `Green Chartreuse` 55 `["herbal"]`, `Yellow Chartreuse` 40, `dry vermouth` 18 `["bitter"]`, `lemon juice`/`lime juice` 0 `["sour"]`, `raspberry syrup` 0 `["fruity"]`, `soda water` 0 `[]`. `"filler": true` bekommen genau `soda water`, `cola`, `ginger beer`, `tonic water`. `spirit` bekommen nur Basisspirituosen: die vier Gins, `light/dark/spiced rum`, `bourbon`/`rye whiskey` → `whiskey`, `brandy`, `tequila`, `vodka`. `apricot brandy`, `sloe gin` und `rosmary geist` bekommen **kein** `spirit`. Simple Syrup, Garnituren und Basisspirituosen bekommen `flavors: []`. Die übrigen Tags folgen der Tabelle in Spec-Abschnitt 4.
 
 - [ ] **Step 5: Logik umbauen in `cocktailLogic.js`**
 
@@ -146,8 +161,8 @@ git commit -m "Add central ingredient list with ABV, fillers and archive flag"
   - `STRENGTH_LEVELS = { light: 18, balanced: 26 }` (Obergrenzen, exklusiv), `STRENGTH_OPTIONS` (light/balanced/strong, Labels und Hints wie heute, ohne `nonalc`)
   - `getStrengthLevel(recipe) => 'light' | 'balanced' | 'strong'`
   - `FLAVOR_PROFILES = [{ id, label }]` mit den Labels `Fresh & Sour`, `Fruity`, `Herbal & Floral`, `Bitter & Aromatic`, `Sweet & Creamy`, Reihenfolge wie die Spec-Tabelle
-  - `FLAVOR_MIN_SHARE = { sour: 0.13 }` (Tags ohne Eintrag zählen ab einem Treffer)
-  - `getFlavorMatches(recipe, tag) => string[]` (Zutatennamen. Bei Tags mit Mindestanteil `[]`, solange der Volumenanteil der getaggten Zutaten unter der Schwelle liegt)
+  - `FLAVOR_MIN_SHARE = { sour: 0.15 }` (Tags ohne Eintrag zählen ab einem Treffer)
+  - `getFlavorMatches(recipe, tag) => string[]` (Zutatennamen. Bei Tags mit Mindestanteil `[]`, solange der Volumenanteil der getaggten Zutaten unter der Schwelle liegt. **Nenner = Volumen ohne Auffüller**)
   - `SPIRIT_OPTIONS = [{ id, label }]` (die sechs, Label = ID), `EXCLUDE_OPTIONS = [{ id: 'egg', label: 'No egg white' }, { id: 'coffee', label: 'No coffee' }]` (Abgleich per Regex auf den Namen wie bisher: `/egg white/i`, `/coffee|espresso/i`)
   - `getSpirits(recipe) => string[]` (eindeutige `spirit`-Werte)
   - `LENGTH_OPTIONS` unverändert
@@ -174,7 +189,8 @@ test('fixed strength bands', () => {
 test('flavors come from ingredient tags', () => {
   expect(getFlavorMatches(byTitle('Tom Collins'), 'sour')).toEqual(['lemon juice']);
   expect(getFlavorMatches(byTitle('Martini (Modern)'), 'sour')).toEqual([]);
-  expect(getFlavorMatches(byTitle('Long Island Iced Tea'), 'sour')).toEqual([]);  // 12,1 % < 13 %
+  expect(getFlavorMatches(byTitle('Dark & Stormy'), 'sour')).toEqual(['lime juice']);  // 24,8 % ohne Ginger Beer
+  expect(getFlavorMatches(byTitle('Long Island Iced Tea'), 'sour')).toEqual([]);  // 14,8 % ohne Cola < 15 %
   expect(getFlavorMatches(byTitle('Negroni'), 'bitter').length).toBeGreaterThan(0);
 });
 
@@ -251,7 +267,7 @@ Expected: FAIL (`evaluate`, `getNearMisses`, `SPIRIT_OPTIONS` … nicht definier
 
 - [ ] **Step 4: `BarMenuList.jsx` anpassen**
 
-`nonAlcoholicOnly`-State, den `toggleSwitch`-Block, den `Switch`-Import und `isNonAlcoholic` entfernen. `data` = `getActiveRecipes(RecipesData)`, danach wie bisher sortiert. Das Paket `react-switch` bleibt in `package.json` (Nicht-Ziel).
+`nonAlcoholicOnly`-State, den `toggleSwitch`-Block, den `Switch`-Import und `isNonAlcoholic` entfernen. `data` = `getActiveRecipes(RecipesData)`, danach wie bisher sortiert. `extractUniqueIngredients` überspringt Auffüller (`isFiller`). Dadurch tauchen „soda water" und „cola" nicht als Chips auf. Der heutige Chip „ginger beer" fällt dabei ebenfalls weg. Tonic water betrifft nur archivierte Rezepte. Das Paket `react-switch` bleibt in `package.json` (Nicht-Ziel).
 
 - [ ] **Step 5: Tests laufen lassen**
 
@@ -331,7 +347,7 @@ git commit -m "Cocktail guide: liked spirits step and 'also interesting' results
 
 - `readJson(path)` / `writeJson(path, data)` ersetzen `readData`/`writeData` für beide Dateien.
 - `SPIRITS` und `FLAVOR_TAGS` als Konstanten duplizieren (der Server ist CommonJS und eigenständig, ein gemeinsames Modul wäre mehr Aufwand als zwei Zeilen).
-- `validateIngredients(obj, recipes)`: Jeder Eintrag hat eine `abv` als Zahl `0–100`, `flavors` als Array aus erlaubten Tags und `spirit` fehlt oder ist erlaubt. Kein normalisierter Schlüssel doppelt (Review Focus 5). Jede Zutat aktiver Rezepte behält ihren Eintrag.
+- `validateIngredients(obj, recipes)`: Jeder Eintrag hat eine `abv` als Zahl `0–100`, `flavors` als Array aus erlaubten Tags, `spirit` fehlt oder ist erlaubt, und `filler` fehlt oder ist `true`. Kein normalisierter Schlüssel doppelt (Review Focus 5). Jede Zutat aktiver Rezepte behält ihren Eintrag.
 - `validateRecipeServer`: Bei `!recipe.archived` muss jede Zutat normalisiert einen Eintrag haben. `archived` muss, falls gesetzt, boolean sein.
 
 - [ ] **Step 2: Mit curl prüfen** (Server: `npm run start:server` im Repo-Root)
@@ -367,7 +383,7 @@ git commit -m "Dev server: ingredients API and required ingredient entries"
 
 - `ingredients` per `GET /api/dev/ingredients` zusammen mit den Rezepten laden.
 - Zeile mit bekannter Zutat (`findIngredient`): kleiner Hinweis, z. B. `40% · gin · herbal`.
-- Zeile mit unbekannter, nicht leerer Zutat: darunter ABV (number), Spirituose (`<select>` mit leerer Option + `SPIRITS`), fünf Tag-Chips. Vorbelegt mit `estimateIngredient(name)`. Der Zwischenstand liegt im State `pending: { [normalizeName(name)]: entry }`.
+- Zeile mit unbekannter, nicht leerer Zutat: darunter ABV (number), Spirituose (`<select>` mit leerer Option + `SPIRITS`), fünf Tag-Chips, Checkbox „Filler (topped up)". Die Ingredients-Tabelle in Step 3 bekommt dieselbe Checkbox. Vorbelegt mit `estimateIngredient(name)`. Der Zwischenstand liegt im State `pending: { [normalizeName(name)]: entry }`.
 
 - [ ] **Step 2: Speichern**
 
