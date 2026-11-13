@@ -22,11 +22,6 @@ export const getFilterLabel = (ingredient) =>
   (getIngredientGroup(ingredient) === 'Spirits' &&
     COLLAPSED_SPIRITS.find(spirit => new RegExp(`\\b${spirit}\\b`, 'i').test(ingredient))) || ingredient;
 
-// Alkoholfrei = keine Zutat aus Spirits oder Liqueurs & Wine (Bitters-Dashes zählen nicht)
-const ALCOHOLIC_GROUPS = ['Spirits', 'Liqueurs & Wine'];
-export const isNonAlcoholic = (recipe) =>
-  !(recipe.ingredients || []).some(i => ALCOHOLIC_GROUPS.includes(getIngredientGroup(i.ingredient || '')));
-
 // ---------- Cocktail Guide ----------
 
 export const SPIRITS = ['gin', 'rum', 'whiskey', 'brandy', 'tequila', 'vodka'];
@@ -86,54 +81,52 @@ export const getAbv = (recipe) => {
 };
 
 export const STRENGTH_OPTIONS = [
-  { id: 'nonalc', label: 'Non-alc', hint: 'No alcohol at all' },
   { id: 'light', label: 'Light', hint: 'Easy-going, less booze' },
   { id: 'balanced', label: 'Balanced', hint: 'Noticeable, but well rounded' },
   { id: 'strong', label: 'Spirit-forward', hint: 'Strong, mostly booze' },
 ];
+// Obergrenzen der Stufen in % ABV (exklusiv, unverdünnt) – mit dem Betreiber kalibrierbar
+export const STRENGTH_LEVELS = { light: 18, balanced: 26 };
+const LEVEL_ORDER = STRENGTH_OPTIONS.map(o => o.id);
 
-// Stärkestufen = Drittel der alkoholischen Rezepte nach geschätztem ABV,
-// damit neue Rezepte aus dem Editor automatisch passend einsortiert werden.
-const strengthThresholds = (recipes) => {
-  const abvs = recipes.filter(r => !isNonAlcoholic(r)).map(getAbv).sort((a, b) => a - b);
-  return [abvs[Math.floor(abvs.length / 3)], abvs[Math.floor((abvs.length * 2) / 3)]];
-};
-
-export const getStrengthLevel = (recipe, thresholds) => {
-  if (isNonAlcoholic(recipe)) return 'nonalc';
+export const getStrengthLevel = (recipe) => {
   const abv = getAbv(recipe);
-  if (abv < thresholds[0]) return 'light';
-  if (abv < thresholds[1]) return 'balanced';
+  if (abv < STRENGTH_LEVELS.light) return 'light';
+  if (abv < STRENGTH_LEVELS.balanced) return 'balanced';
   return 'strong';
 };
 
-// ODER innerhalb eines Profils, aber nur über Zutaten, die das Profil wirklich prägen
-// (kein simple syrup / lemon juice – die stecken in fast allem).
 export const FLAVOR_PROFILES = [
-  { id: 'fruity', label: 'Fruity & Sour', regex: /raspberry|cassis|apricot|orange juice|grenadine|curaçao|triple sec|maraschino|\bport\b|sloe|mango|passion|pineapple|berry/i },
-  { id: 'herbal', label: 'Herbal & Fresh', regex: /chartreuse|bénédictine|basil|thyme|rosmary|rosemary|lavender|sage|mint|menthe|earl grey|cucumber|rose water|ginger beer|tonic/i },
-  { id: 'bitter', label: 'Bitter & Aromatic', regex: /campari|aperol|amaro|vermouth|sherry|bénédictine|chartreuse|bitters/i },
-  { id: 'sweet', label: 'Sweet & Creamy', regex: /cacao|coffee liqueur|half-and-half|cream|egg white|espresso|orgeat|vanilla/i },
+  { id: 'sour', label: 'Fresh & Sour' },
+  { id: 'fruity', label: 'Fruity' },
+  { id: 'herbal', label: 'Herbal & Floral' },
+  { id: 'bitter', label: 'Bitter & Aromatic' },
+  { id: 'sweet', label: 'Sweet & Creamy' },
 ];
+// Tags mit Mindestanteil am Volumen ohne Auffüller (sonst wäre jeder Drink mit einem Spritzer Zitrone "sauer").
+// Alle anderen Tags zählen ab einem Treffer.
+export const FLAVOR_MIN_SHARE = { sour: 0.14 };
 
-export const getFlavorMatches = (recipe, profileId) => {
-  const profile = FLAVOR_PROFILES.find(p => p.id === profileId);
-  return (recipe.ingredients || [])
-    .map(i => i.ingredient || '')
-    .filter(name => profile.regex.test(name));
+const volume = (ingredients) => ingredients.reduce((sum, i) => sum + toOz(i), 0);
+
+export const getFlavorMatches = (recipe, tag) => {
+  const ingredients = recipe.ingredients || [];
+  const tagged = ingredients.filter(i => getIngredient(i.ingredient).flavors.includes(tag));
+  const minShare = FLAVOR_MIN_SHARE[tag];
+  if (minShare !== undefined) {
+    const base = volume(ingredients.filter(i => !isFiller(i.ingredient)));
+    if (!base || volume(tagged) / base < minShare) return [];
+  }
+  return tagged.map(i => i.ingredient);
 };
 
-// Basisspirituosen nur innerhalb der Spirits-Gruppe prüfen ("apricot brandy", "sloe gin" sind Liköre)
-const spirit = (regex) => (name) => getIngredientGroup(name) === 'Spirits' && regex.test(name);
-export const AVOID_OPTIONS = [
-  { id: 'gin', label: 'gin', matches: spirit(/\bgin\b/i) },
-  { id: 'rum', label: 'rum', matches: spirit(/\brum\b/i) },
-  { id: 'whiskey', label: 'whiskey', matches: spirit(/whisk|bourbon|\brye\b/i) },
-  { id: 'brandy', label: 'brandy', matches: spirit(/brandy|cognac/i) },
-  { id: 'tequila', label: 'tequila', matches: spirit(/tequila|mezcal/i) },
-  { id: 'vodka', label: 'vodka', matches: spirit(/vodka/i) },
-  { id: 'egg', label: 'egg white', matches: (name) => /egg white/i.test(name) },
-  { id: 'coffee', label: 'coffee', matches: (name) => /coffee|espresso/i.test(name) },
+export const SPIRIT_OPTIONS = SPIRITS.map(id => ({ id, label: id }));
+export const getSpirits = (recipe) =>
+  [...new Set((recipe.ingredients || []).map(i => getIngredient(i.ingredient).spirit).filter(Boolean))];
+
+export const EXCLUDE_OPTIONS = [
+  { id: 'egg', label: 'No egg white', matches: (name) => /egg white/i.test(name) },
+  { id: 'coffee', label: 'No coffee', matches: (name) => /coffee|espresso/i.test(name) },
 ];
 
 export const LENGTH_OPTIONS = [
@@ -142,52 +135,52 @@ export const LENGTH_OPTIONS = [
 ];
 const isLong = (recipe) => /collins|highball/i.test(recipe.glassware || '');
 
-const containsAvoided = (recipe, avoid) =>
-  AVOID_OPTIONS.filter(o => avoid.includes(o.id))
-    .filter(o => (recipe.ingredients || []).some(i => o.matches(i.ingredient || '')));
-
-// Antwort als harter Filter – würde er alles wegfiltern, bleiben die bisherigen Kandidaten
-// und die Antwort wirkt nur noch über das Ranking. Ergebnis ist damit nie leer.
-const narrow = (candidates, predicate) => {
-  const next = candidates.filter(predicate);
-  return next.length ? next : candidates;
+// answers: { strength, flavors: [], spirits: [], exclude: [], length }
+// Nicht beantwortete Kriterien sind immer ok. Drinks ohne Basisspirituose passen zu jeder Spirituosen-Auswahl.
+export const evaluate = (recipe, answers) => {
+  const { strength, flavors = [], spirits = [], exclude = [], length } = answers;
+  const actualStrength = getStrengthLevel(recipe);
+  const diff = strength ? LEVEL_ORDER.indexOf(actualStrength) - LEVEL_ORDER.indexOf(strength) : 0;
+  const disliked = spirits.length ? getSpirits(recipe).filter(s => !spirits.includes(s)) : [];
+  const matches = flavors.flatMap(f => getFlavorMatches(recipe, f));
+  const names = (recipe.ingredients || []).map(i => i.ingredient || '');
+  const hits = EXCLUDE_OPTIONS.filter(o => exclude.includes(o.id) && names.some(n => o.matches(n))).map(o => o.id);
+  const actualLength = isLong(recipe) ? 'long' : 'short';
+  return {
+    strength: { ok: diff === 0, actual: actualStrength, diff },
+    spirits: { ok: disliked.length === 0, disliked },
+    flavor: { ok: !flavors.length || matches.length > 0, matches },
+    excluded: { ok: hits.length === 0, hits },
+    length: { ok: !length || actualLength === length, actual: actualLength },
+  };
 };
 
-// answers: { strength, flavors: [], avoid: [], length }
-export const getCandidates = (recipes, answers) => {
-  const thresholds = strengthThresholds(recipes);
-  const { strength, flavors = [], avoid = [], length } = answers;
-  let candidates = recipes;
-  if (strength) candidates = narrow(candidates, r => getStrengthLevel(r, thresholds) === strength);
-  if (avoid.length) candidates = narrow(candidates, r => containsAvoided(r, avoid).length === 0);
-  if (flavors.length) candidates = narrow(candidates, r => flavors.some(f => getFlavorMatches(r, f).length));
-  if (length) candidates = narrow(candidates, r => isLong(r) === (length === 'long'));
-  return candidates;
+// Score = prägende Geschmackstreffer (max. 2 pro Profil); stabil sortiert, Gleichstand behält Eingabereihenfolge
+const score = (recipe, flavors = []) =>
+  flavors.reduce((sum, f) => sum + Math.min(getFlavorMatches(recipe, f).length, 2), 0);
+const rank = (recipes, answers) => recipes
+  .map(recipe => ({ recipe, score: score(recipe, answers.flavors) }))
+  .sort((a, b) => b.score - a.score)
+  .map(({ recipe }) => recipe);
+
+// Harte Filter: alle Kriterien müssen passen, kein Fallback mehr
+export const getCandidates = (recipes, answers) =>
+  getActiveRecipes(recipes).filter(r => Object.values(evaluate(r, answers)).every(c => c.ok));
+
+export const recommend = (recipes, answers, count = 3) =>
+  rank(getCandidates(recipes, answers), answers).slice(0, count);
+
+const nearMissReason = (e) => {
+  if (!e.strength.ok) return e.strength.diff > 0 ? 'a bit stronger than you asked' : 'a bit lighter';
+  if (!e.spirits.ok) return `made with ${e.spirits.disliked.join(' & ')}`;
+  return `served ${e.length.actual}`;
 };
 
-const STRENGTH_TARGET = { light: 0, balanced: 0.5, strong: 1 };
+// Fast-Treffer: Ausschlüsse und Geschmack passen, genau eins von Stärke (max. 1 Stufe) / Spirituose / Länge nicht
+const isNearMiss = (e) => e.excluded.ok && e.flavor.ok && Math.abs(e.strength.diff) <= 1
+  && [e.strength, e.spirits, e.length].filter(c => !c.ok).length === 1;
 
-const scoreRecipe = (recipe, answers, abvRange) => {
-  const { strength, flavors = [], avoid = [], length } = answers;
-  let score = 0;
-  if (strength in STRENGTH_TARGET) {
-    const [min, max] = abvRange;
-    const position = max > min ? (getAbv(recipe) - min) / (max - min) : 0.5;
-    score += 2 * (1 - Math.abs(position - STRENGTH_TARGET[strength]));
-  }
-  flavors.forEach(f => { score += Math.min(getFlavorMatches(recipe, f).length, 2); });
-  if (length && isLong(recipe) === (length === 'long')) score += 1;
-  score -= 10 * containsAvoided(recipe, avoid).length;
-  return score;
-};
-
-// Top-Vorschläge (max. 3) nach Score; stabil sortiert, Gleichstand behält Eingabereihenfolge
-export const recommend = (recipes, answers, count = 3) => {
-  const abvs = recipes.filter(r => !isNonAlcoholic(r)).map(getAbv);
-  const abvRange = [Math.min(...abvs), Math.max(...abvs)];
-  return getCandidates(recipes, answers)
-    .map(recipe => ({ recipe, score: scoreRecipe(recipe, answers, abvRange) }))
-    .sort((a, b) => b.score - a.score)
+export const getNearMisses = (recipes, answers, count = 3) =>
+  rank(getActiveRecipes(recipes).filter(r => isNearMiss(evaluate(r, answers))), answers)
     .slice(0, count)
-    .map(({ recipe }) => recipe);
-};
+    .map(recipe => ({ recipe, reason: nearMissReason(evaluate(recipe, answers)) }));

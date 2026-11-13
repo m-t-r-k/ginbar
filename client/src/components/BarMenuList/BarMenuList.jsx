@@ -4,15 +4,13 @@ import BarMenuItem from '../BarMenuItem/BarMenuItem';
 import RecipesData from '../../data/cocktail-recipes.json';
 import BarMenuListItemDetail from '../BarMenuListItemDetail/BarMenuListItemDetail';
 import '../GinList/GinList.scss';
-import Switch from "react-switch";
 import CocktailGuide from '../CocktailGuide/CocktailGuide';
-import { OTHER_GROUP, getIngredientGroup, getFilterLabel, isNonAlcoholic } from './cocktailLogic';
+import { OTHER_GROUP, getIngredientGroup, getFilterLabel, getActiveRecipes, isFiller } from './cocktailLogic';
 
 class BarMenuList extends React.Component {
   state = {
     selectedRecipe: null,
     selectedIngredients: new Set(),
-    nonAlcoholicOnly: false,
     guideOpen: false,
     activeFilter: window.innerWidth > 1260
   };
@@ -52,7 +50,7 @@ class BarMenuList extends React.Component {
     recipes.forEach(recipe => {
       if (recipe.ingredients && Array.isArray(recipe.ingredients)) {
         recipe.ingredients.forEach(ing => {
-          if (ing.ingredient && ing.unit === 'oz' && ing.amount && Number(ing.amount) >= 0.5) {
+          if (ing.ingredient && !isFiller(ing.ingredient) && ing.unit === 'oz' && ing.amount && Number(ing.amount) >= 0.5) {
             ingredients.add(getFilterLabel(ing.ingredient));
           }
         });
@@ -119,15 +117,14 @@ class BarMenuList extends React.Component {
   };
 
   render() {
-    const data = [...RecipesData].sort((a, b) => {
+    const data = getActiveRecipes(RecipesData).sort((a, b) => {
       if (a.title < b.title) return -1;
       if (a.title > b.title) return 1;
       return 0;
     });
-    const { selectedRecipe, overlayVisible, selectedIngredients, activeFilter, nonAlcoholicOnly, guideOpen } = this.state;
+    const { selectedRecipe, overlayVisible, selectedIngredients, activeFilter, guideOpen } = this.state;
     const ingredientGroups = this.groupIngredients(this.extractUniqueIngredients(data));
-    const filteredData = this.filterRecipesByIngredients(data, selectedIngredients)
-      .filter(recipe => !nonAlcoholicOnly || isNonAlcoholic(recipe));
+    const filteredData = this.filterRecipesByIngredients(data, selectedIngredients);
 
     return ( 
       <section className="fixed_width masonry_wrap bar_menu_filter">
@@ -144,21 +141,6 @@ class BarMenuList extends React.Component {
               </div>
             </div>
             <div className="filters">
-              <div className='toggleSwitch'>
-                <span>Non-alc:</span>
-                <Switch onChange={() => this.setState(prevState => ({ nonAlcoholicOnly: !prevState.nonAlcoholicOnly }))}
-                  checked={nonAlcoholicOnly}
-                  width={50}
-                  height={22}
-                  borderRadius={11}
-                  onColor='#f5f5f5'
-                  offColor='#313131'
-                  onHandleColor='#303030'
-                  offHandleColor='#8e8e8e'
-                  uncheckedIcon={false}
-                  checkedIcon={false}
-                  className="showTipsSwitch" />
-              </div>
               {ingredientGroups.map(group => (
                 <div key={group.name}>
                   <span>{group.name}:</span>
