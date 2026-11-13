@@ -180,11 +180,11 @@
         "ingredient": "orange twist"
       }
     ],
-    "id": 5,
     "flavors": [
       "bitter",
-      "fruity"
-    ]
+      "sweet"
+    ],
+    "id": 5
   },
   {
     "title": "Long Island Iced Tea",
@@ -301,8 +301,9 @@
     ]
   },
   {
-    "id": 9,
     "title": "Negroni",
+    "glassware": "Rocks glass",
+    "instructions": "STIR and STRAIN into an ice-filled, chilled rocks glass. Add the garnish.",
     "ingredients": [
       {
         "amount": 1.5,
@@ -325,15 +326,16 @@
         "ingredient": "orange twist"
       }
     ],
-    "glassware": "Rocks glass",
-    "instructions": "STIR and STRAIN into an ice-filled, chilled rocks glass. Add the garnish.",
     "flavors": [
-      "bitter"
-    ]
+      "bitter",
+      "sweet"
+    ],
+    "id": 9
   },
   {
-    "id": 12,
     "title": "Alabazam",
+    "glassware": "Nick & Nora glass",
+    "instructions": "SHAKE and STRAIN into a chilled Nick & Nora glass.",
     "ingredients": [
       {
         "amount": 1.5,
@@ -361,12 +363,11 @@
         "ingredient": "Angustora bitters"
       }
     ],
-    "glassware": "Nick & Nora glass",
-    "instructions": "SHAKE and STRAIN into a chilled Nick & Nora glass.",
     "flavors": [
       "sour",
-      "bitter"
-    ]
+      "herbal"
+    ],
+    "id": 12
   },
   {
     "title": "Emperor's Garden",
@@ -756,10 +757,10 @@
         "ingredient": "orange twist"
       }
     ],
-    "id": 31,
     "flavors": [
-      "bitter"
-    ]
+      "sweet"
+    ],
+    "id": 31
   },
   {
     "title": "Tom Collins",
@@ -870,11 +871,11 @@
         "ingredient": "Angustora bitters"
       }
     ],
-    "id": 37,
     "flavors": [
-      "bitter",
-      "herbal"
-    ]
+      "herbal",
+      "sweet"
+    ],
+    "id": 37
   },
   {
     "title": "Boston Cocktail",
@@ -902,10 +903,11 @@
         "ingredient": "grenadine"
       }
     ],
-    "id": 38,
     "flavors": [
-      "fruity"
-    ]
+      "fruity",
+      "sweet"
+    ],
+    "id": 38
   },
   {
     "title": "Aztec's Mark",
@@ -1007,11 +1009,11 @@
         "ingredient": "simple syrup"
       }
     ],
-    "id": 41,
     "flavors": [
-      "bitter",
-      "sour"
-    ]
+      "sour",
+      "sweet"
+    ],
+    "id": 41
   },
   {
     "title": "Espresso Tonic",
@@ -1092,10 +1094,10 @@
         "ingredient": "thyme syrup"
       }
     ],
-    "id": 44,
     "flavors": [
       "herbal"
-    ]
+    ],
+    "id": 44
   },
   {
     "title": "Dark & Stormy",
