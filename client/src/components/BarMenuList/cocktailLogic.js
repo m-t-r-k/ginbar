@@ -103,21 +103,15 @@ export const FLAVOR_PROFILES = [
   { id: 'bitter', label: 'Bitter & Aromatic' },
   { id: 'sweet', label: 'Sweet & Creamy' },
 ];
-// Tags mit Mindestanteil am Volumen ohne Auffüller (sonst wäre jeder Drink mit einem Spritzer Zitrone "sauer").
-// Alle anderen Tags zählen ab einem Treffer.
-export const FLAVOR_MIN_SHARE = { sour: 0.14 };
-
-const volume = (ingredients) => ingredients.reduce((sum, i) => sum + toOz(i), 0);
-
-export const getFlavorMatches = (recipe, tag) => {
-  const ingredients = recipe.ingredients || [];
-  const tagged = ingredients.filter(i => getIngredient(i.ingredient).flavors.includes(tag));
-  const minShare = FLAVOR_MIN_SHARE[tag];
-  if (minShare !== undefined) {
-    const base = volume(ingredients.filter(i => !isFiller(i.ingredient)));
-    if (!base || volume(tagged) / base < minShare) return [];
-  }
-  return tagged.map(i => i.ingredient);
+// Geschmack steht am Rezept ("flavors": max. 2 Primärgeschmäcker, vom Betreiber gepflegt).
+// Die Zutaten-Tags liefern nur den Vorschlag dafür im Editor: Tags nach Volumen gewichtet, die zwei stärksten.
+export const MAX_RECIPE_FLAVORS = 2;
+export const suggestFlavors = (recipe) => {
+  const volumeByTag = Object.fromEntries(FLAVOR_TAGS.map(tag => [tag, 0]));
+  (recipe.ingredients || []).forEach(ing => getIngredient(ing.ingredient).flavors.forEach(tag => { volumeByTag[tag] += toOz(ing); }));
+  return FLAVOR_TAGS.filter(tag => volumeByTag[tag] > 0)
+    .sort((a, b) => volumeByTag[b] - volumeByTag[a])
+    .slice(0, MAX_RECIPE_FLAVORS);
 };
 
 export const SPIRIT_OPTIONS = SPIRITS.map(id => ({ id, label: id }));
@@ -142,7 +136,7 @@ export const evaluate = (recipe, answers) => {
   const actualStrength = getStrengthLevel(recipe);
   const diff = strength ? LEVEL_ORDER.indexOf(actualStrength) - LEVEL_ORDER.indexOf(strength) : 0;
   const disliked = spirits.length ? getSpirits(recipe).filter(s => !spirits.includes(s)) : [];
-  const matches = flavors.flatMap(f => getFlavorMatches(recipe, f));
+  const matches = flavors.filter(f => (recipe.flavors || []).includes(f));
   const names = (recipe.ingredients || []).map(i => i.ingredient || '');
   const hits = EXCLUDE_OPTIONS.filter(o => exclude.includes(o.id) && names.some(n => o.matches(n))).map(o => o.id);
   const actualLength = isLong(recipe) ? 'long' : 'short';
@@ -155,9 +149,8 @@ export const evaluate = (recipe, answers) => {
   };
 };
 
-// Score = prägende Geschmackstreffer (max. 2 pro Profil); stabil sortiert, Gleichstand behält Eingabereihenfolge
-const score = (recipe, flavors = []) =>
-  flavors.reduce((sum, f) => sum + Math.min(getFlavorMatches(recipe, f).length, 2), 0);
+// Score = Anzahl getroffener Primärgeschmäcker; stabil sortiert, Gleichstand behält Eingabereihenfolge
+const score = (recipe, flavors = []) => flavors.filter(f => (recipe.flavors || []).includes(f)).length;
 const rank = (recipes, answers) => recipes
   .map(recipe => ({ recipe, score: score(recipe, answers.flavors) }))
   .sort((a, b) => b.score - a.score)

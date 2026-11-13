@@ -2,7 +2,7 @@ import recipes from '../../data/cocktail-recipes.json';
 import ingredients from '../../data/ingredients.json';
 import {
   STRENGTH_OPTIONS, FLAVOR_PROFILES, SPIRIT_OPTIONS, EXCLUDE_OPTIONS, LENGTH_OPTIONS,
-  getCandidates, getStrengthLevel, getFlavorMatches, getSpirits, evaluate, recommend, getNearMisses,
+  getCandidates, getStrengthLevel, suggestFlavors, getSpirits, FLAVOR_TAGS, evaluate, recommend, getNearMisses,
   getAbv, getIngredient, findIngredient, getActiveRecipes, isFiller
 } from './cocktailLogic';
 
@@ -50,13 +50,25 @@ test('fixed strength bands', () => {
   expect(getStrengthLevel(byTitle('Dark & Stormy'))).toBe('light');
 });
 
-test('flavors come from ingredient tags', () => {
-  expect(getFlavorMatches(byTitle('Tom Collins'), 'sour')).toEqual(['lemon juice']);
-  expect(getFlavorMatches(byTitle('Martini (Modern)'), 'sour')).toEqual([]);
-  expect(getFlavorMatches(byTitle('Dark & Stormy'), 'sour')).toEqual(['lime juice']);  // 24,8 % ohne Ginger Beer
-  expect(getFlavorMatches(byTitle('Fog Cutter'), 'sour')).toEqual(['lime juice']);      // 14,8 %
-  expect(getFlavorMatches(byTitle('Boston Cocktail'), 'sour')).toEqual([]);           // 13,3 % < 14 %
-  expect(getFlavorMatches(byTitle('Negroni'), 'bitter').length).toBeGreaterThan(0);
+test('flavors come from the recipe, not the ingredients', () => {
+  const answers = { flavors: ['sour'], spirits: [], exclude: [] };
+  expect(evaluate({ ...byTitle('Clover Club'), flavors: ['fruity'] }, answers).flavor.ok).toBe(false);
+  expect(evaluate({ ...byTitle('Clover Club'), flavors: ['fruity', 'sour'] }, answers).flavor).toEqual({ ok: true, matches: ['sour'] });
+});
+
+test('every active recipe has one or two valid primary flavors', () => {
+  getActiveRecipes(recipes).forEach(r => {
+    expect(r.flavors.length, r.title).toBeGreaterThanOrEqual(1);
+    expect(r.flavors.length, r.title).toBeLessThanOrEqual(2);
+    r.flavors.forEach(f => expect(FLAVOR_TAGS).toContain(f));
+  });
+});
+
+test('flavor suggestion ranks ingredient tags by volume', () => {
+  expect(suggestFlavors(byTitle('Tom Collins'))).toEqual(['sour']);
+  expect(suggestFlavors(byTitle('Negroni'))).toEqual(['bitter']);
+  expect(suggestFlavors(byTitle('Clover Club'))).toEqual(['sour', 'fruity']);  // Eiweiß hat kein Volumen
+  expect(suggestFlavors({ ingredients: [] })).toEqual([]);
 });
 
 test('liked spirits are a hard filter, sloe gin is no gin', () => {
@@ -111,6 +123,6 @@ test('every answer combination is consistent', () => {
 // Prüftabelle für den Betreiber: ABV_REPORT=1 npx vitest run -t "abv report" --silent=false
 test.runIf(process.env.ABV_REPORT)('abv report', () => {
   console.table(getActiveRecipes(recipes).map(r => ({ title: r.title, abv: getAbv(r).toFixed(1), level: getStrengthLevel(r),
-    flavors: FLAVOR_PROFILES.map(p => p.id).filter(t => getFlavorMatches(r, t).length).join(' '), spirits: getSpirits(r).join(' ') }))
+    flavors: (r.flavors || []).join(' '), suggested: suggestFlavors(r).join(' '), spirits: getSpirits(r).join(' ') }))
     .sort((a, b) => a.abv - b.abv));
 });

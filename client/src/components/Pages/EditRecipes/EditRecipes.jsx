@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import './EditRecipes.scss';
-import { SPIRITS, FLAVOR_TAGS, normalizeName, findIngredient, estimateIngredient } from '../../BarMenuList/cocktailLogic';
+import { SPIRITS, FLAVOR_TAGS, MAX_RECIPE_FLAVORS, normalizeName, findIngredient, estimateIngredient, suggestFlavors } from '../../BarMenuList/cocktailLogic';
 // Nur lokal (Route existiert in Production nicht). Validierung macht server/dev-server.js.
 
 const API_BASE = import.meta.env.VITE_DEV_API || 'http://localhost:3001';
 
 const emptyIngredient = () => ({ amount: '', unit: 'oz', ingredient: '' });
-const emptyForm = () => ({ title: '', glassware: '', instructions: '', archived: false, ingredients: [emptyIngredient()] });
+const emptyForm = () => ({ title: '', glassware: '', instructions: '', archived: false, flavors: [], ingredients: [emptyIngredient()] });
 
 // Nur gesetzte optionale Felder speichern, damit ingredients.json schlank bleibt
 const cleanEntry = ({ abv, spirit, flavors, filler }) =>
@@ -162,6 +162,7 @@ function EditRecipes() {
       glassware: recipe.glassware || '',
       instructions: recipe.instructions || '',
       archived: !!recipe.archived,
+      flavors: recipe.flavors || [],
       ingredients: recipe.ingredients && recipe.ingredients.length ? recipe.ingredients : [emptyIngredient()],
     });
     setEditingId(recipe.id);
@@ -192,6 +193,7 @@ function EditRecipes() {
       glassware: form.glassware.trim(),
       instructions: form.instructions.trim(),
       ingredients,
+      flavors: form.flavors,
       ...(form.archived && { archived: true }),
     };
 
@@ -200,6 +202,10 @@ function EditRecipes() {
       .filter(i => !findIngredient(i.ingredient, ingredientList))
       .map(i => [normalizeName(i.ingredient), i.ingredient])).values()];
     const invalid = newNames.find(name => !validAbv(draftFor(name).abv));
+    if (!form.archived && form.flavors.length === 0) {
+      setError('Please pick one or two primary flavors.');
+      return;
+    }
     if (invalid && !form.archived) {
       setError(`Please enter an ABV (0–100) for "${invalid}".`);
       return;
@@ -361,6 +367,29 @@ function EditRecipes() {
                     </div>
                   ))}
                   <button type="button" onClick={addIngredient}>Add Ingredient</button>
+                </div>
+
+                <div className="row flavor-row">
+                  <label>Primary flavors (max {MAX_RECIPE_FLAVORS}, the most intense)</label>
+                  <div>
+                    {FLAVOR_TAGS.map(tag => {
+                      const checked = form.flavors.includes(tag);
+                      return (
+                        <label key={tag} className="flavor-option">
+                          <input type="checkbox" checked={checked}
+                            disabled={!checked && form.flavors.length >= MAX_RECIPE_FLAVORS}
+                            onChange={() => setForm(prev => ({
+                              ...prev,
+                              flavors: checked ? prev.flavors.filter(f => f !== tag) : [...prev.flavors, tag],
+                            }))} /> {tag}
+                        </label>
+                      );
+                    })}
+                    <button type="button" className="small"
+                      onClick={() => setForm(prev => ({ ...prev, flavors: suggestFlavors(prev) }))}>
+                      Suggest from ingredients
+                    </button>
+                  </div>
                 </div>
 
                 <label className="archived-toggle">

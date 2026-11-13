@@ -420,3 +420,14 @@ git commit -m "Recipe editor: ingredient entries, archive toggle, ingredients ta
 - [ ] `cd client && npm test && npm run build`: beides erfolgreich.
 - [ ] Prüftabelle aus Task 2 Step 6 und die Zutatenliste (Name · ABV · Spirituose · Tags) dem Betreiber vorlegen. Die Stufengrenzen und die Sour-Schwelle werden einmal gemeinsam kalibriert.
 - [ ] Branch nicht pushen, bevor der Betreiber zugestimmt hat.
+
+---
+
+### Nachtrag (2026-11-13, nach Durchklicken): Geschmack am Rezept
+
+Mit den Zutaten-Tags hatten Drinks im Schnitt 2,2 Geschmäcker, „Fresh & Sour" passte auf 22 von 33 Drinks. Das Ergebnis wirkte dadurch beliebig. Entscheidung des Betreibers:
+- Jedes aktive Rezept hat `"flavors"` mit **1–2 Primärgeschmäckern**, den intensivsten. Der Guide filtert und bewertet nur danach.
+- Die Zutaten-Tags dienen nur noch als Vorschlag: `suggestFlavors(recipe)` gewichtet die Tags nach Volumen und nimmt die zwei stärksten. Im Editor gibt es dafür den Button „Suggest from ingredients".
+- `getFlavorMatches` und `FLAVOR_MIN_SHARE` (Sour-Schwelle) entfallen.
+- Server und Editor verlangen 1–2 gültige Geschmäcker für aktive Rezepte.
+- Erstbelegung durch den Builder: sour 15, fruity 11, herbal 10, bitter 9, sweet 4 (im Schnitt 1,5 pro Drink). Der Betreiber prüft.

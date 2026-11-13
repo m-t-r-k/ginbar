@@ -60,6 +60,10 @@ function validateRecipeServer(recipe) {
   if (recipe.archived !== undefined && typeof recipe.archived !== 'boolean') return { ok: false, error: 'archived must be a boolean' };
   // Aktive Rezepte brauchen für jede Zutat einen Eintrag in ingredients.json (ABV, Geschmack)
   if (!recipe.archived) {
+    const { flavors } = recipe;
+    if (!Array.isArray(flavors) || flavors.length < 1 || flavors.length > 2 || flavors.some(f => !FLAVOR_TAGS.includes(f))) {
+      return { ok: false, error: 'Pick one or two primary flavors' };
+    }
     const known = ingredientNames(readJson(INGREDIENTS_PATH));
     const unknown = recipe.ingredients.find(ing => !known.has(normalizeName(ing.ingredient)));
     if (unknown) return { ok: false, error: `Unknown ingredient: ${unknown.ingredient}` };
