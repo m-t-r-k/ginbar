@@ -275,34 +275,6 @@ function EditRecipes() {
     }
   };
 
-  // Aktiv/inaktiv direkt aus der Liste umschalten (inaktiv = "archived": true, bleibt in der Datei erhalten)
-  const toggleActive = async (recipe) => {
-    resetMessages();
-    const { id, archived, ...rest } = recipe;
-    const payload = archived ? rest : { ...rest, archived: true };
-    try {
-      setLoading(true);
-      const res = await fetch(`${API_BASE}/api/dev/recipes/${id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        setError(`${recipe.title}: ${data.error || res.statusText}`);
-        return;
-      }
-      // Ist das Rezept gerade im Formular offen, dort mitziehen – sonst überschreibt "Update" den neuen Stand
-      if (editingId === id) setForm(prev => ({ ...prev, archived: !archived }));
-      setSuccess(`${recipe.title} ${archived ? 'activated' : 'deactivated'}`);
-      fetchRecipes();
-    } catch (err) {
-      setError(err.message || 'Error saving');
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const handleDelete = async (id) => {
     if (!window.confirm('Delete recipe?')) return;
     try {
@@ -444,9 +416,6 @@ function EditRecipes() {
                   <li key={r.id} className={r.archived ? 'archived' : ''}>
                     <span>{r.title}</span>
                     <div>
-                      <label className="active-toggle" title="Shown in bar menu and guide">
-                        <input type="checkbox" checked={!r.archived} disabled={loading} onChange={() => toggleActive(r)} /> active
-                      </label>
                       <button className="small" onClick={() => handleEdit(r)}>Edit</button>
                       <button className="small danger" onClick={() => handleDelete(r.id)}>Delete</button>
                     </div>

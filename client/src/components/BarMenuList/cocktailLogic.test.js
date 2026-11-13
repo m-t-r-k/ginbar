@@ -34,10 +34,8 @@ test('every ingredient of an active recipe has an entry', () => {
 });
 
 test('archived recipes are filtered out', () => {
-  const titles = getActiveRecipes(recipes).map(r => r.title);
-  expect(titles).not.toContain('Cucumber Rose Cooler');
-  expect(titles).not.toContain('Espresso Tonic');
-  expect(titles).toHaveLength(33);
+  const list = [{ title: 'a' }, { title: 'b', archived: true }, { title: 'c', archived: false }];
+  expect(getActiveRecipes(list).map(r => r.title)).toEqual(['a', 'c']);
 });
 
 const titles = (list) => list.map(r => r.title);
@@ -98,9 +96,12 @@ test('near misses miss exactly one criterion and carry a reason', () => {
 });
 
 test('archived recipes never appear in guide results', () => {
-  const answers = { flavors: ['herbal'], spirits: [], exclude: [] };
-  expect(titles(getCandidates(recipes, answers))).not.toContain('Cucumber Rose Cooler');
-  expect(titles(getNearMisses(recipes, answers).map(n => n.recipe))).not.toContain('Espresso Tonic');
+  // Tom Collins ist der leichteste Drink und stünde sonst ganz oben
+  const list = recipes.map(r => (r.title === 'Tom Collins' ? { ...r, archived: true } : r));
+  const answers = { strength: 'light', flavors: [], spirits: [], exclude: [] };
+  expect(titles(recommend(recipes, answers))).toContain('Tom Collins');
+  expect(titles(getCandidates(list, answers))).not.toContain('Tom Collins');
+  expect(titles(getNearMisses(list, { ...answers, strength: 'balanced' }, 50).map(n => n.recipe))).not.toContain('Tom Collins');
 });
 
 test('every answer combination is consistent', () => {
