@@ -624,7 +624,11 @@
       }
     ],
     "id": 26,
-    "archived": true
+    "archived": true,
+    "flavors": [
+      "herbal",
+      "sour"
+    ]
   },
   {
     "title": "Betsy Ross",
@@ -1026,7 +1030,10 @@
       }
     ],
     "id": 42,
-    "archived": true
+    "archived": true,
+    "flavors": [
+      "bitter"
+    ]
   },
   {
     "title": "Lavada Kedavra",
