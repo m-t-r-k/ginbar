@@ -30,9 +30,9 @@
 - **Filterleiste:** Auffüller erscheinen dort nicht als Chips, die Filterleiste bleibt also unverändert.
 - **Rezeptkarten und Detailansicht:** Auffüller stehen dort mit Menge.
 
-Damit bleibt die Sour-Schwelle bei **15 %**:
-- Tom Collins (23,5 %) und Dark & Stormy (24,8 %) zählen als sour.
-- Long Island (14,8 %), Fog Cutter (14,8 %) und Boston Cocktail (13,3 %) zählen nicht als sour.
+Die Sour-Schwelle sinkt auf **14 %** (Betreiber, 2026-11-13):
+- Tom Collins (23,5 %), Dark & Stormy (24,8 %), Fog Cutter und Long Island (je 14,8 %) zählen als sour.
+- Boston Cocktail (13,3 %) zählt nicht als sour. Fog Cutter und Long Island haben exakt denselben Anteil und lassen sich über die Schwelle nicht trennen.
 
 Die Auffüller-Mengen sind Schätzwerte und wirken nur noch auf den ABV:
 - Tom Collins bleibt mit 2 bis 4 oz Soda Light.
@@ -161,7 +161,7 @@ git commit -m "Add central ingredient list with ABV, fillers and archive flag"
   - `STRENGTH_LEVELS = { light: 18, balanced: 26 }` (Obergrenzen, exklusiv), `STRENGTH_OPTIONS` (light/balanced/strong, Labels und Hints wie heute, ohne `nonalc`)
   - `getStrengthLevel(recipe) => 'light' | 'balanced' | 'strong'`
   - `FLAVOR_PROFILES = [{ id, label }]` mit den Labels `Fresh & Sour`, `Fruity`, `Herbal & Floral`, `Bitter & Aromatic`, `Sweet & Creamy`, Reihenfolge wie die Spec-Tabelle
-  - `FLAVOR_MIN_SHARE = { sour: 0.15 }` (Tags ohne Eintrag zählen ab einem Treffer)
+  - `FLAVOR_MIN_SHARE = { sour: 0.14 }` (Tags ohne Eintrag zählen ab einem Treffer)
   - `getFlavorMatches(recipe, tag) => string[]` (Zutatennamen. Bei Tags mit Mindestanteil `[]`, solange der Volumenanteil der getaggten Zutaten unter der Schwelle liegt. **Nenner = Volumen ohne Auffüller**)
   - `SPIRIT_OPTIONS = [{ id, label }]` (die sechs, Label = ID), `EXCLUDE_OPTIONS = [{ id: 'egg', label: 'No egg white' }, { id: 'coffee', label: 'No coffee' }]` (Abgleich per Regex auf den Namen wie bisher: `/egg white/i`, `/coffee|espresso/i`)
   - `getSpirits(recipe) => string[]` (eindeutige `spirit`-Werte)
@@ -190,7 +190,8 @@ test('flavors come from ingredient tags', () => {
   expect(getFlavorMatches(byTitle('Tom Collins'), 'sour')).toEqual(['lemon juice']);
   expect(getFlavorMatches(byTitle('Martini (Modern)'), 'sour')).toEqual([]);
   expect(getFlavorMatches(byTitle('Dark & Stormy'), 'sour')).toEqual(['lime juice']);  // 24,8 % ohne Ginger Beer
-  expect(getFlavorMatches(byTitle('Long Island Iced Tea'), 'sour')).toEqual([]);  // 14,8 % ohne Cola < 15 %
+  expect(getFlavorMatches(byTitle('Fog Cutter'), 'sour')).toEqual(['lime juice']);      // 14,8 %
+  expect(getFlavorMatches(byTitle('Boston Cocktail'), 'sour')).toEqual([]);           // 13,3 % < 14 %
   expect(getFlavorMatches(byTitle('Negroni'), 'bitter').length).toBeGreaterThan(0);
 });
 
