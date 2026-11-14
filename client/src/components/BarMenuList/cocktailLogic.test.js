@@ -2,7 +2,7 @@ import recipes from '../../data/cocktail-recipes.json';
 import ingredients from '../../data/ingredients.json';
 import {
   STRENGTH_OPTIONS, FLAVOR_PROFILES, SPIRIT_OPTIONS, LENGTH_OPTIONS,
-  getCandidates, getStrengthLevel, suggestFlavors, getSpirits, FLAVOR_TAGS, evaluate, recommend, getNearMisses,
+  getCandidates, getStrengthLevel, suggestFlavors, getFilterLabel, getSpirits, FLAVOR_TAGS, evaluate, recommend, getNearMisses,
   getAbv, getIngredient, findIngredient, getActiveRecipes, isFiller
 } from './cocktailLogic';
 
@@ -152,4 +152,12 @@ test('near misses relax flavor before strength', () => {
   expect(firstStrengthMiss).toBeGreaterThan(0);
   near.slice(0, firstStrengthMiss).forEach(n => expect(n.reason).toMatch(/^different flavor: /));
   near.slice(firstStrengthMiss).forEach(n => expect(n.reason).toBe('a bit stronger than you asked'));
+});
+
+test('getFilterLabel collapses whiskey, gin and rum variants', () => {
+  expect(getFilterLabel('bourbon')).toBe('whiskey');
+  expect(getFilterLabel('rye whiskey')).toBe('whiskey');
+  expect(getFilterLabel('thyme-infused gin')).toBe('gin');
+  expect(getFilterLabel('dark rum')).toBe('rum');
+  expect(getFilterLabel('sloe gin')).toBe('sloe gin');
 });

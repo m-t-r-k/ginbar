@@ -285,3 +285,8 @@
         grid-template-columns: 1fr 1fr;
     }
 }
+
+// Cookiebot-Widget schwebt unten links und verdeckt sonst den Back-Button
+body:has(.cocktail_guide) #CookiebotWidget {
+    display: none !important;
+}

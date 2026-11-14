@@ -15,12 +15,13 @@ export const OTHER_GROUP = 'Other';
 export const getIngredientGroup = (ingredient) =>
   (INGREDIENT_GROUPS.find(([, regex]) => regex.test(ingredient)) || [OTHER_GROUP])[0];
 
-// Spirits-Varianten im Filter zusammenfassen ("dark rum" -> "rum", "thyme-infused gin" -> "gin").
-// Nur innerhalb Spirits, damit z.B. "sloe gin" (Liqueur) eigenständig bleibt.
-const COLLAPSED_SPIRITS = ['gin', 'rum'];
-export const getFilterLabel = (ingredient) =>
-  (getIngredientGroup(ingredient) === 'Spirits' &&
-    COLLAPSED_SPIRITS.find(spirit => new RegExp(`\\b${spirit}\\b`, 'i').test(ingredient))) || ingredient;
+// Spirits-Varianten im Filter zusammenfassen ("dark rum" -> "rum", "bourbon" -> "whiskey") über das spirit-Feld.
+// "sloe gin" (Liqueur) hat kein spirit-Feld und bleibt eigenständig.
+const COLLAPSED_SPIRITS = ['gin', 'rum', 'whiskey'];
+export const getFilterLabel = (ingredient) => {
+  const { spirit } = getIngredient(ingredient);
+  return COLLAPSED_SPIRITS.includes(spirit) ? spirit : ingredient;
+};
 
 // ---------- Cocktail Guide ----------
 
